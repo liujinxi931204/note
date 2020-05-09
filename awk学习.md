@@ -9,6 +9,8 @@ length(s)返回字符串s的长度<br>
 index(s,t)返回字符串t在s中第一次出现的次数，如果不存在，则返回0<br>
 split(s,a)用FS将s分割到数组a中，返回字段的个数<br>
 split(s,a,fs)用fs将s分到数组a中，返回字段的个数<br>
+gsub(r,s)将$0中出现的r全部替换为s，返回替换的次数<br>
+gsub(r,s,)
 
 
 
