@@ -1,8 +1,7 @@
 awk的程序结构如下：
 awk pattern {action}
 awk的基本操作就是由输入行组成的序列中，陆续的扫描每一行，进行pattern匹配，匹配成功则会执行action中的动作。
-awk的内建变量
-NF表示当前行的总字段数，$NF就可以表示最后一个字段
-NR表示截至到当前读取的行数
-FNR表示当前
+awk的内建变量：|column1|column2|column3|
+|-|-|-|
+|content1|content2|content3|
 
