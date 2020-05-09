@@ -7,7 +7,7 @@ NR表示截至到目前读取的行数
 awk的内建函数：
 length(s)返回字符串s的长度
 index(s,t)返回字符串t在s中第一次出现的次数，如果不存在，则返回0
-split(s,a)用FS
+split(s,a)用FS将s分割到数组a中，返回字段的个数
 
 
 
