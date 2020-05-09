@@ -11,8 +11,8 @@ split(s,a)用FS将s分割到数组a中，返回字段的个数<br>
 split(s,a,fs)用fs将s分到数组a中，返回字段的个数<br>
 gsub(r,s)将$0中出现的r全部替换为s，返回替换的次数<br>
 gsub(r,s,t)将字符串t中出现的r全部替换为s，返回替换的次数<br>
-substr(s,p)返回字符串s中从p位置开始的所有的后缀
-substr(s,p,n)返回字符串中从p位置开始长度为n的后缀
+substr(s,p)返回字符串s中从p位置开始的所有的后缀<br>
+substr(s,p,n)返回字符串中从p位置开始长度为n的后缀<br>
 
 
 
