@@ -15,6 +15,8 @@ substr(s,p)返回字符串s中从p位置开始的所有的后缀<br>
 substr(s,p,n)返回字符串中从p位置开始长度为n的后缀<br>
 
 
+```python
+
 
 
 
