@@ -13,6 +13,7 @@ gsub(r,s)将$0中出现的r全部替换为s，返回替换的次数<br>
 gsub(r,s,t)将字符串t中出现的r全部替换为s，返回替换的次数<br>
 substr(s,p)返回字符串s中从p位置开始的所有的后缀<br>
 substr(s,p,n)返回字符串中从p位置开始长度为n的后缀<br>
+<iframe src="//player.bilibili.com/player.html?aid=91909529&bvid=BV1Y7411K7zz&cid=157057807&page=249" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
 
 
