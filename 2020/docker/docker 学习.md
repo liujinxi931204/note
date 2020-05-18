@@ -60,5 +60,6 @@ on-failed会重启退出容器时返回状态不为0的容器
 `docker container start`用于启动处于停止状态（Exited）的容器  
 `docker container rm`删除停止运行的容器  
 `docker container inspect`显示容器的详细运行时细节和配置信息  
-
+## docker应用容器化  
+docker能够简化应用的构建，部署和
 
