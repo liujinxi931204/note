@@ -26,4 +26,5 @@ docker imgae pull <repository>:<tag>
 docker images filter(docker images -f )
 ```  
 filter支持以下过滤器
+---dangling返回虚悬镜像。true表示仅返回虚悬镜像，false表示不返回虚悬镜像
 ---
