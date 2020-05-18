@@ -11,4 +11,6 @@ docker引擎主要由以下组件组成：docker客户端（docker client），d
 docker镜像就像停止运行的容器  
 使用docker镜像首先可以从docker仓库中拉取镜像，常用的镜像仓库时docker hub，也可以是其他的  
 镜像由多层组成，每层叠加之后从外部看起来就像一个整体。镜像的内部是一个精简的os，只包含应用运行时所必须的文件和依赖包  
-镜像可以理解为是一种构建时环境，容器可以理解为是一种运行时
+镜像可以理解为是一种构建时结构，容器可以理解为是一种运行时结构
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589771904783-1589771904788.png)  
+
