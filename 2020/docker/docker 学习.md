@@ -9,4 +9,5 @@ docker引擎主要由以下组件组成：docker客户端（docker client），d
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589771376114-1589771376115.png)  
 ## docker镜像  
 docker镜像就像停止运行的容器  
-使用docker镜像首先可以从docker
+使用docker镜像首先可以从docker仓库中拉取镜像，常用的镜像仓库时docker hub，也可以是其他的  
+
