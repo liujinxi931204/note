@@ -54,7 +54,8 @@ unless-stopped策略与always策略很类似，区别在于always会在重启doc
 on-failed会重启退出容器时返回状态不为0的容器  
 ## docker容器常用命令  
 `docker container run `启动新容器的命令，该命令最简单的形式就是接收一个镜像和命令作为参数。镜像用于创建容器，命令则是希望运行在容器中的应用  
-`docker container l`
+`docker container ls`列出所有正在运行的容器  
+`docker container exec`
 
 
 
