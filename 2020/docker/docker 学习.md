@@ -57,6 +57,6 @@ on-failed会重启退出容器时返回状态不为0的容器
 `docker container ls`列出所有正在运行的容器  
 `docker container exec`用于正在运行的容器，启动一个新进程。该命令最常用的形式是`docker exec -it <container-id orcontainer name> /Bash`，使用该命令会在容器内部启动一个Bash shell 进程用于连接。但是使用该命令有一个前提就是容器内部必须包含Bash shell  
 
-
+`docker container stop`用于停止一个正在运行的容器。
 
 
