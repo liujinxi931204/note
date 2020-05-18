@@ -5,7 +5,7 @@ awk的基本操作就是由输入行组成的序列中，陆续的扫描每一�
 NF表示当前行的字段数，所以$NF可以表示这行最后一个字段<br>
 NR表示截至到目前读取的行数<br>
 # awk常用内建变量：<br>
-
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589767002974-1589767002976.png)
 # awk的内建函数：<br>
 length(s)返回字符串s的长度<br>
 index(s,t)返回字符串t在s中第一次出现的次数，如果不存在，则返回0<br>
