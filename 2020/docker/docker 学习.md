@@ -14,3 +14,4 @@ docker镜像就像停止运行的容器
 镜像可以理解为是一种构建时结构，容器可以理解为是一种运行时结构
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589771904783-1589771904788.png)  
 
+
