@@ -23,4 +23,6 @@ docker imgae pull <repository>:<tag>
 没有指定镜像标签默认会使用latest标签，但是latest标签并不意味着镜像是最新的  
 可以使用如下命令是过滤返回的镜像的内容
 ```shell
-docker images filter(docker images -)
+docker images filter(docker images -f )
+```  
+例如
