@@ -53,7 +53,8 @@ always策略，是一种简单的策略，除非明确使用`docker container st
 unless-stopped策略与always策略很类似，区别在于always会在重启docker daemon时也会重启docker，而unless-stopped则不会  
 on-failed会重启退出容器时返回状态不为0的容器  
 ## docker容器常用命令  
-`docker container run `启动新容器的命令，该命令最简单的形式就是接收一个镜像和命令作为参数。镜像用于创建容器，命令则是
+`docker container run `启动新容器的命令，该命令最简单的形式就是接收一个镜像和命令作为参数。镜像用于创建容器，命令则是希望运行在容器中的应用  
+`docker container l`
 
 
 
