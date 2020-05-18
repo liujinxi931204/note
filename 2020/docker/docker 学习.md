@@ -35,5 +35,5 @@ filter 支持以下过滤器
 docker镜像由一些只读层的镜像组成，docker负责将这些曾堆叠起来，对外表示为单个统一的整体  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589774182697-1589774182700.png)
 可以通过`docker image inspect`命令查看docker镜像的所有分层  
-当在不需要docker镜像时，可以通过`docker image rm`命令删除docker镜像。如果某个镜像层被多个镜像所共享，那么需要在所有依赖该镜像层的镜像被删除之后才能删除该镜像层。并且在该镜像层上又正在运行的
+当在不需要docker镜像时，可以通过`docker image rm`命令删除docker镜像。如果某个镜像层被多个镜像所共享，那么需要在所有依赖该镜像层的镜像被删除之后才能删除该镜像层。并且在该镜像层上又正在运行的容器的时候，删除该镜像层是不被允许的。如果强行删除会引发问题。或者删除镜像需要在
 
