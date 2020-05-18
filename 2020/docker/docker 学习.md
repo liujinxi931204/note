@@ -8,4 +8,3 @@ docker引擎主要由以下组件组成：docker客户端（docker client），d
 启动容器的流程：  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589771376114-1589771376115.png)  
 
-
