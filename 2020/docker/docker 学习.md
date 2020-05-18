@@ -26,11 +26,12 @@ docker imgae pull <repository>:<tag>
 docker images filter(docker images -f )
 ```
 
-filter 支持以下过滤器
+filter 支持以下过滤器  
 \-\-\-dangling，返回虚悬镜像。true表示仅返回虚悬镜像，false表示不返回虚悬镜像  
 \-\-\-before，需要镜像名称或者ID，返回在此之前创建的所有镜像  
 \-\-\-after，需要镜像名称或者ID，返回在此之后创建的所有镜像  
 \-\-\-label，根据镜像的标注或者值对镜像进行过滤，输出的内容不包含所标注的值  
 `docker search`允许使用命令行的方式搜索镜像，默认情况下只返回25行内容，可以使用\-limit参数返回更多的行，最多可以返回100行  
-docker镜像由一些只读层的镜像组成，docker负责将这些曾堆叠起来，对外
+docker镜像由一些只读层的镜像组成，docker负责将这些曾堆叠起来，对外表示为单个统一的整体  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589774182697-1589774182700.png)
 
