@@ -25,4 +25,5 @@ docker imgae pull <repository>:<tag>
 ```shell
 docker images filter(docker images -f )
 ```  
-例如
+filter支持以下过滤器
+---
