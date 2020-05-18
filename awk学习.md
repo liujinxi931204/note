@@ -15,7 +15,9 @@ gsub(r,s)将$0中出现的r全部替换为s，返回替换的次数<br>
 gsub(r,s,t)将字符串t中出现的r全部替换为s，返回替换的次数<br>
 substr(s,p)返回字符串s中从p位置开始的所有的后缀<br>
 substr(s,p,n)返回字符串中从p位置开始长度为n的后缀<br>
-# awk重用内建函数：<br>
+# awk常用内建函数：<br>
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589767124676-1589767124678.png)
+# 正则表达式：
 
 
 
