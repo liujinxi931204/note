@@ -39,5 +39,6 @@ docker镜像由一些只读层的镜像组成，docker负责将这些曾堆叠�
 ## docker容器（container）  
 docker和虚拟机最大的区别就是容器更快，并且更轻量级，虚拟机运行在完整的操作系统只上，而容器则是共享其主机的操作系统或内核  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589789149067-1589789149093.png)  
+docker镜像可以运行多个容器  
 
 
