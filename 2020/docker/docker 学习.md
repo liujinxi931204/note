@@ -27,4 +27,4 @@ docker images filter(docker images -f )
 ```
 
 filter 支持以下过滤器
-\-\-\-dangling，返回虚悬镜像。
+\-\-\-dangling，返回虚悬镜像。true表示仅返回虚悬镜像，false表示不返回
