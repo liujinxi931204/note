@@ -9,5 +9,5 @@
 ## docker引擎
 
 :::
-
+docker引擎主要由以下组件组成：docker客户端（docker client），docker守护进程（）
 
