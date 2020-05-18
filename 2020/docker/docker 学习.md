@@ -24,8 +24,7 @@ docker imgae pull <repository>:<tag>
 可以使用如下命令是过滤返回的镜像的内容
 ```shell
 docker images filter(docker images -f )
- 
+```
 
-filter支持以下过滤器
----dangling返回虚悬镜像。true表示仅返回虚悬镜像，false表示不返回虚悬镜像
----
+filter 支持以下过滤器
+\-\-\-dangling，返回虚悬镜像。
