@@ -45,5 +45,6 @@ docker镜像可以运行多个容器
 \-d 以后台形式运行一个容器
 \-p 端口映射，主机端口:容器端口
 \-v 目录映射，主机目录:容器目录
-
+`docker container ls`可以列出所有正在运行的容器  
+`docker exec -it container-id /bin/`
 
