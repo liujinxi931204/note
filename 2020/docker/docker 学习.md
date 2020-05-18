@@ -41,6 +41,7 @@ docker和虚拟机最大的区别就是容器更快，并且更轻量级，虚�
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589789149067-1589789149093.png)  
 docker镜像可以运行多个容器  
 启动容器的命令是`docker container run <image> <app>` 指定容器启动时所使用的镜像和在容器中运行的应用，启动容器还有其他的参数可以使用  
-
+\-it 可以连接当前终端到容器的shell终端  
+\-d 
 
 
