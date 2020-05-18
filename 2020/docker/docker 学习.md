@@ -58,5 +58,6 @@ on-failed会重启退出容器时返回状态不为0的容器
 `docker container exec`用于正在运行的容器，启动一个新进程。该命令最常用的形式是`docker exec -it <container-id orcontainer name> /Bash`，使用该命令会在容器内部启动一个Bash shell 进程用于连接。但是使用该命令有一个前提就是容器内部必须包含Bash shell  
 `docker container stop`用于停止一个正在运行的容器，并将状态置为Exited(0),该命令是通过发送SIGTERN信号给容器内的PID为1的进程达到目的。如果进程没有在10秒钟内清理并停止运行，那么会接着发送SIGKILL信号来强制停止该容器  
 `docker container start`用于启动处于停止状态（Exited）的容器  
-`docker co`
+`docker container rm`删除停止运行的容器
+`docker container inspect`显示容器的详细运行时细节和配置信息
 
