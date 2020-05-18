@@ -1,4 +1,5 @@
 # awk的程序结构如下：<br>
+```shell
 awk pattern {action}
 awk的基本操作就是由输入行组成的序列中，陆续的扫描每一行，进行pattern匹配，匹配成功则会执行action中的动作。<br>
 # awk的内建变量：<br>
@@ -18,8 +19,7 @@ substr(s,p,n)返回字符串中从p位置开始长度为n的后缀<br>
 # awk常用内建函数：<br>
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589767124676-1589767124678.png)
 # 正则表达式：<br>
-
-
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589767456222-1589767456225.png)
 
 
 
