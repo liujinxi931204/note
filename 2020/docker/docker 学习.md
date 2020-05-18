@@ -18,5 +18,6 @@ docker客户端的镜像仓库服务是可以配置的，默认使用docker hub�
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589772225340-1589772225342.png)  
 只要给出镜像名字和标签，就可以在镜像仓库中定位一个镜像。镜像名称和标签之间使用":"分割  
 ```shell
-docker imgae pull <re>
+docker imgae pull <repository>:<tag>
 ```
+
