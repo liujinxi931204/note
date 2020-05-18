@@ -20,4 +20,5 @@ docker客户端的镜像仓库服务是可以配置的，默认使用docker hub�
 ```shell
 docker imgae pull <repository>:<tag>
 ```
+没有指定镜像标签默认会使用latest标签，但是latest标签并不意味着镜像是最新的  
 
