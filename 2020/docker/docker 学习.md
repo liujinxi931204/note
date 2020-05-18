@@ -52,7 +52,8 @@ docker镜像可以运行多个容器
 always策略，是一种简单的策略，除非明确使用`docker container stop`命令停止的容器，否则会不停的尝试重启处于停止状态的容器    
 unless-stopped策略与always策略很类似，区别在于always会在重启docker daemon时也会重启docker，而unless-stopped则不会  
 on-failed会重启退出容器时返回状态不为0的容器  
-
+## docker容器常用命令  
+`docker container run `
 
 
 
