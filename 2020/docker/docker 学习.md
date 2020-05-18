@@ -1,2 +1,1 @@
-# docker学习
-
+# docker学习  当安装docker的时候会涉及到两个主要的组件
