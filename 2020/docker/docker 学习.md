@@ -49,6 +49,6 @@ docker镜像可以运行多个容器
 `docker exec -it container-id /bin/bash`可以用于重新连接正在运行的容器  
 建议在容器运行时配置好重启策略，可以在指定事件发生或者错误发生后重启容器  
 重启策略应用于每个容器，可以作为参数传入`docker container run`命令或者compose文件中，docker重启支持以下三种策略：  
-
+always策略，是一种简单的策略，除非明确使用`docker container stop`命令停止的容器，
 
 
