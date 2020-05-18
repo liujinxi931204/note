@@ -61,5 +61,7 @@ on-failed会重启退出容器时返回状态不为0的容器
 `docker container rm`删除停止运行的容器  
 `docker container inspect`显示容器的详细运行时细节和配置信息  
 ## docker应用容器化  
-docker能够简化应用的构建，部署和
+docker能够简化应用的构建，部署和运行过程。完整的应用容器化主要包含以下几个步骤：  
+1.编写应用代码  
+
 
