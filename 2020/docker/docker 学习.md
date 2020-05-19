@@ -95,7 +95,8 @@ RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 CMD /usr/sbin/nginx
 
 ```  
-以开始必须指明所基于的镜像名称，接下来推荐
+以开始必须指明所基于的镜像名称，接下来推荐说明维护者信息
+后面则是镜像的操作命令，
 
 
 
