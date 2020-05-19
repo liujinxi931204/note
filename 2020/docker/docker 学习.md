@@ -143,7 +143,7 @@ CMD /usr/sbin/nginx
 如果要临时获取管理员权限可以使用`gosu`，而不推荐使用`sudo`  
 ####WORKDIR  
 格式为`WORKDIR /path/to/workdir`  
-
+为后续的
 
 
 
