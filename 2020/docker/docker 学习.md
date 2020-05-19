@@ -143,7 +143,12 @@ CMD /usr/sbin/nginx
 如果要临时获取管理员权限可以使用`gosu`，而不推荐使用`sudo`  
 ####WORKDIR  
 格式为`WORKDIR /path/to/workdir`  
-为后续的
+以后各层的当前目录就会被该为指定的目录。例如：  
+```shell  
+
+
+
+```
 
 
 
