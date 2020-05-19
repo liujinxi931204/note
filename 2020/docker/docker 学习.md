@@ -122,7 +122,7 @@ CMD /usr/sbin/nginx
 #### ENV  
 格式为ENV <key> <value>。指定一个环境变量，会被后续`RUN`使用，并在容器运行时保持  
 #### ADD  
- 
+格式为`ADD <src> <dest>` 
 
 
 
