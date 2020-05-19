@@ -128,7 +128,8 @@ CMD /usr/sbin/nginx
 #### ENTRYPOINT  
 两种格式  
 `ENTRYPOINT ["executalbe","parm1","parm2"]`  
-``
+`ENTRYPOINT command parm1 parm2` (shell)中执行  
+配置容器启动后的命令并且不可以被`docker run`
  
 
 
