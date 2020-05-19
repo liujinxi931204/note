@@ -104,7 +104,7 @@ CMD /usr/sbin/nginx
 #### MAINTAINER  
 格式为`MAINTAINER <name>`,指定维护者信息  
 #### RUN  
-
+格式为`RUN <command>`或者`RUN`
 
 
 
