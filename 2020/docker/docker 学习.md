@@ -94,7 +94,8 @@ RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 # Commands when creating a new container
 CMD /usr/sbin/nginx
 
-```
+```  
+以开始必须指明所基于的镜像名称，接下来推荐
 
 
 
