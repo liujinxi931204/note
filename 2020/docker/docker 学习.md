@@ -145,10 +145,12 @@ CMD /usr/sbin/nginx
 格式为`WORKDIR /path/to/workdir`  
 以后各层的当前目录就会被该为指定的目录。例如：  
 ```shell  
-
-
-
-```
+WORKDIR /a
+WORKDIR b
+WORKDIR c
+RUN pwd
+```  
+最终的路径为/a/b/c
 
 
 
