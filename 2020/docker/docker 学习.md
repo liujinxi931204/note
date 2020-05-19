@@ -136,7 +136,8 @@ CMD /usr/sbin/nginx
 格式为`VOLUME ["/data"]`  
 创建一个可从本地主机或者其他容挂载的挂载点，一般用来存放数据库和需要保持的数据等  
 这里/data目录会在运行时自动挂载为匿名卷，任何向/data写入的信息都不会记录进容器的存储层。当然运行时也可以覆盖这个挂载设置。
-`docker run -d -v mydata:/data xxx`
+`docker run -d -v mydata:/data xxx`这行命令就会使用mydata这个命名卷挂载到/data这个位置，替代了Dockerfile中的匿名挂在卷  
+
  
 
 
