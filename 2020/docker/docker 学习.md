@@ -120,7 +120,7 @@ CMD /usr/sbin/nginx
 格式为`EXPOSE <port> [<port>...]`  
 告诉服务端容器docker暴露的端口号，共互联使用。在启动容器是需要使用-P参数，docke主机会自动分配一个端口转发到指定的端口  
 #### ENV  
-格式为ENV <key> <value>。指定一个环境变量，会被后续`RUN`使用，并在容器运行时保持  
+格式为`ENV <key> <value>` 指定一个环境变量，会被后续`RUN`使用，并在容器运行时保持  
 #### ADD  
 格式为`ADD <src> <dest>` 该命令将复制指定的`src`到容器`dest`。其中`src`可以是Dockerfile所在目录的一个相对路径，也可以URL，还可以是一个tar文件（自动解压为目录）  
 #### COPY  
