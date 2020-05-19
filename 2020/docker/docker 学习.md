@@ -64,7 +64,7 @@ on-failed会重启退出容器时返回状态不为0的容器
 docker能够简化应用的构建，部署和运行过程。完整的应用容器化主要包含以下几个步骤：  
 1.编写应用代码  
 2.创建一个Dockerfile，其中包含当前应用的描述，依赖以及如何运行这个应用  
-3.对该Dockerfile执行`docker image build`命令  
+3.对该Dockerfile执行`docker image build .`命令  
 4.等待docker将应用构建到其中  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/19/1589870434743-1589870434790.png)  
 在Docker中，将包含应用文件的目录通常称为构建上下文，，通常将Dockerfile放到构建目录中。另外一点很重要就是文件名称一定是Dockerfile，不能是dockerfile或者Docker file  
