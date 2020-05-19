@@ -99,6 +99,7 @@ CMD /usr/sbin/nginx
 ### 指令  
 指令的格式一般为`instruction arguments`，指令包括FROM、RUN、CMD等
 #### FROM  
+格式为`FROM <image>` 或者`FROM <imgea>:<tag>`  
 
 
 
