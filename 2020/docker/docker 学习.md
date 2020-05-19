@@ -107,7 +107,7 @@ CMD /usr/sbin/nginx
 格式为`RUN <command>`或者`RUN ["executable"，"parm1","parm2"]`  
 前者使用shell终端运行命令，即`/bin/bash -c`；后者则使用`exec`来执行。指定其他终端可以使用第二种方式实现，例如`RUN ["/bin/bash","-c","echo hello"]`  
 每条RUN指令都会在当前镜像的基础上执行制定命令，并且提交为新的镜像。当命令较长时可以使用`\`来换行  
-在撰写Dockerfile的时候也时刻提醒自己不是在写shell，而是在定义每一层该如何构建，
+在撰写Dockerfile的时候也时刻提醒自己不是在写shell，而是在定义每一层该如何构建，在每一层构建完成之后一定要记得
 
 
 
