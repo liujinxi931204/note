@@ -153,7 +153,7 @@ RUN pwd
 最终的路径为/a/b/c  
 ####HEALTHCHECK  
 `HEALTHCHECK [选项] CMD <命令>`设置检查容器健康状态的命令  
-``
+`HEALTHCHECK NONE`如果基础镜像有健康状态检测，
 
 
 
