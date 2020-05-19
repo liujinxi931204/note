@@ -100,7 +100,7 @@ CMD /usr/sbin/nginx
 指令的格式一般为`instruction arguments`，指令包括FROM、RUN、CMD等
 #### FROM  
 格式为`FROM <image>` 或者`FROM <imgea>:<tag>`  
-
+第一条命令必须是FROM指令，并且如果在同一个Dockerfile中创建多个镜像时，可以使用
 
 
 
