@@ -103,6 +103,7 @@ CMD /usr/sbin/nginx
 第一条命令必须是FROM指令，并且如果在同一个Dockerfile中创建多个镜像时，可以使用多个FROM指令（每个镜像一次）  
 #### MAINTAINER  
 格式为`MAINTAINER <name>`,指定维护者信息  
+#### RUN  
 
 
 
