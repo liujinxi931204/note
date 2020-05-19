@@ -122,7 +122,9 @@ CMD /usr/sbin/nginx
 #### ENV  
 格式为ENV <key> <value>。指定一个环境变量，会被后续`RUN`使用，并在容器运行时保持  
 #### ADD  
-格式为`ADD <src> <dest>` 该命令将复制指定的`src`到容器`dest`。其中`src`可以是 
+格式为`ADD <src> <dest>` 该命令将复制指定的`src`到容器`dest`。其中`src`可以是Dockerfile所在目录的一个相对路径，也可以URL，还可以是一个tar文件（自动解压为目录）  
+#### COPY  
+格式为`COPY <>` 
 
 
 
