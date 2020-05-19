@@ -111,7 +111,8 @@ CMD /usr/sbin/nginx
 #### CMD  
 支持三种格式  
 `CMD ["executable","parm1","parm2"]`使用`exec`执行，推荐这种方式  
-`CMD command parm1 parm2`
+`CMD command parm1 parm2`在/bin/sh中执行，提供给需要交互的应用  
+`CMD ["parm1","parm2"]`提供给
 
 
 
