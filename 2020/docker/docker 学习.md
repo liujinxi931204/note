@@ -110,7 +110,7 @@ CMD /usr/sbin/nginx
 在撰写Dockerfile的时候也时刻提醒自己不是在写shell，而是在定义每一层该如何构建，在每一层构建完成之后一定要记得清理掉无关文件。因此在构建镜像时一定要确保每一层只添加了真正需要的东西，无关紧要的东西都应该被清理掉。  
 #### CMD  
 支持三种格式  
-`CMD ["executable","parm1","parm2"]`使用`exec`执行，推荐这种方式  
+`CMD ["executable","parm1","parm2"]`使用`exec`执行，推荐这种方式。这类格式在解析时会解析成JSON数组，因此一定要使用双引号`"`,
 `CMD command parm1 parm2`在`/bin/sh`中执行，提供给需要交互的应用  
 `CMD ["parm1","parm2"]`提供给`ENTRYPOINT`的默认参数  
 指定启动容器时执行的命令，每个Dockerfile只能有一个CMD命令，如果由多个只有最后一个会执行。如果用户启动容器时制定了运行时的指令，则会覆盖掉CMD指定的命令  
