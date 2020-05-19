@@ -125,6 +125,10 @@ CMD /usr/sbin/nginx
 格式为`ADD <src> <dest>` 该命令将复制指定的`src`到容器`dest`。其中`src`可以是Dockerfile所在目录的一个相对路径，也可以URL，还可以是一个tar文件（自动解压为目录）  
 #### COPY  
 格式为`COPY [--chown=<user>:<group>] <src> <dest>`或者`COPY [--chown=<user>:<group>] <src1>... <dest>`复制本地主机的`src`（Dockerfile目录的相对路径)容器的`dest`,当使用本地目录为源目录时，推荐使用`COPY`  
+#### ENTRYPOINT  
+两种格式  
+`ENTRYPOINT ["executalbe","parm1","parm2"]`  
+``
  
 
 
