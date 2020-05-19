@@ -129,7 +129,8 @@ CMD /usr/sbin/nginx
 两种格式  
 `ENTRYPOINT ["executalbe","parm1","parm2"]`  
 `ENTRYPOINT command parm1 parm2` (shell)中执行  
-配置容器启动后的命令并且不可以被`docker run`
+配置容器启动后的命令并且不可以被`docker run`提供的参数覆盖，每个Dockerfile中只能有一个ENTRYPOINT,当制定多个时，只有最后一个会生效  
+
  
 
 
