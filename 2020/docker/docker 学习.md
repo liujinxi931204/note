@@ -150,7 +150,8 @@ WORKDIR b
 WORKDIR c
 RUN pwd
 ```  
-最终的路径为/a/b/c
+最终的路径为/a/b/c  
+####HEALTHCHECK  
 
 
 
