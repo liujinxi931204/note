@@ -132,7 +132,7 @@ CMD /usr/sbin/nginx
 配置容器启动后的命令并且不可以被`docker run`提供的参数覆盖，每个Dockerfile中只能有一个ENTRYPOINT,当制定多个时，只有最后一个会生效  
 `ENTRYPOINT`可以在运行时被替代，使用`docker run --extrypoint`参数来指定。如果Dockerfile指定了`ENTRYPOINT`,那么`CMD`的含义就发生了变化，不再是直接的运行其命令，而是将`CMD`内容作为参数传递给`ENTRYPOINT`，即实际的执行会变为：  
 `<ENTRYPOINT> <CMD>`  
-
+#### v
  
 
 
