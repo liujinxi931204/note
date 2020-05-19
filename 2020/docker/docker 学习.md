@@ -139,7 +139,8 @@ CMD /usr/sbin/nginx
 `docker run -d -v mydata:/data xxx`这行命令就会使用mydata这个命名卷挂载到/data这个位置，替代了Dockerfile中的匿名挂在卷  
 #### USER  
 格式为`USER daemon`  
-指定运行容器的用户名或者UID，后续的RUN命令也会使用这个用户。当然这个命令只是帮你切换到用户名而已，所以
+指定运行容器的用户名或者UID，后续的RUN命令也会使用这个用户。当然这个命令只是帮你切换到用户名而已，因此这个用户必须是事先创建好的，否则无法切换  
+
 
 
 
