@@ -119,7 +119,8 @@ CMD /usr/sbin/nginx
 #### EXPOSE  
 格式为`EXPOSE <port> [<port>...]`  
 告诉服务端容器docker暴露的端口号，共互联使用。在启动容器是需要使用-P参数，docke主机会自动分配一个端口转发到指定的端口  
-
+#### ENV  
+格式为ENV <key> <value>。
 
 
 
