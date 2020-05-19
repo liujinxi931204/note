@@ -105,7 +105,8 @@ CMD /usr/sbin/nginx
 格式为`MAINTAINER <name>`,指定维护者信息  
 #### RUN  
 格式为`RUN <command>`或者`RUN ["executable"，"parm1","parm2"]`  
-前者使用shell终端运行命令，即`/bin/bash -c`；后者则使用`exec`来执行。指定其他终端可以使用第二种方式实现，例如`RUN [""]`
+前者使用shell终端运行命令，即`/bin/bash -c`；后者则使用`exec`来执行。指定其他终端可以使用第二种方式实现，例如`RUN ["/bin/bash","-c","echo hello"]`  
+每条RUN指令
 
 
 
