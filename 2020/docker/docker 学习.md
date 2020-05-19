@@ -63,6 +63,7 @@ on-failed会重启退出容器时返回状态不为0的容器
 ## docker应用容器化  
 docker能够简化应用的构建，部署和运行过程。完整的应用容器化主要包含以下几个步骤：  
 1.编写应用代码  
-2.创建一个Dockerfile，其中包含
+2.创建一个Dockerfile，其中包含当前应用的描述，依赖以及如何运行这个应用  
+3.对该Dockerfile执行`docker imgae`
 
 
