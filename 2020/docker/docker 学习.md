@@ -133,7 +133,8 @@ CMD /usr/sbin/nginx
 `ENTRYPOINT`可以在运行时被替代，使用`docker run --extrypoint`参数来指定。如果Dockerfile指定了`ENTRYPOINT`,那么`CMD`的含义就发生了变化，不再是直接的运行其命令，而是将`CMD`内容作为参数传递给`ENTRYPOINT`，即实际的执行会变为：  
 `<ENTRYPOINT> <CMD>`  
 #### VOLUME  
-格式为`VOLUME ["/data"]`
+格式为`VOLUME ["/data"]`  
+创建一个可从本地主机或者其他容挂载的挂载点，一般用来
  
 
 
