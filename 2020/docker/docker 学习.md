@@ -118,7 +118,7 @@ CMD /usr/sbin/nginx
 `CMD ["nginx","-g","daemon off"]`  
 #### EXPOSE  
 格式为`EXPOSE <port> [<port>...]`  
-告诉docker暴露
+告诉服务端容器docker暴露的端口号，共互联使用。在启动容器是需要使用-P参数，docke
 
 
 
