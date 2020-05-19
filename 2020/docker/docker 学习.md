@@ -112,7 +112,8 @@ CMD /usr/sbin/nginx
 支持三种格式  
 `CMD ["executable","parm1","parm2"]`使用`exec`执行，推荐这种方式  
 `CMD command parm1 parm2`在/bin/sh中执行，提供给需要交互的应用  
-`CMD ["parm1","parm2"]`提供给
+`CMD ["parm1","parm2"]`提供给ENTRYPOINT的默认参数  
+指定启动容器时执行的命令，每个Dockerfile只能有一个CMD
 
 
 
