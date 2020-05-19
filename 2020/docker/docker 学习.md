@@ -69,7 +69,8 @@ docker能够简化应用的构建，部署和运行过程。完整的应用容�
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/19/1589870434743-1589870434790.png)  
 在Docker中，将包含应用文件的目录通常称为构建上下文，，通常将Dockerfile放到构建目录中。另外一点很重要就是文件名称一定是Dockerfile，不能是dockerfile或者Docker file  
 Dockerfile主要有两个功能  
-对当前应用的
+对当前应用的描述  
+指导docker完成应用的容器化
 
 
 
