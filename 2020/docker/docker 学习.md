@@ -73,6 +73,28 @@ Dockerfile主要有两个功能
 指导docker完成应用的容器化  
 Dockerfile由一行行命令组成，并且支持以#开头的注释  
 一般的Dockerfile分为四部分，基础镜像信息、维护者信息、镜像操作指令和容器启动时执行指令
+例如：  
+```shell
+# This dockerfile uses the ubuntu image
+# VERSION 2 - EDITION 1
+# Author: docker_user
+# Command format: Instruction [arguments / command] ..
+
+# Base image to use, this must be set as the first line
+FROM ubuntu
+
+# Maintainer: docker_user <docker_user at email.com> (@docker_user)
+MAINTAINER docker_user docker_user@email.com
+
+# Commands to update the image
+RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
+RUN apt-get update && apt-get install -y nginx
+RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
+
+# Commands when creating a new container
+CMD /usr/sbin/nginx
+
+```
 
 
 
