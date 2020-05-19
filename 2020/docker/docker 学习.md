@@ -152,7 +152,7 @@ RUN pwd
 ```  
 最终的路径为/a/b/c  
 ####HEALTHCHECK  
-
+`HEALTHCHECK [选项] CMD <命令>`
 
 
 
