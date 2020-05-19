@@ -71,6 +71,8 @@ docker能够简化应用的构建，部署和运行过程。完整的应用容�
 Dockerfile主要有两个功能  
 对当前应用的描述  
 指导docker完成应用的容器化  
+Dockerfile由一行行命令组成，并且支持以#开头的注释  
+一般的Dockerfile分为四部分，
 
 
 
