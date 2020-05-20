@@ -169,6 +169,7 @@ HEALTHCHECK --interval=5s --timeout=3s \
   CMD curl -fs http://localhost/ || exit 1
 ```
 ## docker compose
+Docker compose与docker stack很类似，能够在docker节点上，以
 
 
 
