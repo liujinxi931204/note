@@ -169,7 +169,8 @@ HEALTHCHECK --interval=5s --timeout=3s \
   CMD curl -fs http://localhost/ || exit 1
 ```
 ## docker compose
-Docker compose与docker stack很类似，能够在docker节点上，以单引擎(single-engine mode )的方式进行多容器的部署，docker compose并不是用过脚本或者冗长docker命令将应用
+Docker compose与docker stack很类似，能够在docker节点上，以单引擎(single-engine mode )的方式进行多容器的部署，docker compose并不是用过脚本或者冗长docker命令将应用组织起来，而是通过一个声名式的配置文件描述整个应用，从而使用一条命令完成部署  
+
 
 
 
