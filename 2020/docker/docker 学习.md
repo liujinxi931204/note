@@ -151,10 +151,10 @@ WORKDIR c
 RUN pwd
 ```  
 最终的路径为/a/b/c  
-####HEALTHCHECK  
+#### HEALTHCHECK  
 `HEALTHCHECK [选项] CMD <命令>`设置检查容器健康状态的命令  
 `HEALTHCHECK NONE`如果基础镜像有健康状态检测，这条命令会屏蔽掉基础镜像的健康状态检查命令  
- 
+`HEALTHCHECK`是告诉docker如何判断该容器的状态是否正常 
 
 
 
