@@ -163,6 +163,10 @@ RUN pwd
 `HEALTHYCHECK`和`CMD`还有`ENTRYPOINT`一样只可以出现一次，如果出现多次，则最后一次有效  
 假设有个最简单的WEB服务，可以通过使用curl来帮助判断服务的健康性，其Dockerfile的HEALTHYCHECK可以这样写  
 ```shell
+FROM nginx
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+HEALTHCHECK --interval=5s --timeout=3s \
+  CMD curl -fs http://localhost/ || exit 1
 ```
 
 
