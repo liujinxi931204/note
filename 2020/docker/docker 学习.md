@@ -173,6 +173,7 @@ Docker compose与docker stack很类似，能够在docker节点上，以单引擎
 他允许用户通过一个单独的`docker-compose.yml`模板文件(YAML)来定义一组相关联的应用容器为一个项目(project)  
 `compose`中有两个重要的概念：  
 服务(service)：一个应用的容器，实际上可以包括若干运行相同镜像的容器实例  
+项目(project)：有一组关联的应用容器组成的一个完整的业务单元，在`docker-compose.yml`文件中定义  
 
 
 
