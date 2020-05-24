@@ -43,9 +43,23 @@ public void doGet(HttpServletRequest,HttpServletResponse resp){
 public void doGet(HttpServletRequest req,HttpServletReponse resp){
     HttpSession session = req.getSession();
     //使用这个方法，如果session不存在，则会自动创建一个session
-    
+    session.setAttribute("key","value");
+        //将信息存储到session中
+        if(session.isNew()){
+            //在第一次创建的时候会返回true，之后会返回false，除非重新创建
+            System.out.println("新的");
+
+        }else{
+            System.out.println("旧的");
+        }
+        session.setMaxInactiveInterval(30*60);
+        //设置session的过期时间为30*60秒
+        //如果为负值，表示永远不销毁
+        session.invalidate();
+        //立即销毁session
 
 }
-```
+```  
+### session和cookie的
 
 
