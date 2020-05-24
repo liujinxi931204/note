@@ -60,6 +60,8 @@ public void doGet(HttpServletRequest req,HttpServletReponse resp){
 
 }
 ```  
-### session和cookie的
+### session和cookie的区别  
+1.session是保存在server端的，而cookie是保存在client端的
+2.session
 
 
