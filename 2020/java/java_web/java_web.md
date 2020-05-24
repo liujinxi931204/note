@@ -63,6 +63,7 @@ public void doGet(HttpServletRequest req,HttpServletReponse resp){
 ### session和cookie的区别  
 1.session是保存在server端的，而cookie是保存在client端的  
 2.session用户无法查看和修改，cookie用户则可以查看和修改  
-3.session和cookie的存储容量不同，单个cookie保存数据的
+3.session和cookie的存储容量不同，单个cookie保存数据的容量不能超过4KB
+4.session的实现依赖于sessonId,sessionId又是存储在cookie中的，可以说session是基于cookie的  
 
 
