@@ -11,8 +11,7 @@ client指客户端，server指服务端
 ### cookie的创建的代码实现
 ```java
 //向客户端写cookie
-public void doGet(HttpServletRequest req, HttpServletResponse resp)
-{
+public void doGet(HttpServletRequest req, HttpServletResponse resp){
     Cookie cookie=new Cookie(String,String);
     //创建cookie，key:value是必填的
     cookie.setMaxAge(int);
@@ -23,6 +22,10 @@ public void doGet(HttpServletRequest req, HttpServletResponse resp)
     //最后这一句必须要写，否则cookie不会创建
 }
 
-public void doGet(HttpServletRequest,)
+public void doGet(HttpServletRequest,HttpServletResponse resp){
+    //服务器得到传来的cookie
+    req.get
+
+}
     
 ```
