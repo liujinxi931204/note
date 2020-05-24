@@ -42,7 +42,8 @@ public void doGet(HttpServletRequest,HttpServletResponse resp){
 ```java
 public void doGet(HttpServletRequest req,HttpServletReponse resp){
     HttpSession session = req.getSession();
-    //这个方法如果是第一次调用，就会自动创建一个和
+    //使用这个方法，如果session不存在，则会自动创建一个session
+    //
 
 }
 ```
