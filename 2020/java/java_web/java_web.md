@@ -38,5 +38,9 @@ public void doGet(HttpServletRequest,HttpServletResponse resp){
 1.session是基于cookie的，所以首先要产生cookie。在client访问server的时候，server会随机产生一个sessionId，并将其放在响应头中，以cookie的形式返回给client    
 2.server会将需要保存的数据存放在对应sessionId的之下，将sessionId保存在内存中  
 3.client再次访问server的时候会带上sessionId在cookie中，server获取到sessionId,然后在内存中查找，如果找到就返回信息给client  
+### session的创建的代码实现  
+```java
+public void doGet(Http)
+```
 
 
