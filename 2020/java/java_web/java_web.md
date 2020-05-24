@@ -34,5 +34,6 @@ public void doGet(HttpServletRequest,HttpServletResponse resp){
 
 } 
 ```  
-### sessionde 
+### session的创建过程  
+1.session是基于cookie的，所以首先要
 
