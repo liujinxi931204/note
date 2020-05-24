@@ -26,7 +26,9 @@ public void doGet(HttpServletRequest,HttpServletResponse resp){
     //服务器得到传来的cookie
     Cookie[] cookies = req.getCookies();
     //这个方法会得到所有的cookie，没有单独获得一个cookie的方法
-
+    for (Cookie cookie1 : cookies) {
+            
+        }
 
 }
     
