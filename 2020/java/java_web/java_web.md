@@ -39,7 +39,7 @@ public void doGet(HttpServletRequest,HttpServletResponse resp){
 1.session是基于cookie的，所以首先要产生cookie。在client访问server的时候，server会随机产生一个sessionId，并将其放在响应头中，以cookie的形式返回给client    
 2.server会将需要保存的数据存放在对应sessionId的之下，将sessionId保存在内存中  
 3.client再次访问server的时候会带上sessionId在cookie中，server获取到sessionId,然后在内存中查找，如果找到就返回信息给client  
-
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/24/1590311982792-1590311982797.png)
 ### session的创建的代码实现  
 ```java
 public void doGet(HttpServletRequest req,HttpServletReponse resp){
@@ -62,6 +62,9 @@ public void doGet(HttpServletRequest req,HttpServletReponse resp){
 
 }
 ```  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/24/1590311942442-1590311942445.png)  
+
+
 ### session和cookie的区别  
 1.session是保存在server端的，而cookie是保存在client端的  
 2.session用户无法查看和修改，cookie用户则可以查看和修改  
