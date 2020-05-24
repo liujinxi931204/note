@@ -8,12 +8,10 @@ client指客户端，server指服务端
 3.client再次访问server的时候会在请求头中带上保存的cookie，将cookie传递到server  
 4.server接收到cookie之后，会解析其中的内容，并将相应的信息返回给client  
 在cookie没有失效之前都是围绕着2-4步来进行的  
-### cookie的创建的代码实现  
+### cookie的创建的代码实 
 ```java
 public void doGet(HttpServletRequest req, HttpServletResponse resp)
 {
-   
-}
     Cookie cookie=new Cookie(String,String);
     //创建cookie，key:value是必填的
     cookie.setMaxAge(int);
@@ -22,4 +20,6 @@ public void doGet(HttpServletRequest req, HttpServletResponse resp)
     //默认情况可以不设置，以为着url路径下的所有cookie都可以被访问
     resp.addCookie(cookie);
     //最后这一句必须要写，否则cookie不会创建
+}
+    
 ```
