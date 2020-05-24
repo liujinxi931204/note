@@ -10,6 +10,10 @@ client指客户端，server指服务端
 在cookie没有失效之前都是围绕着2-4步来进行的  
 ### cookie的创建的代码实现  
 ```java
+public void doGet(HttpServletRequest req, HttpServletResponse resp)
+{
+   
+}
     Cookie cookie=new Cookie(String,String);
     //创建cookie，key:value是必填的
     cookie.setMaxAge(int);
