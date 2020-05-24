@@ -8,3 +8,4 @@ client指客户端，server指服务端
 3.client再次访问server的时候会在请求头中带上保存的cookie，将cookie传递到server  
 4.server接收到cookie之后，会解析其中的内容，并将相应的信息返回给client  
 在cookie没有失效之前都是围绕着2-4步来进行的  
+### cookie的代码
