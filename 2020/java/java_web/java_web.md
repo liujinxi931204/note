@@ -43,7 +43,7 @@ public void doGet(HttpServletRequest,HttpServletResponse resp){
 public void doGet(HttpServletRequest req,HttpServletReponse resp){
     HttpSession session = req.getSession();
     //使用这个方法，如果session不存在，则会自动创建一个session
-    //
+    
 
 }
 ```
