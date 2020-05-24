@@ -11,5 +11,6 @@ client指客户端，server指服务端
 ### cookie的创建的代码实现  
 ```java
     Cookie cookie=new Cookie(key,value);
-    //
+    //创建cookie
+    cookie.get
 ```
