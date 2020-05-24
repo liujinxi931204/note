@@ -10,7 +10,9 @@ client指客户端，server指服务端
 在cookie没有失效之前都是围绕着2-4步来进行的  
 ### cookie的创建的代码实现  
 ```java
-    Cookie cookie=new Cookie(key,value);
+    Cookie cookie=new Cookie(key ",value);
     //创建cookie
-    cookie.get
+    cookie.setMaxAge(int);
+    /用来设置cookie的有效期
+    cookie.setPath(String)
 ```
