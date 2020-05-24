@@ -15,5 +15,5 @@ client指客户端，server指服务端
     cookie.setMaxAge(int);
     /用来设置cookie的有效期，时间单位是秒。如果是负数意味着，永远不删除cookie，如果是正数，表示有效期到正数秒，如果为0，表示立即失效
     cookie.setPath(String);
-    //默认
+    //默认情况可以不设置，以为着url路径下的所有cookie都可以被访问
 ```
