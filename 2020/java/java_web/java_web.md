@@ -40,7 +40,11 @@ public void doGet(HttpServletRequest,HttpServletResponse resp){
 3.client再次访问server的时候会带上sessionId在cookie中，server获取到sessionId,然后在内存中查找，如果找到就返回信息给client  
 ### session的创建的代码实现  
 ```java
-public void doGet(Http)
+public void doGet(HttpServletRequest req,HttpServletReponse resp){
+    HttpSession session = req.getSession();
+    //这个方法如果是第一次调用，就会自动创建一个和
+
+}
 ```
 
 
