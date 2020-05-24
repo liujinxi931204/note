@@ -11,9 +11,9 @@ client指客户端，server指服务端
 ### cookie的创建的代码实现  
 ```java
     Cookie cookie=new Cookie(String,String);
-    //创建cookie
+    //创建cookie，key:value是必填的
     cookie.setMaxAge(int);
-    /用来设置cookie的有效期
+    /用来设置cookie的有效期，时间
     cookie.setPath(String);
     //
 ```
