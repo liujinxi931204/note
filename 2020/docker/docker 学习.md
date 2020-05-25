@@ -410,4 +410,31 @@ voulmes:
 ```  
 如果你不使用宿主机路径，可以指定一个volume_driver  
 ```shell
+volume_driver: mydirver
+```  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
