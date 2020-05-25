@@ -404,7 +404,8 @@ voulmes:
     //以compose配置文件为中心的相对路径作为数据卷挂载到容器
     - ./cache:/tmp/cache
     //使用用户的相对路径（~/表示的目录是 /home/<用户目录> 或者 /root/）
-    - ~/configs:/etc/config
- 
+    - ~/configs:/etc/configs/:ro
+    //已经存在的命名数据卷
+    - dataVolume:/var/lib/mysql
 ```
 
