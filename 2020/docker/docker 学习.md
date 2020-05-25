@@ -336,7 +336,12 @@ build:
 #### command  
 使用command可以覆盖容器启动后默认的执行命令  
 ```shell
-command:build exec thin =
+command:build exec thin -p 3000
+```  
+该命令也可以是一个列表，方法类似于Dockerfile  
+```shell
+
+command:["build","exec"]
 ```
 
 
