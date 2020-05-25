@@ -359,7 +359,7 @@ services:
         build: .
         deponds_on:
             - db
-            -  redis
+            - redis
     redis:
         image: redis
     db:
@@ -373,5 +373,5 @@ pid: "host"
 将pid模式设置为主机pid模式，跟主机系统共享进程命名空间。容器使用这个标签能够访问和操纵其他容器和宿主机的命名空间  
 #### port  
 端口映射的标签  
-sh
+使用HOST:CONTAINER格式或者指定
 
