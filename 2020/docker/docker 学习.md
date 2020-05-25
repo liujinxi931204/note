@@ -385,7 +385,11 @@ ports:
 添加主机名的标签，就是往/etc/hosts文件中添加一些记录，与Docker client的--add-host类似  
 ```shell
 extra_hosts:
-    -"somehost:16"
+    - "somehost:162.242.195.82"
+    - "otherhost:50.31.209.229"
+```  
+启动之后查看容器内部的hosts:
+```shell
 
 ```
 
