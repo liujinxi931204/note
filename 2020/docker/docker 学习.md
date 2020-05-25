@@ -315,7 +315,8 @@ image: ubuntu:14.04
 image: tutum/influxb
 image: a4bc65fd
 ```  
-#### args
+#### args  
+添加构建参数，这些参数是仅在
 
 
 
