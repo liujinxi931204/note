@@ -273,7 +273,8 @@ volumes:
 一份标准的配置文件应该包含version、service、networks三大部分，其中最关键的就是service和netwos  
 ## 配置选项  
 #### build  
-服务除了可以基于指定的镜像，还可以基于一份Dockerfile，在使用up启动之时执行构建任务，这个构建标签就是build，它可以指定D
+服务除了可以基于指定的镜像，还可以基于一份Dockerfile，在使用up启动之时执行构建任务，这个构建标签就是build，它可以指定Dockerfil所在文件夹路径。Compose将会利用它自动构建这个镜像，然后使用这个镜像启动服务容器  
+`build `
 
 
 
