@@ -309,6 +309,12 @@ services:
 在services标签下的第二级标签是web，这个名字是用户自己定义的，用来指定服务的名称  
 image则是指定服务的镜像名称或者镜像ID。如果镜像在本地不存在，compose则会尝试拉取这个镜像  
 例如：  
+```shell
+image: redis
+image: ubuntu:14.04
+image: tutum/influxb
+image: a4bc65fd
+```
 
 
 
