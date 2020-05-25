@@ -426,9 +426,14 @@ web:
 #### external_links  
 链接到docker-compose.yml之外的容器，甚至并非compose管理的容器，参数格式类似于links
 ```shell
-external_links
-```
+external_links:
+    - redis
+    - project_db_1:mysql
+    - project_db_1:postgresql
+```  
 
+#### dns  
+配置
 
 
 
