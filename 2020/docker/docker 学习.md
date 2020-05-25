@@ -350,6 +350,7 @@ compose的容器命名格式是:<项目名称> <服务名称><序号>
 container_name:app
 ```  
 这样容器的名字就指定为app了  
+#### depends_on  
 
 
 
