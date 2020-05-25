@@ -270,7 +270,8 @@ networks:
 volumes:
   db-data:
 ```  
-yi
+一份标准的配置文件应该包含version、service、networks三大部分，其中最关键的就是service和netwos  
+
 
 
 
