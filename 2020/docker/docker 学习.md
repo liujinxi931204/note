@@ -390,6 +390,7 @@ extra_hosts:
 ```  
 启动之后查看容器内部的hosts:
 ```shell
+162.242.195.82  somehost
 
 ```
 
