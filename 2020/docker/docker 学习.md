@@ -141,7 +141,7 @@ CMD /usr/sbin/nginx
 格式为`USER daemon`  
 指定运行容器的用户名或者UID，后续的RUN命令也会使用这个用户。当然这个命令只是帮你切换到用户名而已，因此这个用户必须是事先创建好的，否则无法切换  
 如果要临时获取管理员权限可以使用`gosu`，而不推荐使用`sudo`  
-####WORKDIR  
+#### WORKDIR  
 格式为`WORKDIR /path/to/workdir`  
 以后各层的当前目录就会被该为指定的目录。例如：  
 ```shell  
@@ -315,7 +315,7 @@ image: ubuntu:14.04
 image: tutum/influxb
 image: a4bc65fd
 ```  
-
+#### args
 
 
 
