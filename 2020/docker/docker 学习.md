@@ -400,8 +400,10 @@ voulmes:
     //只是指定一个路径，docker会自动创建一个数据卷（这个路径是容器内部的）
     - /var/lib/mysql
     //使用绝对路径挂载数据卷
-    -/opt/data:/var/lib/mysql
-
+    - /opt/data:/var/lib/mysql
+    //以compose配置文件为中心的相对路径作为数据卷挂载到容器
+    - ./cache:/tmp/cache
+    //使用
  
 ```
 
