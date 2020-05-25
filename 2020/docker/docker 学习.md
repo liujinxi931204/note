@@ -208,11 +208,38 @@ services:
     image: dockersamples/examplevotingapp_vote:before
     ports:
       - 5000:80
+  networks:
+      - frontend
+    depends_on:
+      - redis
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+      restart_policy:
+        condition: on-failure
+ 
+  result:
+    image: dockersamples/examplevotingapp_result:before
+    ports:
+      - 5001:80
+    networks:
+      - backend
+    depends_on:
+      - db
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+ 
+  worker:
+    image: dockersamples/examplevotingapp_worker
+    networks:
 
-————————————————
-版权声明：本文为CSDN博主「lfendo」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/u011781521/java/article/details/80464826
-
+  
 
 ```
 
