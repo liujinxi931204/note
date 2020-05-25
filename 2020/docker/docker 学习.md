@@ -273,7 +273,7 @@ volumes:
 一份标准的配置文件应该包含version、service、networks三大部分，其中最关键的就是service和netwos  
 ## 配置选项  
 #### build  
-
+服务除了可以基于
 
 
 
