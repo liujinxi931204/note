@@ -394,5 +394,11 @@ extra_hosts:
 50.31.209.229  otherhost
 ```  
 #### volumes  
-挂载一个目录或者一个已存在的数据卷
+数据卷的格式可以是以下多种形式：
+```shell
+voulmes:
+    //
+    - /var/lib/mysql
+    - 
+```
 
