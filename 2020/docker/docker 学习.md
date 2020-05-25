@@ -358,7 +358,13 @@ services:
     web:
         build: .
         deponds_on:
-        -
-```
+            - db
+            -  redis
+    redis:
+        image: redis
+    db:
+        image: postgres
+```  
+
 
 
