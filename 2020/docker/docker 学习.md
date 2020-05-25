@@ -302,8 +302,11 @@ build:
 ```
 #### image  
 ```shell 
-service
-```
+services:
+    web:
+        image:nginx
+```  
+在services标签下的第二级标签是web，这个名字是用户
 
 
 
