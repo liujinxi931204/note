@@ -413,7 +413,12 @@ voulmes:
 volume_driver: mydirver
 ```  
 #### links  
-链接到另一个服务中的容器。请指定服务名称和链接别名（services：）
+链接到另一个服务中的容器。请指定服务名称和链接别名（services：alias），或者仅指定服务名称
+```shell
+web:
+    links:
+        
+```
 
 
 
