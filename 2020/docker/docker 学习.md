@@ -316,7 +316,12 @@ image: tutum/influxb
 image: a4bc65fd
 ```  
 #### args  
-添加构建参数，这些参数是仅在
+添加构建参数，这些参数是仅在构建过程中可以访问的环境变量  
+首先在Dockerfile中指定参数  
+```shell
+ARG fendo
+ARG 
+```
 
 
 
