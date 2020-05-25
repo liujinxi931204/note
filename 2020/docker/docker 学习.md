@@ -417,8 +417,11 @@ volume_driver: mydirver
 ```shell
 web:
     links:
-        
-```
+        - db
+        - db:databases
+        - redis
+```  
+在当前的web服务的容器中可以
 
 
 
