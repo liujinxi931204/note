@@ -323,7 +323,15 @@ ARG fendo
 ARG password
 
 RUN echo "build number: $fendo"
-RUN script-requiring-password.sh "$passwor"
+RUN script-requiring-password.sh "$password"
+```
+然后指定build下的参数，可以传递映射列表  
+```shell
+build:
+    context:
+    args:
+        fendo:1
+ 
 ```
 
 
