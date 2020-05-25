@@ -208,7 +208,7 @@ services:
     image: dockersamples/examplevotingapp_vote:before
     ports:
       - 5000:80
-  networks:
+    networks:
       - frontend
     depends_on:
       - redis
@@ -238,10 +238,39 @@ services:
   worker:
     image: dockersamples/examplevotingapp_worker
     networks:
-
-  
-
-```
+      - frontend
+      - backend
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=VOTING]
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      placement:
+        constraints: [node.role == manager]
+ 
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    stop_grace_period: 1m30s
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+ 
+networks:
+  frontend:
+  backend:
+ 
+volumes:
+  db-data:
+```  
+yi
 
 
 
