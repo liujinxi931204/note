@@ -397,8 +397,11 @@ extra_hosts:
 数据卷的格式可以是以下多种形式：
 ```shell
 voulmes:
-    //
+    //只是指定一个路径，docker会自动创建一个数据卷（这个路径是容器内部的）
     - /var/lib/mysql
-    - 
+    //使用绝对路径挂载数据卷
+    -/opt/data:/var/lib/mysql
+
+ 
 ```
 
