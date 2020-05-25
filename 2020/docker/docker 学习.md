@@ -351,6 +351,14 @@ container_name:app
 ```  
 这样容器的名字就指定为app了  
 #### depends_on  
-一般项目中启动容器的顺序是有要求的，deponds_on就是为了解决
+一般项目中启动容器的顺序是有要求的，deponds_on就是为了解决容器之间依赖关系，启动先后顺序的问题的  
+```shell
+version: '3'
+services:
+    web:
+        build: .
+        deponds_on:
+        -
+```
 
 
