@@ -344,7 +344,8 @@ command:build exec thin -p 3000
 command:["build","exec","thin","-p","3000"]
 ```
 #### container_name  
-compose的容器
+compose的容器命名格式是:<项目名称> <服务名称><序号>  
+虽然可以自定义项目名称、服务名称，
 
 
 
