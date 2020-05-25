@@ -296,7 +296,9 @@ build:
 #### dockerfile  
 使用词Dockerfile文件来构建，必须指定构建路径  
 ```shell
-bui
+build:
+    context: .
+    dockerfile: Dockerfile-alternate
 ```
 
 
