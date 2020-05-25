@@ -286,7 +286,9 @@ build:./dir
 build:
     context: ../
     dockerfile: path/of/Dockerfile
-```
+```  
+#### context  
+conetxt选项可以是Dockerfile的文件路径
 
 
 
