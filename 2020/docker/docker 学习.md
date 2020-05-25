@@ -175,8 +175,46 @@ Docker compose与docker stack很类似，能够在docker节点上，以单引擎
 服务(service)：一个应用的容器，实际上可以包括若干运行相同镜像的容器实例  
 项目(project)：有一组关联的应用容器组成的一个完整的业务单元，在`docker-compose.yml`文件中定义  
 一个项目可以由多个服务(容器)关联而成，compose面向项目进行管理  
+官方提供了一个docker-compose配置文件的标准例子  
+```shell
+version: "3"
+services:
+ 
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379"
+    networks:
+      - frontend
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+ 
+  db:
+    image: postgres:9.4
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - backend
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+ 
+  vote:
+    image: dockersamples/examplevotingapp_vote:before
+    ports:
+      - 5000:80
 
-docker-
+————————————————
+版权声明：本文为CSDN博主「lfendo」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/u011781521/java/article/details/80464826
+
+
+```
 
 
 
