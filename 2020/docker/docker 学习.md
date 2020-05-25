@@ -320,7 +320,10 @@ image: a4bc65fd
 首先在Dockerfile中指定参数  
 ```shell
 ARG fendo
-ARG 
+ARG password
+
+RUN echo "build number: $fendo"
+RUN script-requiring-password.sh "$passwor"
 ```
 
 
