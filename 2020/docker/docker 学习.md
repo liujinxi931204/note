@@ -423,7 +423,11 @@ web:
 ```  
 在当前的web服务的容器中可以通过链接的db服务的别名database访问db容器中的数据应用，如果没有指定别名，则可以直接使用服务名访问  
 链接不需要启用服务进行通信，默认情况下，任何服务都可以以该服务的名称达到任何其他服务。links也可以起到和deponds_on相似的功能，即定义服务之间的依赖关系，从而确定服务的启动顺序  
+#### external_links  
+链接到docker-compose.yml之外的容器，甚至并非compose管理的容器，参数格式类似于links
+```shell
 external_links
+```
 
 
 
