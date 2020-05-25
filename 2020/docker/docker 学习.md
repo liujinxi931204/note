@@ -288,7 +288,8 @@ build:
     dockerfile: path/of/Dockerfile
 ```  
 #### context  
-conetxt选项可以是Dockerfile的文件路径
+conetxt选项可以是Dockerfile的文件路径，也可以是连接到git仓库的url，当提供的值是相对路径时，它被解析为相对于撰写文件的路径，此目录也是发送到Docker守护进程的context  
+
 
 
 
