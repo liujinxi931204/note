@@ -382,5 +382,10 @@ ports:
     - "127.0.0.1:8001:8001"
 ```  
 #### extra_hosts  
-添加主机名的标签，
+添加主机名的标签，就是往/etc/hosts文件中添加一些记录，与Docker client的--add-host类似  
+```shell
+extra_hosts:
+    -"somehost:16"
+
+```
 
