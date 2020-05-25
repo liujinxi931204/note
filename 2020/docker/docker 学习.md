@@ -274,14 +274,18 @@ volumes:
 ## 配置选项  
 #### build  
 服务除了可以基于指定的镜像，还可以基于一份Dockerfile，在使用up启动之时执行构建任务，这个构建标签就是build，它可以指定Dockerfil所在文件夹路径。Compose将会利用它自动构建这个镜像，然后使用这个镜像启动服务容器  
-`build:/path/to/build/dir`  
+```shell
+build:/path/to/build/dir
+```  
 也可以是相对路径  
-`build:./dir`  
+```shell
+build:./dir
+```  
 设定上下文根目录，然后以该目录为准指定Dockerfile  
 ```shell
 build:
     context: ../
-    dockerfile: path/ofD
+    dockerfile: path/of/Dockerfile
 ```
 
 
