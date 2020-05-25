@@ -341,9 +341,10 @@ command:build exec thin -p 3000
 该命令也可以是一个列表，方法类似于Dockerfile  
 ```shell
 
-command:["build","exec"]
+command:["build","exec","thin","-p","3000"]
 ```
-
+#### container_name  
+compose的容器
 
 
 
