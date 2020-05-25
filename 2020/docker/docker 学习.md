@@ -277,7 +277,12 @@ volumes:
 `build:/path/to/build/dir`  
 也可以是相对路径  
 `build:./dir`  
-设定
+设定上下文根目录，然后以该目录为准指定Dockerfile  
+```shell
+build:
+    context: ../
+    dockerfile: path/ofD
+```
 
 
 
