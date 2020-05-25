@@ -332,6 +332,11 @@ build:
     args:
         fendo:1
         password:fendo
+```  
+#### command  
+使用command可以覆盖容器启动后默认的执行命令  
+```shell
+command:build exec thin =
 ```
 
 
