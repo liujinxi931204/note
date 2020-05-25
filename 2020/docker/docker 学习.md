@@ -176,6 +176,7 @@ Docker compose与docker stack很类似，能够在docker节点上，以单引擎
 项目(project)：有一组关联的应用容器组成的一个完整的业务单元，在`docker-compose.yml`文件中定义  
 一个项目可以由多个服务(容器)关联而成，compose面向项目进行管理  
 
+docker-
 
 
 
