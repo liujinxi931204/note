@@ -365,6 +365,6 @@ services:
     db:
         image: postgres
 ```  
-
+需要注意的是，默认情况下使用docker-compose up web 这样的方式情动web服务时，也会启动redis和db这两个服务，因为在配置文件中
 
 
