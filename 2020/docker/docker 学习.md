@@ -776,8 +776,7 @@ Libnetwork实现了CNM中定义的全部三个组件，此外还实现了本地�
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/27/1590546603382-1590546603389.png)  
 在linux上，包括Bridge、Overlay以及Macvlan  
 ## docker单机桥接网络详解  
-
-
+单机桥接意味着只能在单个docker主机上运行，并且只能与
 
 
 
