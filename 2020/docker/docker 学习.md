@@ -745,7 +745,9 @@ Compose和Docker兼容性：
 #### docker-compose rm  
 用于删除已停止地compose应用，会删除容器和网络，但是不会删除卷和镜像  
 #### docker-compose restart  
-重启已停止的compose应用，
+重启已停止的compose应用，如果用户在停止以后对其进行了变更，那么变更的内容不会反映在重启的应用中，这时需要重新部署应用使变更生效  
+#### docker-compose ps  
+用于
 
 
 
