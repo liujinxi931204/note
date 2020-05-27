@@ -779,7 +779,9 @@ Libnetwork实现了CNM中定义的全部三个组件，此外还实现了本地�
 单机桥接意味着只能在单个docker主机上运行，并且只能与所在docker主机上的容器进行连接，桥接意味着这是802.1d桥接的一种实现(二层交换机)  
 每个docker主机上都有一个默认的单机桥接网路，linux上网络名称为birdge，除非通过命令行创建容器时指定参数--network，否则默认情况下，新创建的容器都会连接到该网络  
 在linux主机上，docke网络由bridge驱动创建  
-在linux docker主机上，默认的bridge网络被映射到内核中为"docker0"的linux网桥，如下图所示
+在linux docker主机上，默认的bridge网络被映射到内核中为"docker0"的linux网桥，如下图所示  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/27/1590548203632-1590548203634.png)  
+"bridge"网络在主机内核中映射到名为"docker0"的linux网桥，该网桥
 
 
 
