@@ -751,6 +751,9 @@ Compose和Docker兼容性：
 #### docker-compose down  
 停止并删除运行中的compose应用，会删除容器和网络，但是不会删除卷和镜像  
 ## docker网络  
+### 基础理论  
+在顶层设计中，docker网络架构由3个主要部分组成：CNM、Libnetwork和驱动  
+CNM是设计的
 
 
 
