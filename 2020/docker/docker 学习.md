@@ -772,7 +772,9 @@ docker网络架构的设计规范是CNM
 ### Libnetwork  
 Libnetwork实现了CNM中定义的全部三个组件，此外还实现了本地服务发现(service discovery)，基于Ingress的容器负载均衡，以及网络控制层和管理层功能  
 ### 驱动  
-如果说Libnetwork实现了控制层和管理层功能，那么驱动就是负责数据层的实现。比如，网络连通性和隔离性是由驱动来处理的，驱动层实际创建网络对象也是如此
+如果说Libnetwork实现了控制层和管理层功能，那么驱动就是负责数据层的实现。比如，网络连通性和隔离性是由驱动来处理的，驱动层实际创建网络对象也是如此，其关系如下图  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/27/1590546603382-1590546603389.png)  
+在linux上，包括Bridge、Overlay、
 
 
 
