@@ -787,7 +787,8 @@ Libnetwork实现了CNM中定义的全部三个组件，此外还实现了本地�
 ## docker macvaln  
 docker内置的macvaln驱动能够通过为容器提供mac和ip地址，让容器能够成为物理网络的"一等公民"  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/27/1590549942308-1590549942317.png)  
-macvlan的优点是性能优异，无须端口映射或者额外桥接，可以直接通过主机接口(或者子接口)访问容器接口，但是macvaln的缺点是需要将主机的网络(NIC)设置为
+macvlan的优点是性能优异，无须端口映射或者额外桥接，可以直接通过主机接口(或者子接口)访问容器接口，但是macvaln的缺点是需要将主机的网络(NIC)设置为混杂模式，这在大部分公有云平台上是不允许的  
+
 
 
 
