@@ -738,7 +738,8 @@ Compose和Docker兼容性：
             constraints: [node.role == manager]
 ```
 ### docker compose常用命令  
-#### 
+#### docker-compose up  
+用于部署一个compose应用，默认情况下该命令会读取名为docker-compose.yml或者dokcer-compose.yaml
 
 
 
