@@ -747,7 +747,9 @@ Compose和Docker兼容性：
 #### docker-compose restart  
 重启已停止的compose应用，如果用户在停止以后对其进行了变更，那么变更的内容不会反映在重启的应用中，这时需要重新部署应用使变更生效  
 #### docker-compose ps  
-用于
+用于列出compose应用中的各个容器，输出的内容包括当前状态、容器运行命令以及网络端口  
+#### docker-compose down  
+停止并删除运行中的compose应用，会删除
 
 
 
