@@ -777,7 +777,7 @@ Libnetwork实现了CNM中定义的全部三个组件，此外还实现了本地�
 在linux上，包括Bridge、Overlay以及Macvlan  
 ## docker单机桥接网络详解  
 单机桥接意味着只能在单个docker主机上运行，并且只能与所在docker主机上的容器进行连接，桥接意味着这是802.1d桥接的一种实现(二层交换机)  
-
+每个docker主机上都有一个默认的单机桥接网路，
 
 
 
