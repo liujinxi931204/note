@@ -756,7 +756,10 @@ Compose和Docker兼容性：
 CNM是设计的标准，在CNM中，规定了docker网络架构的基础组成要素  
 Libnetwork是CNM的具体实现，并且被docker采用，Libnetwork通过Go语言编写，并实现了CNM中列举的核心组件  
 驱动通过实现特定网络拓扑的方式来拓展该模型的能力  
-下图展示了顶层设计中的每个部分
+下图展示了顶层设计中的每个部分是如何组装在一起的  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/27/1590544671972-1590544672011.png)  
+### CNM  
+docker网络架构的设计规范是CNM
 
 
 
