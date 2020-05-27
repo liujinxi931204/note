@@ -743,7 +743,9 @@ Compose和Docker兼容性：
 #### docker-compose stop  
 停止compose应用相关的所有容器，但不会删除它们。被停止的应用可以很容易地使用docker-compose restart命令重新启动  
 #### docker-compose rm  
-用于删除已停止地compose应用，会删除容器和网络，但是不会删除卷地
+用于删除已停止地compose应用，会删除容器和网络，但是不会删除卷和镜像  
+#### docker-compose restart  
+重启已停止的compose应用，
 
 
 
