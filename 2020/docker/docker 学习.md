@@ -786,7 +786,8 @@ Libnetwork实现了CNM中定义的全部三个组件，此外还实现了本地�
 到目前为止，前面提到的单机桥接网络中的容器只能与位于同一网络中容器进行通信，其实还可以通过端口映射的方式来绕开这个限制。端口映射允许将某个容器端口映射到docker主机端口上，对于配置中指定的docker主机端口，任何发送到该端口的流量都会被转发到容器中  
 ## docker macvaln  
 docker内置的macvaln驱动能够通过为容器提供mac和ip地址，让容器能够成为物理网络的"一等公民"  
-
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/27/1590549942308-1590549942317.png)  
+macvlan的优点是性能优异，无须
 
 
 
