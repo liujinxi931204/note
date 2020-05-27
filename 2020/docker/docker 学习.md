@@ -740,7 +740,8 @@ Compose和Docker兼容性：
 ### docker compose常用命令  
 #### docker-compose up  
 用于部署一个compose应用，默认情况下该命令会读取名为docker-compose.yml或者dokcer-compose.yaml的文件。当然用户也可以使用-f指定其他文件名，通常情况下使用-d参数应用后台启动  
-
+#### docker-compose stop  
+停止compose应用相关的所有容器，但不会删除它们。被停止的应用可以很容易地使用docker-compose 
 
 
 
