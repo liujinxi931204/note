@@ -782,7 +782,8 @@ Libnetwork实现了CNM中定义的全部三个组件，此外还实现了本地�
 在linux docker主机上，默认的bridge网络被映射到内核中为"docker0"的linux网桥，如下图所示  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/27/1590548203632-1590548203634.png)  
 "bridge"网络在主机内核中映射到名为"docker0"的linux网桥，该网桥可以通过主机以太网接口的端口进行反向关联  
-提示：linux默认的bridge网络是不支持通过docker dns服务进行域名解析的，自定义桥接
+提示：linux默认的bridge网络是不支持通过docker dns服务进行域名解析的，自定义桥接网络可以支持  
+
 
 
 
