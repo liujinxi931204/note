@@ -767,7 +767,7 @@ docker网络架构的设计规范是CNM
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/27/1590544948389-1590544948390.png)  
 下图展示了CNM组件是如何与容器进行关联的----将沙盒放置在容器的内部，为容器提供网络连接  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/27/1590545028154-1590545028155.png)  
-
+容器A只有一个接口(终端)并且连接到了
 
 
 
