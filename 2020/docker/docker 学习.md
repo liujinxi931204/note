@@ -753,7 +753,8 @@ Compose和Docker兼容性：
 ## docker网络  
 ### 基础理论  
 在顶层设计中，docker网络架构由3个主要部分组成：CNM、Libnetwork和驱动  
-CNM是设计的
+CNM是设计的标准，在CNM中，规定了docker网络架构的基础组成要素  
+Libnetwork是CNM的具体实现，并且被docker采用，Libnetwork
 
 
 
