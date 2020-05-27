@@ -749,7 +749,9 @@ Compose和Docker兼容性：
 #### docker-compose ps  
 用于列出compose应用中的各个容器，输出的内容包括当前状态、容器运行命令以及网络端口  
 #### docker-compose down  
-停止并删除运行中的compose应用，会删除
+停止并删除运行中的compose应用，会删除容器和网络，但是不会删除卷和镜像  
+
+
 
 
 
