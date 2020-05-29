@@ -835,11 +835,11 @@ docker run --rm -it --mount 'type=volume,src=myapp,dst=/var,volume-driver=local'
 ### docker volume子命令  
 |命令|说明|
 |-|-|
-|docker volume create|创建新的卷，默认情况下使用local驱动|
-|docker volume ls|列出本地主机上的所有卷|
-|docker volume inspect|用于详细查看卷的具体信息|
-|docker volume prume|删除未被使用的卷|
-|docker volume rm|删除指定的卷|
+|`docker volume create`|创建新的卷，默认情况下使用local驱动|
+|`docker volume ls`|列出本地主机上的所有卷|
+|`docker volume inspect`|用于详细查看卷的具体信息|
+|`docker volume prume`|删除未被使用的卷|
+|`docker volume rm`|删除指定的卷|
 
  
 
