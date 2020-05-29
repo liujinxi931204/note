@@ -819,7 +819,8 @@ macvlan的优点是性能优异，无须端口映射或者额外桥接，可以�
 |`docker network prume`|删除主机上未被使用的网络|
 |`docker network rm`|删除主机上指定的网络|    
 ### docker卷与持久化  
-docker对持久化的数据
+docker对持久化的数据和非持久化的数据都有支持  
+非持久化存储自动创建，
   
 
  
