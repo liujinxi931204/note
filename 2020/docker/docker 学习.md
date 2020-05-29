@@ -788,13 +788,15 @@ Libnetwork实现了CNM中定义的全部三个组件，此外还实现了本地�
 ### birdge模式  
 当docker进程启动的时候，会在主机上创建一个docker0的虚拟网桥，此主机上的docke容器会连接到这个虚拟网桥上。虚拟网桥的工作方式就和物理交换机类似，这样主机上的所有容器都会连接到一个二层网络中。从docker0子网中分配一个ip给容器使用，并设置docker0的ip地址为容器的默认网关。在主机上创建一对虚拟网卡veth pair设备，docker将veth pair设备的一端放在新创建的容器中，另一端放在主机中  
 bridge模式是docker默认网络模式，不写`-net`参数，就是bridge模式。使用`docker run -p`时，docker实际是在iptables中做了DNAT规则，实现端口转发 
-`-net=bridge`指定 
+`-net=bridge`指定，默认使用此模式   
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/29/1590734943836-1590734943838.png)  
 ### host模式  
 如果启动docker的时候是使用host模式，那么这个容器将不会获得一个独立的network workspace，而是和宿主机共用一个network namespace。容器将不会虚拟出自己的网卡，配置自己的ip等，而是使用宿主机的ip和端口。但在其他方面，还是和宿主机隔离的  
+`-net=host`指定  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/29/1590735384868-1590735384871.png)  
 ### container模式  
 这个模式指定创建的容器和已经存在的一个容器共享一个network namespace，而不是和宿主机共享。新创建的容器不会创建自己的ip，网卡。同样两个容器除了网络方面，其他的都是相互隔离的。两个容器可以通过lo网卡设备通信  
+`net=container:NAME or ID`指定  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/29/1590736014453-1590736014455.png)  
 ### none模式  
 使用none模式，docker拥有自己的network namespace，但是并不为docker进行任何网络配置。也就是说，这个docker容器没有网卡，ip，路由信息等，需要自己来手动添加  
