@@ -830,7 +830,7 @@ docker对持久化的数据和非持久化的数据都有支持
 可以如下使用：  
 ```shell
 docker volume create myapp
-docker 
+docker service create --name hellcat --mount source=myapp target=/var
 ```
 
  
