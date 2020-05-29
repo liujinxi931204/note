@@ -816,9 +816,9 @@ macvlan的优点是性能优异，无须端口映射或者额外桥接，可以�
 |`docker network disconnect`|断开docker的网络连接|
 |`docker network inspect`|提供docker网络的详细配置|
 |`docker network ls`|列出运行于本地的docker主机上的全部网络|
-|`docker network prume`|删除|
-|`docker network connect`|将容器连接到网络|  
-  
+|`docker network prume`|删除主机上未被使用的网络|
+|`docker network rm`|删除主机上指定的网络|    
+
   
 
  
