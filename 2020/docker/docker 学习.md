@@ -793,7 +793,8 @@ bridge模式是docker默认网络模式，不写`-net`参数，就是bridge模�
 如果启动docker的时候是使用host模式，那么这个容器将不会获得一个独立的network workspace，而是和宿主机共用一个network namespace。容器将不会虚拟出自己的网卡，配置自己的ip等，而是使用宿主机的ip和端口。但在其他方面，还是和宿主机隔离的  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/29/1590735384868-1590735384871.png)  
 ### container模式  
-这个模式指定创建的容器和已经存在的一个容器共享一个network namespace，而不是和宿主机共享。新创建的容器不会创建自己的ip，
+这个模式指定创建的容器和已经存在的一个容器共享一个network namespace，而不是和宿主机共享。新创建的容器不会创建自己的ip，网卡。同样两个容器除了网络方面，其他的都是相互隔离的。两个容器可以通过lo网卡设备通信  
+
 ## docker macvaln  
 docker内置的macvaln驱动能够通过为容器提供mac和ip地址，让容器能够成为物理网络的"一等公民"  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/27/1590549942308-1590549942317.png)  
