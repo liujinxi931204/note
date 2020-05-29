@@ -827,10 +827,10 @@ docker对持久化的数据和非持久化的数据都有支持
 总体来说，用户创建卷，然后创建容器，接着将卷挂载到容器上。卷会挂载都容器的某个目录之下，任何写到改目录的内容都会写到卷中。即使用户删除了容器，卷中的内容也会保留下来  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/29/1590740607945-1590740607948.png)  
 `docker volume crate volume-name`使用这个命令可以创建一个卷。默认情况下，docker创建新卷时使用内置的local驱动，本地卷也只能被所在节点的容器使用。使用-d参数可以指定不同的驱动 
-可以如下使用：  
+docker 卷可以如下使用：  
 ```shell
 docker volume create myapp
-docker service create --name hellcat --mount source=myapp target=/var centos 
+docker run --rm -it --mount 'type=volume,src=myapp,dst=/var,volume-driver=local' 5e8b97a2a082 
 ```
 
  
