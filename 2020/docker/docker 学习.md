@@ -808,6 +808,10 @@ docker内置的macvaln驱动能够通过为容器提供mac和ip地址，让容�
 macvlan的优点是性能优异，无须端口映射或者额外桥接，可以直接通过主机接口(或者子接口)访问容器接口，但是macvaln的缺点是需要将主机的网络(NIC)设置为混杂模式，这在大部分公有云平台上是不允许的  
 可以通过`docker container logs`命令查看单独的容器日志，通过`docker service logs`可以查看swarm服务日志  
 ## docker network网络子命令  
+主要的docker网络子命令如下表所示  
+|column1|column2|
+|-|-|
+|content1|content2|
  
 
 
