@@ -800,6 +800,7 @@ bridge模式是docker默认网络模式，不写`-net`参数，就是bridge模�
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/29/1590736014453-1590736014455.png)  
 ### none模式  
 使用none模式，docker拥有自己的network namespace，但是并不为docker进行任何网络配置。也就是说，这个docker容器没有网卡，ip，路由信息等，需要自己来手动添加  
+`-net=none`指定  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/29/1590736238540-1590736238548.png)  
 ## docker macvaln  
 docker内置的macvaln驱动能够通过为容器提供mac和ip地址，让容器能够成为物理网络的"一等公民"  
