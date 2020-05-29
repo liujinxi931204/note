@@ -789,7 +789,8 @@ Libnetwork实现了CNM中定义的全部三个组件，此外还实现了本地�
 当docker进程启动的时候，会在主机上创建一个docker0的虚拟网桥，此主机上的docke容器会连接到这个虚拟网桥上。虚拟网桥的工作方式就和物理交换机类似，这样主机上的所有容器都会连接到一个二层网络中。从docker0子网中分配一个ip给容器使用，并设置docker0的ip地址为容器的默认网关。在主机上创建一对虚拟网卡veth pair设备，docker将veth pair设备的一端放在新创建的容器中，另一端放在主机中  
 bridge模式是docker默认网络模式，不写`-net`参数，就是bridge模式。使用`docker run -p`时，docker实际是在iptables中做了DNAT规则，实现端口转发  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/29/1590734943836-1590734943838.png)  
-
+### host模式  
+如果启动docker的时候是使用host模式，那么这个容器将不会
 ## docker macvaln  
 docker内置的macvaln驱动能够通过为容器提供mac和ip地址，让容器能够成为物理网络的"一等公民"  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/27/1590549942308-1590549942317.png)  
