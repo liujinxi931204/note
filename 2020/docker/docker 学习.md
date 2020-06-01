@@ -840,7 +840,7 @@ docker run --rm -it --mount 'type=volume,src=myapp,dst=/var,volume-driver=local'
 |`docker volume inspect`|用于详细查看卷的具体信息|
 |`docker volume prume`|删除未被使用的卷|
 |`docker volume rm`|删除指定的卷|  
-##docker swarm  
+## docker swarm  
 docker swarm是docker官方提供的一款集群管理工具，其主要作用是把若干台docker主机抽象成为一个整体，并且通过一个入口统一管理这个docker主机上的各种docker资源  
 swarm和kubernetes比较类似，但是更加轻，具有的功能也比较少一些  
 docker swarm包含两个方面，一个企业级的docker安全集群，以及一个微服务应用编排引擎  
@@ -851,6 +851,8 @@ swarm的配置和状态信息保存在一套位于所有管理节点的分布式
 swarm使用TLS进行通信加密、节点认证和角色授权  
 swarm中的最小调度单元是服务，它是随swarm引入的，在api中是一个新的对象元素，它基于容器封装了一些高级特性，是一个更高层次的概念。当容器被封装在一个服务中时，我们称之为一个任务或一个副本，服务中增加了诸如扩缩容、滚动升级以及简单回滚等特性  
 从概括性的视角来看swarm来看  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/01/1591013048303-1591013048348.png)  
+
 
 
  
