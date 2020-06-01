@@ -842,7 +842,8 @@ docker run --rm -it --mount 'type=volume,src=myapp,dst=/var,volume-driver=local'
 |`docker volume rm`|删除指定的卷|  
 ##docker swarm  
 docker swarm是docker官方提供的一款集群管理工具，其主要作用是把若干台docker主机抽象成为一个整体，并且通过一个入口统一管理这个docker主机上的各种docker资源  
-
+swarm和kubernetes比较类似，但是更加轻，具有的功能也比较少一些  
+docker swarm包含两个方面，
 
  
 
