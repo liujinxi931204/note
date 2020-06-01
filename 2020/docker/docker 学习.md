@@ -839,7 +839,9 @@ docker run --rm -it --mount 'type=volume,src=myapp,dst=/var,volume-driver=local'
 |`docker volume ls`|列出本地主机上的所有卷|
 |`docker volume inspect`|用于详细查看卷的具体信息|
 |`docker volume prume`|删除未被使用的卷|
-|`docker volume rm`|删除指定的卷|
+|`docker volume rm`|删除指定的卷|  
+##docker swarm  
+docker swarm是docker官方提供的一款集群管理工具
 
  
 
