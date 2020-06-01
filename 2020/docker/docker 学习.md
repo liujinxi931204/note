@@ -846,7 +846,7 @@ swarm和kubernetes比较类似，但是更加轻，具有的功能也比较少�
 docker swarm包含两个方面，一个企业级的docker安全集群，以及一个微服务应用编排引擎  
 ### docker swarm初步介绍  
 从集群的角度说，一个swarm由一个或多个docker节点组成，唯一要求的前提就是要求就是所有的节点通过可靠的网络相连  
-节点会被配置为管理节点
+节点会被配置为管理节点(manager)或者工作节点(worker).管理节点负责集群控制面(control plane)，
 
 
  
