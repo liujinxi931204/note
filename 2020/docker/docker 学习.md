@@ -923,6 +923,7 @@ docker service create --name web-fe -p 8080:8080 --replicas 5 nigelpoulton/plura
 另一种模式是全局模式(global)，在这种模式下，每个节点上仅运行一个副本，可以通过`docker service create`命令传递参数--model global参数来部署一个全局服务  
 ### 服务地扩缩容  
 `docker service scale web-fe=10`该命令会将服务副本数由5个增加到10个，后台会将服务的期望状态从5个增加到10个  
+### 滚动升级  
 
 
 
