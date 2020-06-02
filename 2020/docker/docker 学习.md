@@ -914,7 +914,8 @@ Please enter unlock key:<enter your key>
 docker service create --name web-fe -p 8080:8080 --replicas 5 nigelpoulton/pluralsight-docker-ci
 ```  
 需要注意的是，该命令与熟悉的docker container run的命令的许多参数是相同的  
-通过上面的命令，可以看出，`docker service create`命令告知docker正在声明一个新服务，并传递--name参数将其命名为web-fe,将每个节点上的8080端口映射到服务副本内部的8080端口，接下来，使用--replicas参数告知该服务
+通过上面的命令，可以看出，`docker service create`命令告知docker正在声明一个新服务，并传递--name参数将其命名为web-fe,将每个节点上的8080端口映射到服务副本内部的8080端口，接下来，使用--replicas参数告知docker该服务总是有5个副本  
+所有的服务都会被swarm持续监控，swarm会在后台进行轮询检查，来持续比较服务的
 
 
 
