@@ -909,7 +909,7 @@ Please enter unlock key:<enter your key>
 ```  
 该节点被允许重新接入swarm
 ## swarm服务部署  
-
+使用服务仍然能够配置大多数熟悉的容器配置，比如容器端口等
 
 
 
