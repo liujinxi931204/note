@@ -869,7 +869,9 @@ swarm中的最小调度单元是服务，它是随swarm引入的，在api中是�
 ```shell
 $ docker swarm join-token worker  
 To add a worker to this swarm,run the following command:
-dokcer swarm join --token SWMTKN-1-0uahebax...c87tu8dx2c  
+dokcer swarm join --token SWMTKN-1-0uahebax...c87tu8dx2c  10.0.0.1:2377
+
+
 ```
 
 
