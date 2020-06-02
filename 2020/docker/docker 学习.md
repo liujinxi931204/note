@@ -925,7 +925,8 @@ docker service create --name web-fe -p 8080:8080 --replicas 5 nigelpoulton/plura
 `docker service scale web-fe=10`该命令会将服务副本数由5个增加到10个，后台会将服务的期望状态从5个增加到10个  
 ### 滚动升级  
 演示一下如何服务滚动升级，在此之前先创建一个overlay网络  
-`docker network create -d overlay uber-net`该命令会创建一个overlay网络，该网络是一个二层
+`docker network create -d overlay uber-net`该命令会创建一个overlay网络，该网络是一个二层网络，容器可以接入该网络，并且所有接入的容器均可互相通信  
+即使这些容器
 
 
 
