@@ -913,7 +913,8 @@ Please enter unlock key:<enter your key>
 ```shell
 docker service create --name web-fe -p 8080:8080 --replicas 5 nigelpoulton/pluralsight-docker-ci
 ```  
-需要注意的是，该命令与熟悉的
+需要注意的是，该命令与熟悉的docker container run的命令的许多参数是相同的  
+通过上面的命令，可以看出，``
 
 
 
