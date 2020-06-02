@@ -894,7 +894,11 @@ swarm的管理节点内置有对HA的支持，这意味着，即使一个或多�
 为了规避以上问题，docker提供了自动解锁机制来锁定swarm，这会强制要求重启的管理节点在提供一个集群解锁密码以后才有权重新接入集群  
 可以在执行`docker swarm init`的命令时指定参数`--autolock`参数可以直接启动锁，也可以使用`docker swarm
  update `命令来启用锁  
- `docker swarm update --autolock=true`
+ ```shell
+$ docker swarm update --autolock=true
+Swarm updated
+To unlock a swarm manager after it restarts,run the 
+```
 
 
 
