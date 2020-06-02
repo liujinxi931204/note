@@ -905,8 +905,9 @@ it you will not be able to restart the manager.
 执行`docker swarm unlock`命令来为重启的管理节点解锁swarm，该命令需要在重启的节点上执行，并提供解锁码  
 ```shell
 $ docker swarm unlock  
-Please enter unlock 
-```
+Please enter unlock key:<enter your key>
+```  
+该节点被允许重新接入swarm
 
 
 
