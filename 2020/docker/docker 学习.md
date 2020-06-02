@@ -862,7 +862,8 @@ swarm中的最小调度单元是服务，它是随swarm引入的，在api中是�
 #### 初始化一个新的swarm  
 `docker swarm init --adavertise-addr 10.0.0.1:2337 --listen-addr 10.0.0.1:2337`  
 `docker swarm init`会通知docker来初始化一个新的swarm，并将自身设置为第一个管理节点，同时也会使该节点开启swarm模式  
-`--adavertise-addr<format: <ip|interface>[:port]>`指定其他节点用来连接到当前管理节点的IP和端口，这一属性是可选的,
+`--adavertise-addr<format: <ip|interface>[:port]>`指定其他节点用来连接到当前管理节点的IP和端口，这一属性是可选的,当节点有多个IP时，可以指定使用哪个IP。此外，还可以用于指定一个节点上没有的远程IP，比如负载均衡的IP  
+
 
 
 
