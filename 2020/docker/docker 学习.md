@@ -853,7 +853,8 @@ swarm中的最小调度单元是服务，它是随swarm引入的，在api中是�
 从概括性的视角来看swarm   
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/01/1591013048303-1591013048348.png)  
 ### docker swarm集群搭建  
-
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/02/1591070154398-1591070154436.png)  
+每个节点
 
 
 
