@@ -902,7 +902,11 @@ SWMKEY-1-5+ICW2kRxPxZrVyBDWzBkzZdSd0Yc7Cl2o4Uuf9NPU4
 Please remember to store this key in a password manager, since without
 it you will not be able to restart the manager.
 ```  
-执行`docker `
+执行`docker swarm unlock`命令来为重启的管理节点解锁swarm，该命令需要在重启的节点上执行，并提供解锁码  
+```shell
+$ docker swarm unlock  
+Please enter unlock 
+```
 
 
 
