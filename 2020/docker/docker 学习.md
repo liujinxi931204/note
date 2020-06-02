@@ -875,7 +875,8 @@ $ docker swarm join-token manager
 To add a manager to this swarm,run the following command:
 dokcer swarm join --token SWMTKN-1-0uahebax...c87tu8dx2c  10.0.0.1:2377
 ```  
-请注意，工作节点和管理节点的接入命令使用的Token是不一样的，因为一个节点是作为工作节点还是管理
+请注意，工作节点和管理节点的接入命令使用的Token是不一样的，因为一个节点是作为工作节点还是管理节点接入完全取决于Token  
+
 
 
 
