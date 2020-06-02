@@ -878,7 +878,8 @@ dokcer swarm join --token SWMTKN-1-0uahebax...ue4hv6ps3p  10.0.0.1:2377
 请注意，工作节点和管理节点的接入命令使用的Token是不一样的，因为一个节点是作为工作节点还是管理节点接入完全取决于Token  
 #### 接入工作节点  
 `docker swarm join --token SWMTKN-1-0uahebax...c87tu8dx2c 10.0.0.1:2377 --advertise-addr 10.0.0.4:2377 --listen-addr 10.0.0.4:2377`  
-`--advertise-addr`h
+`--advertise-addr`和`--listen-addr`的属性是可选的，在网络配置方面应该尽量明确的指明  
+
 
 
 
