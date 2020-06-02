@@ -852,6 +852,8 @@ swarm使用TLS进行通信加密、节点认证和角色授权
 swarm中的最小调度单元是服务，它是随swarm引入的，在api中是一个新的对象元素，它基于容器封装了一些高级特性，是一个更高层次的概念。当容器被封装在一个服务中时，我们称之为一个任务或一个副本，服务中增加了诸如扩缩容、滚动升级以及简单回滚等特性  
 从概括性的视角来看swarm   
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/01/1591013048303-1591013048348.png)  
+### docker swarm集群搭建  
+
 
 
 
