@@ -911,8 +911,9 @@ Please enter unlock key:<enter your key>
 ## swarm服务部署  
 使用服务仍然能够配置大多数熟悉的容器配置，比如容器端口等，此外还增加了额外的特性，比如可以声名应用服务的期望状态，将其告知docker后，docker会负责进行服务的部署和管理  
 ```shell
-
-```
+docker service create --name web-fe -p 8080:8080 --replicas 5 nigelpoulton/pluralsight-docker-ci
+```  
+需要注意的是，该命令与熟悉的
 
 
 
