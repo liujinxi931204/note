@@ -910,7 +910,9 @@ Please enter unlock key:<enter your key>
 该节点被允许重新接入swarm
 ## swarm服务部署  
 使用服务仍然能够配置大多数熟悉的容器配置，比如容器端口等，此外还增加了额外的特性，比如可以声名应用服务的期望状态，将其告知docker后，docker会负责进行服务的部署和管理  
+```shell
 
+```
 
 
 
