@@ -897,7 +897,10 @@ swarm的管理节点内置有对HA的支持，这意味着，即使一个或多�
  ```shell
 $ docker swarm update --autolock=true
 Swarm updated
-To unlock a swarm manager after it restarts,run the 
+To unlock a swarm manager after it restarts,run the `docker swarm unlock`command and provide the following key:  
+SWMKEY-1-5+ICW2kRxPxZrVyBDWzBkzZdSd0Yc7Cl2o4Uuf9NPU4  
+Please remember to store this key in a password manager, since without
+it you will not be able to restart the manager.
 ```
 
 
