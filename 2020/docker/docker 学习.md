@@ -880,7 +880,7 @@ dokcer swarm join --token SWMTKN-1-0uahebax...ue4hv6ps3p  10.0.0.1:2377
 `docker swarm join --token SWMTKN-1-0uahebax...c87tu8dx2c 10.0.0.1:2377 --advertise-addr 10.0.0.4:2377 --listen-addr 10.0.0.4:2377`  
 `--advertise-addr`和`--listen-addr`的属性是可选的，在网络配置方面应该尽量明确的指明  
 ## swarm 管理器的高可用性  
-
+swarm的管理节点内置有对HA的支持，这意味着
 
 
 
