@@ -865,7 +865,11 @@ swarm中的最小调度单元是服务，它是随swarm引入的，在api中是�
 `--adavertise-addr<format: <ip|interface>[:port]>`指定其他节点用来连接到当前管理节点的IP和端口，这一属性是可选的,当节点有多个IP时，可以指定使用哪个IP。此外，还可以用于指定一个节点上没有的远程IP，比如负载均衡的IP  
 `--listen-addr<format: <ip|interface>[:port]>`指定用于承载swarm流量的IP和端口，其设置通常与`--adavetise-addr`相匹配，有多个节点的时候可以指定使用哪个IP  
 `docker swarm join-token worker`命令用来获取添加新的工作节点到swarm的命令和token  
-`docker swarm join-token manager`命令用来获取新的管理检点到swarm和
+`docker swarm join-token manager`命令用来获取新的管理检点到swarm的命令和token  
+```shell
+$ docker swarm join-token worker  
+To add a worker to this swarm,
+```
 
 
 
