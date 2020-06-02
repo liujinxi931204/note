@@ -919,7 +919,8 @@ docker service create --name web-fe -p 8080:8080 --replicas 5 nigelpoulton/plura
 例如，运行web-fe副本的某个工作节点宕机了，则web-fe的状态会从5个副本降为4个副本，从而不能满足期望状态的要求，docker会启动一个新的web-fe副本来使实际状态与期望状态保持一致  
 ### 副本服务VS全局服务  
 服务的默认复制模(Replication Mode)是副本模式(replicated)  
-这种模式会期望部署数量的副本，并尽可能均匀
+这种模式会期望部署数量的副本，并尽可能均匀地将各个副本分布在整个集群  
+另一种模式是全局模式(global)，在这种模式下，每个节点上
 
 
 
