@@ -957,7 +957,13 @@ docker节点的默认配置是服务使用json-file日志驱动，其他的驱�
 json-file和journald是比较容易配置的，二者都可以使用`docker srevice logs`命令  
 命令的格式为`docker service logs <service-name>`  
 如果使用第三方日志驱动，就需要用相应的日志平台的原生工具来查看日志  
-如下是在daemon.json
+如下是在daemon.json配置文件中定义使用syslog作为日志驱动  
+```shell
+{
+    "log-drive":"syslog"
+}
+```  
+通过在
 
 
 
