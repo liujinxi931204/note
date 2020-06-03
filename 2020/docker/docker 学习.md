@@ -971,8 +971,8 @@ json-file和journald是比较容易配置的，二者都可以使用`docker srev
 |-|-|
 |docker swarm init|用于创建一个新的swarm，执行该命令的节点会称为第一个管理节点，并且会自动切换到swarm模式|
 |docker swarm join-token|用于查询加入管理节点和工作节点到现有swarm时所使用的命令和Token|
-|docker node ls|用于列出swarm中的所有节点及|
-|docker swarm init|用于创建一个新的swarm，执行该命令的节点会称为第一个管理节点，并且会自动切换到swarm模式|
+|docker node ls|用于列出swarm中的所有节点及相关信息，包括哪些是管理节点，哪些是主管理节点|
+|docker service create|用于创建一个新的|
 
 
 
