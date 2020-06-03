@@ -992,7 +992,9 @@ Ingress模式是默认方式，这意味着任何时候通过-p或者--publish�
 docker service create -d --name svc1 \
 --publish published=5000,target=80,mode=host \
 nginx
-```
+```  
+published=5000表示服务通过端口5000提供外部服务
+target=80 
  
 
 
