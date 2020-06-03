@@ -943,7 +943,10 @@ docker service create --name uber-svc \
 --replicas 12 \
 nigelpoulton/tu-demo:v1
 ```  
-此外假设，本次升级任务在
+此外假设，本次升级任务在将新镜像更新到swarm中时采用一种阶段性的方式，每次更新两个副本，并且中间间隔20s  
+```shell
+
+```
 
 
 
