@@ -963,7 +963,8 @@ json-file和journald是比较容易配置的，二者都可以使用`docker srev
     "log-drive":"syslog"
 }
 ```  
-通过在执行`docker service create`命令时传入--logdriver 和 --log-opts
+通过在执行`docker service create`命令时传入--logdriver 和 --log-opts参数可以强制某服务使用一个不同的日志驱动，这会覆盖daemon.json中的配置  
+服务日志能够正常工作的前提是
 
 
 
