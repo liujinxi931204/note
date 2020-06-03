@@ -937,7 +937,11 @@ nigelpoulton/tu-demo:v1
 默认的模式，实在swarm中的所有节点开放端口，称为入站模式(Ingress Mode),此外还有主机模式(Host Mode)，即仅在运行有容器副本的节点开放端口  
 以主机模式开放服务端口，需要较长的格式声明语法  
 ```shell
-docker service create --name
+docker service create --name uber-svc \
+--network uber-net \
+--publish published=80,target=80,mode=host \
+--replicas 12 \
+nigelpoulton/tu-demo:v1
 ```
 
 
