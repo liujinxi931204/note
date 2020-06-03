@@ -943,7 +943,7 @@ docker service create --name uber-svc \
 --replicas 12 \
 nigelpoulton/tu-demo:v1
 ```  
-此外
+此外假设，本次升级任务在
 
 
 
