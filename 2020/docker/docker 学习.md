@@ -967,9 +967,9 @@ json-file和journald是比较容易配置的，二者都可以使用`docker srev
 服务日志能够正常工作的前提是容器内的应用程序运行于PID为1的进程，并且将日志发送给STDOUT，错误信息发送给STDERR，日志驱动会将这些日志转发到其配置的指定的位置  
 对于查看日志命令，可以使用--follow进行跟踪，使用--tail 显示最近的日志，并使用--details获取额外的信息  
 ### docker swarm常用命令  
-|column1|column2|column3|
-|-|-|-|
-|content1|content2|content3|
+|命令|说明|
+|-|-|
+|docker swarm init|content2|
 
 
 
