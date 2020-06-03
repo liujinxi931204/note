@@ -945,7 +945,10 @@ nigelpoulton/tu-demo:v1
 ```  
 此外假设，本次升级任务在将新镜像更新到swarm中时采用一种阶段性的方式，每次更新两个副本，并且中间间隔20s  
 ```shell
-
+docker service update \
+--image nigelpoulton/tu-demo:v2 \
+--update-parallelism 2 \
+--udpate-delay 20s uber-svc
 ```
 
 
