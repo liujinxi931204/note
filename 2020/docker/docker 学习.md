@@ -954,7 +954,9 @@ docker service update \
 ### docker swarm服务日志及相关配置  
 docker swarm服务的日志可以通过执行`docker swarm logs`命令来查看，然而并非所有的日志驱动都支持该命令  
 docker节点的默认配置是服务使用json-file日志驱动，其他的驱动还有journald、syslog、splunk和gelf  
-json-file和journald是比较容易配置的，
+json-file和journald是比较容易配置的，二者都可以使用`docker srevice logs`命令  
+命令的格式为`docker service logs <service-name>`  
+
 
 
 
