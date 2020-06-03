@@ -994,7 +994,9 @@ docker service create -d --name svc1 \
 nginx
 ```  
 published=5000表示服务通过端口5000提供外部服务
-target=80 
+target=80表示发送到published端口5000的请求，会映射到服务副本的80端口只上
+mode=host表示只有外部请求发送到运行了服务副本的节点才可以访问服务  
+
  
 
 
