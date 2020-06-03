@@ -933,7 +933,7 @@ $ docker service create --name uber-svc \
 -p 80:80 --replicas 12 \
 nigelpoulton/tu-demo:v1
 ```  
-上面的命令首先
+上面的命令首先将服务命名为uber-svc，并用--network参数声明所有的副本都连接到uber-net网络，然后再整个swarm中将80端口
 
  
 
