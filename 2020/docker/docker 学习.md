@@ -942,7 +942,8 @@ docker service create --name uber-svc \
 --publish published=80,target=80,mode=host \
 --replicas 12 \
 nigelpoulton/tu-demo:v1
-```
+```  
+此外
 
 
 
