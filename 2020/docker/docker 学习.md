@@ -1001,8 +1001,14 @@ mode=host表示只有外部请求发送到运行了服务副本的节点才可�
 :::  
 按上述方式发布的swarm服务(--publish published=5000,target=80)会在Ingress网络的5000端口进行发布，因为swarm全部节点都接入了Ingress网络，所以这个端口被发布到了swarm范围内  
 集群确保达到Ingress网络中任意节点的5000端口的流量，都会被路由到80端口的"svc1"服务  
+::: hljs-center
+
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/03/1591176633454-1591176633456.png)  
-如果服务只有一个副本，所有访问I
+
+:::
+
+如果服务只有一个副本，所有访问Ingress网络5000端口的流量都需要路由到这个副本上；如果存在多个运行的副本，流量会平均到每个服务只上  
+
 
 
 
