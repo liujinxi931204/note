@@ -929,9 +929,11 @@ docker service create --name web-fe -p 8080:8080 --replicas 5 nigelpoulton/plura
 即使这些容器所在主机的网络接入的是不同的底层网络，也是互通的  
 ```shell
 $ docker service create --name uber-svc \
---network uber-
-```
-
+--network uber-net \
+-p 80:80 --replicas 12 \
+nigelpoulton/tu-demo:v1
+```  
+上面的命令首先
 
  
 
