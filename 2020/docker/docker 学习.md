@@ -949,7 +949,8 @@ docker service update \
 --image nigelpoulton/tu-demo:v2 \
 --update-parallelism 2 \
 --udpate-delay 20s uber-svc
-```
+```  
+分析以上的命令，指定了tag为v2的新镜像，接下来使用--update-parallelism 和--update-delay 
 
 
 
