@@ -980,7 +980,7 @@ json-file和journald是比较容易配置的，二者都可以使用`docker srev
 |docker service update|用于对运行中的服务的属性进行变更|
 |docker service logs|用于查看服务的日志|
 |docker service rm|用于从swarm中删除某服务，该命令会在不做确认的情况下删除服务的所有副本，所以使用时应保持警惕|  
-
+## docker swarm服务发布模式  
 
 
 
