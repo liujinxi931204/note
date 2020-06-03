@@ -999,7 +999,8 @@ mode=host表示只有外部请求发送到运行了服务副本的节点才可�
 ::: hljs-center
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/03/1591176253807-1591176253809.png)
 :::  
-按上述方式发布的swarm服务(--publish published=5000,target)
+按上述方式发布的swarm服务(--publish published=5000,target=80)会在Ingress网络的5000端口进行发布，因为swarm全部节点都接入了Ingress网络，所以这个端口被发布到了swarm范围内  
+集群
 
 
 
