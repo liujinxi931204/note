@@ -953,7 +953,7 @@ docker service update \
 分析以上的命令，指定了tag为v2的新镜像，接下来使用--update-parallelism 和--update-delay 参数声明每次使用新镜像更新两个副本，期间有20s的延迟  
 ### docker swarm服务日志及相关配置  
 docker swarm服务的日志可以通过执行`docker swarm logs`命令来查看，然而并非所有的日志驱动都支持该命令  
-
+docker节点的默认配置是服务使用json-file日志驱动，其他的驱动还有journald、syslog、splunk和gelf
 
 
 
