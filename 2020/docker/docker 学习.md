@@ -965,7 +965,8 @@ json-file和journald是比较容易配置的，二者都可以使用`docker srev
 ```  
 通过在执行`docker service create`命令时传入--logdriver 和 --log-opts参数可以强制某服务使用一个不同的日志驱动，这会覆盖daemon.json中的配置  
 服务日志能够正常工作的前提是容器内的应用程序运行于PID为1的进程，并且将日志发送给STDOUT，错误信息发送给STDERR，日志驱动会将这些日志转发到其配置的指定的位置  
-对于查看日志命令，可以使用--follow进行跟踪，使用--tail 显示最近的日志，并使用--details获取
+对于查看日志命令，可以使用--follow进行跟踪，使用--tail 显示最近的日志，并使用--details获取额外的信息  
+
 
 
 
