@@ -936,6 +936,7 @@ nigelpoulton/tu-demo:v1
 上面的命令首先将服务命名为uber-svc，并用--network参数声明所有的副本都连接到uber-net网络，然后再整个swarm中将80端口暴露出来，并将其映射到12个容器副本的端口，最后声明所有的副本都是基于nigelpoulton/tu-demo:v1镜像  
 
 
+
  
 
 
