@@ -981,7 +981,8 @@ json-file和journald是比较容易配置的，二者都可以使用`docker srev
 |docker service logs|用于查看服务的日志|
 |docker service rm|用于从swarm中删除某服务，该命令会在不做确认的情况下删除服务的所有副本，所以使用时应保持警惕|  
 ## docker swarm服务发布模式  
-通过Ingress模式发布的服务，可以保证从swarm集群内任一节点(即使没有运行服务的副本)都能访问该服务，
+通过Ingress模式发布的服务，可以保证从swarm集群内任一节点(即使没有运行服务的副本)都能访问该服务，以host模式发布的服务只能通过运行服务副本的节点来访问  
+
 
 
  
