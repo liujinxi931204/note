@@ -987,7 +987,7 @@ json-file和journald是比较容易配置的，二者都可以使用`docker srev
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/03/1591175728762-1591175728856.png) 
 
 :::  
-Ingress模式是默认方式，这意味着任何时候通过-p或者--publish发布
+Ingress模式是默认方式，这意味着任何时候通过-p或者--publish发布服务的时候，默认都是Ingress模式；如果需要以Host模式发布服务，则都读者需要使用--publish参数的完整格式，并添加mode=host
  
 
 
