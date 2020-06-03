@@ -963,7 +963,7 @@ json-file和journald是比较容易配置的，二者都可以使用`docker srev
     "log-drive":"syslog"
 }
 ```  
-通过在
+通过在执行`docker service create`命令时传入--logdriver 和 --log-opts
 
 
 
