@@ -975,7 +975,9 @@ json-file和journald是比较容易配置的，二者都可以使用`docker srev
 |docker service create|用于创建一个新的服务|
 |docker serivice ls|用于列出swarm中运行的服务，以及服务状态、服务副本等基本信息|
 |docker service ps <service>|该命令会给出更多关于某个服务副本的信息|
-|docker sercice inspect|用于获取关于服务的详尽信息，附件--prettycans|
+|docker sercice inspect|用于获取关于服务的详尽信息，附件--pretty参数可限制仅显示重要信息|
+|docker service scale|用于对服务副本个数增加或减少|
+|docker service update|y|
 
 
 
