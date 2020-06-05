@@ -18,7 +18,9 @@ DELETE：删除表中的数据
 GRANT：赋予用户操作权限  
 REVOKE：取消用户操作权限  
 COMMIT：确认对数据库中的数据进行变更  
-ROLLBACK：取消对数据库中的数据进行变更  
+ROLLBACK：取消对数据库中的数据进行变更 
+## MySQL视图  
+MySQL视图(view)是一种
 ## MySQL事务  
 DDL语言无法回滚，设计事务的时候不应该包含DDL语言  
 
