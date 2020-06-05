@@ -4,11 +4,13 @@
 DROP:删除数据库和表等对象  
 CREATE：创建数据库和表等对象  
 ALTER：修改数据库和表等对象  
-### 数据操纵语言(Data Manipulation Language,DML)  
+### 数据操纵语言(Data Manipulation Language,DML) 
+用来变更表中的记录的，主要包含以下几种命令   
 SELECT：查询表中的数据  
 INSERT:向表中插入数据  
 UPDATE：更新表中的数据  
 DELETE:删除表中的数据  
 ### 数据查询语言(Data Query Language,DQL)  
 用来查询表中的数据，主要包含SELECT命令  
-### 数据控制语言(Data Control Language,DCL)
+### 数据控制语言(Data Control Language,DCL)  
+用来确认或
