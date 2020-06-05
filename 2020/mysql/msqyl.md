@@ -40,6 +40,10 @@ SELECT语句不能引用预处理语句参数
 如果视图包含以下结构之一，就是不可更新的  
 聚合函数COUNT() SUM() MAX() MIN()等  
 DISTINCT关键字  
+GROUP BY关键字  
+HAVING关键字  
+UNION 或UNION ALL运算符  
+位于选择列表
 
 
 
