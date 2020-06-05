@@ -50,7 +50,8 @@ UNION 或UNION ALL运算符
 FROM字句中的不可跟新视图或包含多个表  
 WHERE字句中的子查询，引用FROM子句中的表  
 ALGORTHIM选项为TEMPTABLE（使用临时表总会使视图称为不可更新的）
-```
+```  
+
 
 
 
