@@ -6,4 +6,7 @@ CREATE：创建数据库和表等对象
 ALTER：修改数据库和表等对象  
 ### 数据操纵语言(Data Manipulation Language,DML)  
 SELECT：查询表中的数据  
-INSERT:
+INSERT:向表中插入数据  
+UPDATE：更新表中的数据  
+DELETE:删除表中的数据  
+### 数据查询语言(Data Query Lanag)
