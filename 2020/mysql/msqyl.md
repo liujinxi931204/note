@@ -13,4 +13,5 @@ DELETE:删除表中的数据
 ### 数据查询语言(Data Query Language,DQL)  
 用来查询表中的数据，主要包含SELECT命令  
 ### 数据控制语言(Data Control Language,DCL)  
-用来确认或
+用来确认或者消除数据库中的数据进行的变更，除此之外，还可以对数据库中的用户设定权限  
+GRANT:赋予用户操作
