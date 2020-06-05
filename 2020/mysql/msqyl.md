@@ -9,4 +9,6 @@ SELECT：查询表中的数据
 INSERT:向表中插入数据  
 UPDATE：更新表中的数据  
 DELETE:删除表中的数据  
-### 数据查询语言(Data Query Lanag)
+### 数据查询语言(Data Query Language,DQL)  
+用来查询表中的数据，主要包含SELECT命令  
+### 数据控制语言(Data Control Language,DCL)
