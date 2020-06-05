@@ -26,7 +26,9 @@ MySQL视图(view)是一种虚拟的表，同真实的表一样，视图也有行
 ORDER BY字句可以使用在视图中，但是若该视图检索的SELECT语句也含有ORDER BY子句，则视图中的ORDER BY会被覆盖掉  
 ### 创建视图  
 基本格式  
-`CREATE VIEW 
+`CREATE VIEW <视图名> AS <SELECT 语句>`
+说明  
+<视图名>：指定视图的名称。该名称在数据库中
 
 ## MySQL事务  
 DDL语言无法回滚，设计事务的时候不应该包含DDL语言  
