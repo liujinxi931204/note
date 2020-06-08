@@ -57,7 +57,7 @@ ALGORTHIM选项为TEMPTABLE（使用临时表总会使视图称为不可更新�
 ## MySQL事务  
 DDL语言无法回滚，设计事务的时候不应该包含DDL语言  
 ## MYSQL 索引  
-  
+索引是mysql数据库中最重要的对象  
 
 
 
