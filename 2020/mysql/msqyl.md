@@ -101,7 +101,9 @@ mysql目前仅有MEMORY存储引擎和HEAP存储引擎支持这类索引，其�
 长度：可选项，指定使用列前length个字符来创建索引，使用列的一部分创建索引有利于减小索引文件的大小
 ASC|DESC使用升序还是降序来排列  
 #### CREATE TABLE  
-索引也可以在建表的同时创建，
+索引也可以在建表的同时创建，在CREATE TABLE语句中添加以下语句  
+`CONSTRAINT PRIMARY KEY [索引类型]（<列名>,...）`  
+
 
 
 
