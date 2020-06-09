@@ -109,7 +109,10 @@ ASC|DESC使用升序还是降序来排列
 `UNIQUE [INDEX|KEY] [<索引名>] [索引类型] （<列名>，...）`
 在CREATE TABLE语句中添加此语句，表示在创建新表的同时创建该表的唯一索引  
 `FOREIGN KEY <索引名> <列名> `  
-在CREATE TABLE语句中添加
+在CREATE TABLE语句中添加此语句，表示在创建新表的同时创建该表的外键  
+#### ALTER TABLE  
+语法格式  
+`ADD `
 
 
 
