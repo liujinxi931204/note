@@ -103,7 +103,7 @@ ASC|DESC使用升序还是降序来排列
 #### CREATE TABLE  
 索引也可以在建表的同时创建，在CREATE TABLE语句中添加以下语句  
 `CONSTRAINT PRIMARY KEY [索引类型]（<列名>,...）`  
-在CREATE TABLE语句中添加此语句，表示在创建
+在CREATE TABLE语句中添加此语句，表示在创建新表的同时创建
 
 
 
