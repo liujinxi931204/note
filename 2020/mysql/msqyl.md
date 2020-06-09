@@ -112,7 +112,8 @@ ASC|DESC使用升序还是降序来排列
 在CREATE TABLE语句中添加此语句，表示在创建新表的同时创建该表的外键  
 #### ALTER TABLE  
 语法格式  
-`ADD `
+`ADD INDEX [<索引名>] [<索引类型>] (<列名>，...)`  
+在ALTER TABLE语句中添加
 
 
 
