@@ -119,7 +119,8 @@ ASC|DESC使用升序还是降序来排列
 `ADD UNIQIE [KEY|INDEX] [<索引名>] [<索引类型>]（<列名>，...）`  
 在ALTER TABLE语句中添加此语法成分，表示在修改表的同时为该表添加唯一性索引  
 `ADD FOREIGN KEY [<索引名>] (<列名>,...)`  
-在ALTER TABLE语句中添加此
+在ALTER TABLE语句中添加此语法成分，表示在修改表的同时为该表添加外键  
+
 
 
 
