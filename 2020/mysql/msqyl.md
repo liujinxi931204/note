@@ -143,7 +143,8 @@ MySQL中可以通过SHOW PROCEDURE STATUS语句查看存储过程的状态
 `SHOW PROCEDURE STATUS LIKE "存储过程名"`  
 `SHOW CREATE PROCEDURE 存储过程名`语句查看存储过程定义  
 ### 修改存储过程  
-
+MySQL通过ALTER PROCEDURE来修改存储过程  
+`ALTER PROCEDURE 存储过程名[特征...]`
 
 
 
