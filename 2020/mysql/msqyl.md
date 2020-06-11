@@ -141,7 +141,8 @@ MySQL存储工程支持三种类型的参数，即输入参数、输出参数、
 在存储过程中有一个经常用到的命令DELIMITER命令，用来修改SQL语句结束符  
 MySQL中可以通过SHOW PROCEDURE STATUS语句查看存储过程的状态  
 `SHOW PROCEDURE STATUS LIKE "存储过程名"`  
-`SHOW`
+`SHOW CREATE PROCEDURE 存储过程名`语句查看存储过程定义  
+
 
 
 
