@@ -155,7 +155,9 @@ MySQL通过ALTER PROCEDURE来修改存储过程
 `INVOKER`表示调用者可以执行  
 `COMMENT 'string'`表示注释信息  
 修改存储过程只能修改存储过程的某些特征，如果需要修改语句或者名称，可以删除旧的写一个新的  
-### 
+### 删除存储过程  
+`DROP {PROCEDURE|FUNCTION}[IF EXISTS]<过程名>`  
+过程名：
 
 
 
