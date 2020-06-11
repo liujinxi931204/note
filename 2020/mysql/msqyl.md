@@ -150,7 +150,8 @@ MySQL通过ALTER PROCEDURE来修改存储过程
 `NO SQL`表示子程序中不包含SQL语句  
 `READ SQL DATA`表示子程序中包含读数据的语句  
 `MODIFIES SQL DATA`表示子程序中包含写数据的语句  
-`SQL SECURITY {DEFINER INVOKER}`指明谁有权限来执行  
+`SQL SECURITY {DEFINER|INVOKER}`指明谁有权限来执行  
+`DEFINER`
 
 
 
