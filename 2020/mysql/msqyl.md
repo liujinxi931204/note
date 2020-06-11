@@ -139,7 +139,10 @@ MySQL存储工程支持三种类型的参数，即输入参数、输出参数、
 #### 过程体  
 存储过程的主体部分，包含在过程调用的时候必须执行的SQL语句，这个部分以关键字BEGIN开始，以关键字END结束。若存储过程体中只有一条SQL语句，则可以省略BEGIN-END标志  
 在存储过程中有一个经常用到的命令DELIMITER命令，用来修改SQL语句结束符  
-MySQL中可以通过SHOW PROCEDURE STATUS语句查看
+MySQL中可以通过SHOW PROCEDURE STATUS语句查看存储过程的状态  
+`SHOW PROCEDURE STATUS LIKE "存储过程名"`  
+`SHOW`
+
 
 
 
