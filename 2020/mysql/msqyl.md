@@ -128,8 +128,10 @@ ASC|DESC使用升序还是降序来排列
 ```shell
 CREATE PROCEDURE <过程名> ([过程参数[,...]]) <过程体>
 [过程参数[,...]] 格式
-[IN|OUT|INOUT]<ca>
-```
+[IN|OUT|INOUT]<参数名><类型>
+```  
+说明如下  
+过程名：
 
 
 
