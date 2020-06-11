@@ -147,7 +147,9 @@ MySQL通过ALTER PROCEDURE来修改存储过程
 `ALTER PROCEDURE 存储过程名[特征...]`  
 特征包括  
 `CONTAINS SQL`表示子程序包含的SQL语句，但不包含读或写数据的语句  
-`NO SQL`
+`NO SQL`表示子程序中不包含SQL语句  
+`READ SQL DATA`表示子程序中包含读数据的语句  
+`MODIFIES SQL DATA`
 
 
 
