@@ -144,7 +144,10 @@ MySQL中可以通过SHOW PROCEDURE STATUS语句查看存储过程的状态
 `SHOW CREATE PROCEDURE 存储过程名`语句查看存储过程定义  
 ### 修改存储过程  
 MySQL通过ALTER PROCEDURE来修改存储过程  
-`ALTER PROCEDURE 存储过程名[特征...]`
+`ALTER PROCEDURE 存储过程名[特征...]`  
+特征包括  
+`CONTAINS SQL`表示子程序包含的SQL语句，但不包含读或写数据的语句  
+
 
 
 
