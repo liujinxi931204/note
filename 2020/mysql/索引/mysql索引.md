@@ -9,7 +9,8 @@ mysql索引的本质是数据结构。mysql在维护数据之外，还维护着�
 ### MyISAM索引实现  
 MyISAM使用B+Tree作为索引结构，叶节点的data域存放的是数据记录的地址。  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/16/1592297292999-1592297293007.png)  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/16/1592297470994-1592297470996.png)
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/16/1592297470994-1592297470996.png)  
+MyISAM中检索的算法
 
 
 
