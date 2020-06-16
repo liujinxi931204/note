@@ -1,3 +1,9 @@
+
+
+
+
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/15/mysql7%E7%A7%8Djoin-1592204990834.png)  
+
 ## SQL主要包含4个部分  
 ### 数据定义语言(Data Definition Language,DDL)  
 用来创建或删除数据库以及表等对象，主要包含以下几种命令  
