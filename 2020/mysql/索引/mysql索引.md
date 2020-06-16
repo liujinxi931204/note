@@ -5,7 +5,7 @@ mysql索引的本质是数据结构。mysql在维护数据之外，还维护着�
 一般来说，索引本身也很大，不可能全部存储在内存中，因此索引往往以文件的形式存储在磁盘上。这样的话，索引的查找过程就要产生磁盘IO，相对于内存存取，磁盘IO的耗时要高好几个数量级。换句话说，索引的结构组织要尽量减少查找过程中磁盘的IO次数。  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/16/1592295546811-1592295546890.png)  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/16/1592295586485-1592295586488.png)  
-由于并不是所有的节点都具有相同的域，因此B+TR
+由于并不是所有的节点都具有相同的域，因此B+Tree中叶节点和内节点一般大小不同
 
 
 
