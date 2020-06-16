@@ -14,7 +14,8 @@ MyISAM中检索的算法首先按照B+Tree搜索算法搜索索引，如果指�
 ### InnoDB索引实现  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/16/1592298857263-1592298857265.png)  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/16/1592298874655-1592298874657.png)  
-InnoDB也使用B+Tree作为索引
+InnoDB也使用B+Tree作为索引结构，但具体的实现方式缺不相同  
+1.InnoDB的数据文件本身就是索引文件，即InnoDB的叶子节点的data域保留着
 
 
 
