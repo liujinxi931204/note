@@ -15,7 +15,7 @@ MyISAM中检索的算法首先按照B+Tree搜索算法搜索索引，如果指�
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/16/1592298857263-1592298857265.png)  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/16/1592298874655-1592298874657.png)  
 InnoDB也使用B+Tree作为索引结构，但具体的实现方式缺不相同  
-1.InnoDB的数据文件本身就是索引文件，即InnoDB的叶子节点的data域保留着完整的数据行记录，这种索引也称为
+1.InnoDB的数据文件本身就是索引文件，即InnoDB的叶子节点的data域保留着完整的数据行记录，这种索引也称为聚集索引。所以,InnoDB的数据文件本身要按照主键聚集，所以InnoDB要求表必须有主键(MyISAM)可以没有
 
 
 
