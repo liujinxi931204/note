@@ -21,7 +21,7 @@ InnoDB也使用B+Tree作为索引结构，但具体的实现方式缺不相同
 以上说的索引都是单一索引，实际上，MySQL中的索引可以以一定顺序引用多个列，这个索引叫做联合索引。  
 以下是一个例子  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/16/1592299728720-1592299728722.png)  
-
+从结果中可以看出titles表的主索引是一个联合索引(emp_no,title,from_date),还有一个辅助索引。
 
 
 
