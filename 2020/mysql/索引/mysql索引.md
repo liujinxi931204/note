@@ -23,7 +23,9 @@ InnoDB也使用B+Tree作为索引结构，但具体的实现方式缺不相同
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/16/1592299728720-1592299728722.png)  
 从结果中可以看出titles表的主索引是一个联合索引(emp_no,title,from_date),还有一个辅助索引。下面主要分析索引PRIMARY的行为  
 #### 全列匹配  
-`explain select * from employees.titles where emp_no='10001' and title='Senior Engineer' and `
+`explain select * from employees.titles where emp_no='10001' and title='Senior Engineer' and from_date='1986-06-26';`    
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/16/1592299973321-1592299973328.png)  
+
 
 
 
