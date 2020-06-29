@@ -30,6 +30,7 @@ stuinfo = StuInfo.objects.first()
     student = stuinfo.stu
     # 查询该对象的stuname属性
     print(stuinfo.stuname)
+# 
 ```  
 另一种是
 ```python
