@@ -39,13 +39,9 @@ print(student.stuname)
 反向查询，即从母表查询子表，有两种形式  
 一种是  
 ```python
- # 获得一个母表对象
- student=Student.objects.get(id=1)
- # 获得子表对象
- # 这里获取子表对象默认使用子表名称的小写，如果指定里related_name,则使用related_name
- studentInfo=student.stuinfo
- # 获得子表对象的属性
- print(studentInfo.stu_addr)
+student = Student.objects.get(id=1)
+print(student.stuinfo.stu_addr)
+# 母表对象.子表表名小写.
 ```  
 另一种是  
 ```python
