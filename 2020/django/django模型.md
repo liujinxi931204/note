@@ -36,6 +36,7 @@ stuinfo = StuInfo.objects.first()
 ```python
 student=Student.objects.get(stuinfo__id=1)
 print(student.stuname)
+#母表.objects.get(子表表名小写__)
 ```  
 反向查询，即从母表查询子表，有两种形式  
 一种是  
