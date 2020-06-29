@@ -41,11 +41,12 @@ print(student.stuname)
 ```python
 student = Student.objects.get(id=1)
 print(student.stuinfo.stu_addr)
-# 母表对象.子表表名小写.
+# 母表对象.子表表名小写.子表字段
 ```  
 另一种是  
 ```python
 stuinfo = StuInfo.objects.get(stu_id__id=1)
 print(stuinfo.stu_addr)
+# 子表类名.objects.get(子表关联字段__母表字段='xxx').子表字段
 ```
 
