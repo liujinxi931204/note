@@ -25,11 +25,9 @@ class StuInfo(models.Model):
 正向查询，即从子表查询母表，有两种形式  
 一种是  
 ```python  
-stuinfo = StuInfo.objects.first()
-    # 获得对应的母表对象
-    student = stuinfo.stu
-    # 查询该对象的stuname属性
-    print(stuinfo.stuname)
+# 正向查询，子表查询母表，第一种方式
+    stuinfo=StuInfo.objects.get(id=1)
+    print(stuinfo.stu.stuname)
 # 子表对象.母表表名的小写.母表字段名
 ```  
 另一种是
