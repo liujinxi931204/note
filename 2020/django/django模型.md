@@ -28,7 +28,7 @@ class StuInfo(models.Model):
 # 正向查询，子表查询母表，第一种方式
     stuinfo=StuInfo.objects.get(id=1)
     print(stuinfo.stu.stuname)
-# 子表对象.母表表名的小写.母表字段名
+# 子表对象.子表关联的字段(如果存在related_name，则使用related_name).母表字段名
 ```  
 另一种是
 ```python
