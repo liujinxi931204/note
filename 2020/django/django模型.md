@@ -45,7 +45,7 @@ print(student.stuinfo.stu_addr)
 ```  
 另一种是  
 ```python
-stuinfo = StuInfo.objects.get(stu_id__id=1)
+stuinfo = StuInfo.objects.get(stu__id=1)
 print(stuinfo.stu_addr)
 # 子表类名.objects.get(子表关联字段__母表字段='xxx').子表字段
 ```
