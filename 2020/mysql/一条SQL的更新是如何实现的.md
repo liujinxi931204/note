@@ -46,4 +46,6 @@ MySQL整体来看，其实就是两个模块：一块是Server层，主要做的
 1. 单独写一个update语句的时候，就默认提交事务，两阶段提交就发生在"提交阶段"  
 2. 如果是begin-commit语句的序列，在执行commit这个语句的时候发生两阶段提交  
 
-如果在图中A的地方，即写入redo log处于perpare阶段之后，写入bin log之前发生了crash，由于此时bin log还没有写，redo lod也没有提交，所以崩溃回复以后
+如果在图中A的地方，即写入redo log处于perpare阶段之后，写入bin log之前发生了crash，由于此时bin log还没有写，redo lod也没有提交，所以崩溃恢复的时候，这个事务会回滚。
+
+如果在图中B的地方，即写入bin log之hi哦，还没有commit
