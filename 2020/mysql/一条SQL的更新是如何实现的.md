@@ -14,5 +14,5 @@ InnoDB的redo log的大小是固定的。从头开始写，写到末尾又回到
 write pos是当前的记录位置，一边写一边后移，写到第3号文件末尾就回到0号文件的开头。check point是当前要擦除的位置，也是往后推移并且循环的，擦除记录前要把记录更新到数据文件。write pos和check point之间的位置就是可以记录更新的操作。如果write pos追上了check point这是就不能再执行更新，得停下来清理记录，然后再往前推动check point  
 有了redo log，InnoDB就可以保证技术数据库发生异常重启，之前提交的记录都不会丢失，这个能力称为crash-safe  
 ## bin log  
-MySQL整体来看
+MySQL整体来看，其实就是两个模块：一块是Server层，主要做的是MySQL功能层面的事情；另一块是引擎层，负责存储相关的具体事宜。redo log是InnoDB引擎特有的
 
