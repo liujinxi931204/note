@@ -43,4 +43,4 @@ MySQL整体来看，其实就是两个模块：一块是Server层，主要做的
 2.**先写bin log后写redo log**。如果在bin log写完之后crash，由于redo log还没有写，崩溃恢复以后这个事务无效，所以这一行c的值是0。但是bin log里面已经记录了"把c从0更新为1"这个日志。所以，在之后用bin log来恢复的时候就多了一个事务出来，恢复出的这一行的c值就是1，与原库的值不同  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/07/29/1596013143217-1596013143221.png)  
 ### 两阶段提交发生时机  
-1. 
+1. 单独写一个update语句的时候，就默认提交事务，两阶段提交
