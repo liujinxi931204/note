@@ -41,3 +41,6 @@ MySQL整体来看，其实就是两个模块：一块是Server层，主要做的
 但是由于bin log没写完就crash了，这时候bin log里面就没有记录这个语句。因此，之后备份日志的时候，存在来的bin log里面就没有这条语句  
 如果需要用这个bin log来恢复临时库的话，由于这个语句的bin log丢失，这个临时库就会少这一次的更新，恢复出来的这一行c的值就是0，与原库的值不同  
 2.**先写bin log后写redo log**。如果在bin log写完之后crash，由于redo log还没有写，崩溃恢复以后这个事务无效，所以这一行c的值是0。但是bin log里面已经记录了"把c从0更新为1"这个日志。所以，在之后用bin log来恢复的时候就多了一个事务出来，恢复出的这一行的c值就是1，与原库的值不同  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/07/29/1596013143217-1596013143221.png)  
+### 两阶段提交发生时机  
+1. 
