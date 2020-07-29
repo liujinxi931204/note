@@ -2,4 +2,5 @@
 `create table T(ID primary keym,c int)；`  
 如果要将ID=2这一行的值加1，SQL语句会这么写  
 `update T set c=c+1 where ID=2;`  
-
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/07/29/1596008975036-1596008975118.png)  
+在这个表上有更新的时候，会把这个
