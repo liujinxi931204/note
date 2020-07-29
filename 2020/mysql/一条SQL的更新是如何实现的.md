@@ -48,4 +48,5 @@ MySQL整体来看，其实就是两个模块：一块是Server层，主要做的
 
 如果在图中A的地方，即写入redo log处于perpare阶段之后，写入bin log之前发生了crash，由于此时bin log还没有写，redo lod也没有提交，所以崩溃恢复的时候，这个事务会回滚。
 
-如果在图中B的地方，即写入bin log之hi哦，还没有commit
+如果在图中B的地方，即写入bin log之hi哦，还没有commit之前发生crash，需要分别处理
+1.如果redo log里面的事务只有完整的perpare，则判断对应的
