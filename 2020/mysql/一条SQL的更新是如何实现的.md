@@ -21,5 +21,5 @@ MySQL整体来看，其实就是两个模块：一块是Server层，主要做的
 3.redo log是循环写的，空间固定会用完；bin log是可以追加写入的。追加写是指bin log文件写到一定的大小后会切换到写一个，并不会覆盖以前的日志  
 再来看看执行器和InnoDB引擎在执行简单的update语句时的内部流程  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/07/29/1596013143217-1596013143221.png)  
-1.执行器
+1.执行器先找引擎取ID=2这一行。ID时主键，引擎直接用树搜索找到这一行。如果ID=2这一行所在的数据页本来就在内存中，就直接
 
