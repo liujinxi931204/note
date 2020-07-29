@@ -15,5 +15,7 @@ write pos是当前的记录位置，一边写一边后移，写到第3号文件�
 有了redo log，InnoDB就可以保证技术数据库发生异常重启，之前提交的记录都不会丢失，这个能力称为crash-safe  
 ## bin log  
 MySQL整体来看，其实就是两个模块：一块是Server层，主要做的是MySQL功能层面的事情；另一块是引擎层，负责存储相关的具体事宜。redo log是InnoDB引擎特有的日志，而Server层也有自己的日志，称为bin log(归档日志)  
-这两种日志有以下
+这两种日志有以下三点不同  
+1.redo log是InnoDB特有的；bin log是Server层实现的，所有的引擎都可以使用  
+2.redo log是物理日志，
 
