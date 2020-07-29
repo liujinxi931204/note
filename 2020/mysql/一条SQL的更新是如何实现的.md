@@ -10,4 +10,4 @@
 WAL的全称是Write-Ahead Logging，它的关键点是先日志，再写磁盘。具体来说，当有一条记录需要更新的时候，InnoDB引擎就会先把记录写到redo log里面，并更新内存，这个时候就算更新完了。同时，InnoDB引擎会在适当的时候，将这个操作记录更新到磁盘里面，而这个更新往往是在系统比较空闲的时候  
 InnoDB的redo log的大小是固定的。从头开始写，写到末尾又回到开头循环写，如下面这个图所示  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/07/29/1596011619460-1596011619462.png)  
-write pos是当前的记录位置，一边写一边后移，
+write pos是当前的记录位置，一边写一边后移，写到第3号文件末尾就回到0号文件的
