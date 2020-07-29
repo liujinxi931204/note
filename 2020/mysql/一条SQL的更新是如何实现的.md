@@ -7,4 +7,4 @@
 与查询流程不同，更新流程还涉及两个日志redo log(重做日志)和bin log(归档日志)  
 ## 重要的日志模块  
 ### WAL  
-WAL的全称是Write-Ahead Logging，它的关键点是先日志，再写磁盘。具体来说，
+WAL的全称是Write-Ahead Logging，它的关键点是先日志，再写磁盘。具体来说，当有一条记录需要更新的时候，InnoDB引擎就会先把记录写到redo log里面，并更新内存，这个时候就算更新完了。同时，InnoDB引擎会在适当的时候，将这个
