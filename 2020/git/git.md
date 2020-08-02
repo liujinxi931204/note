@@ -1,5 +1,1 @@
-::: hljs-center
-
 # Git
-
-:::
