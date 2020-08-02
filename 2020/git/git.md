@@ -12,7 +12,7 @@ cd some_dic
 git init your_project
 cd your_project
 ```  
-## 配置user信息  
+## 配置用户名和email标记信息  
 1.默认配置是local信息，local值只对当前仓库有效  
 ```shell
 git config --local user.name "username"
@@ -26,7 +26,7 @@ git config --global user.email "user@email.com"
 3.配置system信息，system信息对系统所有登陆用户有效，一般基本不用  
 ```shell
 git config --system user.name "username"  
-git config --system user.emai
+git config --system user.email "user@email.com"  
 ```
 
 
