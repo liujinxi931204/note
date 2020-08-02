@@ -11,6 +11,11 @@ git init
 cd some_dic
 git init your_project
 cd your_project
+```  
+## 配置user信息  
+1.默认配置是local信息，local值只对当前仓库有效  
+```shell
+git config --local user.name "username"
 ```
 
 
