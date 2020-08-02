@@ -41,9 +41,11 @@ git config --system user.email "user@email.com"
 3. 查看system配置信息  
 `git config --system --list`  
 ## git管理  
-### 首次纳入git管理或者  
+### 首次纳入git管理或者工作区提交到暂存区  
 `git add filename`  
-## 
+### 暂存区提交到本地库  
+`git commit -m "提交的理由"`
+### 
 
 
 
