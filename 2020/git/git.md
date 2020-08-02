@@ -1,4 +1,8 @@
-<div align='center' ><font size='70'># Git</font></div>
+# Git  
+## 初始化
+git的初始话主要有两种方式  
+1. 
+
 
 
 
