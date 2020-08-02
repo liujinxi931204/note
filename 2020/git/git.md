@@ -67,7 +67,11 @@ git config --system user.email "user@email.com"
 1. 创建分支但没有切换过去  
 `git branch '分支名'`  
 2. 创建分支并切换过去  
-`git checkout -b ''`
+`git checkout -b '分支名'`  
+#### 切换分支  
+`git checkout '分支名'`  
+
+
 
 
 
