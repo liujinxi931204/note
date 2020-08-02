@@ -54,11 +54,13 @@ git config --system user.email "user@email.com"
 ### 查看历史  
 #### 查看当前分支所有提交的历史  
 `git log`  
-#### 查看最近number行提交的历史  
+#### 查看当前分支最近number行提交的历史  
 `git log -nnumber`   
-#### 在一行内展示所有的提交历史  
+#### 在一行内展示所有当前分支的提交历史  
 `git log --oneline`  
-#### 
+#### 在一行内以图形的方式展示当前分支的所有提交历史  
+`git log --oneline --graph`  
+
 
 
 
