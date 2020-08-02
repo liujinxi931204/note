@@ -47,6 +47,10 @@ git config --system user.email "user@email.com"
 `git commit -m "提交的理由"`
 ### 工作区直接提交到本地库，不经过暂存区，不提倡  
 `git commit -am "提交的理由"`  
+### 查看状态  
+`git status`  
+### 更改文件名  
+`git mv old_nam`
 
 
 
