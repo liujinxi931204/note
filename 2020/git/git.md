@@ -63,7 +63,11 @@ git config --system user.email "user@email.com"
 #### 在一行内以图形的方式展示所有分支的提交历史  
 `git log --online --graph --all`  
 ### 分支  
-
+#### 创建分支  
+1. 创建分支但没有切换过去  
+`git branch '分支名'`  
+2. 创建分支并切换过去  
+`git checkout -b ''`
 
 
 
