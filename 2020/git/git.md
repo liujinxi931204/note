@@ -50,7 +50,12 @@ git config --system user.email "user@email.com"
 ### 查看状态  
 `git status`  
 ### 更改文件名  
-`git mv old_file_name new_file_name`  
+`git mv old_file_name new_file_name` 
+### 查看历史  
+#### 查看所有历史  
+`git log`  
+#### 查看最近number行提交的历史  
+`git log -nnumber`   
 
 
 
