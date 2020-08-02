@@ -16,7 +16,9 @@ cd your_project
 1.默认配置是local信息，local值只对当前仓库有效  
 ```shell
 git config --local user.name "username"
+git config --local user.email "user@email.com"
 ```
+
 
 
 
