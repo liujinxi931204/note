@@ -40,7 +40,7 @@ git config --system user.email "user@email.com"
 `git config --global --list`  
 3. 查看system配置信息  
 `git config --system --list`  
-## 
+## 首次纳入git管理或者工作区提交到
 
 
 
