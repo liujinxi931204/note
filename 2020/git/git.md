@@ -23,11 +23,15 @@ git config --local user.email "user@email.com"
 git config --global user.name "username"  
 git config --global user.email "user@email.com"  
 ```  
-3.配置system信息，system信息对系统所有登陆用户有效，一般基本不用  
+3.配置system信息，system信息对系统所有登陆用户有效，==一般基本不用==  
 ```shell
 git config --system user.name "username"  
 git config --system user.email "user@email.com"  
-```
+```  
+## 查看当前配置信息  
+1.查看local配置信息  
+`git config --local --list`
+2. 
 
 
 
