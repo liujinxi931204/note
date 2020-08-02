@@ -12,6 +12,10 @@ cd some_dic
 git init your_project
 cd your_project
 ```  
+3. 远程clone  
+```shell
+cd some_d
+```
 ## 配置用户名和email标记信息  
 1. 默认配置是local信息，local值只对当前仓库有效  
 ```shell
