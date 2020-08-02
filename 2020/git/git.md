@@ -45,7 +45,9 @@ git config --system user.email "user@email.com"
 `git add filename`  
 ### 暂存区提交到本地库  
 `git commit -m "提交的理由"`
-### 
+### 工作区直接提交到本地库，不经过暂存区，不提倡  
+`git commit -am "提交的理由"`  
+
 
 
 
