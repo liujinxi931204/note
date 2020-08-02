@@ -1,2 +1,8 @@
-<center># Git </center>
+::: hljs-center
+
+# Git
+
+:::
+
+
 
