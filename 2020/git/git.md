@@ -18,7 +18,7 @@ cd your_project
 git config --local user.name "username"
 git config --local user.email "user@email.com"
 ```
-
+2.配置global信息，global信息当
 
 
 
