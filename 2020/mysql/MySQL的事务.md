@@ -75,6 +75,8 @@ MySQL定义了4种事务隔离级别来解决以上问题
   
 MySQL事务隔离级别可能产生的问题如下表所示  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/08/03/1596446278513-1596446278524.png)  
+### 1.读未提交  
+
 
 
 
