@@ -22,12 +22,14 @@ MySQL提供了多种存储引擎来支持事务，有InnoDB和BDB。其中，Inn
   
 默认设置下，每条SQL语句就是一个事务，即执行SQL语句后自动提交。为了达到将几个操作做为一个整体的目的，需要使用BEGIN或START TRANSACTION开启一个事务或者禁止当前会话的自动提交  
 ### 开始事务  
-`BEGIN`  
+`BEGIN;`  
 或  
-`START TRANSACTION`  
+`START TRANSACTION;`  
 这个语句显示地标记一个事务地起始点  
 ### 提交事务  
-
+MySQL使用下面的语句来提交事务  
+`COMMIT;`  
+commit表示提交事务，
  
 
 
