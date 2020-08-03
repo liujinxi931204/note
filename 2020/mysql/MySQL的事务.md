@@ -69,7 +69,9 @@ MySQL默认开启事务自动提交模式，即除非显示的开启事务(BEGIN
   
 MySQL定义了4种事务隔离级别来解决以上问题  
 1. 读未提交(READ UNCOMMITED)  
-2. 
+2. 读已提交(READ COMMITED)  
+3. 可重复读(REPEATABLE READ)  
+4. 串行化(SERIALI)
 
 
 
