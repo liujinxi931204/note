@@ -84,6 +84,10 @@ MySQL事务隔离级别可能产生的问题如下表所示
 `set session|global transaction isolation level read uncommited`  
 global是指全局的  
 seesion是指当前session  
+  
+还可以修改mysql配置文件  
+```shell
+```
 
 ### 1.读未提交  
 读未提交就是可以读到未提交的内容  
