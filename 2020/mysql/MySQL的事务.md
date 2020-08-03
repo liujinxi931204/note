@@ -79,7 +79,9 @@ MySQL事务隔离级别可能产生的问题如下表所示
 执行下面的语句  
 `show variables like '%isolation%';`  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/08/03/1596447769119-1596447769121.png)  
-设置隔离
+设置隔离级别  
+执行下面的语句  
+`set global transaction isolation level `
 ### 1.读未提交  
 读未提交就是可以读到未提交的内容  
 如果一个事务读取到了另一个未提交事务修改过的数据，那么这种隔离级别就是读未提交  
