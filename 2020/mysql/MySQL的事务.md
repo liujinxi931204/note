@@ -49,6 +49,8 @@ MySQL事务是一项非常消耗资源的功能
 MySQL默认开启事务自动提交模式，即除非显示的开启事务(BEGIN或START TRANSACTION),否则每条SQL语句都会被当作一个单独的事务自动提交  
   
 在MySQL中，可以通过show variables 语句查看事务提交模式  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/08/03/1596444835665-1596444835767.png)   
+
 
 
 
