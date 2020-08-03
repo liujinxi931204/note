@@ -24,8 +24,11 @@ MySQL提供了多种存储引擎来支持事务，有InnoDB和BDB。其中，Inn
 ### 开始事务  
 `BEGIN`  
 或  
-``
+`START TRANSACTION`  
+这个语句显示地标记一个事务地起始点  
+### 提交事务  
 
+ 
 
 
 
