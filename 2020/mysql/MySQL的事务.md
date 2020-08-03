@@ -71,7 +71,11 @@ MySQL定义了4种事务隔离级别来解决以上问题
 1. 读未提交(READ UNCOMMITED)  
 2. 读已提交(READ COMMITED)  
 3. 可重复读(REPEATABLE READ)  
-4. 串行化(SERIALI)
+4. 串行化(SERIALIZABLE)  
+  
+MySQL事务隔离级别可能产生的问题如下表所示  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/08/03/1596446278513-1596446278524.png)  
+
 
 
 
