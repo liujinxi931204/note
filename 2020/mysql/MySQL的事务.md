@@ -50,7 +50,7 @@ MySQL默认开启事务自动提交模式，即除非显示的开启事务(BEGIN
   
 在MySQL中，可以通过show variables 语句查看事务提交模式  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/08/03/1596444835665-1596444835767.png)   
-
+在MySQL中，可以使用set autocommit
 
 
 
