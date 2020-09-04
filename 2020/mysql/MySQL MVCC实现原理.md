@@ -29,7 +29,9 @@ MySQL除了每行记录除了用户自已定义的字段外，还会有**DB_TRX_
 ### undo log日志  
 undo log主要有两种：
 1. insert undo log
-代表事务在insert新纪录时产生的undo log只在事务回滚时需要，并且在事务提交
+代表事务在insert新纪录时产生的undo log只在事务回滚时需要，并且在事务提交以后可以被立即丢弃  
+2. update undo log：
+事务在进行update或者delete时产生的undo log，不仅在事务回滚时需要，在快照读时也需要，所以不能随便删除
 
 
 
