@@ -16,7 +16,7 @@ MVCC在MySQL InnoDB存储引擎中实现主要是为了提高数据库并发访�
 ## MVCC实现原理  
 MVCC的目的就是多版本并发控制，在数据库的实现中，就是为了解决读写冲突，它的实现原理主要依赖记录中的**3个隐式字段、undo log日志、Read View**来实现的  
 ### 隐式字段  
-MySQL除了
+MySQL除了每行记录除了用户自已定义的字段外，还会有**DB_TRX_ID、DB_ROLL_PTR、DB_ROW_ID**等字段
 
 
 
