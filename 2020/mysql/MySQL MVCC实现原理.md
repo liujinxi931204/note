@@ -49,7 +49,8 @@ undo log主要有两种：
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599205250465-1599205250466.png)  
 从上面可以看出，不同事务或者相同事务对同一记录的修改，会导致该记录的undo log成为一条记录版本链表，undo log的表头就是最新的旧记录，表尾就是最早的旧记录。(当然，undo log的节点会被purge线程清理掉)  
 ### Read View  
-**什么是Read View**  
+#### 什么是Read View  
+Read View就是事务进行快照读操作时产生的读视图，在该事务执行快照读的  
 
 
 
