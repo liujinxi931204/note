@@ -63,7 +63,9 @@ Read View主要是用来做可见性判断的，即当前事务执行快照读�
 比较DB_TRX_ID<up_limit_id,如果成立，则说明当前事务能够看到DB_TRX_ID所在的记录，否则进入下一个判断  
 接下来判断DB_TRX_ID>=low_limit_id,如果成立，则说明DB_TRX_ID所在的记录在Read View生成之后才出现，因此DB_TRX_ID所在的记录对当前事务不可见，否则进入下一个判断  
 判断DB_TRX_ID是否在活跃事务当中，如果在，则说明Read View生成时刻，DB_TRX_ID的事务还没有提交，所以DB_TRX_ID修改的数据当前事务看不到；如果不在，说明Read View生成时刻，DB_TRX_ID的事务已经提交，所以DB_TRX_ID修改的数据当前事务可以看到  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599206807691-1599206807695.png)
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599206807691-1599206807695.png)  
+### 整体流程  
+
 
 
 
