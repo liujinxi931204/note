@@ -27,7 +27,9 @@ MySQL除了每行记录除了用户自已定义的字段外，还会有**DB_TRX_
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599202238249-1599202238349.png)  
 如上图，DB_ROW_ID是数据库默认为该行记录生成的唯一隐式主键，DB_TRX_ID是当前操作该记录的事务ID，DB_ROLL_PTR是一个回滚指针，用于配合undo log，指向上一个版本  
 ### undo log日志  
-
+undo log主要有两种：
+1. insert undo log
+代表事务在insert新纪录时产生的undo log只在事务回滚时需要，并且在事务提交
 
 
 
