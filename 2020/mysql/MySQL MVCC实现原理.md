@@ -46,7 +46,8 @@ undo log主要有两种：
 2. 然后把该行记录拷贝到undo log中，作为旧记录，发现该行记录已经有了undo log，那么最新的旧数据作为链表的表头，插在该行记录的undo log最前面  
 3. 修改该行记录的age为30，并且修改隐藏字段的事务ID为当前事务2的ID，就是2；回滚指针指向刚刚拷贝到undo log的副本记录  
 4. 事务提交，释放锁  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599205250465-1599205250466.png)
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599205250465-1599205250466.png)  
+从上面可以看出，不同事务或者相同事务对同一记录的修改，会导致
 
 
 
