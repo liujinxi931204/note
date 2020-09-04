@@ -33,7 +33,7 @@ undo log主要有两种：
 2. update undo log：
 事务在进行update或者delete时产生的undo log，不仅在事务回滚时需要，在快照读时也需要，所以不能随便删除，只有在快照读或者事务回滚不涉及该日志时，对应的日志才会被purge线程统一清楚  
 对MVCC有帮助的实际时update undo log，undo log实际上就是存在rollback segment中旧链表
-一、Bi
+一、比如一个事务在persion表中插入了一条新纪录
 
 
 
