@@ -20,7 +20,8 @@ MySQL除了每行记录除了用户自已定义的字段外，还会有**DB_TRX_
 1. DB_TRX_ID  
 6 byte，最近修改(更新、插入)事务ID：记录创建这条记录\最后一次修改该记录的事务ID  
 2. DB_ROLL_PTR  
-7 byte
+7 byte，回滚指针，指向这条记录的上一个版本(存储与rollback segment里)  
+3. DB_ROW_
 
 
 
