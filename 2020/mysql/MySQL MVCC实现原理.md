@@ -37,7 +37,8 @@ undo log主要有两种：
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599204450085-1599204450089.png)  
 二、现在来了一个事务1对该记录的name做出了修改，改为Tom
 1. 在事务1修改该行记录时，数据库会先对该行加锁  
-2. 然后把该行记录拷贝到undo log中，
+2. 然后把该行记录拷贝到undo log中，作为旧记录，即在undo log中有当前行的拷贝副本  
+3. 拷贝完毕以后，修改该行name为Tom，并且修改隐藏字段的事务为
 
 
 
