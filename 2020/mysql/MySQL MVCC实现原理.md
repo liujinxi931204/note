@@ -22,7 +22,8 @@ MySQL除了每行记录除了用户自已定义的字段外，还会有**DB_TRX_
 2. DB_ROLL_PTR  
 7 byte，回滚指针，指向这条记录的上一个版本(存储与rollback segment里)  
 3. DB_ROW_ID  
-6 byte，隐含的自增ID(隐藏主键)，如果数据库没有主键，I
+6 byte，隐含的自增ID(隐藏主键)，如果数据库没有主键，InnDB会自动以DB_ROW_ID产生一个聚簇索引  
+实际上还有一个删除flag隐藏字段，即记录
 
 
 
