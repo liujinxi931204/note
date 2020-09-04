@@ -74,6 +74,10 @@ Read View主要是用来做可见性判断的，即当前事务执行快照读�
 因此事务2快照读时DB_TRX_ID字段记录的事务ID为4，下面开始判断  
 首先先用快照读时的DB_TRX_ID字段记录的事务ID 4去和Read View中的up_limit_id 1去比较，发现4>1,不满足DB_TRX_ID<up_limit_id,进入下一个判断；接着用DB_TRX_id 4和Read View中low_limit_id 5去比较，发现4<5,进入下一个判断；发现4不在Read View的trx_list中，说明DB_TRX_ID字段为4的记录可以被事务2读取到  
 2. 有1，2，3，4四个事务，事务2执行了快照读，此时还有事务1和事务3处于活跃状态中，事务4在事务2执行快照读之前提交了修改，事务1在事务4修改之后在事务2执行快照读之前进行了修改，但并未提交  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599208395694-1599208395696.png)  
+此时要判断事务2的快照读能够读到哪个事务做出的修改，因此trx_list的值为1、3，up_limit_id为1，low_limit_id为5，即已出现的最大事务ID+1  
+此时该行记录和undo log为下图所示  
+
 
 
 
