@@ -35,7 +35,9 @@ undo log主要有两种：
 对MVCC有帮助的实际时update undo log，undo log实际上就是存在rollback segment中旧链表  
 一、比如一个事务在persion表中插入了一条新纪录  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599204450085-1599204450089.png)  
-二、现在来了一个事务
+二、现在来了一个事务1对该记录的name做出了修改，改为Tom
+1. 在事务1修改该行记录时，数据库会先对该行加锁  
+2. 然后把该行记录拷贝到undo log中，
 
 
 
