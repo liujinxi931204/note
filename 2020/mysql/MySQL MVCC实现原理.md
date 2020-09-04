@@ -25,7 +25,8 @@ MySQL除了每行记录除了用户自已定义的字段外，还会有**DB_TRX_
 6 byte，隐含的自增ID(隐藏主键)，如果数据库没有主键，InnDB会自动以DB_ROW_ID产生一个聚簇索引  
 实际上还有一个删除flag隐藏字段，即记录被删除不代表真的删除，而是删除flag变了  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599202238249-1599202238349.png)  
-如上图，DB_ROW_ID是数据库默认为改行
+如上图，DB_ROW_ID是数据库默认为该行记录生成的唯一隐式主键，DB_TRX_ID是当前操作该记录的事务ID，DB_ROLL_PTR是一个回滚指针，用于配合undo log，指向上一个版本  
+## undo 
 
 
 
