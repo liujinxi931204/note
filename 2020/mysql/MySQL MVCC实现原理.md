@@ -56,7 +56,12 @@ Read View主要是用来做可见性判断的，即当前事务执行快照读�
 1. trx_list  
 一个数值列表，用来维护Read View生成时刻系统正在活跃的事务的ID，但是不包括生成Read View的事务的ID  
 2. up_limit_id  
-记录trx_list列表中
+记录trx_list列表中最小的事务ID  
+3. low_limit_id  
+目前已出现过的最大事务ID+1  
+
+
+
 
 
 
