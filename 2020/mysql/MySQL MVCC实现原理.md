@@ -43,7 +43,8 @@ undo log主要有两种：
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599204859793-1599204859795.png)  
 三、这时又有一个事务2对该记录的age做出了修改，改为30  
 1. 在事务2修改该行记录时，数据库会先对该行记录加锁  
-2. 然后把该行记录拷贝到undo log中，作为旧记录，发现该行记录已经有了undo log，那么
+2. 然后把该行记录拷贝到undo log中，作为旧记录，发现该行记录已经有了undo log，那么最新的旧数据作为链表的表头，插在该行记录的undo log最前面  
+3. 修改该行记录的age为30，并且修改隐藏字段的事务ID为当前事务ID2
 
 
 
