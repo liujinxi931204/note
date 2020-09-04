@@ -78,7 +78,8 @@ Read View主要是用来做可见性判断的，即当前事务执行快照读�
 此时要判断事务2的快照读能够读到哪个事务做出的修改，因此trx_list的值为1、3，up_limit_id为1，low_limit_id为5，即已出现的最大事务ID+1  
 此时该行记录和undo log为下图所示  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599208471244-1599208471246.png)  
-因此事务2执行快照读时
+因此事务2执行快照读时DB_TRX_ID字段记录的事务ID为1，下面开始判断  
+首先先用快照读时的DB_TRX_ID字段记录的事务ID 1去和Read V
 
 
 
