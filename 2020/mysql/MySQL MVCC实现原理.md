@@ -40,6 +40,8 @@ undo log主要有两种：
 2. 然后把该行记录拷贝到undo log中，作为旧记录，即在undo log中有当前行的拷贝副本  
 3. 拷贝完毕以后，修改该行name为Tom，并且修改隐藏字段的事务为当前事务1的ID，这里假设从1开始之后递增；回滚指针指向拷贝到undo log中的记录副本，表示我的上一个版本就是它  
 4. 事务提交，释放锁  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599204859793-1599204859795.png)  
+
 
 
 
