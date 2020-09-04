@@ -72,7 +72,7 @@ Read View主要是用来做可见性判断的，即当前事务执行快照读�
 此时该行记录和undo log为下图所示  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599207411857-1599207411864.png)  
 因此事务2快照读时DB_TRX_ID为4，下面开始判断  
-首先先用快照读
+首先先用快照读时的DB_TRX_ID
 
 
 
