@@ -84,7 +84,8 @@ Read View主要是用来做可见性判断的，即当前事务执行快照读�
 ## MVCC相关问题  
 ### RR是如何在RC级别的基础上解决不可重复读的？  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599209767642-1599209767643.png)  
-在上表的顺序下，事务B在事务A提交之后的快照读
+在上表的顺序下，事务B在事务A提交之后的快照读是旧版本的数据，当前读是新版本的数据  
+
 
 
 
