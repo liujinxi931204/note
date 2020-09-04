@@ -3,6 +3,6 @@ MVCC，全称Multi-Version Concurrency Control,即多版本并发控制。MVCC�
 MVCC在MySQL InnoDB存储引擎中实现主要是为了提高数据库并发访问性能，用更好的方式去处理读-写冲突，即做到即使有读写冲突时，也能做到不加锁，非阻塞并发读  
 ## 什么是快照读和当前读  
 ### 当前读  
-像select lock in share mode、select for update、insert、update、delete这些操作就是当前读，即读取的是记录的最新版本，读取时还要保证其他并发事务不会修改当前记录，会对读取的记录
+像`select lock in share mode、select for update、insert、update、delete`这些操作就是当前读，即读取的是记录的最新版本，读取时还要保证其他并发事务不会修改当前记录，会对读取的记录加锁
 ### 快照读  
-不加锁的读就是快照读，即普通不加锁的select语句就是快照读，也就是不加锁的非阻塞读。快照读的前提是隔离级别不能是穿行化，在串行化隔离级别下，快照读会退化为当前读
+不加锁的读就是快照读，即普通不加锁的select语句就是快照读，也就是不加锁的非阻塞读。快照读的前提是隔离级别不能是穿串行化，在串行化隔离级别下，快照读会退化为当前读。
