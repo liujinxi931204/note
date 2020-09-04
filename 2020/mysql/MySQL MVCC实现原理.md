@@ -79,7 +79,7 @@ Read View主要是用来做可见性判断的，即当前事务执行快照读�
 此时该行记录和undo log为下图所示  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599208471244-1599208471246.png)  
 因此事务2执行快照读时DB_TRX_ID字段记录的事务ID为1，下面开始判断  
-首先先用快照读时的DB_TRX_ID字段记录的事务ID 1去和Read V
+首先先用快照读时的DB_TRX_ID字段记录的事务ID 1去和Read View中的up_limit_id 1去比较，发现1=1,不满足
 
 
 
