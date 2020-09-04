@@ -61,7 +61,7 @@ Read View主要是用来做可见性判断的，即当前事务执行快照读�
 目前已出现过的最大事务ID+1  
 可见性遵循下面的算法  
 比较DB_TRX_ID<up_limit_id,如果成立，则说明当前事务能够看到DB_TRX_ID所在的记录，否则进入下一个判断  
-接下来判断DB_TRX_ID>=low_limit_id,如果成立，则说明
+接下来判断DB_TRX_ID>=low_limit_id,如果成立，则说明DB_TRX_ID
 
 
 
