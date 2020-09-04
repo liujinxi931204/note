@@ -82,7 +82,8 @@ Read View主要是用来做可见性判断的，即当前事务执行快照读�
 首先先用快照读时的DB_TRX_ID字段记录的事务ID 1去和Read View中的up_limit_id 1去比较，发现1=1,不满足DB_TRX_ID<up_limit_id，进入下一个判断；接着用DB_TRX_ID 1和Read View中low_limit_id 5去比较，发现1<5，进入下一个判断；发现1在Read View的trx_list说明，说明DB_TRX_ID字段为1的事务还在活跃中，该事务的修改对当前事务不可见，所以沿着链表去寻找下一条记录，由图可以看出这条记录就是DB_TRX_ID为4的记录
 然后先用DB_TRX_ID字段记录的事务ID 4去和Read View中的up_limit_id 1去比较，发现4>1,不满足DB_TRX_ID<up_limit_id,进入下一个判断；接着用DB_TRX_id 4和Read View中low_limit_id 5去比较，发现4<5,进入下一个判断；发现4不在Read View的trx_list中，说明DB_TRX_ID字段为4的记录可以被事务2读取到  
 ## MVCC相关问题  
-### RR级别
+### RR是如何在RC级别的基础上解决不可重复读的？  
+
 
 
 
