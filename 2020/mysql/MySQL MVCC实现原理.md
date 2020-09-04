@@ -19,7 +19,8 @@ MVCC的目的就是多版本并发控制，在数据库的实现中，就是为�
 MySQL除了每行记录除了用户自已定义的字段外，还会有**DB_TRX_ID、DB_ROLL_PTR、DB_ROW_ID**等字段  
 1. DB_TRX_ID  
 6 byte，最近修改(更新、插入)事务ID：记录创建这条记录\最后一次修改该记录的事务ID  
-2. 
+2. DB_ROLL_PTR  
+7 byte
 
 
 
