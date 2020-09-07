@@ -3,3 +3,5 @@
 `CONFIG GET CONFIG_SETTING_NAME`  
 例如：  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/07/1599464279736-1599464279819.png)  
+要获取所有的配置设置，请使用"*"代替"CONFIG_SETTING_NAME"  
+即`CONFIG GET *` 
