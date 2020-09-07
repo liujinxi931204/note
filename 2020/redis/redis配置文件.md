@@ -60,6 +60,9 @@ save 60 10000
 `appendfsync everysec`  
 #### 指定是否启用虚拟内存机制，默认值为no。VM机制将数据分页存放，由redis将访问量较少的页即冷数据swap到磁盘上，访问多的页面由磁盘自动换出到内存中  
 `vm-enable no`  
+#### 虚拟内存文件路径，默认值为/tmp/redis.swap，不可多个redis实例共享  
+`vm-swap-file /tmp/redis.swap`  
+ 
 
 
 
