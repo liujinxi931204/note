@@ -11,3 +11,6 @@
 例如：  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/07/1599464770375-1599464770384.png)  
 ## 常用配置参数说明  
+redis默认不是以守护进程的方式运行，可以通过该配置项修改，使用yes启用守护进程  
+`daemonize no`  
+当redis以守护
