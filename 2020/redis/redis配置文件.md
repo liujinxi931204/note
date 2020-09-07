@@ -77,7 +77,9 @@ save 60 10000
 hash-max-zipmap-entries 64
 hash-max-zipmap-value 512
 ```  
-#### 只当是否
+#### 只当是否激活充值hash，默认为开启  
+`activerehashing yes`  
+#### 指定包含其他的配置文件，可以在同一个主机上多个redis实例之间
 
 
 
