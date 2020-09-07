@@ -62,7 +62,7 @@ save 60 10000
 `vm-enable no`  
 #### 虚拟内存文件路径，默认值为/tmp/redis.swap，不可多个redis实例共享  
 `vm-swap-file /tmp/redis.swap`  
-#### 将所有大于vm-max-memory的所有数据存入虚拟内存，无论vm-max-memory设置多小， 
+#### 将所有大于vm-max-memory的所有数据存入虚拟内存，无论vm-max-memory设置多小，所有的索引数据都是内存存储的(redis的索引数据就是key),也就是说，当vm-max-memory设置为0的时候，其实就是所有 
 
 
 
