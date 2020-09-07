@@ -14,5 +14,7 @@ cp redis.conf /search/odin/redis/etc/
 ``` 
 5. 修改配置  
 ```shell
-
+vim /search/odin/redis/etc/redis.conf
+# redis以守护进程的方式运行
+# no表示不以守护进程的方式运行(会占用一个端)
 ```
