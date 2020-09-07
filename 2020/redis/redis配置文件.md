@@ -73,7 +73,11 @@ save 60 10000
 #### 设置在向客户端应答时，是否把较小的包合并为一个包发送，默认开启  
 `glueoutputbuf yes`  
 #### 指定在超过一定的数量或者最大的元素超过某一临界值时，采用一种特殊的hash算法  
-`
+```shell
+hash-max-zipmap-entries 64
+hash-max-zipmap-value 512
+```  
+#### 只当是否
 
 
 
