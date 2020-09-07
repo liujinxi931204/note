@@ -64,7 +64,7 @@ save 60 10000
 `vm-swap-file /tmp/redis.swap`  
 #### 将所有大于vm-max-memory的所有数据存入虚拟内存，无论vm-max-memory设置多小，所有的索引数据都是内存存储的(redis的索引数据就是key),也就是说，当vm-max-memory设置为0的时候，其实就是所有value都存在于磁盘，默认值为0  
 `vm-max-memory 0`  
- #### redis swap文件分成了很多的page，一个对象可以保存在多个page上面，但一个page不能被多个对象共享，vm-page-size
+ #### redis swap文件分成了很多的page，一个对象可以保存在多个page上面，但一个page不能被多个对象共享，vm-page-size是要根据存储的数据大小来设定的。如果存储很多小对象，page大小最好设置为32或64byte；如果存储很大的对象，则可以使用
 
 
 
