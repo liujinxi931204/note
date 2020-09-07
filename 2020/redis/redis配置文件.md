@@ -62,7 +62,7 @@ save 60 10000
 `vm-enable no`  
 #### 虚拟内存文件路径，默认值为/tmp/redis.swap，不可多个redis实例共享  
 `vm-swap-file /tmp/redis.swap`  
- 
+#### 将所有大于vm-max-memory的所有数据存入虚拟内存，无论vm-max-memory设置多小， 
 
 
 
