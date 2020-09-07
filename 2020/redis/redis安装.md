@@ -3,7 +3,6 @@
 `wget http://download.redis.io/releases/redis-5.0.8.tar.gz`  
 2. 解压
 `tar zxvf redis-5.0.8.tar.gz`  
-3. 进入到redis-5.0.8
-4. 安装依赖  
+3. 安装依赖  
 `yum -y install gcc gcc-c++ kernel-devel`  
-5. 安装  
+4. 安装  
