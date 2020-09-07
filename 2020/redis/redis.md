@@ -4,4 +4,6 @@ redis数据库支持五种数据类型
 2. 哈希(hash)  
 3. 列表(list)  
 4. 集合(set)  
-5. 有序集合(sorted )
+5. 有序集合(sorted set)  
+### 字符串  
+string是一组字节。
