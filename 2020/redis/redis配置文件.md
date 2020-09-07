@@ -51,7 +51,8 @@ save 60 10000
 #### 设置同一时间最大客户端连接数，默认无限制，redis可以同时打开的客户端连接数为redis进程可以打开的最大文件描述符数，如果设置maxclinets 0，表示不作限制。当客户端连接数达到限制时，redis会关闭新的连接并向客户端返回max number of clients reached错误信息  
 `maxclients 128`  
 #### 指定redis最大内存限制，redis在启动时会把数据加载到内存中，达到最大内存后，redis会尝试清除已到期或者即将到期的key，当此方法处理后，仍然达到最大内存设置，将无法再进行写入操作，但仍然可以进行读取操作。redis新的vm机制，会把key存放在内存，value存放在swap区  
-``
+`maxmemory <bytes>`  
+
 
  
 
