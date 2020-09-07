@@ -6,3 +6,9 @@
 3. 安装依赖  
 `yum -y install gcc gcc-c++ kernel-devel`  
 4. 安装  
+```shell
+cd redis-5.0.8
+make PREFIX=/search/odin/redis install
+mkdir -p /search/odin/redis/etc/
+cp redis.conf /sear
+``` 
