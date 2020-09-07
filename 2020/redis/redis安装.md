@@ -12,11 +12,14 @@ make PREFIX=/search/odin/redis install
 mkdir -p /search/odin/redis/etc/
 cp redis.conf /search/odin/redis/etc/
 ``` 
-5. 修改配置  
+5. 修改配置(简单配置两个选项)  
 ```shell
 vim /search/odin/redis/etc/redis.conf
 # redis以守护进程的方式运行
 # no表示不以守护进程的方式运行(会占用一个终端)
 daemonize yes
-# 客户端闲置多长时间后断开连接，默认为0关闭
+# 客户端闲置多长时间后断开连接，默认为0关闭此功能
+timeout 300
 ```
+6. 启动redis  
+`/search/odin/redis/bin/redis-server redis.conf`
