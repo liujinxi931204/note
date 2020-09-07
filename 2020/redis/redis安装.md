@@ -10,5 +10,9 @@
 cd redis-5.0.8
 make PREFIX=/search/odin/redis install
 mkdir -p /search/odin/redis/etc/
-cp redis.conf /sear
+cp redis.conf /search/odin/redis/etc/
 ``` 
+5. 修改配置  
+```shell
+
+```
