@@ -7,4 +7,5 @@
 即`CONFIG GET *`  
 编辑配置  
 1. 可以直接编辑redis.conf
-2. 通过`CONFIG SET `
+2. 通过`CONFIG SET CONFIG_SETTING_NAME NEW_CONFIG_VALUE`的命令设置  
+例如：
