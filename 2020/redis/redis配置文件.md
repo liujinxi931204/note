@@ -9,4 +9,5 @@
 1. 可以直接编辑redis.conf
 2. 通过`CONFIG SET CONFIG_SETTING_NAME NEW_CONFIG_VALUE`的命令设置  
 例如：  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/07/1599464770375-1599464770384.png)
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/07/1599464770375-1599464770384.png)  
+## 常用配置参数说明  
