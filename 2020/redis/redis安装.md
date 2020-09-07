@@ -16,5 +16,7 @@ cp redis.conf /search/odin/redis/etc/
 ```shell
 vim /search/odin/redis/etc/redis.conf
 # redis以守护进程的方式运行
-# no表示不以守护进程的方式运行(会占用一个端)
+# no表示不以守护进程的方式运行(会占用一个终端)
+daemonize yes
+# 客户端闲置多长时间后断开连接，默认为0关闭
 ```
