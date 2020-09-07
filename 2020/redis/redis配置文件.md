@@ -48,6 +48,7 @@ save 60 10000
 `masterauth <master-password>`  
 #### 设置redis连接密码，如果设置了连接密码，客户端在连接redis时需要通过AUTH <password>命令提供密码，默认关闭  
 `requirepass foobared`  
+#### 设置同一时间最大客户端连接数，默认无限制，
 
 
 
