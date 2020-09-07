@@ -56,6 +56,7 @@ save 60 10000
 `appendonly no`  
 #### 指定更新日志文件名，默认为appendfile.aof  
 `appendfilename appendonly.aof`  
+#### 指定更新日志条件，
 
 
 
