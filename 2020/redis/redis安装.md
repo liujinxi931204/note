@@ -26,4 +26,4 @@ timeout 300
 7. 启动redis后，可以使用测试端程序redis-cli和redis服务交互  
 `/search/odin/redis/bin/redis-cli`
 8. 关闭redis  
-``
+`/search/odin/redis/bin/redis-cli shutdown`
