@@ -45,6 +45,7 @@ save 60 10000
 #### 设置当本机为salve服务时，设置master服务的ip地址及端口，在redis启动时，它会自动从master进行数据同步  
 `salveof <masterip> <masterport>`  
 #### 当master设置了密码保护时，slave服务连接master的密码  
+`masterauth <master-password>`  
 
 
   
