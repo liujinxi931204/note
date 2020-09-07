@@ -43,7 +43,8 @@ save 60 10000
 #### 指定本地数据库存放目录  
 `dir ./`  
 #### 设置当本机为salve服务时，设置master服务的ip地址及端口，在redis启动时，它会自动从master进行数据同步  
-`salveof `
+`salveof <masterip> <masterport>`  
+
 
   
 
