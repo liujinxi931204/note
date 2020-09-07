@@ -54,6 +54,9 @@ save 60 10000
 `maxmemory <bytes>`  
 #### 指定是否在每次更新操作后进行日志记录，redis在默认情况下是异步的把数据写入磁盘，如果不开启，可能会在断电时导致一段时间内的数据丢失。因为redis本身同步数据文件是按上面save条件来同步的，所以有的数据会在一段时间内只存在于内存中  
 `appendonly no`  
+#### 指定更新日志文件名，默认为appendfile.aof  
+`appendfilename appendonly.aof`  
+
 
 
 
