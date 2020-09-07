@@ -58,7 +58,7 @@ save 60 10000
 `appendfilename appendonly.aof`  
 #### 指定更新日志条件，共有3个可选值。no：表示操作系统进行数据缓存同步到磁盘(块)；always：表示每次更新操作后手动调用fsync()将数据写到洗盘(慢，安全);everysec:表示每秒同步一次(折中，默认值)  
 `appendfsync everysec`  
-#### 指定是否启用虚拟内存机制，默认值为no。VM机制将数据
+#### 指定是否启用虚拟内存机制，默认值为no。VM机制将数据分页存放，由redis将访问量较少的页即冷数据swap到磁盘上，访问多的页面由
 
 
 
