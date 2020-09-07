@@ -46,6 +46,7 @@ save 60 10000
 `salveof <masterip> <masterport>`  
 #### 当master设置了密码保护时，slave服务连接master的密码  
 `masterauth <master-password>`  
+#### shez
 
 
   
