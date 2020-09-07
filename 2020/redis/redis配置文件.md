@@ -27,7 +27,10 @@
 `logfile stdout`  
 #### 设置数据库的数量，默认数据为16，可以使用SELECT <db_id>命令连接指定id的数据库  
 `databases 16`  
-#### 指定在多长时间内，有多少次
+#### 指定在多长时间内，有多少次更新操作，就将数据同步到数据文件，可以多个条件配合  
+`save <seconds> <changes>`  
+redis
+
 
  
 
