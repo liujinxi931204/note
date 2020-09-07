@@ -14,4 +14,6 @@
 redis默认不是以守护进程的方式运行，可以通过该配置项修改，使用yes启用守护进程  
 `daemonize no`  
 当redis以守护进程方式运行时，redis默认会把pid写入/var/run/redis.pid文件，可以通过pidfile指定  
+`pidfile /var/run/redis.pid`  
+指定redis监听端口，默认端口
   
