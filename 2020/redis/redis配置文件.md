@@ -48,7 +48,7 @@ save 60 10000
 `masterauth <master-password>`  
 #### 设置redis连接密码，如果设置了连接密码，客户端在连接redis时需要通过AUTH <password>命令提供密码，默认关闭  
 `requirepass foobared`  
-#### 设置同一时间最大客户端连接数，默认无限制，redis可以同时打开的客户端连接数为redis进程可以打开的最大文件描述符数，如果设置maxclinets 0，表示不作限制。当客户端连接数达到限制时，
+#### 设置同一时间最大客户端连接数，默认无限制，redis可以同时打开的客户端连接数为redis进程可以打开的最大文件描述符数，如果设置maxclinets 0，表示不作限制。当客户端连接数达到限制时，redis会关闭新的连接并向客户端返回max number of clients reached
 
 
 
