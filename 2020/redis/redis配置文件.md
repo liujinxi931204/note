@@ -46,7 +46,9 @@ save 60 10000
 `salveof <masterip> <masterport>`  
 #### 当master设置了密码保护时，slave服务连接master的密码  
 `masterauth <master-password>`  
-#### shez
+#### 设置redis连接密码，如果设置了连接密码，客户端在连接redis时需要通过AUTH <password>命令提供密码，默认关闭  
+`requirepass foobared`  
+
 
 
   
