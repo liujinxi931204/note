@@ -66,7 +66,7 @@ save 60 10000
 `vm-max-memory 0`  
  #### redis swap文件分成了很多的page，一个对象可以保存在多个page上面，但一个page不能被多个对象共享，vm-page-size是要根据存储的数据大小来设定的。如果存储很多小对象，page大小最好设置为32或64byte；如果存储很大的对象，则可以使用更大的page；如果不确定，就是用默认值  
 `vm-page-size 32`  
-#### 
+#### 设置swap文件中的page数量，由于页表(一种表示页面空闲或使用的bitmap)是存放在内存中的，在磁盘上每8个pages将会
 
 
 
