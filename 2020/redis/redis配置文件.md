@@ -1,1 +1,4 @@
-在Redis中，根目录中有一个Redis配置文件(redis.conf)，可以通过Redis CONFIG命令获取和设置所有的redis配置
+在Redis中，根目录中有一个Redis配置文件(redis.conf)，可以通过Redis CONFIG命令获取和设置所有的redis配置  
+句法：  
+`CONFIG GET CONFIG_SETTING_NAME`  
+例如：  
