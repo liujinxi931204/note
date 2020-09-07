@@ -23,3 +23,5 @@ timeout 300
 ```
 6. 启动redis  
 `/search/odin/redis/bin/redis-server redis.conf`
+7. 启动redis后，可以使用测试端程序redis-cli和redis服务交互  
+
