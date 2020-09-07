@@ -79,7 +79,9 @@ hash-max-zipmap-value 512
 ```  
 #### 只当是否激活充值hash，默认为开启  
 `activerehashing yes`  
-#### 指定包含其他的配置文件，可以在同一个主机上多个redis实例之间
+#### 指定包含其他的配置文件，可以在同一个主机上多个redis实例之间使用同一份配置为文件，而同时各个实例又拥有自己的特定配置文件  
+`include /path/to/local.conf`  
+
 
 
 
