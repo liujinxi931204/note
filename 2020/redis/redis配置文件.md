@@ -29,7 +29,13 @@
 `databases 16`  
 #### 指定在多长时间内，有多少次更新操作，就将数据同步到数据文件，可以多个条件配合  
 `save <seconds> <changes>`  
-redis
+redis默认配置文件中提供了三个条件：  
+```shell
+save 900 1
+save 300 10
+save 60 10000
+```  
+
 
 
  
