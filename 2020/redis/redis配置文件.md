@@ -2,3 +2,4 @@
 句法：  
 `CONFIG GET CONFIG_SETTING_NAME`  
 例如：  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/07/1599464279736-1599464279819.png)  
