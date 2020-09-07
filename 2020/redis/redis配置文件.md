@@ -23,6 +23,7 @@
 `timeout 300`  
 #### 指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为verbose  
 `loglevel verbose`  
+#### 日志记录方式，默认为标准输出，如果配置Redis为守护进程方式运行，而这里而又配置为日志
  
 
   
