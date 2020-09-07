@@ -21,7 +21,9 @@
 `bind 127.0.0.1`  
 #### 当客户端闲置多长时间后关闭连接，如果指定为0，表示关闭该功能  
 `timeout 300`  
-####  
+#### 指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为verbose  
+`loglevel verbose`  
+ 
 
   
 
