@@ -60,7 +60,8 @@ xx: 键必须存在，才可以设置成功，用于更新，正好与nx相反
 用法如下  
 `setnx key value`  
 时间复杂度O(1),只有在键key不存在的情况下才能将键key的值设置为value；如果key已经存在，则不做任何操作。命令在设置成功时返返回1，设置失败时返回0    
-`setex key seconds value`时间复杂度O(1)，  
+`setex key seconds value`  
+时间复杂度O(1)，  
   
 
 
