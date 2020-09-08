@@ -20,5 +20,8 @@ redis命令用于在redis服务上执行操作。要在redis服务上执行命�
 ### 语法  
 启动客户端  
 `redis-cli`  
-  
+该命令会连接本地的redis服务  
+可以使用下面的命令检测redis服务是否启动  
+```shell
+```  
 
