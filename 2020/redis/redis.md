@@ -44,12 +44,14 @@ PONG
 #### 命令  
 ##### 常用命令  
 1. 设置值  
-`set key value [ ex second ] [px millisecond ] [nx|xx]`  
+`set key value [ ex seconds ] [px milliseconds ] [nx|xx]`  
 ```shell
 127.0.0.1:6379 > set hello world  
 OK  
 ```   
-上面
+上面这句用于设置键为hello，值为world的键值对，返回结果OK表示设置成功  
+set命令有几个选项  
+ex seconds:we
 
 
  
