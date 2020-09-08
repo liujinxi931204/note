@@ -28,17 +28,15 @@ redis-cli
 127.0.0.1:6379 > PING  
 PONG  
 ```  
-在远程服务上执行命令  
-如果需要在redis服务上执行命令，同样使用redis-cli命令  
+如果需要在远程redis服务上执行命令，同样使用redis-cli命令  
  
 ### 语法  
-`redis-cli -h host -p port -a password` 
+`redis-cli -h host -p port -a password`  
 可以使用下面的命令检测远程的redis服务是否启动   
 ```shell
 redis-cli -h 127.0.0.1 -p 6379 -a 'mypass'  
 127.0.0.1:6379 >  
-127.0.0.1:6379 > PING  
-  
+127.0.0.1:6379 > PING   
 PONG  ```
  
 
