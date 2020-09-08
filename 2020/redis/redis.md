@@ -45,7 +45,7 @@ PONG
 ##### 常用命令  
 1. 设置值  
 `set key value [ ex seconds ] [px milliseconds ] [nx|xx]`  
-时间复杂度()将字符串值value关联到key，如果key已经持有其他值了，set旧覆写旧值，无视类型  
+时间复杂度O(1),将字符串值value关联到key，如果key已经持有其他值了，set旧覆写旧值，无视类型  
 ```shell
 127.0.0.1:6379 > set hello world  
 OK  
