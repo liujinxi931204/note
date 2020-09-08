@@ -73,7 +73,10 @@ xx: 键必须存在，才可以设置成功，用于更新，正好与nx相反
 (nil)
 ```  
 3. 批量设置值  
-mset key value
+`mset key value [key value ...]`  
+时间复杂度O(n),	其中n为要被设置的键数  
+如果某个  
+
 
  
 
