@@ -101,7 +101,7 @@ OK
 5. 获取并设置  
 `getset key value`  
 时间复杂度为O(1),将键key的值设置为value，并将建key的旧值返回  
-如果
+如果键key没有旧值，则返回nil;如果键key不是字符串类型时，则返回一个错误  
 
 6. 计数  
 `incr key`  
