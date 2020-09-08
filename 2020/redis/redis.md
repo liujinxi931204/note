@@ -56,7 +56,7 @@ ex seconds: 为键设置秒级过期时间
 px milliseconds: 为键设置毫秒级过期时间  
 nx: 键必须不存在，才可以设置成功，用于添加  
 xx: 键必须存在，才可以设置成功，用于更新，正好与nx相反  
-此外，redis还提供setex和setnx两个命令，它们的效果和xx、nx选项是类似的  
+此外，redis还提供setex和setnx两个命令    
 用法如下  
 `setnx key value`  
 时间复杂度O(1),只有在键key不存在的情况下才能将键key的值设置为value；如果key已经存在，则不做任何操作。命令在设置成功时返返回1，设置失败时返回0    
