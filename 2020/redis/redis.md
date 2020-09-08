@@ -63,6 +63,8 @@ xx: 键必须存在，才可以设置成功，用于更新，正好与nx相反
 `setex key seconds value`  
 时间复杂度O(1)，将键key的值设置为value，并将键key的生存时间设置为seconds秒。如果键key已经存在，那么setex命令将覆盖已有的值。命令在设置成功时返回OK；在seconds参数不合法时，命令将返回一个错误  
 2. 获取值  
+`get key`  
+时间复杂度为O(1),返回与键key相关联的字符串值。如果键key不存在，那么返回特殊值
 
  
 
