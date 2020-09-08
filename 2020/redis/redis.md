@@ -77,7 +77,7 @@ xx: 键必须存在，才可以设置成功，用于更新，正好与nx相反
 时间复杂度O(n),	其中n为要被设置的键数 
 `msetnx key value [key value ...]`  
 时间复杂度为O(n),其中n为要被设置的键数  
-mset与msetnx的区别在于，mset
+mset与msetnx的区别在如果某个给定的键已经存在，mset将会使用新值覆盖旧值；
 
 
  
