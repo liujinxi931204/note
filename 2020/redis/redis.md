@@ -51,13 +51,14 @@ OK
 ```   
 上面这句用于设置键为hello，值为world的键值对，返回结果OK表示设置成功  
 set命令有几个选项  
-ex seconds:为键设置秒级过期时间  
-px milliseconds:为键设置毫秒级过期时间  
-nx:键必须不存在，才可以设置成功，用于添加  
-xx:键必须存在，才可以设置成功，用于更新，正好与nx相反  
+ex seconds: 为键设置秒级过期时间  
+px milliseconds: 为键设置毫秒级过期时间  
+nx: 键必须不存在，才可以设置成功，用于添加  
+xx: 键必须存在，才可以设置成功，用于更新，正好与nx相反  
 此外，redis还提供setex和setnx两个命令，它们的作用和xx、nx选项是一样的  
 用法如下  
-`setnx key value`时间复杂度O(1),只有在键key不粗
+`setnx key value`  
+时间复杂度O(1),只有在键key不存在的情况下才能将键key的值设置为value；如果key已经存在，则不做任何操作  
 `setex key seconds value`  
 
 
