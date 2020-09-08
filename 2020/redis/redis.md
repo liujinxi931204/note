@@ -106,7 +106,9 @@ INCR命令是一个针对字符串的操作。因为redis并没有专用的整�
   
 `incrby key increment`  
 时间复杂度为O(1)，为键key存储的数字值加上增量increment  
-如果键key不存在，那么他的值会先被初始化位0，然后再执行incr命令，返回increment的值；如果键存储的值时整数，返回增加increment后的值；如果键key存储的  
+如果键key不存在，那么他的值会先被初始化位0，然后再执行incr命令，返回increment的值；如果键存储的值时整数，返回增加increment后的值；如果键key存储的值不能被解释位数字，那么该命令返回一个错误  
+  
+``  
   
 `decr key`  
 时间复杂度O(1),为键key存储的数字值减1  
