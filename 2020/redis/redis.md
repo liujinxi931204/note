@@ -38,7 +38,8 @@ redis-cli -h host -p port -a "password"
 127.0.0.1:6379 >  
 127.0.0.1:6379 > PING  
 PONG  
-```
+```  
+
  
 
 
