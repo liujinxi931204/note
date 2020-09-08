@@ -51,7 +51,9 @@ OK
 ```   
 上面这句用于设置键为hello，值为world的键值对，返回结果OK表示设置成功  
 set命令有几个选项  
-ex seconds:we
+ex seconds:为键设置秒级过期时间  
+px milliseconds:为键设置毫秒级过期时间  
+
 
 
  
