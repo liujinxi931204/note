@@ -40,7 +40,12 @@ redis-cli -h host -p port -a "password"
 PONG  
 ```  
 ### 字符串  
-字符串类型是redis最基础的数据结构。首先键都是字符串类型的，而且其他几种数据结构都是在字符串的基础之上构建 
+字符串类型是redis最基础的数据结构。首先键都是字符串类型的，而且其他几种数据结构都是在字符串的基础之上构建的  
+#### 命令  
+##### 常用命令  
+1. 设置值  
+`set key value [ ex second ] [px millisecond ] [nx|xx]`  
+ 
 
 
  
