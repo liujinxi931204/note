@@ -53,7 +53,7 @@ OK
 set命令有几个选项  
 ex seconds:为键设置秒级过期时间  
 px milliseconds:为键设置毫秒级过期时间  
-
+nx:键必须
 
 
  
