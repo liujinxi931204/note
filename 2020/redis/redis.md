@@ -39,6 +39,10 @@ redis-cli -h host -p port -a "password"
 127.0.0.1:6379 > PING  
 PONG  
 ```  
+### 常用命令  
+1. 设置值  
+`set key value [ ex seconds ] [px millisecond ] [nx|xx]`  
+
 
  
 
