@@ -34,10 +34,11 @@ PONG
 `redis-cli -h host -p port -a password`  
 可以使用下面的命令检测远程的redis服务是否启动   
 ```shell
-redis-cli -h 127.0.0.1 -p 6379 -a 'mypass'  
+redis-cli -h host -p port -a "password"  
 127.0.0.1:6379 >  
-127.0.0.1:6379 > PING   
-PONG  ```
+127.0.0.1:6379 > PING  
+p
+```
  
 
 
