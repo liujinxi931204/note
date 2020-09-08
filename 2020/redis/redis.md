@@ -25,5 +25,8 @@ redis命令用于在redis服务上执行操作。要在redis服务上执行命�
 `redis-cli  
 127.0.0.1:6379 > PING  
   
-PONG  ` 
+PONG  `  
+在远程服务上执行命令  
+如果需要在redis服务上执行命令，同样使用redis-cli 
+
 
