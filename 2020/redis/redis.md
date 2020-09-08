@@ -39,9 +39,8 @@ redis-cli -h host -p port -a "password"
 127.0.0.1:6379 > PING  
 PONG  
 ```  
-### 常用命令  
-1. 设置值  
-`set key value [ ex seconds ] [px millisecond ] [nx|xx]`  
+### 字符串  
+字符串类型是redis最基础的数据结构。首先键都是字符串类型的，而且其他几种数据结构都是在字符串的基础之上构建 
 
 
  
