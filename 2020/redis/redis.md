@@ -167,7 +167,9 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
 7. 获取所有的value  
 `hvals key`  
 时间复杂度为O(n),n为哈希表的大小，返回哈希表key中所有的域的值的表，当key不存在时，返回空表  
-8. 
+8. 自增、自减  
+`hincrby key field increment`  
+`hincrby`
 
 
 
