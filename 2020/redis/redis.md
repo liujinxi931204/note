@@ -131,7 +131,8 @@ redis会根据当前值的类型和长度决定使用哪种内部编码实现
 ### 哈希  
 redis hash是一个string类型的field和value的映射表，hash特别适合用于存储对象，每个hash键中可以存储多达40亿个字段值  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/09/1599631827179-1599631827213.png)  
-hash
+hash类型中的映射关系叫做field-value，注意这里的value是指field对应的值，不是键对应的值  
+
 
 
 
