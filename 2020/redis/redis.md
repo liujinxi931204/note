@@ -140,14 +140,14 @@ hash类型中的映射关系叫做field-value，注意这里的value是指field�
 `hsetnx hash field value`  
 时间复杂度为O(1)，当且仅当field尚未存在于哈希表的情况下，将它的值设置为value；如果给定域已经存在于哈希表中，那么将放弃执行设置操作；如果哈希表不存在，那么一个新的哈希表将被创建并执行hsetnx操作  
 hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行设置操作返回0  
-`st key field vlaue [ field value ...]`  
+`hmset key field vlaue [ field value ...]`  
 时间复杂度O(n),n为field-value对的数量，同时将多个field-value对设置到哈希表hash中，此命令会覆盖哈希表中已存在的域。如果key不存在，一个空哈希表被创建并执行mhset操作  
 如果命令执行成功，返回"OK";当key不是哈希表类型时，返回一个错误  
 2. 获取值  
 `hget hash field`  
 时间复杂度为O(1)，返回哈希表中给定域的值。hget命令在默认情况下返回给定域的值，如果给定域不存在于哈希表中，又或者给定的哈希表不存在，那么命令返回nil  
-`mget key field [ field ...]`  
-时间复杂度为O(1)，返回哈希表中key中，一个或多个给定域的值。如果给定的域不存在域哈希表中，那么返回一个nil
+`hmget key field [ field ...]`  
+时间复杂度为O(1)，返回哈希表中key中，一个或多个给定域的值。如果给定的域不存在域哈希表中，那么返回一个nil。因为不存在的哈希表key被当作一个空表来处理，所以对一个不存在的key进行hmget操作将返回一个只
 
 
 
