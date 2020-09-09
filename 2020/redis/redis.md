@@ -135,7 +135,8 @@ hash类型中的映射关系叫做field-value，注意这里的value是指field�
 #### 常用命令  
 1. 设置值  
 `hset hash field value`  
-时间复杂度为O(1)，将哈希表hash中域field的值设置为value。如果给定的哈希表不存在，那么会一个新的哈希表将被创建并
+时间复杂度为O(1)，将哈希表hash中域field的值设置为value。如果给定的哈希表不存在，那么会一个新的哈希表将被创建并执行hset操作；如果域field已经存在于哈希表中，那么它的旧值将被新值value覆盖  
+
 
 
 
