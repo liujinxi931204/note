@@ -141,7 +141,7 @@ hash类型中的映射关系叫做field-value，注意这里的value是指field�
 时间复杂度为O(1)，当且仅当field尚未存在于哈希表的情况下，将它的值设置为value；如果给定域已经存在于哈希表中，那么将放弃执行设置操作；如果哈希表不存在，那么一个新的哈希表将被创建并执行hsetnx操作  
 hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行设置操作返回0  
 `mhset key field vlaue [ field value ...]`  
-
+时间复杂度O(n),n为field-value对的数量，同时将多个
 
 
 
