@@ -143,6 +143,8 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
 `mhset key field vlaue [ field value ...]`  
 时间复杂度O(n),n为field-value对的数量，同时将多个field-value对设置到哈希表hash中，此命令会覆盖哈希表中已存在的域。如果key不存在，一个空哈希表被创建并执行mhset操作  
 如果命令执行成功，返回"OK";当key不是哈希表类型时，返回一个错误  
+2. 获取值  
+
 
 
 
