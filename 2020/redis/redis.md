@@ -133,7 +133,9 @@ redis hash是一个string类型的field和value的映射表，hash特别适合�
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/09/1599631827179-1599631827213.png)  
 hash类型中的映射关系叫做field-value，注意这里的value是指field对应的值，不是键对应的值  
 #### 常用命令  
-
+1. 设置值  
+`hset hash field value`  
+时间复杂度为O(1)，将哈希表hash中域field的值设置为
 
 
 
