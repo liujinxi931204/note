@@ -21,4 +21,4 @@ Spring对各种优秀的框架(Struts、Hibernate、Hession、Quartz等)的支�
 6. **降低Java EE api的使用难度**  
 Spring对Java EE API(如JDBC、JavaMail、远程调用等)进行了薄薄的封装，使这些API的使用难度大为降低  
   
-
+7. **Java**
