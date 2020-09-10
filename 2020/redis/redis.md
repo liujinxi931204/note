@@ -284,7 +284,7 @@ count=0:移除表中所有与value相等的值
   
 6. 阻塞操作  
   
-`rpoplpush source destination`  
+`brpoplpush source destination`  
 时间复杂度尾O(1),命令rpoplpush在一个原子时间内，执行以下两个动作：  
 将列表source中的最后一个元素(表尾元素)弹出，返回给客户端；
 将source弹出的元素插入到列表destination，作为列表destination的表头  
@@ -298,7 +298,7 @@ count=0:移除表中所有与value相等的值
 #### 内部编码  
   
 列表类型内部有两种编码  
-ziplist:当列表的元素个数小于list-max-ziplist-entries配置(默认512个)同时列表中每个元素的值都小于list-max-ziplist-value配置时(默认64字节),redis会选用ziplist来作为列表内部实现来减少内存的使用
+ziplist:当列表的元素个数小于list-max-ziplist-entries配置(默认512个)同时列表中每个元素的值都小于list-max-ziplist-value配置时(默认64字节),redis会选用ziplist来作为列表内部实现来减少内存的使用  
 linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linkedlist作为列表内部实现  
 
  
