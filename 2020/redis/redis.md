@@ -282,10 +282,10 @@ count=0:移除表中所有与value相等的值
 当给定多个key参数时，按照参数的先后顺序依次检查各个列表，弹出第一个非空列表的尾元素  
 如果列表为空，返回一个nil；否则返回一个含有两个元素的列表，第一个元素是被弹出元素所属的key，第二个元素是被弹出的元素的值  
   
-6. 阻塞操作  
+6. 复合操作  
   
-`brpoplpush source destination`  
-时间复杂度为O(1),命令brpoplpush在一个原子时间内，执行以下两个动作：  
+`rpoplpush source destination`  
+时间复杂度为O(1),命令rpoplpush在一个原子时间内，执行以下两个动作：  
 将列表source中的最后一个元素(表尾元素)弹出，返回给客户端；
 将source弹出的元素插入到列表destination，作为列表destination的表头  
 如果source不存在，值nil被返回，并且不执行其他任何动作  
