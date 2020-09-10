@@ -3,4 +3,4 @@ Spring是分层的Java SE/EE 应full-stack轻量级开源框架，以IoC(Inverse
 提供了展现层Spring MVC和持久层Spring JDBCTemplate以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多著名的第三方框架和类库，逐渐成为使用最多的Java EE企业应用开源框架  
 ### Spring的优势  
 1. 方便解耦，简化开发  
-通过Spring提供的I
+通过Spring提供的IoC容器，可以将对象间的依赖关系交由Spring进行控制，避免硬编码所造成的过度耦合。用户也不必
