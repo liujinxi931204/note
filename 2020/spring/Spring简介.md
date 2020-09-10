@@ -18,4 +18,5 @@ Spring是分层的Java SE/EE 应full-stack轻量级开源框架，以IoC(Inverse
 5. **方便集成各种优秀的框架**  
 Spring对各种优秀的框架(Struts、Hibernate、Hession、Quartz等)的支持  
   
-6. **降低Java E**
+6. **降低Java EE api的使用难度**  
+Spring对Java EE API(如JDBC、JavaMail、远程调用等)
