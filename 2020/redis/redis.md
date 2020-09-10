@@ -291,7 +291,7 @@ count=0:移除表中所有与value相等的值
 如果source、destinatoin相同，则列表中的表尾元素被移动到表头，并返回该元素，可以把这种特殊情况视为列表的旋转操作  
   
 `brpoplpush source destination timeout`  
-时间复杂度为O(1),
+时间复杂度为O(1),brpoplpush是rpoplpush的阻塞版本，当列表source不为空时，和rpoplpush
 
 
 
