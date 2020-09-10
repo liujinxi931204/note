@@ -19,4 +19,6 @@ Spring是分层的Java SE/EE 应full-stack轻量级开源框架，以IoC(Inverse
 Spring对各种优秀的框架(Struts、Hibernate、Hession、Quartz等)的支持  
   
 6. **降低Java EE api的使用难度**  
-Spring对Java EE API(如JDBC、JavaMail、远程调用等)
+Spring对Java EE API(如JDBC、JavaMail、远程调用等)进行了薄薄的封装，使这些API的使用难度大为降低  
+  
+
