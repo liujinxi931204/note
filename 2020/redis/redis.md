@@ -170,6 +170,8 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
 8. 自增、自减  
 `hincrby key field increment`  
 时间复杂度为O(1)，为哈希表key中域field的值增加increment。增量也可以是负数，相当于对给定域做减法。如果key不存在，一个新的哈希表将被创建并执行hincrby命令；如果域field不存在，那么在执行命令前域的值被初始化为0，然后执行hinrby操作；对于一个存储字符串的域field执行hincrby命令将会造成一个错误  
+9. 计算value的字符串长度  
+10.
 
 
 
