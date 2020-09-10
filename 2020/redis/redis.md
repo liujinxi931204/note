@@ -229,7 +229,8 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
   
 `lrange key start stop`  
 时间复杂度为O(s+n),s为偏移量start、n为指定区间内元素的数量；返回列表key中指定区间内的元素区间以偏移量start和stop指定  
-下标参数start和stop都从0开始，也可以使用负数，-1表示
+下标参数start和stop都从0开始，也可以使用负数，-1表示列表的最后一个元素，-1表示列表的倒数第二个元素...  
+在redis执行lrange会包含下标为start、
 
 
 
