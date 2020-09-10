@@ -270,7 +270,9 @@ count=0:移除表中所有与value相等的值
 `lset key index value`  
 时间复杂度：对表头元素或表尾元素进程lset操作，时间复杂度为O(1);其他情况下O(n),n为列表的长度。将列表key中下标为index的元素设置为value；当index查出范围或者对一个空列表进行lset操作时，返回一个错误  
   
-
+5. 阻塞操作  
+  
+`blpop key `
 
 
 
