@@ -293,6 +293,7 @@ count=0:移除表中所有与value相等的值
 `brpoplpush source destination timeout`  
 时间复杂度为O(1),brpoplpush是rpoplpush的阻塞版本，当列表source不为空时，和rpoplpush表现一致  
 当列表source为空时，brpoplpush命令将阻塞连接，直到等待超时，或者有一个客户端对source执行了lpush或rpush操作为止  
+超时参数如果为0，表示阻塞时间可以无限期延长  
 
 
 
