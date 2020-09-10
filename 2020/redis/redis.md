@@ -264,6 +264,11 @@ count>0:从表头开始向表尾搜索，移除与value相等的元素，数量�
 count<0:从表尾开始向表头搜索，移除与value相等的元素，数量为count的绝对值  
 count=0:移除表中所有与value相等的值  
 当key不存之时，视为空表，lrem返回0  
+  
+4. 设置  
+  
+`lset key index value`  
+时间复杂度为
 
 
 
