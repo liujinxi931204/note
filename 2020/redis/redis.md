@@ -256,6 +256,10 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
 当key不是列表类型时，返回一个错误  
 超出范围不会引起错误，如果start下标比列表的最大下标end(列表长度-1)或者start>stop,,ltrim返回一个空列表，因为此时ltrim已经将整个列表情况  
 如果stop下标比end(列表长度-1)还要大，redis将stop设置为end  
+  
+`lrem key count value`  
+时间复杂度为O(n)，n为列表的长度，根据参数count的值，移除列表中与参数value相等的元素  
+count的值可以
 
 
 
