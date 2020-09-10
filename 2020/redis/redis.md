@@ -285,7 +285,7 @@ count=0:移除表中所有与value相等的值
 6. 阻塞操作  
   
 `brpoplpush source destination`  
-时间复杂度尾O(1),命令rpoplpush在一个原子时间内，执行以下两个动作：  
+时间复杂度为O(1),命令brpoplpush在一个原子时间内，执行以下两个动作：  
 将列表source中的最后一个元素(表尾元素)弹出，返回给客户端；
 将source弹出的元素插入到列表destination，作为列表destination的表头  
 如果source不存在，值nil被返回，并且不执行其他任何动作  
