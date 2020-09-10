@@ -272,7 +272,8 @@ count=0:移除表中所有与value相等的值
   
 5. 阻塞操作  
   
-`blpop key `
+`blpop key [ key ...] timeout`  
+时间复杂度为O(1),
 
 
 
