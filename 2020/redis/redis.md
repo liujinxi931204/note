@@ -89,7 +89,8 @@ msetnx是一个原子性操作，所有给定的键要么同时被设置，要�
 ```shell
 127.0.0.1:6379 > mset a 1 b 2 c 3 d 4  
 OK
-```
+```  
+  
 4. 批量获取  
   
 `mget key [key ...]`  
@@ -150,6 +151,7 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
 `hmset key field vlaue [ field value ...]`  
 时间复杂度O(n),n为field-value对的数量，同时将多个field-value对设置到哈希表hash中，此命令会覆盖哈希表中已存在的域。如果key不存在，一个空哈希表被创建并执行mhset操作  
 如果命令执行成功，返回"OK";当key不是哈希表类型时，返回一个错误  
+  
 2. 获取值  
   
 `hget hash field`  
@@ -160,22 +162,27 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
 时间复杂度为O(n)，返回hash表中所有的域和值，在返回值里，紧跟在每个域名filed之后时域的值，所以返回值的长度是哈希表大小的两倍  
 以列表的形式返回哈希表的域和域的值，若key不存在，返回空列表  
 在使用hgetall时，如果哈希表中元素比较多，有可能会阻塞redis。如果只是获取部分field，可以使用hmget；如果一定要获取全部field-value，可以使用hscan，该命令会渐进式遍历哈希类型  
+  
 3. 删除field  
    
 `hdel key field [ field ...]`  
 时间复杂度为O(n)，n为要删除的域的数量，删除哈希表中的一个或多个指定域，不存在的域将被忽略。返回成功被移除的域的数量，不包括被忽略的域  
+  
 4. 返回域的数量  
   
 `hlen key`  
 时间复杂度O(1)，返回哈希表key中域的数量，当key不存在时返回0  
+  
 5. 域是否存在  
   
 `hexixts hash field`  
 时间复杂度为O(1)，检查给定域filed是否存在于哈希表hash中，如果给定的域存在则返回1，否则返回0  
+  
 6. 获取所有field  
    
 `hkeys key`  
 时间复杂度为O(n),n为哈希表的大小，返回哈希表key中所有的域的表，当key不存在时，返回空表  
+  
 7. 获取所有的value  
   
 `hvals key`  
@@ -185,6 +192,7 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
   
 `hincrby key field increment`  
 时间复杂度为O(1)，为哈希表key中域field的值增加increment。增量也可以是负数，相当于对给定域做减法。如果key不存在，一个新的哈希表将被创建并执行hincrby命令；如果域field不存在，那么在执行命令前域的值被初始化为0，然后执行hinrby操作；对于一个存储字符串的域field执行hincrby命令将会造成一个错误  
+  
 9. 计算value的字符串长度  
   
 `hstrlen key field`  
