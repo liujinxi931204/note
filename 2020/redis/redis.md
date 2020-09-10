@@ -185,7 +185,8 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
 `lpush key value [ vlaue ...]`  
 时间复杂度为O(1),将一个或多个值插入到列表key的表头，如果有多个值，那么每个value值按照从左到右的顺序插入到列表头；例如执行`lpush mylish a b c`，列表的值将会是c、b、a。该命令等同于原子性地操作`lpush mylist a` `lpush mylist b` `lpush mylist c`  
 如果key不存在，一个空列表将被创建并执行lpush操作；如果key存在但不是列表类型时，则会返回一个错误  
-
+`lpushx key value`  
+时间复杂度为O()
 
 
 
