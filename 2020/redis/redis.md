@@ -187,7 +187,8 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
 如果key不存在，一个空列表将被创建并执行lpush操作；如果key存在但不是列表类型时，则会返回一个错误  
 `lpushx key value`  
 时间复杂度为O(1),将值value插入到列表可以的表头，当且仅当key存在并且是一个列表。当key不存在，lpushx不做任何操作  
-``
+`rpush key value [ value ...]`  
+时间复杂度为O(1),将一个或多个值value插入到列表key的表为()
 
 
 
