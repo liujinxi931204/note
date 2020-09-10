@@ -284,7 +284,8 @@ count=0:移除表中所有与value相等的值
 6. 复合操作  
   
 `rpoplpush source destination`  
-
+时间复杂度尾O(1),命令rpoplpush在一个原子时间内，执行以下两个动作：  
+将列表source中的最后一个元素(表尾元素)
 
 
 
