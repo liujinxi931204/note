@@ -175,7 +175,7 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
 时间复杂度为O(1),返回哈希表中key中给定域field相关联的值的字符串的长度。如果指定的键或者域不存在，那么返回0  
 #### 内部编码  
 哈希类型的内部有两种编码  
-1. ziplist(压缩列表)：当哈希类型元素个数小于hash-max-ziplist-entries配置(默认512)、同时所有值都小于hash-max-ziplist-value配置(默认64字节)
+1. ziplist(压缩列表)：当哈希类型元素个数小于hash-max-ziplist-entries配置(默认512)、同时所有值都小于hash-max-ziplist-value配置(默认64字节)时，redis会使用ziplist作为哈希的内部实现，
 
 
 
