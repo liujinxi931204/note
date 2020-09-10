@@ -297,7 +297,7 @@ count=0:移除表中所有与value相等的值
 #### 内部编码  
   
 列表类型内部有两种编码  
-ziplist:
+ziplist:当列表的元素个数小于list-max-ziplist-entries配置(默认512个)同时列表中每个元素的值都小于list-max-ziplist-value配置时
 
 
 
