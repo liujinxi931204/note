@@ -259,7 +259,9 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
   
 `lrem key count value`  
 时间复杂度为O(n)，n为列表的长度，根据参数count的值，移除列表中与参数value相等的元素  
-count的值可以
+count的值可以是以下几种  
+count>0:从表头开始向表搜索，移除与value相等的元素，数量为count  
+count<0:从表尾开始向表头
 
 
 
