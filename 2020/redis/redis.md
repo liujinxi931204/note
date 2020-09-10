@@ -196,7 +196,8 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
 时间复杂度为O(1),将值value插入到列表key的表为尾，当且仅当key存在并且是一个列表时；当key不存在，rpush不会做任何操作  
   
 `linsert key before|after pivot value`  
-时间复杂度为O(n
+时间复杂度为O(n),n为寻找pivot过程中经过的元素的数量  
+将值value插入到列表key当中，位于值pivot
 
 
 
