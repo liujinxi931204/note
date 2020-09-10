@@ -288,7 +288,9 @@ count=0:移除表中所有与value相等的值
 将列表source中的最后一个元素(表尾元素)弹出，返回给客户端；
 将source弹出的元素插入到列表destination，作为列表destination的表头  
 如果source不存在，值nil被返回，并且不执行其他任何动作  
-如果source、destinatoin相同，则列表中的表尾元素被移动到表头，
+如果source、destinatoin相同，则列表中的表尾元素被移动到表头，并返回该元素，可以把这种特殊情况视为列表的旋转操作  
+  
+`brpop`
 
 
 
