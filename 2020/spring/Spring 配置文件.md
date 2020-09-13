@@ -176,8 +176,24 @@ class User{
         this.userName=userName;
     }
     
-    
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                '}';
+    }
 }
+
+测试
+
+@Test
+    public void testAdd(){
+        ApplicationContext applicationContext =
+                new ClassPathXmlApplicationContext("bean1.xml");
+        User user = applicationContext.getBean("user", User.class);
+        System.out.println(user);
+    
+    }
 
 ```
 
