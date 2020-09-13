@@ -136,7 +136,7 @@ public void testUser(){
         //所以这里进行了强制类型转换
         ((ClassPathXmlApplicationContext)applicationContext).close();
 }
-//输出  
+结果输出为：  
 创建对象...
 初始化方法...
 com.sogou.spring.User@4d1c00d0
