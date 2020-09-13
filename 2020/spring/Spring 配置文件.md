@@ -35,13 +35,29 @@ public void testSingleton(){
 }
 结果输出为：
 com.sogou.spring.User@3c9754d8
-com.sogou.spring.User@3c9754d8
+com.sogou.spring.User@3c9754d8  
+说明是同一个对象
 ```  
 或
 ```java
+配置文件applicationContext.xml
 <!--    配置User单例对象-->
     <bean id="user" class="com.sogou.spring.User"></bean>
 <!--
+测试方法  
+@Test  
+public void testSingleton(){
+    ApplicationContext applicationContext = 
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+    User user1=applicationContext.getBean("user",User.class);
+    User user2=applicationContext.getBean("user",User.class);
+    System.out.println(user1);
+    System.out.println(user2);
+}
+结果输出为：
+com.sogou.spring.User@3c9754d8
+com.sogou.spring.User@3c9754d8  
+说明是同一个对象
 ```
 + 多例  
 ```java
