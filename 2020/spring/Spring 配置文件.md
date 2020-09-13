@@ -146,4 +146,6 @@ com.sogou.spring.User@4d1c00d0
 + Bean的生命周期：  
 通过构造器创建Bean实例(无参构造)  
 为Bean的属性设置值和其他Bean引用(调用set方法)  
-调用Bean
+调用Bean的初始化方法(需要配置上面的init-method)  
+Bean可以使用了(对象获取到了)  
+
