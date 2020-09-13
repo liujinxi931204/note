@@ -1,3 +1,5 @@
+## Bean实例化的三种方式  
+
 ## Bean标签基本配置  
 用于创建对象交由Spring来创建  
 默认情况下它调用的是类中的无参构造函数，如果没有无参构造函数则不能创建成功  
@@ -223,6 +225,7 @@ public class postProcessor implements BeanPostProcessor {
 初始化之后...
 销毁方法...
 ```
-可以看到，Bean后置处理的postProcessBeforeInitialization()方法是在初始化方法之前执行的，postProcessAfterInitialization()是在初始化方法之后、获取到对象之前执行的
+可以看到，Bean后置处理的postProcessBeforeInitialization()方法是在初始化方法之前执行的，postProcessAfterInitialization()是在初始化方法之后、获取到对象之前执行的  
+
 
 
