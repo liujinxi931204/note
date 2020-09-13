@@ -23,7 +23,7 @@ public void testUser(){
         System.out.println(user);
 }
 输出结果为
-
+com.sogou.spring.User@3c9754d8
 ```
 + 工厂实例方法实例化  
 
