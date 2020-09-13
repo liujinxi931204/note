@@ -51,6 +51,8 @@ com.sogou.spring.User@3c9754d8
 public void testSingleton(){
     ApplicationContext applicationContext = 
                 new ClassPathXmlApplicationContext("applicationContext.xml");
+    //加载配置文件，创建Spring容器
+    //单例时，在加载配置文件的时候创建对象
     User user1=applicationContext.getBean("user",User.class);
     User user2=applicationContext.getBean("user",User.class);
     System.out.println(user1);
@@ -74,6 +76,7 @@ public void testSingleton(){
                 new ClassPathXmlApplicationContext("applicationContext.xml");
     //加载配置文件，创建Spring容器
     User user1=applicationContext.getBean("user",User.class);
+    //多例的时候，在调用getBean()方法的时候创建对象，调用几次，创建几次
     User user2=applicationContext.getBean("user",User.class);
     System.out.println(user1);
     System.out.println(user2);
