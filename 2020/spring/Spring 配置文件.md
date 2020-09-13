@@ -50,8 +50,9 @@ public void testUser(){
 }
 输出结果为
 com.sogou.spring.User@3c9754d8
-```
-**注意静态工厂的getUser()方法是静态的，可以直接在配置文件里使用factory-method,工厂方法的getUser()**
+```  
+  
+**注意静态工厂的getUser()方法是静态的，可以直接在配置文件里使用factory-method,工厂方法的getUser()方法不是静态的，所以需要先获取工厂的Bean，再获取对象**   
 
 ## Bean标签基本配置  
 用于创建对象交由Spring来创建  
