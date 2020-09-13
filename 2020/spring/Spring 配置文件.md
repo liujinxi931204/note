@@ -205,6 +205,17 @@ public class postProcessor implements BeanPostProcessor {
     }
 }
 
+测试方法
+ @Test
+    public void testUser(){
+        1.加载配置文件
+        ApplicationContext applicationContext =
+                new ClassPathXmlApplicationContext("applicationContxt.xml");
+        // 2. 获取配置创建的对象
+        User user = applicationContext.getBean("user", User.class);
+        ((ClassPathXmlApplicationContext)applicationContext).close();
+
+    }
 
 
 ```
