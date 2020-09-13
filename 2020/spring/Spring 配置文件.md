@@ -160,7 +160,11 @@ com.sogou.spring.User@3bf7ca37
 ```  
 ## Bean的依赖注入  
 依赖注入(Dependency Injection):它是Spring框架核心IOC的具体实现  
++ set方法注入  
+需要实现注入对象的set方法  
+```java
 
+```
 
   
 ## Bean生命周期配置  
