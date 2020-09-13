@@ -158,6 +158,8 @@ com.sogou.spring.User@3c9754d8
 com.sogou.spring.User@3bf7ca37 
 说明是两个对象
 ```  
+## Bean的依赖注入  
+
   
 ## Bean生命周期配置  
 + init-method:Bean的初始化方法  
