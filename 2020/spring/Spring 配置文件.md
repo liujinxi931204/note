@@ -108,12 +108,23 @@ com.sogou.spring.User@3bf7ca37
 + detroy-method:Bean的销毁方法  
   
 ```java
-配置文件applicatonContxt.xml  
+//配置文件applicatonContxt.xml  
     <bean id="user" class="com.sogou.spring.User" init-method="initMethod" destroy-method="destroyMethod"></bean>
-
+//类实现
 class User{
     public void User(){
-        System.out.println("")
+        System.out.println("User对象创建...");
+    }
+
+    public void initMethod(){
+        System.out.println("初始化方法...");
+    }
+
+    public void destroyMethod(){
+        System.out.println("销毁方法...");
     }
 }
+//测试
+
+
 ```
