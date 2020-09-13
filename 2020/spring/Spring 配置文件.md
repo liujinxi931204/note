@@ -13,7 +13,6 @@
 ```  
 ## Bean标签的范围标签  
 + scope：指对象的作用范围，取值如下  
-|取值范围|说明|
-|-|-|
-|scope|默认的，单例的|
-|prototype|多例的|
+singletone：默认值，单例的  
+prototype：多例的  
+
