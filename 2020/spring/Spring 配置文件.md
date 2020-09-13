@@ -151,11 +151,12 @@ Bean可以使用了(对象获取到了)
 当容器关闭时候，调用Bean的销毁方法(需要配置上面的destroy-method)  
   
 + Bean的后置处理器，Bean的生命周期有7步：
+**调用Bean的后置处理器需要实现**
 通过构造函数创建对象(无参构造)  
 为Bean的属性设置值和对其他Bean的引用调用set方法)  
 **把Bean实例传递给Bean后置处理器**  
 调用Bean的初始化方法(需要配置上面的init-method)  
-**把Bean实例传递Bean后置处理器的方法**  
+**把Bean实例传递给Bean后置处理器**  
 Bean可以使用了(对象获取到了)  
 当容器关闭的时候，调用Bean的销毁方法(需要配置上面的destroy-method)  
 
