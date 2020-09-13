@@ -22,6 +22,7 @@ public void testUser(){
         User user = applicationContext.getBean("user", User.class);
         System.out.println(user);
 }
+输出结果为
 
 ```
 + 工厂实例方法实例化  
