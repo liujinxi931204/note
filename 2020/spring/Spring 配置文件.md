@@ -16,3 +16,14 @@
 singletone：默认值，单例的  
 prototype：多例的  
 
+```java
+<!--    配置User单例对象-->
+    <bean id="user" class="com.sogou.spring.User" scope="singletone"></bean>
+<!--
+<!--    配置User单例对象-->
+    <bean id="user" class="com.sogou.spring.User"></bean>
+<!--
+<!--    配置User多例对象-->
+    <bean id="user" class="com.sogou.spring.User" scope="singletone"></bean>
+<!--
+```  
