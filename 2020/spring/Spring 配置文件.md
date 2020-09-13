@@ -131,7 +131,8 @@ public void testUser(){
                 new ClassPathXmlApplicationContext("applicationContext.xml");
         User user = applicationContext.getBean("user", User.class);
         System.out.println(user);
-  
+        //ApplicatonContext是一个接口，没有实现close()方法
+        ClassPathXmlApplicationContext是其子类
         ((ClassPathXmlApplicationContext)applicationContext).close();
 }
 
