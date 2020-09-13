@@ -160,6 +160,14 @@ Bean可以使用了(对象获取到了)
 Bean可以使用了(对象获取到了)  
 当容器关闭的时候，调用Bean的销毁方法(需要配置上面的destroy-method)  
 ```java
+配置文件applicationContext.xml 
+    <bean id="user" class="com.sogou.spring.User" init-method="initMethod" destroy-method="destroyMethod">
+        <property name="userName" value="AAA"></property>
+    </bean>
+
+    <bean id="postProcessor" class="com.sogou.spring.postProcessor"></bean>  
+
+User
 
 
 ```
