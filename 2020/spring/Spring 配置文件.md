@@ -18,6 +18,7 @@ prototype：多例的
 
 + 单例  
 ```java
+配置文件applicationContxt.xml
 <!--    配置User单例对象-->
     <bean id="user" class="com.sogou.spring.User" scope="singleton"></bean>
 <!--
@@ -31,7 +32,6 @@ public void testSingleton(){
     User user2=applicationContext.getBean("user",User.class);
     System.out.println(user1);
     System.out.println(user2);
-
 }
 ```  
 或
