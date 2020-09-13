@@ -33,6 +33,9 @@ public void testSingleton(){
     System.out.println(user1);
     System.out.println(user2);
 }
+结果输出为：
+com.sogou.spring.User@3c9754d8
+com.sogou.spring.User@3c9754d8
 ```  
 或
 ```java
