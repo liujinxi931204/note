@@ -15,7 +15,8 @@
 + scope：指对象的作用范围，取值如下  
 singleton：默认值，单例的  
 prototype：多例的  
-
+  
++ 
 + 单例  
 ```java
 配置文件applicationContxt.xml
