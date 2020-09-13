@@ -150,8 +150,7 @@ com.sogou.spring.User@4d1c00d0
 Bean可以使用了(对象获取到了)  
 当容器关闭时候，调用Bean的销毁方法(需要配置上面的destroy-method)  
   
-+ Bean的后置处理器，Bean的生命周期有7步：
-**调用Bean的后置处理器需要实现BeanPostProcessor接口**
++ Bean的后置处理器，**调用Bean的后置处理器需要实现BeanPostProcessor接口**，Bean的生命周期有7步：  
 通过构造函数创建对象(无参构造)  
 为Bean的属性设置值和对其他Bean的引用调用set方法)  
 **把Bean实例传递给Bean后置处理器的postProcessBeforeInitialization()**  
@@ -224,6 +223,6 @@ public class postProcessor implements BeanPostProcessor {
 初始化之后...
 销毁方法...
 ```
-可以看到，Bean后置处理的postProcessBeforeInitialization()方法是在初始化方法之前执行的，postProcessAfterInitialization()是在初始化方法之后、获取到对象之前执行的，
+可以看到，Bean后置处理的postProcessBeforeInitialization()方法是在初始化方法之前执行的，postProcessAfterInitialization()是在初始化方法之后、获取到对象之前执行的
 
 
