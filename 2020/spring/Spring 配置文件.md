@@ -125,6 +125,14 @@ class User{
     }
 }
 //测试
-
+@Test
+public void testUser(){
+        ApplicationContext applicationContext =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+        User user = applicationContext.getBean("user", User.class);
+        System.out.println(user);
+  
+        ((ClassPathXmlApplicationContext)applicationContext).close();
+}
 
 ```
