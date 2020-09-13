@@ -28,6 +28,8 @@ prototype：多例的
 public void testSingleton(){
     ApplicationContext applicationContext = 
                 new ClassPathXmlApplicationContext("applicationContext.xml");
+    //加载配置文件，创建Spring容器
+  
     User user1=applicationContext.getBean("user",User.class);
     User user2=applicationContext.getBean("user",User.class);
     System.out.println(user1);
