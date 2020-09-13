@@ -19,7 +19,10 @@ prototype：多例的
 + 当scope的取值为singleton时：  
 Bean的实例化个数：1个  
 Bean的实例化时机：当Spring的核心文件被加载时，实例化配置的Bean实例  
-B
+Bean的生命周期  
+对象创建：当应用加载，创建容器时，对象就被创建了  
+对象运行：只要容器在，对象一直存活  
+对象销毁：当应用加载，销毁容器时，
 + 单例  
 ```java
 配置文件applicationContxt.xml
