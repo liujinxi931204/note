@@ -1,6 +1,15 @@
 ## Bean实例化的三种方式  
 + 无参构造方法实例化  
 + 工厂静态方法实例化  
+```java
+配置文件
+class staticFactory{
+    public static User getUser(){
+        return new User();
+    }
+}
+
+```
 + 工厂实例方法实例化  
 
 ## Bean标签基本配置  
