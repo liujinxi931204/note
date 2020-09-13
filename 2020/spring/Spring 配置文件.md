@@ -106,4 +106,9 @@ com.sogou.spring.User@3bf7ca37
 ## Bean生命周期配置  
 + init-method:Bean的初始化方法  
 + detroy-method:Bean的销毁方法  
-
+  
+```java
+class User{
+    public void User()
+}
+```
