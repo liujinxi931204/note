@@ -165,9 +165,15 @@ com.sogou.spring.User@3bf7ca37
 ```java
 配置文件applicatonContext.xml
    <bean id="user" class="com.sogou.spring.User">
-       <property></property>
+       <property name="userName" value="AAA"></property>
    </bean>
 
+实现类
+class User{
+    private String userName;
+
+    public void setuserN
+}
 ```
 
   
