@@ -5,3 +5,9 @@
 **基本属性**  
 + id：Bean实例在Spring容器中的唯一标识  
 + class：Bean的全限定名  
+  
+```java
+<!--    配置User对象-->
+    <bean id="user" class="com.sogou.spring.User"></bean>
+<!--
+```
