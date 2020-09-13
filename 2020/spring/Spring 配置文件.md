@@ -167,7 +167,44 @@ Bean可以使用了(对象获取到了)
 
     <bean id="postProcessor" class="com.sogou.spring.postProcessor"></bean>  
 
-User
+User类
+public class User {
+
+    private String userName;
+
+    public User() {
+        System.out.println("创建对象...");
+    }
+
+    public void initMethod(){
+        System.out.println("初始化方法...");
+    }
+
+    public void destroyMethod(){
+        System.out.println("销毁方法...");
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+}
+
+定义postProcessor，实现BeanPostProcessor接口
+public class postProcessor implements BeanPostProcessor {
+
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("初始化之前...");
+        return bean;
+    }
+
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("初始化之后...");
+        return bean;
+    }
+}
+
 
 
 ```
