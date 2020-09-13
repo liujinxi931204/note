@@ -189,12 +189,13 @@ class User{
 @Test
     public void testAdd(){
         ApplicationContext applicationContext =
-                new ClassPathXmlApplicationContext("bean1.xml");
+                new ClassPathXmlApplicationContext("applicationContext.xml");
         User user = applicationContext.getBean("user", User.class);
         System.out.println(user);
-    
     }
 
+输出结果为
+User{userName='AAA'}
 ```
 
   
