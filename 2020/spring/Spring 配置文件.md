@@ -26,8 +26,9 @@ prototype：多例的
 @Test  
 public void testSingleton(){
     ApplicationContext applicationContext = 
-                new 
-   ClassPathXmlApplicationContext("applicationContext.xml");
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+    User user1=applicationContext.getBean("user",User.class);
+    User user1=applicationContext.getBean("user",User.class);
 
 }
 ```  
