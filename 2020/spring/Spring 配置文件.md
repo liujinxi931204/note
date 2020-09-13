@@ -16,7 +16,10 @@
 singleton：默认值，单例的  
 prototype：多例的  
   
-+ 
++ 当scope的取值为singleton时：  
+Bean的实例化个数：1个  
+Bean的实例化时机：当Spring的核心文件被加载时，实例化配置的Bean实例  
+B
 + 单例  
 ```java
 配置文件applicationContxt.xml
