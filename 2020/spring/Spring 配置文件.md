@@ -149,4 +149,6 @@ com.sogou.spring.User@4d1c00d0
 调用Bean的初始化方法(需要配置上面的init-method)  
 Bean可以使用了(对象获取到了)  
 当容器关闭时候，调用Bean的销毁方法(需要配置上面的destroy-method)  
+  
++ Bean的生命周期：
 
