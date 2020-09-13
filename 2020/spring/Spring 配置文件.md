@@ -2,12 +2,20 @@
 + 无参构造方法实例化  
 + 工厂静态方法实例化  
 ```java
-配置文件
+配置文件applicationContxt.xml
+ <bean id="user" class="com.sogou.spring.staticFactory" factory-method="getUser"></bean>
+ji
 class staticFactory{
     public static User getUser(){
         return new User();
     }
 }
+
+
+class User{
+    
+}
+
 
 ```
 + 工厂实例方法实例化  
