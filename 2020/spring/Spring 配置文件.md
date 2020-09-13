@@ -172,8 +172,13 @@ com.sogou.spring.User@3bf7ca37
 class User{
     private String userName;
 
-    public void setuserN
+    public void setuserName(String userName){
+        this.userName=userName;
+    }
+    
+    
 }
+
 ```
 
   
