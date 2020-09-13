@@ -108,7 +108,12 @@ com.sogou.spring.User@3bf7ca37
 + detroy-method:Bean的销毁方法  
   
 ```java
+配置文件applicatonContxt.xml  
+    <bean id="user" class="com.sogou.spring.User" init-method="initMethod" destroy-method="destroyMethod"></bean>
+
 class User{
-    public void User()
+    public void User(){
+        System.out.println("")
+    }
 }
 ```
