@@ -224,6 +224,6 @@ public class postProcessor implements BeanPostProcessor {
 初始化之后...
 销毁方法...
 ```
-可以看到，Bean后置处理的postProcessBeforeInitialization()方法是在初始化方法之前执行的，postProcessAfterInitialization
+可以看到，Bean后置处理的postProcessBeforeInitialization()方法是在初始化方法之前执行的，postProcessAfterInitialization()是在初始化方法之后、获取到对象之前执行的，
 
 
