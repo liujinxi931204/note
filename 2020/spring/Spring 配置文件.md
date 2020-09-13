@@ -26,7 +26,31 @@ public void testUser(){
 com.sogou.spring.User@3c9754d8
 ```
 + 工厂实例方法实例化  
-
+```java
+配置文件applicationContxt.xml
+ <bean id="factory" class="com.sogou.spring.staticFactory"></bean>
+ <bean id="user" class=""
+静态工厂
+class staticFactory{
+    public static User getUser(){
+        return new User();
+    }
+}
+实现类
+class User{
+    
+}
+测试方法
+@Test
+public void testUser(){
+    ApplicationContext applicationContext =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+        User user = applicationContext.getBean("user", User.class);
+        System.out.println(user);
+}
+输出结果为
+com.sogou.spring.User@3c9754d8
+```
 
 ## Bean标签基本配置  
 用于创建对象交由Spring来创建  
