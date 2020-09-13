@@ -13,17 +13,17 @@
 ```  
 ## Bean标签的范围标签  
 + scope：指对象的作用范围，取值如下  
-singletone：默认值，单例的  
+singleton：默认值，单例的  
 prototype：多例的  
 
 ```java
 <!--    配置User单例对象-->
-    <bean id="user" class="com.sogou.spring.User" scope="singletone"></bean>
+    <bean id="user" class="com.sogou.spring.User" scope="singleton"></bean>
 <!--
 <!--    配置User单例对象-->
     <bean id="user" class="com.sogou.spring.User"></bean>
 <!--
 <!--    配置User多例对象-->
-    <bean id="user" class="com.sogou.spring.User" scope="singletone"></bean>
+    <bean id="user" class="com.sogou.spring.User" scope="prototype"></bean>
 <!--
 ```  
