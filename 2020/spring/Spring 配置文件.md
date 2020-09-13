@@ -4,18 +4,24 @@
 ```java
 配置文件applicationContxt.xml
  <bean id="user" class="com.sogou.spring.staticFactory" factory-method="getUser"></bean>
-ji
+静态工厂
 class staticFactory{
     public static User getUser(){
         return new User();
     }
 }
-
-
+实现类
 class User{
     
 }
-
+测试方法
+@Test
+public void testUser(){
+    ApplicationContext applicationContext =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+        User user = applicationContext.getBean("user", User.class);
+        System.out.println(user);
+}
 
 ```
 + 工厂实例方法实例化  
