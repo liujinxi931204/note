@@ -141,5 +141,7 @@ public void testUser(){
 初始化方法...
 com.sogou.spring.User@4d1c00d0
 销毁方法...
+```  
+  
++ Bean的生命周期：  
 
-```
