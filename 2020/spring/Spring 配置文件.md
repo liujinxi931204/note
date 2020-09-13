@@ -163,6 +163,8 @@ com.sogou.spring.User@3bf7ca37
 + set方法注入  
 需要实现注入对象的set方法  
 ```java
+配置文件applicatonContext.xml
+
 
 ```
 
