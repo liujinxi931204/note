@@ -10,4 +10,6 @@
 <!--    配置User对象-->
     <bean id="user" class="com.sogou.spring.User"></bean>
 <!--
-```
+```  
+## Bean标签的范围标签  
++ scope：指对象的作用范围，
