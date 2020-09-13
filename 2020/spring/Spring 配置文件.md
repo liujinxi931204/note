@@ -29,10 +29,10 @@ com.sogou.spring.User@3c9754d8
 ```java
 配置文件applicationContxt.xml
  <bean id="factory" class="com.sogou.spring.staticFactory"></bean>
- <bean id="user" class=""
+ <bean id="user" factory-bean="fatory" factory-method="getUser"></bean>
 静态工厂
 class staticFactory{
-    public static User getUser(){
+    public User getUser(){
         return new User();
     }
 }
@@ -51,6 +51,7 @@ public void testUser(){
 输出结果为
 com.sogou.spring.User@3c9754d8
 ```
+****
 
 ## Bean标签基本配置  
 用于创建对象交由Spring来创建  
