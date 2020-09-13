@@ -24,7 +24,12 @@ prototype：多例的
 
 测试方法  
 @Test  
-public void testSingleto
+public void testSingleton(){
+    ApplicationContext applicationContext = 
+                new 
+   ClassPathXmlApplicationContext("applicationContext.xml");
+
+}
 ```  
 或
 ```java
