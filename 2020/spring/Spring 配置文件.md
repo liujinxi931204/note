@@ -159,6 +159,8 @@ com.sogou.spring.User@3bf7ca37
 说明是两个对象
 ```  
 ## Bean的依赖注入  
+依赖注入(Dependency Injection):它是Spring框架核心IOC的具体实现  
+
 
   
 ## Bean生命周期配置  
