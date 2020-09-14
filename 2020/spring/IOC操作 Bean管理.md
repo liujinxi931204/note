@@ -119,8 +119,8 @@ Spring配置文件引入context命名空间
    http://www.springframework.org/schema/contexthttp://www.springframework.org/schema/context/spring-context.xsd">
 
 <!--  配置连接池-->
-  <bean id="dataSource" class="com.alibaba.druid.pool.">
-    <constructor-arg index="0" value="AAA"></constructor-arg>
+  <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+    <property name="driverClass" value=""></property>
   </bean>
 
 ```
