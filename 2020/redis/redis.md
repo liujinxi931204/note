@@ -342,7 +342,11 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 `spop key`  
 时间复杂度为O(1),移除并返回一个随机的元素  
 返回被移除的随机元素，当key不存在或key是空集合时，返回nil  
-**注意：spop key是随机移除一个元素，并放回；srandmember key是随机返回一个元素，**
+**注意：spop key是随机移除一个元素，并放回；srandmember key是随机返回一个元素，并不对原来的集合做任何操作**  
+  
+7. 获取所有元素  
+`smembers key`  
+时间复杂度为O(n),
 
 
 
