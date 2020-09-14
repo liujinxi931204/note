@@ -442,6 +442,7 @@ zadd有四个选项
 可选的withscores参数决定结果是单单返回有序集的成员还是将有序集的成员及其score值一起返回  
   
 9. 删除指定排名内的元素  
+`zremrangebyrank key start stop`  
 
 
 
