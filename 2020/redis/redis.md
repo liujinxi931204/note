@@ -326,7 +326,9 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 时间复杂度为O(1),返回集合key的基数（集合中元素的数量），当key不存在时，返回0  
 它不会遍历整个集合，而是直接去用redis的内部变量  
   
-
+4. 判断元素是否在集合中  
+`sismember key member`  
+时间
 
 
 
