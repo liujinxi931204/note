@@ -308,7 +308,7 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 一个集合最多可以存储2^32^-1个元素。redis除了支持集合内的增删改查，同时还支持多个集合去交集、并集、差集  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/14/1600064807779-1600064807866.png)  
 #### 常用命令  
-
+1. 添加元素
 
 
 
