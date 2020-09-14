@@ -201,7 +201,17 @@ User{userName='AAA'}
 P命名空间注入本质也是set方法注入  
 ```java
 首先引入p命名空间
-配置文件applicationContext
+配置文件applicationContext.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--  配置User类-->
+<!--  id用来唯一标识这个对象-->
+  <bean id="user" class="com.sogou.spring5.User"></bean>
+</beans>
 
 ```
 
