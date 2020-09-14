@@ -278,6 +278,15 @@ public class User {
 }
 
 测试
+@Test
+  public  void  testAdd(){
+    ApplicationContext applicationContext=new FileSystemXmlApplicationContext("applicationContext.xml");
+    User user = applicationContext.getBean("user", User.class);
+    System.out.println(user);
+  }
+
+输出结果为
+User{userName='AAA'}
 ```
 
   
