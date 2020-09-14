@@ -196,7 +196,9 @@ class User{
 
 输出结果为
 User{userName='AAA'}
-```
+```  
++ P命名空间注入  
+
 
   
 ## Bean生命周期配置  
