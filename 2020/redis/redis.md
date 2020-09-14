@@ -390,7 +390,8 @@ count=0:移除表中所有与value相等的值
 #### 常用命令  
 1. 添加成员  
 `zdd key score member [[sorce member] [sorce member]..]`  
-时间复杂度为O(m*log(n)),n是有序集合的基数，m为新添加
+时间复杂度为O(m*log(n)),n是有序集合的基数，m为成添加的新成员的数量  
+
 
 
 
