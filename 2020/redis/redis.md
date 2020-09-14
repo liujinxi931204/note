@@ -312,7 +312,7 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 1. 添加元素  
 `sadd key member [ member ...]`  
 时间复杂度为O(n)，n是被添加的元素的数量  
-将一个或多个member元素加入到集合key当中，
+将一个或多个member元素加入到集合key当中，已经存在于集合key中的元素将被忽略；
 
 
 
