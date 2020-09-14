@@ -355,10 +355,10 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
   
 `sinterstore destnation key [key...]`  
 时间复杂度为O(n*m),n为给定集合中基数最小的集合,m为集合的个数  
-将  
+将交集的结果保存在destnation中，而不是简单的返回；如果destnation集合已经存在，则将其覆盖；destnation可以是key本身    
   
 9.并集  
-  
+``  
 
 
 
