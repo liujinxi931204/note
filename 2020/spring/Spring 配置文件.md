@@ -427,7 +427,10 @@ Spring的重点配置
         name属性：属性名称
         value属性：注入的普通属性值
         ref属性：注入的对象引用
-        <list>
+        <list>标签
+        <map>标签
+        <properties>标签
+        <con>
 ```
 
 
