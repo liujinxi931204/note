@@ -117,11 +117,10 @@ prop.userName=root
 prop.password=root
 
 
-Spring配置文件引入context命名空间,通过context命名空间，把外部properties  
+Spring配置文件引入context命名空间,通过context命名空间，把外部properties配置文件Spring配置文件中  
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:p="http://www.springframework.org/schema/p"
   xmlns:context="http://www.springframework.org/schema/context"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
    http://www.springframework.org/schema/contexthttp://www.springframework.org/schema/context/spring-context.xsd">
