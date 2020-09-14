@@ -198,6 +198,7 @@ class User{
 User{userName='AAA'}
 ```  
 + P命名空间注入  
+P命名空间注入本质也是set方法注入  
 
 
   
