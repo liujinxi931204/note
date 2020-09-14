@@ -412,7 +412,9 @@ zadd有四个选项
 4. 计算成员的排名  
 `zrank key member`  
 `zreverank key member`  
-时间复杂度为O(log(n)),返回有序集key中成员member的排名。zrank按照score的值从小到大排序；zrevrank按照score的
+时间复杂度为O(log(n)),返回有序集key中成员member的排名。zrank按照score的值从小到大排列；zrevrank按照score的值从大到小排列；排名从0开始  
+如果有序集key的成员member存在，返回排名；如果member不是有序集key的成员，返回nil  
+
 
 
 
