@@ -201,7 +201,7 @@ User{userName='AAA'}
 P命名空间注入本质也是set方法注入  
 ```java
 首先引入p命名空间
-
+配置文件applicationContext
 
 ```
 
