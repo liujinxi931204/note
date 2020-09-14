@@ -303,7 +303,8 @@ count=0:移除表中所有与value相等的值
 ziplist:当列表的元素个数小于list-max-ziplist-entries配置(默认512个)同时列表中每个元素的值都小于list-max-ziplist-value配置时(默认64字节),redis会选用ziplist来作为列表内部实现来减少内存的使用  
 linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linkedlist作为列表内部实现  
    
-
+### 集合  
+集合(set)类型也是用来保存多个的字符串元素，但是和列表类型不一样的是，集合中不允许有重复的元素，并且
 
  
 
