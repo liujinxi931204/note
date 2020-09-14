@@ -467,7 +467,7 @@ zadd有四个选项
 计算给定的一个或多个有序集的并集，其中给定的key的数量必须以numkeys参数指定，并将该结果存储到destnation中  
 参数的意义同上  
 #### 内部编码  
-+ ziplist：当有序集合的元素个数小于
++ ziplist：当有序集合的元素个数小于zset-max-ziplist-entries(默认128个),同时每个元素的值都小于zset-max-ziplist-value配置(默认64字节),redis
   
 
   
