@@ -78,7 +78,7 @@ xx: 键必须存在，才可以设置成功，用于更新，正好与nx相反
 3. 批量设置值 
    
 `mset key value [key value ...]`  
-时间复杂度O(n),	其中n为要被设置的键数 
+时间复杂度O(n),	其中n为要被设置的键数  
 `msetnx key value [key value ...]`  
 时间复杂度为O(n),其中n为要被设置的键数  
 mset与msetnx的区别在于  
