@@ -246,7 +246,8 @@ User{userName='AAA'}
 需要实现类的有参构造函数  
 ```java
 配置文件applicationContext.xml
-<!----
+<!--这里可以使用name、indexvalue、ref、index-->
+<!-- value-->
 <bean id="user" class="com.sogou.spring5.User">
     <constructor-arg name="userName" value="AAA"></constructor-arg>
   </bean>
