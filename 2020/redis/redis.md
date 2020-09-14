@@ -453,7 +453,8 @@ zadd有四个选项
   
 11. 交集  
 `zinterstore destnation numkeys key [key...] [weights weight [weight...]] [aggregate sum|min|max]`  
-`时间复杂度为O(n*k)+O(m*log(n))`,n为给定key中基数的最小的有序集，k为给定有序集
+`时间复杂度为O(n*k)+O(m*log(n))`,n为给定key中基数的最小的有序集，k为给定有序集数量，m为结果集的基数  
+jisuan 
 
 
 
