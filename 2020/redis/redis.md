@@ -434,7 +434,9 @@ zadd有四个选项
 可以通过使用withscores选项来让成员和它的score值一并返回  
   
 8. 返回指定分数范围的成员  
-`zrangebyscore key min max [withscores] [limit offset ]`
+`zrangebyscore key min max [withscores] [limit offset count]`  
+`zreverangebyscore key min max [withscores] [limit offset count]`  
+时间复杂度为O
 
 
 
