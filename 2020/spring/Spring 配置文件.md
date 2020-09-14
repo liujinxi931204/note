@@ -431,7 +431,7 @@ Spring的重点配置
         <map>标签
         <properties>标签
     <constructor-arg>标签：Bean的有参构造注入
-<import>
+<import>标签：导入其他的Spring的份文件
 ```
 
 
