@@ -461,6 +461,8 @@ zadd有四个选项
 + weighths weight [weight...]:每个键的权重，在做交集计算的时候，每个键中每个member会将自己score乘以这个权重，每个键的默认权重是1  
 + aggregrate sum|min|max:计算成员交集后，score可以按照sum、min、max做汇总，默认是sum  
   
+12. 
+  
 
 
 
