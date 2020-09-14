@@ -330,7 +330,9 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 `sismember key member`  
 时间复杂度为O(1),判断member元素是否是集合key的成员，如果member元素是集合的成员，返回1；如果member元素不是集合的成员，或者集合key不存在，返回0  
   
-
+5. 随机从集合中返回指定个数元素  
+`srandmember key [count]`  
+时间复杂度为：如果只提供了key
 
 
 
