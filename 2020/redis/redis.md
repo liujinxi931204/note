@@ -199,8 +199,8 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
 时间复杂度为O(1),返回哈希表中key中给定域field相关联的值的字符串的长度。如果指定的键或者域不存在，那么返回0  
 #### 内部编码  
 哈希类型的内部有两种编码  
-1. ziplist(压缩列表)：当有value大于64字节或者field的个数超过512时，内部编码会由ziplist变为hashtableredis会使用ziplist作为哈希的内部实现，ziplist使用更加紧凑的结构实现多个元素的连续存储，所以在节省内存方面比hashtable更加优秀  
-2. hashtable(哈希表):当哈希类型无法满足ziplist的条件时，redis会使用hashtable作为哈希的内部实现，因为此时ziplist的读写效率会下降，而hashtable的读写时间复杂度为O(1)  
++ ziplist(压缩列表)：当有value大于64字节或者field的个数超过512时，内部编码会由ziplist变为hashtableredis会使用ziplist作为哈希的内部实现，ziplist使用更加紧凑的结构实现多个元素的连续存储，所以在节省内存方面比hashtable更加优秀  
++ hashtable(哈希表):当哈希类型无法满足ziplist的条件时，redis会使用hashtable作为哈希的内部实现，因为此时ziplist的读写效率会下降，而hashtable的读写时间复杂度为O(1)  
 ### 列表  
 列表(list）类型是用来存储多个有序字符串，列表中的每个元素成为element，一个列表最多可以存储2^32^-1个元素。在redis中，可以对列表两端插入(push)和弹出(pop)，还可以获取指定范围的元素列表、获取指定索引下标的元素等  
 列表类型有两个特征：1. 列表中的元素是有顺序的，这就意味着可以通过索引下标获取某个元素或者某个范围内的元素列表；2. 列表中的元素可以是重复的  
@@ -300,8 +300,8 @@ count=0:移除表中所有与value相等的值
 #### 内部编码  
   
 列表类型内部有两种编码  
-ziplist:当列表的元素个数小于list-max-ziplist-entries配置(默认512个)同时列表中每个元素的值都小于list-max-ziplist-value配置时(默认64字节),redis会选用ziplist来作为列表内部实现来减少内存的使用  
-linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linkedlist作为列表内部实现  
++ ziplist:当列表的元素个数小于list-max-ziplist-entries配置(默认512个)同时列表中每个元素的值都小于list-max-ziplist-value配置时(默认64字节),redis会选用ziplist来作为列表内部实现来减少内存的使用  
++ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linkedlist作为列表内部实现  
    
 ### 集合  
 集合(set)类型也是用来保存多个的字符串元素，但是和列表类型不一样的是，集合中不允许有重复的元素，并且集合中的元素是无序的，不能通过索引下标获取元素  
