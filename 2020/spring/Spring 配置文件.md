@@ -421,7 +421,8 @@ Spring的重点配置
 ```java
 <bean> 标签
     id属性：在容器中Bean实例的唯一标识，不允许重复
-    class属性：
+    class属性：要实例化的Bean的全限定名
+    scope属性：Bean的作用范围，通常是singleton(默认)和
 ```
 
 
