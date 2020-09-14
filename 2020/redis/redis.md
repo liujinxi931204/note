@@ -458,7 +458,8 @@ zadd有四个选项
 默认情况下，结果集中某个成员的score值是所有给定集下该成员score值之和  
 返回保存到destnation的结果集的基数  
 + numkeys：需要做交集计算键的个数  
-+ weighths weight [weight...]:每个键的
++ weighths weight [weight...]:每个键的权重，在做交集计算的时候，每个键中每个member会将自己score乘以这个权重，每个键的默认权重是1  
++ aggregrate sum|
 
 
 
