@@ -348,7 +348,8 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 `smembers key`  
 时间复杂度为O(n),n为集合的基数，返回集合key中的所有成员，不存在的key视为空集合  
   
-
+8. 交集  
+`sinter `
 
 
 
