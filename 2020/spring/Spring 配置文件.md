@@ -417,7 +417,12 @@ Spring的配置内容非常多，这就导致了Spring的配置文件非常庞�
 <import resource="xxx.xml"/>
 ```  
 ## 总结  
-Spring的重点配置 
+Spring的重点配置  
+```java
+<bean> 标签
+    id属性：在容器中Bean实例的唯一标识，不允许重复
+    class属性：
+```
 
 
 
