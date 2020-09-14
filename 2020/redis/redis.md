@@ -462,7 +462,7 @@ zadd有四个选项
 + aggregrate sum|min|max:计算成员交集后，score可以按照sum、min、max做汇总，默认是sum  
   
 12. 并集  
-`zunionstore de`
+`zunionstore destnation numkeys key[key...] [weights weight[w]]`
   
 
 
