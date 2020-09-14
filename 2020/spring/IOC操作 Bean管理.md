@@ -120,7 +120,10 @@ Spring配置文件引入context命名空间
 
 <!--  配置连接池-->
   <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-    <property name="driverClass" value=""></property>
+    <property name="driverClassName" value=""></property>
+    <property name="url" value=""></property>
+    <property name="username" value=""></property>
+    <property name="password" value=""></property>
   </bean>
 
 ```
