@@ -446,7 +446,8 @@ zadd有四个选项
 时间复杂度为O(log(n)+m),n为有序集的基数，m为被移除成员的数量  
 移除有序集key中，指定排名rank区间内的所有成员；区间分别以下标参数start、stop指出，包含start和stop在内，下标都是以0开始的  
   
-
+10. 删除指定分数范围内的成员  
+`zremrangebyscore key s`
 
 
 
