@@ -463,7 +463,8 @@ zadd有四个选项
   
 12. 并集  
 `zunionstore destnation numkeys key[key...] [weights weight[weight...]] aggregrate[sum|min|max]`  
-时间复杂度为O(n)+O(mlog(n))
+时间复杂度为O(n)+O(mlog(n))  
+计算给定的一个或多个有序集的并集，其中给定的key
   
 
 
