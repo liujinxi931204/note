@@ -127,7 +127,7 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
 
 在Spring配置文件中使用标签引入外部属性文件
 <!--引入外部属性-->
-<context/>
+<context:property-placeholder locaton="classpath:jdbc.properties"/>
 <!--  配置连接池-->
   <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
     <property name="driverClassName" value=""></property>
