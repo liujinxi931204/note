@@ -361,7 +361,11 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 `sunion key [key...]`  
 时间复杂度为O(n),n为所有给定集合的元素数量之和  
 返回一个集合的全部成员，该集合是所有给定集合的并集  
+不存在的key被视为空集  
   
+`sunionstore destnation key [key...]`  
+时间复杂度为O(n),n为所有给定集合的元素数量之和  
+ 
 
 
 
