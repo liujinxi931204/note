@@ -449,7 +449,9 @@ zadd有四个选项
 10. 删除指定分数范围内的成员  
 `zremrangebyscore key min max`  
 时间复杂度为O(log(n)+m),n为有序集的基数，m为被移除成员的数量  
-移除有序集key中的所有score值介于min和max之间（包括min和max）的成员
+移除有序集key中的所有score值介于min和max之间（包括min和max）的成员  
+  
+
 
 
 
