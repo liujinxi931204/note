@@ -341,7 +341,8 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 6. 从集合中随机弹出元素  
 `spop key`  
 时间复杂度为O(1),移除并返回一个随机的元素  
-返回被移除的随机元素，
+返回被移除的随机元素，当key不存在或key是空集合时，返回nil  
+**注意：spop key是随机移除一个元素，并放回；srandmember key是随机返回一个元素，**
 
 
 
