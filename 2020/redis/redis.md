@@ -457,8 +457,8 @@ zadd有四个选项
 计算给定的一个或多个有序集的交集，其中给定key的数量必须以numkeys参数指定，并将该交集存储到destnation  
 默认情况下，结果集中某个成员的score值是所有给定集下该成员score值之和  
 返回保存到destnation的结果集的基数  
-
-
++ numkeys：需要做交集计算键的个数  
++ weighths weight [weight...]:每个键的
 
 
 
