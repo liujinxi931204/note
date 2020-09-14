@@ -448,7 +448,7 @@ zadd有四个选项
   
 10. 删除指定分数范围内的成员  
 `zremrangebyscore key start stop`  
-
+时间复杂度为O(log(n)+m),n为有序集的基数，
 
 
 
