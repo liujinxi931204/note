@@ -422,7 +422,7 @@ zadd有四个选项
   
 6. 增加成员分数  
 `zincrby key increment member`  
-
+时间复杂度为O(log(n))，为有序集合key的成员member的score值上增加量increment，可以
 
 
 
