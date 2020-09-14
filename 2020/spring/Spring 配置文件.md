@@ -241,7 +241,9 @@ class User{
 
 输出结果为
 User{userName='AAA'}
-```
+```  
++ 构造注入  
+
 
   
 ## Bean生命周期配置  
