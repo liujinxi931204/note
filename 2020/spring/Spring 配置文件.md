@@ -243,7 +243,7 @@ class User{
 User{userName='AAA'}
 ```  
 + 构造注入  
-
+需要
 
   
 ## Bean生命周期配置  
