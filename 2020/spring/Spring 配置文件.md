@@ -424,7 +424,10 @@ Spring的重点配置
     class属性：要实例化的Bean的全限定名
     scope属性：Bean的作用范围，通常是singleton(默认)和portotype
     <property>标签：属性注入
-        name
+        name属性：属性名称
+        value属性：注入的普通属性值
+        ref属性：注入的对象引用
+        <list>
 ```
 
 
