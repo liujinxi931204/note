@@ -373,8 +373,9 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 返回一个集合的全部成员，该集合是所有给定集合之间的差集  
 不存在的key被视为空集  
   
-`sdiffstore key [key...]`  
-
+`sdiffstore destnation key [key...]`  
+时间复杂度为O(n),n是所有集合的成员数量之和  
+将结果保存到destnation中，而不是简单的返回
 
 
 
