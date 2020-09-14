@@ -248,6 +248,7 @@ User{userName='AAA'}
 配置文件applicationContext.xml
 <!--这里可以使用name、index或者value、ref-->
 <!-- name表示构造函数中参数的名称，index表示参数在有参构造函数中的位置-->
+<!-- value表示构造函数中参数的名称，index表示参数在有参构造函数中的位置-->
 <bean id="user" class="com.sogou.spring5.User">
     <constructor-arg name="userName" value="AAA"></constructor-arg>
   </bean>
