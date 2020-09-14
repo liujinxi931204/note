@@ -113,7 +113,8 @@ Spring配置文件引入context命名空间
 
 创建外部属性文件，properties格式文件，写数据库信息jdbc.properties
 prop.driverClass=com.mysql.jdbc.Driver
-pro.
+prop.url=jdbc:mysql://localhost:3306/userDB
+prop.userNa
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
