@@ -422,7 +422,8 @@ zadd有四个选项
   
 6. 增加成员分数  
 `zincrby key increment member`  
-时间复杂度为O(log(n))，为有序集合key的成员member的score值上增加量increment，可以
+时间复杂度为O(log(n))，为有序集合key的成员member的score值上增加量increment，可以通过增加一个负值实现减去的功能  
+当key不存在或member不是key的成员时，zincrby key increment member会转化为zadd key increment member
 
 
 
