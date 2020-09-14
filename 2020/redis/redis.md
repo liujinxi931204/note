@@ -401,6 +401,8 @@ zadd有四个选项
 + incr:对sorce做增加，相当于后面介绍的zincrby  
   
 2. 计算成员个数  
+`zcard key`  
+时间
 
 
 
