@@ -452,7 +452,8 @@ zadd有四个选项
 移除有序集key中的所有score值介于min和max之间（包括min和max）的成员  
   
 11. 交集  
-`zinterstore destnation numkeys key [key...] [weights weight [weight...]] []`
+`zinterstore destnation numkeys key [key...] [weights weight [weight...]] [aggregate sum|min|max]`  
+`时间复杂度为O(n*k)+O(m*log(n))`,n为
 
 
 
