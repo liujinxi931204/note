@@ -354,7 +354,9 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 返回一个集合的全部成员，该集合是所有给定集合的交集，当给定集合当中有一个空集时，返回空集，不存在的key视为空集  
   
 `sinterstore destnation key [key...]`  
-
+时间复杂度为O(n*m),n为给定集合中基数最小的集合,m为集合的个数  
+将  
+  
 9.并集  
   
 
