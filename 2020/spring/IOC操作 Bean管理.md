@@ -108,13 +108,16 @@ public class Dept {
 Emp{dept=Dept{}}
 ```
 ## 外部属性文件(数据库连接池为例)  
-Spring配置文件引入context命名空间  
 ```java
 
 创建外部属性文件，properties格式文件，写数据库信息jdbc.properties
 prop.driverClass=com.mysql.jdbc.Driver
 prop.url=jdbc:mysql://localhost:3306/userDB
-prop.userNa
+prop.userName=root
+prop.password=root
+
+
+Spring配置文件引入context命名空间  
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
