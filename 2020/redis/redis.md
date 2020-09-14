@@ -332,7 +332,8 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
   
 5. 随机从集合中返回指定个数元素  
 `srandmember key [count]`  
-时间复杂度为：如果只提供了key
+时间复杂度为：如果只提供了key参数时，时间复杂度为O(1)如果提供了count参数，那么为O(n),n为返回数组的个数  
+如果命令执行时，只提供了key参数，那么返回集合
 
 
 
