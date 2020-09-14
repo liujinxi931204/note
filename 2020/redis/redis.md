@@ -302,6 +302,8 @@ count=0:移除表中所有与value相等的值
 列表类型内部有两种编码  
 ziplist:当列表的元素个数小于list-max-ziplist-entries配置(默认512个)同时列表中每个元素的值都小于list-max-ziplist-value配置时(默认64字节),redis会选用ziplist来作为列表内部实现来减少内存的使用  
 linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linkedlist作为列表内部实现  
+   
+
 
  
 
