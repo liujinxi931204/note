@@ -323,7 +323,8 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
   
 3. 计算元素数量  
 `scard key`  
-时间复杂度为O(1),返回集合key的基数（）
+时间复杂度为O(1),返回集合key的基数（集合中元素的数量），当key不存在时，返回0  
+
 
 
 
