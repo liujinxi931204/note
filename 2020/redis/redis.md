@@ -439,7 +439,9 @@ zadd有四个选项
 时间复杂度为O(log(n)+m),n为有序集合的基数，m为被结果集的基数  
 返回有序集合key中，所有score值介于min和max之间(包括min和max)的成员。zrangebyscore按照score值递增来排序；zreverangebyscore按照score值降序来排序；具有相同score值的成员按字典序来排列  
 可选的limit参数指定返回结果的数量及区间，注意当offset很大时，定位offset的操作可能需要套遍历整个有序集，此过最坏复杂度为O(n)时间  
-可选的
+可选的withscores参数决定结果是单单返回有序集的成员还是将有序集的成员及其score值一起返回  
+  
+
 
 
 
