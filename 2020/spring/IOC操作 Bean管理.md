@@ -107,3 +107,4 @@ public class Dept {
 输出结果为:
 Emp{dept=Dept{}}
 ```
+## 外部属性文件(数据库连接池为例)  
