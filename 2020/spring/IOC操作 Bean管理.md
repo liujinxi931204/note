@@ -108,3 +108,4 @@ public class Dept {
 Emp{dept=Dept{}}
 ```
 ## 外部属性文件(数据库连接池为例)  
+Spring配置文件引入context命名空间  
