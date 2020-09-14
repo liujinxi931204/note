@@ -245,7 +245,11 @@ User{userName='AAA'}
 + 构造注入  
 需要实现类的有参构造函数  
 ```java
-
+配置文件applicationContext.xml
+<!----
+<bean id="user" class="com.sogou.spring5.User">
+    <constructor-arg name="userName" value="AAA"></constructor-arg>
+  </bean>
 ```
 
   
