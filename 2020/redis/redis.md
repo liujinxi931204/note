@@ -428,6 +428,8 @@ zadd有四个选项
 7. 返回执行排名范围内的成员  
 `zrange key start end [withscores]`  
 `zrevrange key start end [withscores]`  
+时间复杂度为O(log(n)+m),n为有序集合的基数，m为结果集的基数  
+返回有序集key中，指定区间的
 
 
 
