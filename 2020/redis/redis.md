@@ -318,7 +318,10 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 2. 删除元素  
 `srem key memeber [member...]`  
 时间复杂度为O(n),n为给定member元素的数量  
-移除集合key中的一个或多个member元素，不存在的member元素会被
+移除集合key中的一个或多个member元素，不存在的member元素会被忽略；当key不是集合类型，返回一个错误  
+返回被成功移除的元素的数量，不包括被忽略的元素  
+  
+3. 
 
 
 
