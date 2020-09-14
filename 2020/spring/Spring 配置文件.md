@@ -210,8 +210,10 @@ P命名空间注入本质也是set方法注入
 
 <!--  配置User类-->
 <!--  id用来唯一标识这个对象-->
-  <bean id="user" class="com.sogou.spring5.User"></bean>
+<!-- -->
+  <bean id="user" class="com.sogou.spring.User" p:userName="AAA"></bean>
 </beans>
+
 
 ```
 
