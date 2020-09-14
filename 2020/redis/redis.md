@@ -376,7 +376,8 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 `sdiffstore destnation key [key...]`  
 时间复杂度为O(n),n是所有集合的成员数量之和  
 将结果保存到destnation中，而不是简单的返回；如果destnation已经存在，将会被覆盖；destantion可以是key本身  
-
+  
+#### 
 
 
 
