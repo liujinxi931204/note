@@ -447,7 +447,8 @@ zadd有四个选项
 移除有序集key中，指定排名rank区间内的所有成员；区间分别以下标参数start、stop指出，包含start和stop在内，下标都是以0开始的  
   
 10. 删除指定分数范围内的成员  
-`zremrangebyscore key s`
+`zremrangebyscore key start stop`  
+
 
 
 
