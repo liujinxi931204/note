@@ -405,7 +405,9 @@ zadd有四个选项
 时间复杂度为O(1),返回有序集合的key的基数，当key存在并且时有序集合类型时，返回有序集合的基数；如果key不存在，返回0  
   
 3. 计算某个成员的分数  
-`zscore key member`
+`zscore key member`  
+时间复杂度为O(1),返回有序集key中成员member的score值  
+如果member元素不是有序集合key的成员，或
 
 
 
