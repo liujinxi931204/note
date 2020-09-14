@@ -380,6 +380,7 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 #### 内部编码  
 集合类型的内部编码有两种：  
 + intset(整数集合):当集合中元素都是整数且元素个数小于set-max-inrset-entries配置(默认512个)时，redis会选用intset来作为集合内部的实现，从而减少内存使用  
++ hashtable(哈希表):当集合类型无法满足intset的条件时，redis会使用hashtable作为集合的内部实现  
 
 
 
