@@ -357,7 +357,7 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 时间复杂度为O(n*m),n为给定集合中基数最小的集合,m为集合的个数  
 将交集的结果保存在destnation中，而不是简单的返回；如果destnation集合已经存在，则将其覆盖；destnation可以是key本身    
   
-9.并集  
+9. 并集  
 `sunion key [key...]`  
 时间复杂度为O(n),n为所有给定集合的元素数量之和  
 返回一个集合的全部成员，该集合是所有给定集合的并集  
@@ -365,7 +365,10 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
   
 `sunionstore destnation key [key...]`  
 时间复杂度为O(n),n为所有给定集合的元素数量之和  
- 
+将并集的结果返回到destnation集合，而不是简单的返回；如果destnation已经存在，则将其覆盖；destnation可以是key本身  
+  
+10.  差集  
+
 
 
 
