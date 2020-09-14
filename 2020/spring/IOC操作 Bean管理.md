@@ -118,9 +118,8 @@ Spring配置文件引入context命名空间
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
    http://www.springframework.org/schema/contexthttp://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--  配置User类-->
-<!--  id用来唯一标识这个对象-->
-  <bean id="user" class="com.sogou.spring5.User">
+<!--  配置连接池-->
+  <bean id="dataSource" class="com.alibaba.druid.pool.">
     <constructor-arg index="0" value="AAA"></constructor-arg>
   </bean>
 
