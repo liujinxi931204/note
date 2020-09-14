@@ -368,7 +368,9 @@ linkedlist:当列表类型无法满足ziplist的条件时，redis会使用linked
 将并集的结果返回到destnation集合，而不是简单的返回；如果destnation已经存在，则将其覆盖；destnation可以是key本身  
   
 10.  差集  
-
+`sdiff key [key...]`  
+时间复杂度为O(n),n是所有集合的成员数量之和  
+返回一个集合的全部成员，该集合是所有
 
 
 
