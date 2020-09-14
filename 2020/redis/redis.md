@@ -444,7 +444,7 @@ zadd有四个选项
 9. 删除指定排名内的元素  
 `zremrangebyrank key start stop`  
 时间复杂度为O(log(n)+m),n为有序集的基数，m为被移除成员的数量  
-
+移除有序集key中，指定
 
 
 
