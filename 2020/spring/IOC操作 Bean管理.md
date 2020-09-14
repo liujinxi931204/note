@@ -134,7 +134,7 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
     <property name="driverClassName" value="${prop.driverClass}"></property>
     <property name="url" value="${prop.url}"></property>
     <property name="username" value="${prop.userName}"></property>
-    <property name="password" value=${prop.password}""></property>
+    <property name="password" value="${prop.password}"></property>
   </bean>
 
 ```
