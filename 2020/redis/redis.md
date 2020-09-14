@@ -410,7 +410,9 @@ zadd有四个选项
 如果member元素不是有序集合key的成员，或key不存在时，返回nil  
   
 4. 计算成员的排名  
-`zrank `
+`zrank key member`  
+`zreverank key member`  
+时间复杂度为O(log(n))
 
 
 
