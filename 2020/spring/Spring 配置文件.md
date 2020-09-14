@@ -412,7 +412,11 @@ public class postProcessor implements BeanPostProcessor {
 ```
 可以看到，Bean后置处理的postProcessBeforeInitialization()方法是在初始化方法之前执行的，postProcessAfterInitialization()是在初始化方法之后、获取到对象之前执行的  
 ## 引入其他配置文件  
-Spring的配置内容非常多，这就导致了Spring的配置文件非常庞大而且纷繁复杂，所以可以部分配置
+Spring的配置内容非常多，这就导致了Spring的配置文件非常庞大而且纷繁复杂，所以可以部分配置拆解到其他的配置文件中，而在Spring的主配置文件通过import标签进行加载  
+```java
+<import resource
+```
+
 
 
 
