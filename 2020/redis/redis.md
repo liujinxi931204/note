@@ -431,7 +431,10 @@ zadd有四个选项
 时间复杂度为O(log(n)+m),n为有序集合的基数，m为结果集的基数  
 返回有序集key中，指定区间的成员；zrange按照socre值递增来排序；zreverange按照score值递减来排序，具有相同score值的成员按字典序来排列  
 下标参数start和stop都以0为底，超出范围的下标并不会引起错误。当start的值比有序集合的最大下标还有大或者start>stop时，会返回一个空列表；如果stop参数的值超过了有序集合最大下标，那么redis将stop当作最大下标来处理  
-可以通过使用withscores选项来让成员和它的score值一并返回
+可以通过使用withscores选项来让成员和它的score值一并返回  
+  
+8. 返回指定分数范围的成员  
+
 
 
 
