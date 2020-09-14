@@ -394,7 +394,8 @@ count=0:移除表中所有与value相等的值
 将一个或多个member元素以及score值成功加入到有序集合key当中  
 当某个member已经是有序集的成员，那么更新这个member的score值，并通过重新插入这个member元素，来保证该member在正确的位置上  
 如果key不存在，则创建一个空的有序集并执行zadd操作；当key存在但不是一个有序集时，返回一个错误  
-
+zadd有四个选项  
++ nx:member必须不存在，才可以设置成功，用于添加
 
 
 
