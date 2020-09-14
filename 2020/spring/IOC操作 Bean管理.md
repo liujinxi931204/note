@@ -109,3 +109,19 @@ Emp{dept=Dept{}}
 ```
 ## 外部属性文件(数据库连接池为例)  
 Spring配置文件引入context命名空间  
+```java
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/contexthttp://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--  配置User类-->
+<!--  id用来唯一标识这个对象-->
+  <bean id="user" class="com.sogou.spring5.User">
+    <constructor-arg index="0" value="AAA"></constructor-arg>
+  </bean>
+
+```
