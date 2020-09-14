@@ -243,7 +243,10 @@ class User{
 User{userName='AAA'}
 ```  
 + 构造注入  
-需要
+需要实现类的有参构造函数  
+```java
+
+```
 
   
 ## Bean生命周期配置  
