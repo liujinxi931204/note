@@ -241,8 +241,6 @@ class User{
 
 输出结果为
 User{userName='AAA'}
-
-
 ```
 
   
