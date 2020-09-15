@@ -510,6 +510,7 @@ zadd有四个选项
 `renamenx key newkey`  
 时间复杂度为O(1),当且仅当newkey不存在时，将key改名为newkey，返回1；当key不存在时，返回一个错误；当newkey存在时，返回0  
   
+由于重命名键期间会执行del操作命令删除
 
 
 
