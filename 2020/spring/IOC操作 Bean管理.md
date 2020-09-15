@@ -167,7 +167,7 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
                      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 <!--
-   开启组件扫描，会对
+   开启组件扫描，会对base-package下的所有类的组件进行扫描
 -->
 <context:component-scan base-package="com.sogou.spring"></context:component-scan>
 </beans>
