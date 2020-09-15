@@ -562,7 +562,7 @@ dump+restore可以实现在不同redis实例之间进行数据迁移的功能，
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/15/1600141868951-1600141868952.png)  
 有关dump+restore有两点需要注意：第一，整个迁移过程并非原子性的，而是通过客户端分布完成的；第二，迁移过程是开启了两个客户端连接，所以dump的结果不是源redis和目标redis之间进行传输  
 + migrate  
-migrate命令也是
+migrate命令也是用于在redis实例之间进行数据迁移的，实际上migrate命令就是将dump、restore、del三个命令进行组合，从而简化
 
 
 
