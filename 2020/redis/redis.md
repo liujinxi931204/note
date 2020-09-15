@@ -531,7 +531,8 @@ zadd有四个选项
   
 `expire key seconds` 键在seconds秒后过期  
 `expireat key timestamp` 键键秒级的时间戳timestamp后过期  
-ttl和pttl都可以
+ttl和pttl都可以查询键的剩余过期时间，但是pttl精度更高可以达到毫秒级，有3种返回值  
++ 大于等于0的整数:键的剩余过期时间(ttl是秒，pttl是)
 
 
 
