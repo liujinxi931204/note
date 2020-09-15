@@ -598,7 +598,8 @@ redis默认配置中是有16个数据库，当使用redis-cli -h{ip} -p{port}连
 不同数据库之间没有任何关联，甚至可以存在相同的键  
 2. flushdb/flushall  
 flushdb/flushall命令用于清除数据库，两者的区别在于flushdb只清除当前数据库，flushall会清除所有数据库  
-如果当前数据库键值数量比较多，flushdb/flushall存在阻塞redis的可能
+如果当前数据库键值数量比较多，flushdb/flushall存在阻塞redis的可能性  
+
 
 
 
