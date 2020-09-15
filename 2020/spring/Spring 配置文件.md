@@ -196,6 +196,97 @@ class User{
 
 输出结果为
 User{userName='AAA'}
+```  
++ P命名空间注入  
+P命名空间注入本质也是set方法注入  
+```java
+首先引入p命名空间
+配置文件applicationContext.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--  配置User类-->
+<!--  id用来唯一标识这个对象-->
+<!--  使用P命名空间给user类的属性注入-->
+  <bean id="user" class="com.sogou.spring.User" p:userName="AAA"></bean>
+</beans>
+实现类
+class User{
+    private String userName;
+
+    public void setuserName(String userName){
+        this.userName=userName;
+    }
+    
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                '}';
+    }
+}
+
+测试
+
+@Test
+    public void testUser(){
+        ApplicationContext applicationContext =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+        User user = applicationContext.getBean("user", User.class);
+        System.out.println(user);
+    }
+
+输出结果为
+User{userName='AAA'}
+```  
++ 构造注入  
+需要实现类的有参构造函数  
+```java
+配置文件applicationContext.xml
+<!--这里可以使用name、index或者value、ref-->
+<!-- name表示构造函数中参数的名称，index表示参数在有参构造函数中的位置-->
+<!-- value表示构造函数中参数的赋值，ref一般用在对象的引用中-->
+<bean id="user" class="com.sogou.spring5.User">
+    <constructor-arg name="userName" value="AAA"></constructor-arg>
+  </bean>
+
+实现类
+public class User {
+  private String userName;
+
+  public User(){
+
+  }
+
+  public User(String userName) {
+    this.userName = userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  @Override
+  public String toString() {
+    return "User{" +
+        "userName='" + userName + '\'' +
+        '}';
+  }
+}
+
+测试
+@Test
+  public  void  testAdd(){
+    ApplicationContext applicationContext=new FileSystemXmlApplicationContext("applicationContext.xml");
+    User user = applicationContext.getBean("user", User.class);
+    System.out.println(user);
+  }
+
+输出结果为
+User{userName='AAA'}
 ```
 
   
@@ -320,6 +411,29 @@ public class postProcessor implements BeanPostProcessor {
 销毁方法...
 ```
 可以看到，Bean后置处理的postProcessBeforeInitialization()方法是在初始化方法之前执行的，postProcessAfterInitialization()是在初始化方法之后、获取到对象之前执行的  
+## 引入其他配置文件  
+Spring的配置内容非常多，这就导致了Spring的配置文件非常庞大而且纷繁复杂，所以可以部分配置拆解到其他的配置文件中，而在Spring的主配置文件通过import标签进行加载  
+```java
+<import resource="xxx.xml"/>
+```  
+## 总结  
+Spring的重点配置  
+```java
+<bean> 标签
+    id属性：在容器中Bean实例的唯一标识，不允许重复
+    class属性：要实例化的Bean的全限定名
+    scope属性：Bean的作用范围，通常是singleton(默认)和portotype
+    <property>标签：属性注入
+        name属性：属性名称
+        value属性：注入的普通属性值
+        ref属性：注入的对象引用
+        <list>标签
+        <map>标签
+        <properties>标签
+    <constructor-arg>标签：Bean的有参构造注入
+<import>标签：导入其他的Spring的份文件
+```
+
 
 
 
