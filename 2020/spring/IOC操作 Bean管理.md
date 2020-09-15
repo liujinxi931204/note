@@ -175,7 +175,9 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
 ```  
 + 创建类和测试类  
 ```java
-//这里C
+//这里Component后面可以省略，如果省略value的值就是类名首字母小写
+//如果不省略，就是value配置的值
+//这个值的作用
 @Component(value = "user")//类似于<bean id="user">
 public class User {
 
