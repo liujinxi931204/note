@@ -582,7 +582,7 @@ migrate命令也是用于在redis实例之间进行数据迁移的，实际上mi
 redis提供了两个命令来遍历所有的键  
 +keys 
 `keys pattern`  
- 
+实际上keys命令是支持pattern匹配的 
 + scan
 
 
