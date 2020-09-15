@@ -549,7 +549,8 @@ ttl和pttl都可以查询键的剩余过期时间，但是pttl精度更高可以
 redis发展历程中提供了move、dump+restore、migrate三组迁移键的方法  
 + move  
 `move key db`  
-move命令用于在redis内部进行数据迁移。move key db
+move命令用于在redis内部进行数据迁移。`move key db`就是把指定的键从源数据库移动到目标数据库中  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/15/1600141652846-1600141652916.png)
 
 
 
