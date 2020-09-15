@@ -173,6 +173,8 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
 <context:component-scan base-package="com.sogou.spring"></context:component-scan>
 </beans>
 ```  
+创建类和测试类  
+`
 
 
 
