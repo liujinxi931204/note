@@ -535,7 +535,9 @@ ttl和pttl都可以查询键的剩余过期时间，但是pttl精度更高可以
 + 大于等于0的整数：键的剩余过期时间(ttl是秒，pttl是毫秒)  
 + -1：键没有设置过期时间  
 + -2：键不存在  
-
+  
+`pexpire key milliseconds` 键在milliseconds毫秒后过期  
+`expireat key millisecondstamp` 键
 
 
 
