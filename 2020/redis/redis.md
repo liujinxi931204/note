@@ -554,8 +554,10 @@ move命令用于在redis内部进行数据迁移。`move key db`就是把指定�
 + dump+restore  
 ```shell
 dump key
-restore 
-```
+restore key ttl value
+```  
+dump+restore可以实现在不同redis实例之间进行数据迁移的功能，整个迁移的过程分为两步：  
+1) 在源redis上，
 
 
 
