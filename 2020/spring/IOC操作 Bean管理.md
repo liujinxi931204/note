@@ -137,4 +137,7 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
     <property name="password" value="${prop.password}"></property>
   </bean>
 
-```
+```  
+## Bean管理(注解)  
+### 什么是注解  
+注解是代码的一种特殊标记，格式：@注解名称()
