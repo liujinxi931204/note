@@ -436,11 +436,13 @@ zadd有四个选项
 移除有序集key中的一个或多个成员，不存在的成员将会被忽略；当key存在都不是有序集合类型时，返回一个错误  
   
 6. 增加成员分数  
+  
 `zincrby key increment member`  
 时间复杂度为O(log(n))，为有序集合key的成员member的score值上增加量increment，可以通过增加一个负值实现减去的功能  
 当key不存在或member不是key的成员时，zincrby key increment member会转化为zadd key increment member；当key不是一个有序集合类型时，返回一个错误，score的值可以是整数或者双精度浮点数  
   
 7. 返回执行排名范围内的成员  
+  
 `zrange key start end [withscores]`  
 `zreverange key start end [withscores]`  
 时间复杂度为O(log(n)+m),n为有序集合的基数，m为结果集的基数  
@@ -449,6 +451,7 @@ zadd有四个选项
 可以通过使用withscores选项来让成员和它的score值一并返回  
   
 8. 返回指定分数范围的成员  
+  
 `zrangebyscore key min max [withscores] [limit offset count]`  
 `zreverangebyscore key min max [withscores] [limit offset count]`  
 时间复杂度为O(log(n)+m),n为有序集合的基数，m为被结果集的基数  
@@ -457,16 +460,19 @@ zadd有四个选项
 可选的withscores参数决定结果是单单返回有序集的成员还是将有序集的成员及其score值一起返回  
   
 9. 删除指定排名内的元素  
+  
 `zremrangebyrank key start stop`  
 时间复杂度为O(log(n)+m),n为有序集的基数，m为被移除成员的数量  
 移除有序集key中，指定排名rank区间内的所有成员；区间分别以下标参数start、stop指出，包含start和stop在内，下标都是以0开始的  
   
 10. 删除指定分数范围内的成员  
+  
 `zremrangebyscore key min max`  
 时间复杂度为O(log(n)+m),n为有序集的基数，m为被移除成员的数量  
 移除有序集key中的所有score值介于min和max之间（包括min和max）的成员  
   
 11. 交集  
+  
 `zinterstore destnation numkeys key [key...] [weights weight [weight...]] [aggregate sum|min|max]`  
 `时间复杂度为O(n*k)+O(m*log(n))`,n为给定key中基数的最小的有序集，k为给定有序集数量，m为结果集的基数  
 计算给定的一个或多个有序集的交集，其中给定key的数量必须以numkeys参数指定，并将该交集存储到destnation  
@@ -477,6 +483,7 @@ zadd有四个选项
 + aggregrate sum|min|max:计算成员交集后，score可以按照sum、min、max做汇总，默认是sum  
   
 12. 并集  
+  
 `zunionstore destnation numkeys key[key...] [weights weight[weight...]] aggregrate[sum|min|max]`  
 时间复杂度为O(n)+O(mlog(n))  
 计算给定的一个或多个有序集的并集，其中给定的key的数量必须以numkeys参数指定，并将该结果存储到destnation中  
