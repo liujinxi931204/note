@@ -597,7 +597,8 @@ cursor是必须参数，实际上cursor是一个游标，第一次遍历从0开�
 redis默认配置中是有16个数据库，当使用redis-cli -h{ip} -p{port}连接redis时，默认使用的就是0号数据库，当选用其他数据库时，会有[index]的前缀表示，这里index就是数据库的索引下标  
 不同数据库之间没有任何关联，甚至可以存在相同的键  
 2. flushdb/flushall  
-flushdb/flushall命令用于清除数据库，两者的区别在于flushdb只清楚当前数据库，flushall会清除
+flushdb/flushall命令用于清除数据库，两者的区别在于flushdb只清除当前数据库，flushall会清除所有数据库  
+如果当前数据库键值数量比较多，flushdb/flushall存在阻塞redis的可能
 
 
 
