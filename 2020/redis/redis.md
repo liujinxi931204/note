@@ -580,12 +580,13 @@ migrate命令也是用于在redis实例之间进行数据迁移的，实际上mi
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/15/1600151427009-1600151427010.png)  
 ## 遍历键  
 redis提供了两个命令来遍历所有的键  
-+keys 
++ keys 
 `keys pattern`  
 实际上keys命令是支持pattern匹配的  
 当需要遍历所有键时(例如检测过期或限制时间、寻找大对象),keys是一个很有帮助的命令，如果redis包含了大量的键，执行keys命令很有可能会造成redis阻塞  
  
-+ scan
++ scan  
+scan采用渐进式遍历
 
 
 
