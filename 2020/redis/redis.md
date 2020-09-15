@@ -578,7 +578,12 @@ migrate命令也是用于在redis实例之间进行数据迁移的，实际上mi
 2）migrate命令的数据传输直接在源redis和目标redis上完成的  
 3）目标redis完成restore后会发送ok给源redis，源redis接收后会根据migrate对应的选项来决定是否在源redis上删除对应的键  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/15/1600151427009-1600151427010.png)  
-
+## 遍历键  
+redis提供了两个命令来遍历所有的键  
++keys 
+`keys pattern`  
+ 
++ scan
 
 
 
