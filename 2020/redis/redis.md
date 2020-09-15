@@ -567,7 +567,9 @@ host：目标redis的ip地址
 port：目标redis的端口  
 key|""：如果需要迁移一个键，此处为要迁移的键；如果要迁移多个键，此处为空字符串  
 destnation-db：目标redis的数据库索引  
-
+timeout：迁移的超时时间  
+[copy]：如果添加此选项，迁移后并不删除源键  
+[replace]：如果添加此选项，
 migrate命令也是用于在redis实例之间进行数据迁移的，实际上migrate命令就是将dump、restore、del三个命令进行组合，从而简化了操作流程，migrate命令具有原子性  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/15/1600150609943-1600150609945.png)  
 整个过程和dump+restore基本类似，但是有3点不同  
