@@ -151,6 +151,8 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
 + @Controller  
 + Repository  
 **上面四个注解功能都是一样的，都可以用来创建Bean的实例**  
+### 基于注解方式实现对象的创建  
++ 引入context命名空间  
 
 
 
