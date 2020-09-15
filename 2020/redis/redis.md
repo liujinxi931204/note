@@ -592,7 +592,9 @@ cursor是必须参数，实际上cursor是一个游标，第一次遍历从0开�
 [match cursor]是可选参数，它的作用是做模式匹配  
 [count number]是可选参数，它的作用是表明每次要遍历的键的个数，默认值是10，此参数可以适当增大  
 ## 数据库管理  
-1.  
+1. 切换数据库  
+`select dbIndex`  
+redis默认配置中是有16个数据库，当使用redis-cli -h{ip} -p{port}连接 
 
 
 
