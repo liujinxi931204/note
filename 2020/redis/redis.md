@@ -589,7 +589,8 @@ redis提供了两个命令来遍历所有的键
 scan采用渐进式遍历的方式来解决keys命令可能带来的阻塞问题，每次scan命令的时间复杂度为O(1),但实际要真正实现keys的功能，需要多次执行scan  
 `scan cursor [match pattern] [count number]`  
 cursor是必须参数，实际上cursor是一个游标，第一次遍历从0开始，每次scan遍历完都会返回前游标的值，直到游标值为0，表示遍历结束  
-[match cursor]
+[match cursor]是可选参数，它的作用是做模式匹配  
+[count number]是可选参数，它的作用是表明每次要遍历的
 
 
 
