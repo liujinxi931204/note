@@ -504,7 +504,8 @@ zadd有四个选项
   
 3. 重命名  
   
-`renanem `
+`renanme key newkey`  
+时间复杂度为O(1)，将key
 
 
   
