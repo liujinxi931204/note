@@ -168,10 +168,12 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
 
 <!--
    开启组件扫描，会对base-package下的所有类的组件进行扫描
+   如果有多个包，可以用逗号分隔开，也可以写多个包的共同的上级
 -->
 <context:component-scan base-package="com.sogou.spring"></context:component-scan>
 </beans>
 ```  
+
 
 
 
