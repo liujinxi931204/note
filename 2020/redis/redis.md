@@ -530,14 +530,15 @@ zadd有四个选项
 除了expire、ttl之外，redis还提供了expireat、pexpire、pexpireat、pttl、persist等一系列命令  
   
 `expire key seconds` 键在seconds秒后过期  
-`expireat key timestamp` 键键秒级的时间戳timestamp后过期  
+`expireat key timestamp` 键秒级的时间戳timestamp后过期  
 ttl和pttl都可以查询键的剩余过期时间，但是pttl精度更高可以达到毫秒级，有3种返回值  
 + 大于等于0的整数：键的剩余过期时间(ttl是秒，pttl是毫秒)  
 + -1：键没有设置过期时间  
 + -2：键不存在  
   
 `pexpire key milliseconds` 键在milliseconds毫秒后过期  
-`expireat key millisecondstamp` 键
+`expireat key millisecondstamp` 键毫秒级的时间戳timestamp后过期  
+无论使用过期时间还是过期时间戳，秒级还是毫秒级，在redis内部最终都是
 
 
 
