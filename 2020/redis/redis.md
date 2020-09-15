@@ -508,7 +508,9 @@ zadd有四个选项
 时间复杂度为O(1)，将key改名为newkey，当key和newkey相同，或者key不存在时，返回一个错误；当newkey已经存在时，rename命令将覆盖旧值  
   
 `renamenx key newkey`  
-时间复杂度为O(1),当且仅当newkey不存在时，将key改名为newkey，当key不存在时，
+时间复杂度为O(1),当且仅当newkey不存在时，将key改名为newkey，返回1；当key不存在时，返回一个错误；当newkey存在时，返回0  
+  
+
 
 
   
