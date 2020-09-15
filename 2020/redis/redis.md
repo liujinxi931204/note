@@ -557,7 +557,8 @@ dump key
 restore key ttl value
 ```  
 dump+restore可以实现在不同redis实例之间进行数据迁移的功能，整个迁移的过程分为两步：  
-1) 在源redis上，
+1) 在源redis上，dump命令会将键值序列化，格式采用RDB格式  
+2) 在目标redis上，restore命令将上面序列化的值进行复原，其中ttl代表整个过期时间，
 
 
 
