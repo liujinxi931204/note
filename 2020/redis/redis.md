@@ -561,6 +561,8 @@ dump+restore可以实现在不同redis实例之间进行数据迁移的功能，
 2) 在目标redis上，restore命令将上面序列化的值进行复原，其中ttl代表整个过期时间，如果ttl=0代表没有过期时间  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/15/1600141868951-1600141868952.png)  
 有关dump+restore有两点需要注意：第一，整个迁移过程并非原子性的，而是通过客户端分布完成的；第二，迁移过程是开启了两个客户端连接，所以dump的结果不是源redis和目标redis之间进行传输  
++ migrate  
+migrate命令也是
 
 
 
