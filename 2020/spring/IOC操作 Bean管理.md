@@ -155,7 +155,7 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
 + 引入依赖  
 引入aop的jar包  
 
-+ 开启组件扫描   
++ 开启组件扫描，让Spring知道扫描哪些类的注解
 ```java
 引入context命名空间
 配置文件applicatonContext.xml
