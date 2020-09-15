@@ -539,7 +539,10 @@ ttl和pttl都可以查询键的剩余过期时间，但是pttl精度更高可以
 `pexpire key milliseconds` 键在milliseconds毫秒后过期  
 `expireat key millisecondstamp` 键毫秒级的时间戳timestamp后过期  
 无论使用过期时间还是过期时间戳，秒级还是毫秒级，在redis内部最终都是使用pexpireat  
-+ 如果expire key的键不存在，返回结果为-
++ 如果expire key的键不存在，返回结果为0  
++ 如果过期时间为负值，建会被立即删除，犹如使用del一样  
++ persist命令可以将键的过期时间清楚  
++ 对于字符类型键，
 
 
 
