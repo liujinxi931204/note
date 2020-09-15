@@ -208,7 +208,7 @@ User{}
 <!--
     Spring组件扫描的时候会使用默认的过滤器，当设置use-default-filters="false"表示不使用默认的过滤器此时需要自己配置
     context:include-filter用来设置扫描哪些内容
-    所以下面的例子就是扫面所有包com.sogou.spring下的注解为Component的类，其余的注解不扫描
+    所以下面的例子就是扫面包com.sogou.spring下所有注解为Component的类，其余的注解不扫描
 -->
   <context:component-scan base-package="com.sogou.spring" use-default-filters="false">
     <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
@@ -217,7 +217,7 @@ User{}
 
   <!--
     context:exclude-filter用来设置不扫描哪些内容
-    所以下面的例子就是扫面所有包com.sogou.spring下的除了注解为Component的类，其余的注解全扫描
+    所以下面的例子就是扫面包com.sogou.spring下所有除了注解为Component的类，其余的注解全扫描
 -->
   
   <context:component-scan base-package="com.sogou.spring">
