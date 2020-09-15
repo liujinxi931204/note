@@ -155,8 +155,9 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
 + 引入依赖  
 引入aop的jar包  
 
-+ 引入context命名空间  
++ 开启组件扫描   
 ```java
+引入context命名空间
 配置文件applicatonContext.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -167,7 +168,7 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
 
 </beans>
 ```  
-+ 开启扫描
+
 
 
 
