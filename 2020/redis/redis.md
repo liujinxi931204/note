@@ -491,6 +491,8 @@ zadd有四个选项
 #### 内部编码  
 + ziplist：当有序集合的元素个数小于zset-max-ziplist-entries(默认128个),同时每个元素的值都小于zset-max-ziplist-value配置(默认64字节),redis会使用ziplist作为有序集合的内部实现，ziplist可以有效减少内存的使用  
 + skiplist：当ziplist条件不满足时，有序集合会使用skiplist作为内部实现，因为此时ziplist的读写效率会下降  
+## 键管理  
+
 
   
 
