@@ -166,6 +166,10 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+<!--
+   开启组件扫描，会对
+-->
+<context:component-scan base-package="com.sogou.spring"></context:component-scan>
 </beans>
 ```  
 
