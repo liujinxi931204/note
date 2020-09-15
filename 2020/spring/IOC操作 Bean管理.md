@@ -152,6 +152,9 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
 + Repository  
 **上面四个注解功能都是一样的，都可以用来创建Bean的实例**  
 ### 基于注解方式实现对象的创建  
++ 引入依赖  
+引入aop的jar包  
+
 + 引入context命名空间  
 ```java
 配置文件applicatonContext.xml
@@ -163,7 +166,8 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
                      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 </beans>
-```
+```  
++ 开启扫描
 
 
 
