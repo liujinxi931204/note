@@ -546,7 +546,10 @@ ttl和pttl都可以查询键的剩余过期时间，但是pttl精度更高可以
 + redis不支持二级数据结构(如哈希、列表)内部元素的过期功能  
 + setex命令作为set+expire的组合，不但是原子执行，同时减少了一次网络通讯的时间  
 ## 迁移键  
-redis发展历程中提供了move、dump+restore、migrate三组迁移
+redis发展历程中提供了move、dump+restore、migrate三组迁移键的方法  
++ move  
+`move key db`  
+move命令用于在redis内部进行数据迁移。move key db
 
 
 
