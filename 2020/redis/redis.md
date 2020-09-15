@@ -527,7 +527,10 @@ zadd有四个选项
 `randomkey`  
 时间复杂度为O(1),从当前数据库中随机返回一个(不删除)key，当前数据库不为空时，返回一个key；为空时，返回nil  
 ## 键过期  
-除了expire、ttl之外，redis还提供了expireat、pexpire、pexpireat、pttl、persist
+除了expire、ttl之外，redis还提供了expireat、pexpire、pexpireat、pttl、persist等一系列命令  
+  
+`expire key seconds`键在seconds秒后过期  
+`expireat key `
 
 
 
