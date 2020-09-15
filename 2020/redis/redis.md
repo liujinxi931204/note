@@ -330,10 +330,12 @@ count=0:移除表中所有与value相等的值
 它不会遍历整个集合，而是直接去用redis的内部变量  
   
 4. 判断元素是否在集合中  
+  
 `sismember key member`  
 时间复杂度为O(1),判断member元素是否是集合key的成员，如果member元素是集合的成员，返回1；如果member元素不是集合的成员，或者集合key不存在，返回0  
   
 5. 随机从集合中返回指定个数元素  
+  
 `srandmember key [count]`  
 时间复杂度为：如果只提供了key参数时，时间复杂度为O(1)如果提供了count参数，那么为O(n),n为返回数组的个数  
 如果命令执行时，只提供了key参数，那么返回集合中的一个随机元素  
@@ -342,16 +344,19 @@ count=0:移除表中所有与value相等的值
 只提供key参数时，返回一个元素；如果集合为空，返回nil；如果提供了count参数，返回一个数组；如果集合为空，返回空数组  
   
 6. 从集合中随机弹出元素  
+  
 `spop key`  
 时间复杂度为O(1),移除并返回一个随机的元素  
 返回被移除的随机元素，当key不存在或key是空集合时，返回nil  
 **注意：spop key是随机移除一个元素，并返回；srandmember key是随机返回一个元素，并不对原来的集合做任何操作**  
   
 7. 获取所有元素  
+  
 `smembers key`  
 时间复杂度为O(n),n为集合的基数，返回集合key中的所有成员，不存在的key视为空集合  
   
 8. 交集  
+  
 `sinter key [key...]`  
 时间复杂度为O(n*m),n为给定集合中基数最小的集合,m为集合的个数  
 返回一个集合的全部成员，该集合是所有给定集合的交集，当给定集合当中有一个空集时，返回空集，不存在的key视为空集  
@@ -361,6 +366,7 @@ count=0:移除表中所有与value相等的值
 将交集的结果保存在destnation中，而不是简单的返回；如果destnation集合已经存在，则将其覆盖；destnation可以是key本身    
   
 9. 并集  
+  
 `sunion key [key...]`  
 时间复杂度为O(n),n为所有给定集合的元素数量之和  
 返回一个集合的全部成员，该集合是所有给定集合的并集  
@@ -371,6 +377,7 @@ count=0:移除表中所有与value相等的值
 将并集的结果返回到destnation集合，而不是简单的返回；如果destnation已经存在，则将其覆盖；destnation可以是key本身  
   
 10.  差集  
+  
 `sdiff key [key...]`  
 时间复杂度为O(n),n是所有集合的成员数量之和  
 返回一个集合的全部成员，该集合是所有给定集合之间的差集  
@@ -392,6 +399,7 @@ count=0:移除表中所有与value相等的值
   
 #### 常用命令  
 1. 添加成员  
+  
 `zdd key [NX|XX] [CH] [INCR] score member [[sorce member] [sorce member]..]`  
 时间复杂度为O(m*log(n)),n是有序集合的基数，m为成添加的新成员的数量  
 将一个或多个member元素以及score值成功加入到有序集合key当中  
@@ -404,21 +412,25 @@ zadd有四个选项
 + incr:对sorce做增加，相当于后面介绍的zincrby  
   
 2. 计算成员个数  
+  
 `zcard key`  
 时间复杂度为O(1),返回有序集合的key的基数，当key存在并且时有序集合类型时，返回有序集合的基数；如果key不存在，返回0  
   
 3. 计算某个成员的分数  
+  
 `zscore key member`  
 时间复杂度为O(1),返回有序集key中成员member的score值  
 如果member元素不是有序集合key的成员，或key不存在时，返回nil  
   
 4. 计算成员的排名  
+  
 `zrank key member`  
 `zreverank key member`  
 时间复杂度为O(log(n)),返回有序集key中成员member的排名。zrank按照score的值从小到大排列；zrevrank按照score的值从大到小排列；排名从0开始  
 如果有序集key的成员member存在，返回排名；如果member不是有序集key的成员，返回nil  
   
 5. 删除成员  
+  
 `zrem key member [member...]`  
 时间复杂度为O(m*log(n))，n为有序集合的基数，m为被成功移除的成员的数量  
 移除有序集key中的一个或多个成员，不存在的成员将会被忽略；当key存在都不是有序集合类型时，返回一个错误  
