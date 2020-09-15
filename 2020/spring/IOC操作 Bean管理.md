@@ -176,7 +176,7 @@ Spring配置文件引入context命名空间,通过context命名空间，把外�
 + 创建类和测试类  
 ```java
 实现类
-//这里Component后面可以省略，如果省略value的值就是类名首字母小写
+//这里Component后面可以省略，如果省略value的值就是类名，但是首字母小写
 //如果不省略，就是value配置的值
 //这个值的作用类似于xml配置里的bean id
 //这里使用上面四个任意一个注解都是一样的
@@ -199,6 +199,9 @@ public class User {
 //这里getBean()中的就是上面@Component注解的value值
     System.out.println(user);
   }
+
+输出的结果为
+User{}
 ```
 
 
