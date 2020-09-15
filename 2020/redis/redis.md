@@ -565,7 +565,9 @@ dump+restore可以实现在不同redis实例之间进行数据迁移的功能，
 migrate命令也是用于在redis实例之间进行数据迁移的，实际上migrate命令就是将dump、restore、del三个命令进行组合，从而简化了操作流程，migrate命令具有原子性  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/15/1600150609943-1600150609945.png)  
 整个过程和dump+restore基本类似，但是有3点不同  
-1）整个过程是原子执行的，不需要在多个redis实例上
+1）整个过程是原子执行的，不需要在多个redis实例上开启客户端的，只需要在源redis上执行migrate命令即可  
+2）migrate命令的数据传输直接在源redis和目标redis上完成的  
+3）目标redis完成restore后
 
 
 
