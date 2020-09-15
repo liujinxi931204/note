@@ -529,8 +529,9 @@ zadd有四个选项
 ## 键过期  
 除了expire、ttl之外，redis还提供了expireat、pexpire、pexpireat、pttl、persist等一系列命令  
   
-`expire key seconds`键在seconds秒后过期  
-`expireat key `
+`expire key seconds` 键在seconds秒后过期  
+`expireat key timestamp` 键键秒级的时间戳timestamp后过期  
+ttl和pttl都可以
 
 
 
