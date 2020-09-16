@@ -277,7 +277,9 @@ UserService add()...
 UserDaoImpl add()...
 ```
 + @Qualifier 根据类型名进行注入，和@Autowire搭配使用  
-可以用在接口有多个
+可以用在接口有多个实现类的时候，需要使用@Qualifier(属性名)来确认使用哪一个实现来进行注入  
+```java
+```
 
 + @Resource 可以根据类型也可以根据类型名注入
 
