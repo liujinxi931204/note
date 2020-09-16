@@ -298,6 +298,32 @@ public class UserDaoImpl implements UserDao {
   }
 }
 
+实现类作为另一个类的属性，@Qualifier明确使用哪一个具体实现类注入
+@Service
+public class UserService {
+  @Autowired
+  @Qualifier("userDaoImpl")
+  //不需要set()方法
+  private UserDao userDao;
+
+  public void add(){
+    System.out.println("UserService add()...");
+    userDao.addDao();
+  }
+
+}
+
+测试
+@Test
+  public void testUserService(){
+    ApplicationContext applicationContext =
+        new ClassPathXmlApplicationContext("applicationContext.xml");
+
+    UserService userService = applicationContext.getBean("userService", UserService.class);
+    userService.add();
+  }
+
+输出结果为
 
 ```
 
