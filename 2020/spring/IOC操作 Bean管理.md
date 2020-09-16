@@ -330,7 +330,18 @@ UserDaoImpl add()...
 ```
 
 + @Resource 可以根据类型也可以根据类型名注入  
-@Resource的jar包不属于Spring，需要单独下载
+@Resource的jar包不属于Spring，需要单独下载javax.annotation包  
+```java
+创建接口
+public interface UserDao {
+
+  public void addDao();
+
+}
+
+接口的实现类
+
+```
 
 
 
