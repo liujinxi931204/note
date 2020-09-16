@@ -393,8 +393,17 @@ UserDaoImpl add()...
 public class SpringConfig {
 
 }
+```
++ 
 
+@Component(value = "user")//类似于<bean id="user">
+public class User {
 
+  @Override
+  public String toString() {
+    return "User{}";
+  }
+}
 
 测试方法有所修改
 @Test
@@ -405,6 +414,10 @@ public class SpringConfig {
     User user = applicationContext.getBean("user", User.class);
     System.out.println(user);
   }
+
+
+输出结果为
+User{}
 ```
 
 
