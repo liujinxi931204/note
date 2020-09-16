@@ -227,7 +227,10 @@ User{}
 ### 基于注解方式的依赖注入  
 + @value 注入普通类型的属性  
 + @Autowired 根据类型自动注入  
+例如  
+```java
 
+```
 + @Qualifier 根据类型名进行注入，和@Autowire搭配使用  
 + @Resource 可以根据类型也可以根据类型名注入
 
