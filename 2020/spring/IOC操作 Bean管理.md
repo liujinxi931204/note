@@ -394,7 +394,8 @@ public class SpringConfig {
 
 }
 ```
-+ 
++ applicationContext获取方式有所改变  
+```java
 
 @Component(value = "user")//类似于<bean id="user">
 public class User {
