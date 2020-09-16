@@ -229,6 +229,26 @@ User{}
 + @Autowired 根据类型自动注入  
 例如  
 ```java
+定义UserDao接口
+public interface UserDao {
+
+  public void addDao();
+
+}
+
+实现接口
+@Repository
+//默认值就是类型名，但是首字母需要小写，即userDaoImpl
+public class UserDaoImpl implements UserDao {
+
+  @Override
+  public void addDao() {
+
+    System.out.println("UserDaoImpl add()...");
+  }
+}
+
+接口的实现作为另一个类的属性
 
 ```
 + @Qualifier 根据类型名进行注入，和@Autowire搭配使用  
