@@ -277,6 +277,7 @@ UserService add()...
 UserDaoImpl add()...
 ```
 + @Qualifier 根据类型名进行注入，和@Autowire搭配使用  
+可以用在接口有多个
 
 + @Resource 可以根据类型也可以根据类型名注入
 
