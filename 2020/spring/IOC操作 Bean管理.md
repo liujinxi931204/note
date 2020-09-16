@@ -249,7 +249,32 @@ public class UserDaoImpl implements UserDao {
 }
 
 接口的实现作为另一个类的属性
+@Service
+public class UserService {
+  @Autowired
+  //不需要set()方法
+  private UserDao userDao;
 
+  public void add(){
+    System.out.println("UserService add()...");
+    userDao.addDao();
+  }
+
+}
+
+
+测试
+@Test
+  public void testUserService(){
+    ApplicationContext applicationContext =
+        new ClassPathXmlApplicationContext("applicationContext.xml");
+
+    UserService userService = applicationContext.getBean("userService", UserService.class);
+    userService.add();
+  }
+输出结果为
+UserService add()...
+UserDaoImpl add()...
 ```
 + @Qualifier 根据类型名进行注入，和@Autowire搭配使用  
 + @Resource 可以根据类型也可以根据类型名注入
