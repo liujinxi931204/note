@@ -329,7 +329,8 @@ UserDaoImpl add()...
 
 ```
 
-+ @Resource 可以根据类型也可以根据类型名注入
++ @Resource 可以根据类型也可以根据类型名注入  
+@Resource的jar包不属于Spring，需要单独下载
 
 
 
