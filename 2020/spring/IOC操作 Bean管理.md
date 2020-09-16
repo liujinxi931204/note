@@ -352,7 +352,36 @@ public class UserDaoImpl implements UserDao {
 }
 
 实现类作为另一个类的属性
+@Service
+public class UserService {
+  //@Resource 如果@Resource后面没有键值对，表示根据类型匹配
+  //如果同时设置了name和type，则需要两个都匹配才能注入
+  //如果指定了name，就按照name去匹配
+  //如果指定了type，就按照type去匹配
+  @Resource(name = "userDaoImpl")
+  //不需要set()方法
+  private UserDao userDao;
 
+  public void add(){
+    System.out.println("UserService add()...");
+    userDao.addDao();
+  }
+
+}
+
+测试
+@Test
+  public void testUserService(){
+    ApplicationContext applicationContext =
+        new ClassPathXmlApplicationContext("applicationContext.xml");
+
+    UserService userService = applicationContext.getBean("userService", UserService.class);
+    userService.add();
+  }
+
+输出结果
+UserService add()...
+UserDaoImpl add()...
 ```
 
 
