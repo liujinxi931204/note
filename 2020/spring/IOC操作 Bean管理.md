@@ -393,6 +393,18 @@ UserDaoImpl add()...
 public class SpringConfig {
 
 }
+
+
+
+测试方法有所修改
+@Test
+  public void testUser(){
+    ApplicationContext applicationContext =
+        new AnnotationConfigApplicationContext(SpringConfig.class);
+//注意这里使用AnnotationConfigApplicationContext
+    User user = applicationContext.getBean("user", User.class);
+    System.out.println(user);
+  }
 ```
 
 
