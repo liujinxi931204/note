@@ -224,6 +224,7 @@ User{}
     <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Component"/>
   </context:component-scan>
 ```  
+### 基于注解方式的依赖注入  
 
 
 
