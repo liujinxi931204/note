@@ -383,7 +383,10 @@ public class UserService {
 UserService add()...
 UserDaoImpl add()...
 ```
-
+## 完全注解开发  
++ 创建配置类，替代配置文件  
+```java
+```
 
 
 
