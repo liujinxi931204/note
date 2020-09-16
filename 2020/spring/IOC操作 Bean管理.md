@@ -225,7 +225,7 @@ User{}
   </context:component-scan>
 ```  
 ### 基于注解方式的依赖注入  
-
++ @value 
 
 
 
