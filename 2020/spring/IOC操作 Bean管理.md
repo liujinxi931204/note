@@ -386,6 +386,13 @@ UserDaoImpl add()...
 ## 完全注解开发  
 + 创建配置类，替代配置文件  
 ```java
+
+创建配置类
+@Configuration//作为配置类，替代配置文件
+@ComponentScan(basePackages = "com.sogou")//开启扫描
+public class SpringConfig {
+
+}
 ```
 
 
