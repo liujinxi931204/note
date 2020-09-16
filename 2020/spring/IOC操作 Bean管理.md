@@ -351,6 +351,7 @@ public class UserDaoImpl implements UserDao {
   }
 }
 
+实现类作为另一个类的属性
 
 ```
 
