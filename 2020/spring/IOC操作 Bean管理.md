@@ -340,6 +340,17 @@ public interface UserDao {
 }
 
 接口的实现类
+@Repository("userDaoImpl")
+//默认值就是类型名，但是首字母需要小写，即userDaoImpl
+public class UserDaoImpl implements UserDao {
+
+  @Override
+  public void addDao() {
+
+    System.out.println("UserDaoImpl add()...");
+  }
+}
+
 
 ```
 
