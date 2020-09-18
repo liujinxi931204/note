@@ -7,3 +7,4 @@
 + 没有接口情况，使用CGLIB动态代理  
 创建子类的代理对象，增强类方法  
 #### JDK动态代理  
+使用java.lang.reflect包下的Proxy类中的newIProxtInstance(class.loader,类<?>)
