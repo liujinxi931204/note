@@ -10,4 +10,5 @@
 使用java.lang.reflect包下的Proxy类中的newProxyInstance(class.loader,类<?>{} interfaces,InvocationHandler h)方法  
 ##### 三个参数  
 + 第一个参数，类加载器  
-+ 第二个参数，增强方法所在的类，这个类
++ 第二个参数，增强方法所在的类，这个类实现的接口，支持多个接口  
++ 第三个参数，实现这个接口InvocationHandler，拆
