@@ -24,6 +24,20 @@ public interface UserDao {
 }
 
 创建接口的实现类
+public class UserDaoImpl implements UserDao{
+
+
+    @Override
+    public int add(int a, int b) {
+        return a+b;
+    }
+
+    @Override
+    public int update(int a) {
+        return a;
+    }
+}
+
 
 
 ```
