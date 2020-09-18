@@ -46,6 +46,8 @@ public class UserDaoProxy {
 
         Class[] interfaces={UserDao.class};
         UserDaoImpl userDaoImpl=new UserDaoImpl();
+
+//创建接口实现类
         UserDao userDao = (UserDao)Proxy.newProxyInstance(UserDaoProxy.class.getClassLoader(),
                 interfaces,
                 new UserDaoProxyInvocation(userDaoImpl));
