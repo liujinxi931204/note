@@ -58,7 +58,8 @@ public class UserDaoProxy {
 //创建代理对象代码
 class UserDaoProxyInvocation implements InvocationHandler{
 
-//把被代理对象
+//把被代理对象传入到代理类中取
+//这里的被代理对象是UserDaoImpl，这里为了更加
     private Object object;
 
     public UserDaoProxyInvocation(Object object) {
