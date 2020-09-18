@@ -12,4 +12,19 @@
 + 第一个参数，类加载器  
 + 第二个参数，增强方法所在的类，这个类实现的接口，支持多个接口  
 + 第三个参数，实现这个接口InvocationHandler，创建代理对象，写增强方法  
+```java
+演示JDK动态代理
+
+创建接口
+public interface UserDao {
+
+ public int add(int a,int b);
+
+ public int update(int a);
+}
+
+创建接口的实现类
+
+
+```
 
