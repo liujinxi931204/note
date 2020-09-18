@@ -48,7 +48,6 @@ public class UserDaoProxy {
         UserDaoImpl userDaoImpl=new UserDaoImpl();
 
 //创建接口实现类代理对象
-
         UserDao userDao = (UserDao)Proxy.newProxyInstance(UserDaoProxy.class.getClassLoader(),
                 interfaces,
                 new UserDaoProxyInvocation(userDaoImpl));
@@ -56,7 +55,7 @@ public class UserDaoProxy {
     }
 }
 
-
+//创建代理对象代码
 class UserDaoProxyInvocation implements InvocationHandler{
 
     private Object object;
@@ -65,6 +64,7 @@ class UserDaoProxyInvocation implements InvocationHandler{
         this.object = object;
     }
 
+//这里
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
