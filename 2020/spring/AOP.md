@@ -8,3 +8,6 @@
 创建子类的代理对象，增强类方法  
 #### JDK动态代理  
 使用java.lang.reflect包下的Proxy类中的newProxyInstance(class.loader,类<?>{} interfaces,InvocationHandler h)方法  
+##### 三个参数  
++ 第一个参数，类加载器  
++ 第二个参数，增强方法所在的类，这个类
