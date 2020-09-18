@@ -74,7 +74,6 @@ class UserDaoProxyInvocation implements InvocationHandler{
         System.out.println("方法执行之前..." + method.getName() + "传递的参数..." + Arrays.toString(args));
         Object invoke = method.invoke(object, args);
         System.out.println("方法执行之后...");
-
         return invoke;
     }
 }
