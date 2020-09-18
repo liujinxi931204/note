@@ -64,7 +64,7 @@ class UserDaoProxyInvocation implements InvocationHandler{
         this.object = object;
     }
 
-//这里
+//这里实现增强的逻辑
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
