@@ -39,6 +39,7 @@ public class UserDaoImpl implements UserDao{
 }
 
 使用Proxy类创建接口的代理对象
+做增强的过程
 public class UserDaoProxy {
 
     public static void main(String[] args) {
