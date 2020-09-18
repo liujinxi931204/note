@@ -38,6 +38,47 @@ public class UserDaoImpl implements UserDao{
     }
 }
 
+使用Proxy类创建接口的代理对象
+public class UserDaoProxy {
+
+    public static void main(String[] args) {
+
+        Class[] interfaces={UserDao.class};
+        UserDaoImpl userDaoImpl=new UserDaoImpl();
+        UserDao userDao = (UserDao)Proxy.newProxyInstance(UserDaoProxy.class.getClassLoader(),
+                interfaces,
+                new UserDaoProxyInvocation(userDaoImpl));
+        userDao.add(1 ,2);
+    }
+}
+
+
+class UserDaoProxyInvocation implements InvocationHandler{
+
+    private Object object;
+
+    public UserDaoProxyInvocation(Object object) {
+        this.object = object;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+        System.out.println("方法执行之前..." + method.getName() + "传递的参数..." + Arrays.toString(args));
+
+        Object invoke = method.invoke(object, args);
+
+
+        System.out.println("方法执行之后...");
+
+        return invoke;
+    }
+}
+
+
+输出结果为
+方法执行之前...add传递的参数...[1, 2]
+方法执行之后...
 
 
 ```
