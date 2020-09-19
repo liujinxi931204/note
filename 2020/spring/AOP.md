@@ -105,6 +105,8 @@ class UserDaoProxyInvocation implements InvocationHandler{
 1. 基于XML配置文件实现  
 2. 基于注解方式实现  
 + 在项目工程中引入AOP相关依赖  
++ 切入点表达式  
+
 
 
 
