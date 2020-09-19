@@ -106,7 +106,10 @@ class UserDaoProxyInvocation implements InvocationHandler{
 2. 基于注解方式实现  
 + 在项目工程中引入AOP相关依赖  
 + 切入点表达式  
-
+1. 切入点表达式的作用：知道对哪个类里面的哪个方法进行增强  
+2. 语法结构：  
+```java
+```
 
 
 
