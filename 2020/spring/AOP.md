@@ -97,6 +97,7 @@ class UserDaoProxyInvocation implements InvocationHandler{
 4. 异常通知  
 5. 最终通知  
 + 切面  
+把通知应用到切入点的过程称为通知  
   
 
 
