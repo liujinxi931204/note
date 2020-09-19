@@ -168,7 +168,7 @@ public class userDaoProxy {
     }
 }
 ```
-3）在增强类上面添加注解@Aspext  
+3）在增强类上面添加注解@Aspect  
 ```java
 @Component("userDaoProxy")
 @Aspect
@@ -209,7 +209,7 @@ public class userDaoProxy {
 //生成代理对象
 public class userDaoProxy {
 
-    @Before("execution(* com;sogou..*.*(..))")
+    @Before("execution(* com.sogou..*.*(..))")
     public void before(){
         System.out.println("before()...");
     }
