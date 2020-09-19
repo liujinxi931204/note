@@ -124,7 +124,7 @@ public class userDao {
 }
 ```  
 2. 创建增强类(编写增强逻辑)  
-3
+1） 在增强类中创建方法，让不同的方法代表不同的通知类型
 ```java
 //增强的类
 public class userDaoProxy {
@@ -134,7 +134,8 @@ public class userDaoProxy {
         System.out.println("before()...");
     }
 }
-```
+```  
+2） 
 
 
 
