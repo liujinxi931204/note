@@ -104,6 +104,6 @@ class UserDaoProxyInvocation implements InvocationHandler{
 +   基于AspectJ实现AOP操作  
 1. 基于XML配置文件实现  
 2. 基于注解方式实现  
-
++ 在
 
 
