@@ -90,4 +90,6 @@ class UserDaoProxyInvocation implements InvocationHandler{
 实际被真正增强的方法，称为切入点  
 + 通知(增强)  
 实际增强的逻辑部分称为通知  
+通知由多种类型  
+
 
