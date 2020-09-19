@@ -115,7 +115,6 @@ excution([权限修饰符] [返回类型] [全类名] [方法名称] ([参数列
 1. 创建被增强类，在类里面定义方法  
 ```java
 //被增强的类
-@Component("userDao")
 public class userDao {
 
     public void add(){
@@ -152,6 +151,17 @@ public class userDaoProxy {
 </beans>
 ```
 2）使用注解创建userDao和userDaoProxy对象  
+```java
+@Component("userDao")
+public class userDao {
+
+    public void add(){
+        System.out.println("add()...");
+    }
+}
+
+
+```
 3）在增强类上面添加注解@Aspext  
 4) 在spring配置文件中开启生成代理对象  
 
