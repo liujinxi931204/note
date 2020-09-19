@@ -100,7 +100,7 @@ class UserDaoProxyInvocation implements InvocationHandler{
 把通知应用到切入点的过程称为通知  
 ### AOP操作  
 + Spring矿建一般基于AspectJ实现AOP操作  
-1. 什么是AspectJ不是Spring组成部分，独立于AOP框架，一般把AspectJ
-2.   
+1. 什么是AspectJ不是Spring组成部分，独立于AOP框架，一般把AspectJ和Spring框架一起使用，进行AOP操作  
+  
 
 
