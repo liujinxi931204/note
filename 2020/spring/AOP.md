@@ -137,9 +137,24 @@ public class userDaoProxy {
 ```  
 3. 进行通知的配置  
 1）在spring的配置文件中，开启扫描注解  
+```java
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <context:component-scan base-package="com.sogou"></context:component-scan>
+
+</beans>
+```
 2）使用注解创建userDao和userDaoProxy对象  
 3）在增强类上面添加注解@Aspext  
-4)
+4) 在spring配置文件中开启生成代理对象  
+
 
 
 
