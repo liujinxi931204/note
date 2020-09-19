@@ -91,5 +91,10 @@ class UserDaoProxyInvocation implements InvocationHandler{
 + 通知(增强)  
 实际增强的逻辑部分称为通知  
 通知由多种类型  
+1. 前置通知
+2. 后置通知  
+3. 环绕通知
+4. 异常通知  
+5. 最终通知  
 
 
