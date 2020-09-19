@@ -109,6 +109,7 @@ class UserDaoProxyInvocation implements InvocationHandler{
 1. 切入点表达式的作用：知道对哪个类里面的哪个方法进行增强  
 2. 语法结构：  
 ```java
+excution([权限修饰符] [返回类型] [全类名] [方法名称] )
 ```
 
 
