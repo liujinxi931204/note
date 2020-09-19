@@ -160,9 +160,18 @@ public class userDao {
     }
 }
 
+@Component("userDaoProxy")
+public class userDaoProxy {
 
+    public void before(){
+        System.out.println("before()...");
+    }
+}
 ```
 3）在增强类上面添加注解@Aspext  
+```java
+
+```
 4) 在spring配置文件中开启生成代理对象  
 
 
