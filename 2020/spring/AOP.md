@@ -196,11 +196,13 @@ public class userDaoProxy {
 
     <!--开启注解扫描-->
     <context:component-scan base-package="com.sogou"></context:component-scan>
-    <!----开启aspect生成>
+    <!----开启aspect生成代理对象>
     <aop:aspectj-autoprox></aop:aspectj-autoprox>
 
 </beans>
-```
+```  
+### 配置不同类型的通知
+
 
 
 
