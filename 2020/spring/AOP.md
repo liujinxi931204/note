@@ -201,7 +201,8 @@ public class userDaoProxy {
 
 </beans>
 ```  
-### 配置不同类型的通知
+### 配置不同类型的通知  
+在增强类中
 
 
 
