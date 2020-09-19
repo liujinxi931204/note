@@ -111,7 +111,8 @@ class UserDaoProxyInvocation implements InvocationHandler{
 ```java
 excution([权限修饰符] [返回类型] [全类名] [方法名称] ([参数列表]))
 ```  
-+ AOP操作(AspectJ注解)  
++ AOP操作(AspectJ注解) 
+   
 1. 创建被增强类，在类里面定义方法  
 ```java
 //被增强的类
@@ -122,6 +123,7 @@ public class userDao {
     }
 }
 ```  
+  
 2. 创建增强类(编写增强逻辑)  
 在增强类中创建方法，让不同的方法代表不同的通知类型
 ```java
@@ -134,6 +136,7 @@ public class userDaoProxy {
     }
 }
 ```  
+  
 3. 进行通知的配置  
 1）在spring的配置文件中，开启扫描注解  
 ```java
