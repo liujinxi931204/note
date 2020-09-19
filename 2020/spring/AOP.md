@@ -114,6 +114,7 @@ excution([权限修饰符] [返回类型] [全类名] [方法名称] ([参数列
 + AOP操作(AspectJ注解)  
 1. 创建被增强类，在类里面定义方法  
 ```java
+//被增强的类
 @Component("userDao")
 public class userDao {
 
@@ -123,7 +124,17 @@ public class userDao {
 }
 ```  
 2. 创建增强类(编写增强逻辑)  
-·
+3
+```java
+//增强的类
+public class userDaoProxy {
+
+    //前置通知
+    public void before(){
+        System.out.println("before()...");
+    }
+}
+```
 
 
 
