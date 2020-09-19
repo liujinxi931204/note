@@ -136,8 +136,10 @@ public class userDaoProxy {
 }
 ```  
 3. 进行通知的配置  
-1） 在spring的配置文件中，开启扫描注解  
-2—
+1）在spring的配置文件中，开启扫描注解  
+2）使用注解创建userDao和userDaoProxy对象  
+3）在增强类上面添加注解@Aspext  
+4)
 
 
 
