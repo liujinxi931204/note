@@ -87,5 +87,6 @@ class UserDaoProxyInvocation implements InvocationHandler{
 + 连接点  
 类里面的哪些方法可以被增强，这些方法称为连接点  
 + 切入点  
-实际
+实际被真正增强的方法，称为切入点  
++ 
 
