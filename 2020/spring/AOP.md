@@ -204,7 +204,8 @@ public class userDaoProxy {
 
 </beans>
 ```  
-4. 配置不同类型的通知  
+  
+5. 配置不同类型的通知  
 在增强类中，作为的通知方法上面添加配置类型注解，使用切入点表达式  
 ```java
 @Component("userDaoProxy")
@@ -217,7 +218,22 @@ public class userDaoProxy {
         System.out.println("before()...");
     }
 }
-```
+```  
+  
+6. 测试  
+```java
+@Test
+    public void testAop(){
+        ApplicationContext applicationContext =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+        userDao userDao = applicationContext.getBean("userDao", userDao.class);
+        userDao.add();
+    }
+输出结果为
+before()...
+add()...
+```  
+
 
 
 
