@@ -124,7 +124,7 @@ public class userDao {
 }
 ```  
 2. 创建增强类(编写增强逻辑)  
-1） 在增强类中创建方法，让不同的方法代表不同的通知类型
+在增强类中创建方法，让不同的方法代表不同的通知类型
 ```java
 //增强的类
 public class userDaoProxy {
@@ -135,7 +135,10 @@ public class userDaoProxy {
     }
 }
 ```  
-2） 
+3. 进行通知的配置  
+1） 在spring的配置文件中，开启扫描注解  
+2—
+
 
 
 
