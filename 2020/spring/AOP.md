@@ -112,6 +112,8 @@ class UserDaoProxyInvocation implements InvocationHandler{
 excution([权限修饰符] [返回类型] [全类名] [方法名称] ([参数列表]))
 ```  
 + AOP操作(AspectJ注解)  
+1. 创建被增强类，在类里面定义方法  
+
 
 
 
