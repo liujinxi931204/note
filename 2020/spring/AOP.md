@@ -203,7 +203,18 @@ public class userDaoProxy {
 ```  
 ### 配置不同类型的通知  
 在增强类中，作为的通知方法上面添加配置类型注解，使用切入点表达式  
+```java
+@Component("userDaoProxy")
+@Aspect
+//生成代理对象
+public class userDaoProxy {
 
+    @Before("execution(* com;sogou..*.*(..))")
+    public void before(){
+        System.out.println("before()...");
+    }
+}
+```
 
 
 
