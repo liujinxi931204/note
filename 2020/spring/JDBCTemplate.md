@@ -13,4 +13,5 @@
         <property name="password" value="123465" />
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
     </bean>
-```
+```  
+3. 配置JDBCT
