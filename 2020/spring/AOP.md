@@ -234,7 +234,9 @@ before()...
 add()...
 ```  
 ## 公共切入点抽取  
-
+将公共的切入点表达式提取出来，使用@Pointcut注解，还是上面的例子，只需要修改userDaoProxy.java  
+```java
+```
 
 
 
