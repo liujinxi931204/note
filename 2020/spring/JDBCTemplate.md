@@ -70,6 +70,7 @@ bookDaoImpl.java
 public class bookDaoImpl implements bookDao {
 
     //注入jdbcTemplate，实现数据库操作
+    //使用jdbcTemplate对数据库增删改查
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
