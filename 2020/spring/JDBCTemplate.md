@@ -36,4 +36,35 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 <!--    开启注解扫描-->
     <context:component-scan base-package="com.sogou.spring"></context:component-scan>
 
+    <!-- 数据库连接池 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          destroy-method="close">
+        <property name="url" value="jdbc:mysql://10.160.58.128/user_db" />
+        <property name="username" value="root" />
+        <property name="password" value="123465" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+    </bean>
+
+<!--    jdbcTemplate对象-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+<!--        注入dataSource-->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+</beans>
+
+bookService.java
+@Service("bookService")
+public class bookService {
+    //service注入bookDao
+
+    @Autowired
+    private bookDao bookDao;
+}
+
+bookDao.java
+public interface bookDao {
+}
+
+bookDaoImpl.
+
 ```
