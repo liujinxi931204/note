@@ -15,3 +15,10 @@
     </bean>
 ```  
 3. 配置JDBCTemplate对象，注入dataSource对象  
+```java
+<!--    jdbcTemplate对象-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+<!--        注入dataSource-->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+```
