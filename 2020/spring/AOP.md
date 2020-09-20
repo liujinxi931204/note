@@ -327,6 +327,19 @@ applicationContext.xml
  <bean id="bookProxy" class="com.sogou.SpringXML.bookProxy"></bean>
 ```
 + 在Spring配置文件中配置切入点  
+```java
+<!--    配置aop增强-->
+    <aop:config>
+<!--        配置切入点，两个属性id和切入点表达式-->
+        <aop:pointcut id="pointDemo" expression="execution(* com.sogou.SpringXML.book.buy(..))"/>
+
+<!--        配置切面-->
+        <aop:aspect ref="bookProxy">
+<!--            配置增强作用在具体的方法上,这里意味着将before()方法作用在buy()方法上，并且是前置通知-->
+            <aop:before method="before" pointcut-ref="pointDemo"></aop:before>
+        </aop:aspect>
+    </aop:config>
+```
 
 
 
