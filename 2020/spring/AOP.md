@@ -255,7 +255,61 @@ public class userDaoProxy {
 这里将切入点表达式的公共部分("execution(* com.sogou.spring.userDao.add(..))")提取出来，使用@Pointcut注解，之后的前置通知可以简单的使用@Before("pointDeom")的方式，公共部分的提取也方便后续的更改  
 ## 有多个增强类对同一个方法进行增强，设置增强类的优先级  
 + 在增强类上添加注解@Order(数字类型值)，数字类型值越小优先级越高，最小是0  
-例如，新增加一个personProxy.java，同样对add()方法做增强，可以通过@Order(数字类型)
+例如，新增加一个personProxy.java，同样对add()方法做增强，可以通过@Order(数字类型)设置增强的优先级  
+```java
+@Component
+@Aspect
+@Order(1)
+public class personProxy {
+
+    @Before("execution(* com.sogou.spring..*.*(..))")
+    public void before(){
+        System.out.println("Person before()...");
+    }
+}
+
+@Component("userDaoProxy")
+@Aspect
+@Order(3)
+//生成代理对象
+public class userDaoProxy {
+
+//    @Before("execution(* com.sogou..*.*(..))")
+//    public void before(){
+//        System.out.println("before()...");
+//    }
+//
+//
+//    @After("execution(* com.sogou..*.*(..))")
+//    public void after(){
+//        System.out.println("after()...");
+//    }
+//
+//
+//    @AfterReturning("execution(* com.sogou..*.*(..))")
+//    public void afterRetunning(){
+//        System.out.println("afterReturnning()...");
+//    }
+//
+//    @AfterThrowing("execution(* com.sogou..*.*(..))")
+//    public void afterThrowing(){
+//        System.out.println("afterThrow()...");
+//    }
+//
+
+    @Pointcut("execution(* com.sogou.spring.userDao.add(..))")
+    public void pointDeom(){
+
+    }
+
+
+    @Before("pointDeom()")
+    public void before(){
+        System.out.println("before()...");
+    }
+
+}
+```
 
 
 
