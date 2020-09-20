@@ -255,7 +255,7 @@ public class userDaoProxy {
 这里将切入点表达式的公共部分("execution(* com.sogou.spring.userDao.add(..))")提取出来，使用@Pointcut注解，之后的前置通知可以简单的使用@Before("pointDeom")的方式，公共部分的提取也方便后续的更改  
 ## 有多个增强类对同一个方法进行增强，设置增强类的优先级  
 + 在增强类上添加注解@Order(数字类型值)，数字类型值越小优先级越高，最小是0  
-
+例如，新增加一个personProxy.java，同样对add()方法做增强，可以通过@Order(数字类型)
 
 
 
