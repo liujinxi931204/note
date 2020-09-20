@@ -339,6 +339,19 @@ applicationContext.xml
             <aop:before method="before" pointcut-ref="pointDemo"></aop:before>
         </aop:aspect>
     </aop:config>
+
+测试
+ @Test
+    public  void testBook(){
+        ApplicationContext applicationContext =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        book book = applicationContext.getBean("book", book.class);
+        book.buy();
+    }
+输出结果为
+before()...
+buy()...
 ```
 
 
