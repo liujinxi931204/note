@@ -65,6 +65,14 @@ bookDao.java
 public interface bookDao {
 }
 
-bookDaoImpl.
+bookDaoImpl.java
+@Repository("bookDaoImpl")
+public class bookDaoImpl implements bookDao {
+
+    //注入jdbcTemplate，实现数据库操作
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+}
 
 ```
