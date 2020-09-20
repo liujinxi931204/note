@@ -101,7 +101,7 @@ class UserDaoProxyInvocation implements InvocationHandler{
 ### AOP操作  
 + Spring框架一般基于AspectJ实现AOP操作  
 1. 什么是AspectJ不是Spring组成部分，独立于AOP框架，一般把AspectJ和Spring框架一起使用，进行AOP操作  
-+   基于AspectJ实现AOP操作  
++ 基于AspectJ实现AOP操作  
 1. 基于XML配置文件实现  
 2. 基于注解方式实现  
 + 在项目工程中引入AOP相关依赖  
