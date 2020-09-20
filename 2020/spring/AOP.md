@@ -274,29 +274,6 @@ public class personProxy {
 //生成代理对象
 public class userDaoProxy {
 
-//    @Before("execution(* com.sogou..*.*(..))")
-//    public void before(){
-//        System.out.println("before()...");
-//    }
-//
-//
-//    @After("execution(* com.sogou..*.*(..))")
-//    public void after(){
-//        System.out.println("after()...");
-//    }
-//
-//
-//    @AfterReturning("execution(* com.sogou..*.*(..))")
-//    public void afterRetunning(){
-//        System.out.println("afterReturnning()...");
-//    }
-//
-//    @AfterThrowing("execution(* com.sogou..*.*(..))")
-//    public void afterThrowing(){
-//        System.out.println("afterThrow()...");
-//    }
-//
-
     @Pointcut("execution(* com.sogou.spring.userDao.add(..))")
     public void pointDeom(){
 
@@ -309,6 +286,20 @@ public class userDaoProxy {
     }
 
 }
+
+测试方法
+ @Test
+    public void testAop(){
+        ApplicationContext applicationContext =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+        userDao userDao = applicationContext.getBean("userDao", userDao.class);
+        userDao.add();
+    }
+
+输出结果
+Person before()...
+before()...
+add()...
 ```
 
 
