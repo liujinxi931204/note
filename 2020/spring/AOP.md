@@ -304,8 +304,27 @@ add()...
 ## AOP操作(AspectJ配置文件)  
 + 创建两个类，增强类和被增强类，创建方法  
 ```java
+被增强类
+public class book {
+    public void buy(){
+        System.out.println("buy()...");
+    }
+}
+
+增强类
+public class bookProxy {
+
+    public void before(){
+        System.out.println("before()...");
+    }
+}
+
 ```
 + 在Spring配置文件中创建两个类对象  
+```java
+applicationContext.xml
+
+```
 + 在Spring配置文件中配置切入点  
 
 
