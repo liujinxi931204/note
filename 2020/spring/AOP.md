@@ -236,6 +236,21 @@ add()...
 ## 公共切入点抽取  
 将公共的切入点表达式提取出来，使用@Pointcut注解，还是上面的例子，只需要修改userDaoProxy.java  
 ```java
+@Component("userDaoProxy")
+@Aspect
+//生成代理对象
+public class userDaoProxy {
+@Pointcut("execution(* com.sogou.spring.userDao.add(..))")
+    public void pointDeom(){
+
+    }
+
+    @Before("pointDeom()")
+    public void before(){
+        System.out.println("before()...");
+    }
+
+}
 ```
 
 
