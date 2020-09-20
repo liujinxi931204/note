@@ -252,7 +252,7 @@ public class userDaoProxy {
 
 }
 ```  
-这里将切入点表达式的公共部分("execution(* com.sogou.spring.userDao.add(..))")提取出来，使用@Pointcut注解，方便
+这里将切入点表达式的公共部分("execution(* com.sogou.spring.userDao.add(..))")提取出来，使用@Pointcut注解，之后的前置通知可以简单的使用@Before("pointDeom")
 
 
 
