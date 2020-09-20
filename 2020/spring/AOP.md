@@ -99,7 +99,7 @@ class UserDaoProxyInvocation implements InvocationHandler{
 + 切面  
 把通知应用到切入点的过程称为通知  
 ### AOP操作  
-+ Spring矿建一般基于AspectJ实现AOP操作  
++ Spring框架一般基于AspectJ实现AOP操作  
 1. 什么是AspectJ不是Spring组成部分，独立于AOP框架，一般把AspectJ和Spring框架一起使用，进行AOP操作  
 +   基于AspectJ实现AOP操作  
 1. 基于XML配置文件实现  
@@ -199,7 +199,7 @@ public class userDaoProxy {
 
     <!--开启注解扫描-->
     <context:component-scan base-package="com.sogou"></context:component-scan>
-    <!----开启aspect生成代理对象>
+    <!--开启aspect生成代理对象-->
     <aop:aspectj-autoprox></aop:aspectj-autoprox>
 
 </beans>
