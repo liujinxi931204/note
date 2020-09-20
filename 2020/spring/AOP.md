@@ -323,7 +323,8 @@ public class bookProxy {
 + 在Spring配置文件中创建两个类对象  
 ```java
 applicationContext.xml
-
+ <bean id="book" class="com.sogou.SpringXML.book"></bean>
+ <bean id="bookProxy" class="com.sogou.SpringXML.bookProxy"></bean>
 ```
 + 在Spring配置文件中配置切入点  
 
