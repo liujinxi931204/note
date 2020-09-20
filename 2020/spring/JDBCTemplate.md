@@ -21,4 +21,5 @@
 <!--        注入dataSource-->
         <property name="dataSource" ref="dataSource"></property>
     </bean>
-```
+```  
+4. 创建service类，dao类，在dao类注入jdbcTemplate对象  
