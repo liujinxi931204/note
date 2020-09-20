@@ -14,4 +14,4 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
     </bean>
 ```  
-3. 配置JDBCT
+3. 配置JDBCTemplate对象，注入dataSource对象  
