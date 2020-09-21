@@ -115,7 +115,21 @@ public class User {
 2. 编写service和dao  
 + 在dao中进行数据库添加操作  
 + 调用JdbcTemplate对象的update方法实现数据库的增删改操作  
-  
+```java
+public void add(Book book) {
+//    jdbcTemplate.update(String sql,Object... args)
+//    第一个参数是带有占位符的sql语句
+//    第二个参数是占位符的参数值
+
+//    也可以对可变参数使用数组传入
+//    Objects[] args={book.getUserId(), book.getUserName(), book.getUserStatus()};
+//    int update = jdbcTemplate.update(sql, args);
+
+    String sql="insert into t_book values(?,?,?)";
+    int update = jdbcTemplate.update(sql, book.getUserId(), book.getUserName(), book.getUserStatus());
+    System.out.println(update);
+  }
+```
 
 
 
