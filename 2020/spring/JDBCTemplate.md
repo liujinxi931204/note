@@ -155,7 +155,17 @@ public class bookDaoImpl implements bookDao {
 }
 ```  
 ### jdbcTemplate操作数据库（查询返回某个值）  
-
+```java
+ @Override
+  public int findCount() {
+    String sql ="select count(1) from t_book";
+    Integer integer = jdbcTemplate.queryForObject(sql, Integer.class);
+//    queryForObject(String sql,Class<T> requiredType)
+//    第一个参数sql语句
+//    第二个参数返回类型的类
+    return integer;
+  }
+```
 
 
 
