@@ -112,7 +112,9 @@ public class User {
   }
 }
 ```  
-2. 编写service和Dao
+2. 编写service和dao  
++ 在dao中进行数据库操作  
+
 
 
 
