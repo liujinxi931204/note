@@ -182,6 +182,16 @@ public class bookDaoImpl implements bookDao {
 ```
 ### jdbcTemplate操作数据库(返回集合)  
 ```java
+@Override
+  public List<Book> findAllBooks() {
+    String sql="select userId,userName,userStatus from t_book";
+//    query(String sql, RowMapper<T> rowMapper, Object... args)
+//    第一个参数带有占位符的sql语句
+//    第二个参数rowMapper，是接口，返回不同数据类型，使用这个接口里面实现类完成数据封装
+//    第三个参数，sql语句的参数,该参数没有可以不写
+    List<Book> books = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Book>(Book.class));
+    return books;
+  }
 ```
 
 
