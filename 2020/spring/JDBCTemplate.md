@@ -154,7 +154,8 @@ public class bookDaoImpl implements bookDao {
   }
 }
 ```  
-### jdbcTemplate
+### jdbcTemplate操作数据库（查询返回某个值）  
+
 
 
 
