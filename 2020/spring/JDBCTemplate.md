@@ -80,8 +80,39 @@ public class bookDaoImpl implements bookDao {
 ### JdbcTeamplate 操作数据库(添加)  
 1. 对应数据库表创建出实体类  
 ```java
+public class User {
 
-```
+ private int userId;
+ private String userName;
+ private String userStatus;
+
+
+  public int getUserId() {
+    return userId;
+  }
+
+  public void setUserId(int userId) {
+    this.userId = userId;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public String getUserStatus() {
+    return userStatus;
+  }
+
+  public void setUserStatus(String userStatus) {
+    this.userStatus = userStatus;
+  }
+}
+```  
+2. 编写service和Dao
 
 
 
