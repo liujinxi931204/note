@@ -165,7 +165,8 @@ public class bookDaoImpl implements bookDao {
 //    第二个参数返回类型的类
     return integer;
   }
-```
+```  
+### jdbcTemplate操作数据库()
 
 
 
