@@ -195,6 +195,15 @@ public class bookDaoImpl implements bookDao {
 ```  
 ### jdbcTempalte操作数据库(批量操作)  
 ```java
+@Override
+  public void batchAdd(List<Object[]> batchArgs) {
+    String sql="insert into t_book values(?,?,?)";
+//    batchUpdate(String sql, List<Object[]> batchArgs)
+//    第一个参数带有占位符的sql
+//    第二个参数，添加多条数据记录
+    int[] batchUpdate = jdbcTemplate.batchUpdate(sql,batchArgs);
+    System.out.println(Arrays.toString(batchUpdate));
+  }
 ```
 
 
