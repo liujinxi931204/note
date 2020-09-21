@@ -192,6 +192,9 @@ public class bookDaoImpl implements bookDao {
     List<Book> books = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Book>(Book.class));
     return books;
   }
+```  
+### jdbcTempalte操作数据库(批量操作)  
+```java
 ```
 
 
