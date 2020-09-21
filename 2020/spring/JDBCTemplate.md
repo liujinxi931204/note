@@ -115,7 +115,8 @@ public class User {
 2. 编写service和dao  
 + 在dao中进行数据库添加操作  
 + 调用JdbcTemplate对象的update方法实现数据库的增删改操作  
-jdbcTemplate.update(String sql，Objects... args)中有两个参数，第一个参数是sql语句，第二个参数是
+  
+
 
 
 
