@@ -76,4 +76,140 @@ public class bookDaoImpl implements bookDao {
     private JdbcTemplate jdbcTemplate;
 }
 
+```  
+### JdbcTeamplate 操作数据库(添加)  
+1. 对应数据库表创建出实体类  
+```java
+public class User {
+
+ private int userId;
+ private String userName;
+ private String userStatus;
+
+
+  public int getUserId() {
+    return userId;
+  }
+
+  public void setUserId(int userId) {
+    this.userId = userId;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public String getUserStatus() {
+    return userStatus;
+  }
+
+  public void setUserStatus(String userStatus) {
+    this.userStatus = userStatus;
+  }
+}
+```  
+2. 编写service和dao  
++ 在dao中进行数据库添加|删除、更新操作  
++ 调用JdbcTemplate对象的update方法实现数据库的增删改操作  
+```java
+@Repository("bookDaoImpl")
+public class bookDaoImpl implements bookDao {
+
+  @Autowired
+  private JdbcTemplate jdbcTemplate;
+
+  @Override
+  public void add(Book book) {
+//    jdbcTemplate.update(String sql,Object... args)
+//    第一个参数是带有占位符的sql语句
+//    第二个参数是占位符的参数值
+
+//    也可以对可变参数使用数组传入
+//    Objects[] args={book.getUserId(), book.getUserName(), book.getUserStatus()};
+//    int update = jdbcTemplate.update(sql, args);
+
+    String sql="insert into t_book values(?,?,?)";
+    int update = jdbcTemplate.update(sql, book.getUserId(), book.getUserName(), book.getUserStatus());
+    System.out.println(update);
+  }
+
+  @Override
+  public void delete(Book book) {
+    String sql = "delete from t_book where userId = ?";
+    Object[] args={book.getUserId()};
+    int update = jdbcTemplate.update(sql, args);
+    System.out.println(update);
+  }
+
+  @Override
+  public void update(Book book) {
+    String sql="update t_book set userName=? where userId=?";
+    Object[] args={book.getUserName(),book.getUserId()};
+    int update = jdbcTemplate.update(sql, args);
+    System.out.println(update);
+  }
+}
+```  
+### jdbcTemplate操作数据库（查询返回某个值）  
+```java
+ @Override
+  public int findCount() {
+    String sql ="select count(1) from t_book";
+    Integer integer = jdbcTemplate.queryForObject(sql, Integer.class);
+//    queryForObject(String sql,Class<T> requiredType)
+//    第一个参数sql语句
+//    第二个参数返回类型的类
+    return integer;
+  }
+```  
+### jdbcTemplate操作数据库(返回某个对象)  
+```java
+@Override
+  public Book findBook(int userId) {
+    String sql= "select userID,userName,userStatus from t_book where userId=?";
+//      Object queryForObject(String sql, RowMapper<T> rowMapper, Object... args)
+//    第一个参数带有占位符的sql语句
+//    第二个参数rowMapper，是接口，返回不同数据类型，使用这个接口里面实现类完成数据封装
+//    第三个参数，sql语句的参数
+    Book book = jdbcTemplate
+        .queryForObject(sql, new BeanPropertyRowMapper<Book>(Book.class), userId);
+    return book;
+  }
 ```
+### jdbcTemplate操作数据库(返回集合)  
+```java
+@Override
+  public List<Book> findAllBooks() {
+    String sql="select userId,userName,userStatus from t_book";
+//    query(String sql, RowMapper<T> rowMapper, Object... args)
+//    第一个参数带有占位符的sql语句
+//    第二个参数rowMapper，是接口，返回不同数据类型，使用这个接口里面实现类完成数据封装
+//    第三个参数，sql语句的参数,该参数没有可以不写
+    List<Book> books = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Book>(Book.class));
+    return books;
+  }
+```  
+### jdbcTempalte操作数据库(批量操作)  
+```java
+@Override
+  public void batchAdd(List<Object[]> batchArgs) {
+    String sql="insert into t_book values(?,?,?)";
+//    batchUpdate(String sql, List<Object[]> batchArgs)
+//    第一个参数带有占位符的sql
+//    第二个参数，添加多条数据记录
+    int[] batchUpdate = jdbcTemplate.batchUpdate(sql,batchArgs);
+    System.out.println(Arrays.toString(batchUpdate));
+  }
+```
+
+
+
+
+
+
+
+
