@@ -32,6 +32,7 @@
             </dataSource>
         </environment>
     </environments>
+<!-->
     <mappers>
         <mapper resource="Category.xml"/>
     </mappers>
