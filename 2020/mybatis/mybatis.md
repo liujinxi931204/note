@@ -41,6 +41,7 @@
 ```java
 package com.sogou;
 
+//sqlSessionFactory---->sqlSession
 public class mybatisUtils{
 //获取sqlSessionFactory对象
     static{
