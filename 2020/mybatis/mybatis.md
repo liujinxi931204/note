@@ -37,4 +37,15 @@
     </mappers>
 </configuration>
 ```  
-### 编写mybatis的
+### 编写mybatis的工具类，mybatis-util.java
+```java
+package com.sogou
+
+class 
+
+
+
+
+
+
+```
