@@ -42,8 +42,15 @@
 package com.sogou;
 
 public class mybatisUtils{
+//
     static{
-    
+        try{
+        }
+        catch (){
+        }
+        String resources = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resources);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
     }
 }
 
