@@ -32,7 +32,7 @@
             </dataSource>
         </environment>
     </environments>
-<!-->
+<!--每一个mapper.xml都需要在mybatis的核心配置文件中注册-->
     <mappers>
         <mapper resource="Category.xml"/>
     </mappers>
