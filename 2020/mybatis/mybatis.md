@@ -42,17 +42,16 @@
 package com.sogou;
 
 public class mybatisUtils{
-//
+//获取sqlSessionFactory对象
     static{
         try{
             String resources = "mybatis-config.xml";
             InputStream inputStream = Resources.getResourceAsStream(resources);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);    
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);    
         }
         catch (IOException e){
             e.printStackTrace();
-        }
-        
+        } 
     }
 }
 
