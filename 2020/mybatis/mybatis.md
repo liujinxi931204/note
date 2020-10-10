@@ -45,12 +45,14 @@ public class mybatisUtils{
 //
     static{
         try{
+            String resources = "mybatis-config.xml";
+            InputStream inputStream = Resources.getResourceAsStream(resources);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);    
         }
-        catch (){
+        catch (IOException e){
+            e.printStackTrace();
         }
-        String resources = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resources);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        
     }
 }
 
