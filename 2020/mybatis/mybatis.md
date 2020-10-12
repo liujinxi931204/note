@@ -43,7 +43,10 @@
 ```  
 ### 数据配置文件db.properties
 ```java
-
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://10.160.58.128:3306/user_db?characterEncoding=UTF-8
+username=root
+password=123456
 ```
 
 ### 编写mybatis的工具类，mybatisUtils.java
