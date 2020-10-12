@@ -51,25 +51,37 @@ password=123456
 
 ### 编写mybatis的工具类，mybatisUtils.java
 ```java
-package com.sogou;
+package com.sogou.utils;
 
-//sqlSessionFactory---->sqlSession
-public class mybatisUtils{
-//获取sqlSessionFactory对象
+import org.apache.ibatis.builder.StaticSqlSource;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-10-11 20:32
+ **/
+public class mybatisUtils {
+
+    private static SqlSessionFactory sqlSessionFactory;
+
     static{
-        try{
-            String resources = "mybatis-config.xml";
+        String resources="mybatis-config.xml";
+        try {
             InputStream inputStream = Resources.getResourceAsStream(resources);
-            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);    
-        }
-        catch (IOException e){
+            sqlSessionFactory= new SqlSessionFactoryBuilder().build(inputStream);
+        } catch (IOException e) {
             e.printStackTrace();
-        } 
+        }
+    }
+
+    public static SqlSession getSqlSession(){
+        return sqlSessionFactory.openSession();
     }
 }
-
-
-
-
-
 ```
