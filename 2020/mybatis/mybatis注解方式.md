@@ -323,7 +323,46 @@ many=@Many(select="com.sogou.dao.productMapper.findProductByCid") 用来是调�
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/10/19/1603096970949-1603096970951.png)  
 #### 一对一的查询实现  
 需要对上面的类进行修改  
+```java
+package com.sogou.pojo;
 
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-10-19 10:49
+ **/
+public class Category {
+    private int id;
+    private String name;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
+
+```
 
 
 
