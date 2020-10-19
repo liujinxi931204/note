@@ -305,7 +305,7 @@ public interface productMapper {
 ```  
 在这两个接口中，使用@select、@insert、@update、@delete这四个注解实现select、insert、update、delete语句  
 因为这里使用的是注解，因此没有写xml配置文件  
-+ @Results注解对应的是xml配置文件中的resultMap的实现，id的意义与配置文件中id的意义相同，不过在mybatis 3.3.0之前
++ @Results注解对应的是xml配置文件中的resultMap的实现，id的意义与配置文件中id的意义相同，不过在mybatis 3.3.0之前不支持，也就是说在该版本之前的
 
   
 
