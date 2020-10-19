@@ -319,7 +319,7 @@ many=@Many(select="com.sogou.dao.productMapper.findProductByCid") 用来是调�
 ```    
 **从上面可以看出，其实这个多对一查询进行了两次select查询**  
 这一点从日志中也可以看到  
-
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/10/19/1603096970949-1603096970951.png)  
 
 
 
