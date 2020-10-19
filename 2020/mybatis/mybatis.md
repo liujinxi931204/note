@@ -125,6 +125,7 @@ public class mybatisUtils {
 ```  
 **mybatis核心配置文件的各个标签有严格的顺序**  
 ### 使用注解的方式实现sql语句  
+Category类的实现  
 ```java
 package com.sogou.pojo;
 
@@ -172,6 +173,9 @@ public class Category {
                 '}';
     }
 }
+```  
+Product类的实现  
+```java
 
 ```
 
