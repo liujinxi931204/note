@@ -311,6 +311,8 @@ public interface productMapper {
 @Result(property = "productList",column = "id",
             many = @Many(select = "com.sogou.dao.productMapper.findProductByCid"))
 ```  
+这里用来实现多对一的查询，property属性是Category类中对应List的属性名，column则是传递给下面这个方法的参数  
+ 
 
 
 
