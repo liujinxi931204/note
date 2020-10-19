@@ -113,6 +113,10 @@ public class mybatisUtils {
         </environment>
     </environments>
     <mappers>
+<!--    映射器有几种形式
+        一种是 resources="com/sogou/dao/categoryMapper.xml"
+        一种是class=""      
+-->
         <mapper class="com.sogou.dao.categoryMapper"/>
         <mapper class="com.sogou.dao.productMapper"/>
     </mappers>
