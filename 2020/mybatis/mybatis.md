@@ -233,7 +233,9 @@ public class Product {
     }
 }
 
-```
+```  
+接下来实现categroyMapper接口和productMapper接口，注意一定是接口，不能是实现类  
+
 
   
 
