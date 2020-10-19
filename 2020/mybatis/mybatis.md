@@ -297,29 +297,14 @@ public interface productMapper {
     @Options(useGeneratedKeys = true,keyProperty = "id")
     int addProduct(@Param("product")Product product);
 
-
-
     @Delete("delete from product where id=#{id}")
     int removeProduct(@Param("id") int id);
 
-
-    @Results(id = "productBean",value =
-            {
-                    @Result(column = "id",property = "id",id = true),
-                    @Result(column = "name",property = "name"),
-                    @Result(column = "price",property = "price"),
-                    @Result(column = "cid",property = "cid"),
-                    @Result(property = "category",column = "cid",
-                            one = @One(select = "com.sogou.dao.categoryMapper.findCategoryById"))
-
-            })
-    @Select("select * from product as p where id=#{id}")
-    Product getProductById(@Param("id")int id);
 }
 
 ```  
 在这两个接口中，使用@select、@insert、@update、@delete这四个注解实现select、insert、update、delete语句  
-因为这里使用的
+因为这里使用的是注解，因此没有写xml配置文件
 
   
 
