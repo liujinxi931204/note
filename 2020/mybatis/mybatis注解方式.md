@@ -323,6 +323,7 @@ many=@Many(select="com.sogou.dao.productMapper.findProductByCid") 用来是调�
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/10/19/1603096970949-1603096970951.png)  
 #### 一对一的查询实现  
 需要对上面的类进行修改  
+Category类的实现  
 ```java
 package com.sogou.pojo;
 
@@ -361,6 +362,10 @@ public class Category {
                 '}';
     }
 }
+
+```  
+Product类的实现  
+```Product
 
 ```
 
