@@ -318,7 +318,8 @@ public interface productMapper {
 }
 
 ```  
-在这两个
+在这两个接口中，使用@select、@insert、@update、@delete这四个注解实现select、insert、update、delete语句  
+因为这里使用的
 
   
 
