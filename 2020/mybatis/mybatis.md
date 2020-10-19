@@ -24,4 +24,7 @@
             <version>1.2.12</version>
         </dependency>
     </dependencies>
-```
+```  
+使用mybatis需要mybatis、mysql-connector-java的jar包，使用maven可以直接在maven的pom.xml文件中配置完成  
+  
+
