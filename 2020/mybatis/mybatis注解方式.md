@@ -307,6 +307,11 @@ public interface productMapper {
 因为这里使用的是注解，因此没有写xml配置文件  
 + @Results注解对应的是xml配置文件中的resultMap的实现，id的意义与配置文件中id的意义相同，不过在mybatis 3.3.0之前不支持，也就是说在该版本之前的@Results是不能复用的，每一次都需要重新写一遍  
 + @Result(column = "id" ,property = "id",id = true)就是resultMap中的<id/>标签  
+```java
+@Result(property = "productList",column = "id",
+            many = @Many(select = "com.sogou.dao.productMapper.findProductByCid"))
+```  
+
 
 
   
