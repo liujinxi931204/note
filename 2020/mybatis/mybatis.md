@@ -124,7 +124,10 @@ public class mybatisUtils {
 </configuration>
 ```  
 **mybatis核心配置文件的各个标签有严格的顺序**  
+### 使用注解的方式实现sql语句  
+```java
 
+```
 
   
 
