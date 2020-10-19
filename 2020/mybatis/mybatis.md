@@ -114,8 +114,8 @@ public class mybatisUtils {
     </environments>
     <mappers>
 <!--    映射器有几种形式
-        一种是 resources="com/sogou/dao/categoryMapper.xml"
-        一种是class=""      
+        一种是 resources="com/sogou/dao/categoryMapper.xml"配置文件的形式
+        一种是class="com.sogou.dao.categoryMapper"全限定名的形式      
 -->
         <mapper class="com.sogou.dao.categoryMapper"/>
         <mapper class="com.sogou.dao.productMapper"/>
@@ -123,6 +123,7 @@ public class mybatisUtils {
 </configuration>
 ```  
 **mybatis核心配置文件的各个标签有严格的顺序**  
+
 
   
 
