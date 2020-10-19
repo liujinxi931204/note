@@ -126,6 +126,52 @@ public class mybatisUtils {
 **mybatis核心配置文件的各个标签有严格的顺序**  
 ### 使用注解的方式实现sql语句  
 ```java
+package com.sogou.pojo;
+
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-10-19 10:49
+ **/
+public class Category {
+    private int id;
+    private String name;
+    List<Product> productList;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", productList=" + productList +
+                '}';
+    }
+}
 
 ```
 
