@@ -26,5 +26,5 @@
     </dependencies>
 ```  
 使用mybatis需要mybatis、mysql-connector-java的jar包，使用maven可以直接在maven的pom.xml文件中配置完成  
-  
-
+项目的目录结构如下：  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/10/19/1603092864744-1603092864746.png)  
