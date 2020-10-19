@@ -69,7 +69,9 @@ public class mybatisUtils {
     }
 }
 ```  
-这个类主要作用是获取sqlSession，这是mybatis中的核心，sqlSession可以对  
+这个类主要作用是获取sqlSession，这是mybatis中的核心，sqlSession可以对数据库进行增删改查的操作  
+#### mybatis  
+  
 
 
 
