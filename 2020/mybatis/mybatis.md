@@ -235,7 +235,44 @@ public class Product {
 
 ```  
 接下来实现categroyMapper接口和productMapper接口，注意一定是接口，不能是实现类  
+```java
+package com.sogou.dao;
 
+import com.sogou.pojo.Category;
+import org.apache.ibatis.annotations.*;
+
+import javax.naming.Name;
+import java.util.Calendar;
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-10-19 10:52
+ **/
+public interface categoryMapper {
+
+    @Select("select * from category")
+    List<Category> findAllCategory();
+
+    @Select("select id,name from category where id=#{id}")
+    Category findCategoryById(@Param("id") int id);
+
+
+    @Results(id = "categoryBean" ,value = {
+            @Result(column = "id" ,property = "id",id = true),
+            @Result(column = "name",property = "name"),
+            @Result(property = "productList",column = "id",
+            many = @Many(select = "com.sogou.dao.productMapper.findProductByCid"))
+    }
+    )
+    @Select("select id,name from category")
+    List<Category> findWholeCategory();
+
+
+
+}
+
+```
 
   
 
