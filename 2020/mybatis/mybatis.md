@@ -116,7 +116,7 @@ public class mybatisUtils {
 <!--    映射器有几种形式
         一种是 resources="com/sogou/dao/categoryMapper.xml"配置文件的形式
         一种是class="com.sogou.dao.categoryMapper"全限定名的形式
-        这里使用注解的方式      
+        这里使用注解的方式实现sql语句，因此采用了全限定名的映射器配置      
 -->
         <mapper class="com.sogou.dao.categoryMapper"/>
         <mapper class="com.sogou.dao.productMapper"/>
