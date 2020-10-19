@@ -30,5 +30,6 @@
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/10/19/1603092864744-1603092864746.png)  
 目录结构说明：  
 dao目录：DAO层，主要是对数据库的操作  
-pojo目录：POJO层，数据库的实现  
+pojo目录：POJO层，数据库的具体类的实现  
+utils目录：工具层，一些mybatis中常用工具的封装  
 
