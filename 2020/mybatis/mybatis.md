@@ -125,7 +125,7 @@ public class mybatisUtils {
 ```  
 **mybatis核心配置文件的各个标签有严格的顺序**  
 ### 使用注解的方式实现sql语句  
-Category类的实现  
+Category类的实现,这里的List是为了实现一对多的查询，注解实现sql语句的时候会用到  
 ```java
 package com.sogou.pojo;
 
@@ -176,6 +176,62 @@ public class Category {
 ```  
 Product类的实现  
 ```java
+package com.sogou.pojo;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-10-19 10:50
+ **/
+public class Product {
+    private int id;
+    private String name;
+    private float price;
+    private int cid;
+    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", cid=" + cid +
+                '}';
+    }
+}
 
 ```
 
