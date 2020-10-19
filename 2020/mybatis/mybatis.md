@@ -115,7 +115,8 @@ public class mybatisUtils {
     <mappers>
 <!--    映射器有几种形式
         一种是 resources="com/sogou/dao/categoryMapper.xml"配置文件的形式
-        一种是class="com.sogou.dao.categoryMapper"全限定名的形式      
+        一种是class="com.sogou.dao.categoryMapper"全限定名的形式
+        这里使用注解的方式      
 -->
         <mapper class="com.sogou.dao.categoryMapper"/>
         <mapper class="com.sogou.dao.productMapper"/>
