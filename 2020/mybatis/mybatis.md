@@ -267,12 +267,58 @@ public interface categoryMapper {
     )
     @Select("select id,name from category")
     List<Category> findWholeCategory();
+}
+```  
+```java
+package com.sogou.dao;
+
+import com.sogou.pojo.Product;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.javassist.util.proxy.ProxyObject;
+
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-10-19 10:52
+ **/
+public interface productMapper {
+
+    @Select("select id,name,price,cid from product")
+    List<Product> findAllProduct();
+
+
+    @Select("select id,name,price,cid from product as p where cid=#{cid}")
+    Product findProductByCid(@Param("cid") int cid);
+
+
+    @Insert("insert into product (name,price,cid) values(#{product.name},#{product.price},#{product.cid})")
+    //返回自增主键
+    @Options(useGeneratedKeys = true,keyProperty = "id")
+    int addProduct(@Param("product")Product product);
 
 
 
+    @Delete("delete from product where id=#{id}")
+    int removeProduct(@Param("id") int id);
+
+
+    @Results(id = "productBean",value =
+            {
+                    @Result(column = "id",property = "id",id = true),
+                    @Result(column = "name",property = "name"),
+                    @Result(column = "price",property = "price"),
+                    @Result(column = "cid",property = "cid"),
+                    @Result(property = "category",column = "cid",
+                            one = @One(select = "com.sogou.dao.categoryMapper.findCategoryById"))
+
+            })
+    @Select("select * from product as p where id=#{id}")
+    Product getProductById(@Param("id")int id);
 }
 
-```
+```  
+在这两个
 
   
 
