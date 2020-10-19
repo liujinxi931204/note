@@ -521,7 +521,7 @@ public interface productMapper {
 这里其余注解意义和上面的相同，只有  
 `@Result(property = "category",column = "cid",
  one = @One(select = "com.sogou.dao.categoryMapper.findCategoryById"))`  
-对应的是一对一的查询
+对应的是一对一的查询，与多对一的查询一样，也需要由两次
 
 
 
