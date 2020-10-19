@@ -70,7 +70,56 @@ public class mybatisUtils {
 }
 ```  
 这个类主要作用是获取sqlSession，这是mybatis中的核心，sqlSession可以对数据库进行增删改查的操作  
-#### mybatis  
+#### mybatis核心配置文件  
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    mybatis核心配置文件的标签有顺序-->
+<!--    properties引入外部配置文件，使用resource指定外部的配置文件-->
+    <properties resource="db.properties"/>
+    
+    <settings>
+<!--        标准的日志工厂实现-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+<!--        使用log4j日志工厂，首先在maven的配置文件中导入logj的包-->
+<!--        其次编写log4j的配置文件，log4j.perproties-->
+<!--        <setting name="logImpl" value="LOG4J"/>-->
+<!--        开启驼峰命名法-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+<!--    类型别名，使用alias后面的名称代替类型的全限定名-->
+<!--    即，所有使用com.sogou.pojo.Category的地方都可以使用Category代替-->
+    <typeAliases>
+        <typeAlias type="com.sogou.pojo.Category" alias="Category"/>
+        <typeAlias type="com.sogou.pojo.Product" alias="Product"/>
+    </typeAliases>
+
+<!--    enviornments指定当前的环节，一般有两个环境，一个用于测试，一个用于开发-->
+<!--    通过default来指定使用哪一个环境，例如这里指定使用development环境-->
+<!--    enviornment通过id来唯一标识环境-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper class="com.sogou.dao.categoryMapper"/>
+        <mapper class="com.sogou.dao.productMapper"/>
+    </mappers>
+</configuration>
+```  
+**mybatis核心配置文件的各个标签有严格的顺序**  
+
   
 
 
