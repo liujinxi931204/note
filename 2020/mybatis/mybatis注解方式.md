@@ -368,15 +368,16 @@ Product类的实现
 ```Product
 package com.sogou.pojo;
 
-import java.util.List;
-
 /**
  * author liujinxi@sogou-inc.com
- * date 2020-10-19 10:49
+ * date 2020-10-19 10:50
  **/
-public class Category {
+public class Product {
     private int id;
     private String name;
+    private float price;
+    private int cid;
+    private Category category;
 
     public int getId() {
         return id;
@@ -394,14 +395,77 @@ public class Category {
         this.name = name;
     }
 
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", price=" + price +
+                ", cid=" + cid +
+                ", category=" + category +
                 '}';
     }
+}
+
+```  
+categoryMapper和productMapper接口的实现  
+```java
+package com.sogou.dao;
+
+import com.sogou.pojo.Category;
+import org.apache.ibatis.annotations.*;
+
+import javax.naming.Name;
+import java.util.Calendar;
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-10-19 10:52
+ **/
+public interface categoryMapper {
+
+    @Select("select * from category")
+    List<Category> findAllCategory();
+
+    @Select("select id,name from category where id=#{id}")
+    Category findCategoryById(@Param("id") int id);
+
+
+    @Results(id = "categoryBean" ,value = {
+            @Result(column = "id" ,property = "id",id = true),
+            @Result(column = "name",property = "name"),
+            @Result(property = "productList",column = "id",
+            many = @Many(select = "com.sogou.dao.productMapper.findProductByCid"))
+    }
+    )
+    @Select("select id,name from category")
+    List<Category> findWholeCategory();
+
 }
 
 ```
