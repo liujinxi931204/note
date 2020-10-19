@@ -87,7 +87,7 @@ public class mybatisUtils {
 <!--        使用log4j日志工厂，首先在maven的配置文件中导入logj的包-->
 <!--        其次编写log4j的配置文件，log4j.perproties-->
 <!--        <setting name="logImpl" value="LOG4J"/>-->
-<!--        开启驼峰命名法-->
+<!--        开启驼峰命名法，例如mysql数据库中的数据列名，create_time会自动转化为createTime-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
