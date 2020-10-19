@@ -518,8 +518,10 @@ public interface productMapper {
 }
 
 ```  
-这里其余注解意义和上面的相同，只有`@Result(property = "category",column = "cid",
-                            one = @One(select = "com.sogou.dao.categoryMapper.findCategoryById"))`对应的是
+这里其余注解意义和上面的相同，只有  
+`@Result(property = "category",column = "cid",
+ one = @One(select = "com.sogou.dao.categoryMapper.findCategoryById"))`  
+对应的是一对一的查询
 
 
 
