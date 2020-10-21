@@ -6,4 +6,5 @@ Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套�
 1. 导入Spring MVC相关坐标  
 2. 配置Spring MVC核心控制器(前端控制器)DispathcerServlet  
 3. 创建Crontroller类和视图  
-4. 使用注解配置
+4. 使用注解配置Controller类中业务方法的映射地址  
+5. 
