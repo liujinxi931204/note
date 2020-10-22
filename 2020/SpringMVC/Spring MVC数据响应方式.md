@@ -38,6 +38,7 @@ public String quickMethod(){
 @ResultMapping("/quick")
 public String quickMethod(){
     
-    return "redire:/WEB-INF/views/index.jsp"
+    return "redirect:/index.jsp"
 }
-```
+```  
+这里redirect和forwad的URL不一样，是因为redirect是重新访问服务器，默认WEB-INF下的内容是
