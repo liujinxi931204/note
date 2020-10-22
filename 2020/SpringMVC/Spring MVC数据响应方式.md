@@ -52,8 +52,8 @@ public ModelAndView quickMethod(){
         View  视图  展示数据
     */
     ModelAndView modelAndView = new ModelAndView();
-    //ModelAndView设置模型数据
-    modelAdnView.addObject("username")
+    //ModelAndView设置模型数据,相当于数据放入到request域中  
+    modelAdnView.addObject("username","xxx")
     //ModelAndView设置视图数据
     modelAndView.addViewName("index");
     return modelAndView;
