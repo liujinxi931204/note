@@ -23,4 +23,5 @@ public String quickMethod(){
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
 </bean>
-```
+```  
+根据以上的配置，最终的转发地址为/WEB-INF/views/index.jsp
