@@ -47,7 +47,11 @@ public String quickMethod(){
 ```java
 @ResultMapping  
 public ModelAndView quickMethod(){
-    ModelAndView modelAndView = new Model
+    /*
+ 
+    ModelAndView modelAndView = new ModelAndView();
+    modelAndView.addViewName("index");
+    return modelAndView;
 }
 ```
 
