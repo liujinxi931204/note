@@ -17,7 +17,7 @@ SpringMVC是一种基于java实现的MVC设计模式的请求驱动类型的轻�
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/10/22/1603337268750-1603337268751.png)  
   
 核心架构的具体流程步骤如下：  
-1. 首先用户发送请求
+1. 首先用户发送请求---->DispatcherServlet，前端控制器收到请求后自己不进行处理，而是委托给其他的解析器处理，作为
   
 Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套注解，让一个简单的Java类成为处理请求的控制器，而无需实现任何接口。同时它还支持RESTful编程风格的请求  
 ### Spring MVC开发步骤  
