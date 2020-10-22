@@ -38,7 +38,9 @@ Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套�
   
 2. 根据servlet的映射请求，并参照控制器配置文件(springmvc-servlet.xml),把具体的请求分发给特定的后端控制器进行处理  
   
-3. 后端控制器调用
+3. 后端控制器调用相应的逻辑层代码，完成处理并返回视图对象(ModelAndView)给前端处理器  
+  
+4. 前端控制器根据后端控制器返回的ModelAndView对象，并结合
   
  
 ### Spring MVC开发步骤  
