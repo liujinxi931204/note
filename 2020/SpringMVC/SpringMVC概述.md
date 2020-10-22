@@ -32,7 +32,9 @@ Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套�
 6. View----渲染，View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构，因此很容易支持其视图技术  
   
 7. 返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束  
-
+  
+### Spring MVC工作原理总结  
+1. 启动服务器，根据web.xml的配置加载前端控制器DispatcherServlet
   
  
 ### Spring MVC开发步骤  
