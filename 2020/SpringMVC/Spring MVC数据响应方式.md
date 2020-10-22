@@ -13,7 +13,10 @@
 ```java
 @ResultMapping("/quick")
 public String quickMethod(){
-
-
+    
+    return "index"
 }
+```  
+```xml
+
 ```
