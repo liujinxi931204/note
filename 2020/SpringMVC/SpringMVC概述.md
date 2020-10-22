@@ -49,10 +49,10 @@ Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套�
   
 3. HandlerAdapter的配置，从而支持多种类型的处理器  
   
-4. ViewResolver的配置，从而将逻辑视图名
-
+4. ViewResolver的配置，从而将逻辑视图名解析为具体视图技术  
   
- 
+5. 处理器(页面控制器)的配置，从而进行功能处理  
+
 ### Spring MVC开发步骤  
 
 1. 导入Spring MVC相关坐标  
