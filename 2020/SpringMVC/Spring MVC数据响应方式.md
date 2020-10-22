@@ -24,4 +24,8 @@ public String quickMethod(){
         <property name="suffix" value=".jsp"/>
 </bean>
 ```  
-根据以上的配置，最终的转发地址为/WEB-INF/views/index.jsp
+根据以上的配置，最终的转发地址为/WEB-INF/views/index.jsp  
+方法quickMethod的默认结果是转发，也可以写成  
+```java
+
+```
