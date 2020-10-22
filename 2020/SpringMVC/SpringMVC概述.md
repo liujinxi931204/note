@@ -45,7 +45,11 @@ Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套�
 ### Spring MVC的角色划分  
 1. DispatcherServlet在web.xml中部署描述，从而拦截请求到Spring Web MVC  
   
-2. HandlerMapping的
+2. HandlerMapping的配置，从而将请求映射到处理器  
+  
+3. HandlerAdapter的配置，从而支持多种类型的处理器  
+  
+4. ViewResolver的配置，从而将逻辑视图名
 
   
  
