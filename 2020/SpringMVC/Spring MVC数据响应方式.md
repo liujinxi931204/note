@@ -8,7 +8,7 @@
 + 返回对象或集合  
   
 ### 页面跳转  
-1. 直接返回字符串  
+####  直接返回字符串  
 直接返回字符串：此种方式会将返回的字符串与视图解析器的前后缀拼接后跳转  
 ```java
 @ResultMapping("/quick")
@@ -41,6 +41,9 @@ public String quickMethod(){
     return "redirect:/index.jsp"
 }
 ```  
-**这里redirect和forwad的URL不一样，是因为redirect是重新访问服务器，默认WEB-INF下的内容是受保护的内容不可以被访问，因此使用redirect时必须保证后面的地址是有权限被访问的**  
+**这里redirect和forwad的URL不一样，是因为redirect是重新访问服务器，默认WEB-INF下的内容是受保护的内容不可以被访问，因此使用redirect时必须保证后面的地址是有权限被访问的**    
+  
+#### 返回ModelAndView  
+
   
 
