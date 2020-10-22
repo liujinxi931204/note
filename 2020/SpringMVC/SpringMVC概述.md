@@ -2,7 +2,7 @@
 SpringMVC是一种基于java实现的MVC设计模式的请求驱动类型的轻量级的WEB框架，即使用MVC架构模式的思想，将web层进行职责解耦，基于驱动请求指的就是请求--响应模型，属于Spring FrameWork的后续产品，已经融合到Spring Web Flow中  
   
 ### Spring MVC处理请求的流程  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/10/22/1603336687795-1603336688882.png)  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/10/22/1603337222739-1603337222741.png)  
   
 具体执行步骤如下：  
 1. 首先用户发送请求---->前端控制器，前端控制器根据请求信息(如URL)来决定选择哪一个页面控制器进行处理并把请求委托给它，即一千的控制器的控制逻辑部分；图中的1、2步骤  
