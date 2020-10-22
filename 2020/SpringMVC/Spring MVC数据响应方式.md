@@ -17,7 +17,10 @@ public String quickMethod(){
     return "index"
 }
 ```  
-ZA
+在Spring MVC的配置文件spring-mvc.xml中配置  
 ```xml
-
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+</bean>
 ```
