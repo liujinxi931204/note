@@ -36,7 +36,7 @@ Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套�
 ### Spring MVC工作原理总结  
 1. 启动服务器，根据web.xml的配置加载前端控制器DispatcherServlet，加载（包括加载spring-servlet.xml这样的配置文件）时会完成一系列的初始化动作  
   
-2. 
+2. 根据servlet的映射请求，并参照
   
  
 ### Spring MVC开发步骤  
