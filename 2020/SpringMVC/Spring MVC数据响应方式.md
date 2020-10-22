@@ -27,5 +27,13 @@ public String quickMethod(){
 根据以上的配置，最终的转发地址为/WEB-INF/views/index.jsp  
 方法quickMethod的默认结果是转发，也可以写成  
 ```java
+@ResultMapping("/quick")
+public String quickMethod(){
+    
+    return "forword:/WEB-INF/views/index.jsp"
+}
+```  
+这种返回方式和默认返回字符串一样都是转发  
+```java
 
 ```
