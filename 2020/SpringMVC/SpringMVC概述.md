@@ -23,7 +23,7 @@ SpringMVC是一种基于java实现的MVC设计模式的请求驱动类型的轻�
   
 3. DispatcherServlet---->HandlerAdapter，HandlerAdapter将会把处理器包装为适配器，从而支持多种类型的处理器，即适配器设计模式的应用，从而很容易支持很多类型的处理器  
   
-4. H
+4. HandlerAdapter---->处理器功能处理方法的调用，
   
 Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套注解，让一个简单的Java类成为处理请求的控制器，而无需实现任何接口。同时它还支持RESTful编程风格的请求  
 ### Spring MVC开发步骤  
