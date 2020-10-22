@@ -48,7 +48,9 @@ public String quickMethod(){
 @ResultMapping  
 public ModelAndView quickMethod(){
     /*
- 
+        Model 模型  封装数据  
+        View  视图  展示数据
+    */
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.addViewName("index");
     return modelAndView;
