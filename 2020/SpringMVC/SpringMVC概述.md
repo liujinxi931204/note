@@ -43,7 +43,9 @@ Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套�
 4. 前端控制器根据后端控制器返回的ModelAndView对象，并结合一些配置，返回一个相应的页面给客户端  
   
 ### Spring MVC的角色划分  
-1. D
+1. DispatcherServlet在web.xml中部署描述，从而拦截请求到Spring Web MVC  
+  
+2. HandlerMapping的
 
   
  
