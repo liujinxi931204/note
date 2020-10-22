@@ -35,5 +35,9 @@ public String quickMethod(){
 ```  
 这种返回方式和默认返回字符串一样都是转发  
 ```java
-
+@ResultMapping("/quick")
+public String quickMethod(){
+    
+    return "redire:/WEB-INF/views/index.jsp"
+}
 ```
