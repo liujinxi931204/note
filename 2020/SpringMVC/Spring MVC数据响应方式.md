@@ -44,6 +44,10 @@ public String quickMethod(){
 **这里redirect和forwad的URL不一样，是因为redirect是重新访问服务器，默认WEB-INF下的内容是受保护的内容不可以被访问，因此使用redirect时必须保证后面的地址是有权限被访问的**    
   
 #### 返回ModelAndView  
-
-  
+```java
+@ResultMapping  
+public ModelAndView quickMethod(){
+    ModelAndView modelAndView = new Model
+}
+```
 
