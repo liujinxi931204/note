@@ -52,6 +52,8 @@ public ModelAndView quickMethod(){
         View  视图  展示数据
     */
     ModelAndView modelAndView = new ModelAndView();
+
+    //ModelAndView可以设置模型或者视图，这里设置了视图
     modelAndView.addViewName("index");
     return modelAndView;
 }
