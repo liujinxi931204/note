@@ -27,7 +27,7 @@ SpringMVC是一种基于java实现的MVC设计模式的请求驱动类型的轻�
   
 5. ModelAndView的逻辑视图名---->ViewResolver，ViewResolver将把逻辑视图名解析为具体的View，通过这种策略模式，很容易更换其他的视图技术  
   
-6. V
+6. View----渲染，View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构，因此很容易
   
 Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套注解，让一个简单的Java类成为处理请求的控制器，而无需实现任何接口。同时它还支持RESTful编程风格的请求  
 ### Spring MVC开发步骤  
