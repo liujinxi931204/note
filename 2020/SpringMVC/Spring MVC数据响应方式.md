@@ -113,7 +113,10 @@ public String quickMethod(){
 public User quickMethod(){
     User user = new User();
     user.setId(1);
-    user.setName()
+    user.setName("xxx");
+    return user;
 }
-```
+```  
+这样就会在浏览器页面返回一个json格式的字符串  
+
 
