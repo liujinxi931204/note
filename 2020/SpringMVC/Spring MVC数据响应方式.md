@@ -108,5 +108,12 @@ public String quickMethod(){
 ```  
 3. 编写controller  
 ```java
+@RequsetMapping("/quick")
+@ReponseBody
+public User quickMethod(){
+    User user = new User();
+    user.setId(1);
+    user.setName()
+}
 ```
 
