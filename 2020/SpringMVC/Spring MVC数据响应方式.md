@@ -63,7 +63,9 @@ public ModelAndView quickMethod(){
 #### 直接返回字符串  
 + 通过Spring MVC框架注入response对象，使用response.getWriter().print("hello world")回写数据，此时不需要视图跳转，业务方法返回值为void    
 ```java
-@Re
-public void quickMethod()
+@ResultMapping("/qiuck")
+public void quickMethod(HttpServletResponse response){
+   response.getWriter().print("hello world")
+}
 ```
 
