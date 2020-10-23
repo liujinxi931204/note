@@ -75,5 +75,7 @@ public void quickMethod(HttpServletResponse response) throw IOException{
 public String quickMethod(){
     return "hello world";
 }
-```
+```  
+#### 返回对象和集合  
+
 
