@@ -72,6 +72,8 @@ public void quickMethod(HttpServletResponse response) throw IOException{
 ```java
 @ResultMapping("/quick")
 @ResponseBody
-public String quickMethod
+public String quickMethod(){
+    return "hello world";
+}
 ```
 
