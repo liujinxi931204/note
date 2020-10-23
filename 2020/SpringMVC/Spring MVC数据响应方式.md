@@ -118,5 +118,6 @@ public User quickMethod(){
 }
 ```  
 这样就会在浏览器页面返回一个json格式的字符串  
-
+***  
+上述配置
 
