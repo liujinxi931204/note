@@ -58,5 +58,8 @@ public ModelAndView quickMethod(){
     modelAndView.addViewName("index");
     return modelAndView;
 }
-```
+```  
+### 回写数据  
+#### 直接返回字符串  
+
 
