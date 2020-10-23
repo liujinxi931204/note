@@ -11,7 +11,7 @@
 ####  直接返回字符串  
 直接返回字符串：此种方式会将返回的字符串与视图解析器的前后缀拼接后跳转  
 ```java
-@ResultMapping("/quick")
+ @RequestMapping("/quick")
 public String quickMethod(){
     
     return "index"
