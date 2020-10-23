@@ -96,5 +96,17 @@ public String quickMethod(){
       <version>2.11.0</version>
     </dependency>
 ```  
-2. 
+2. spring-mvc.xml配置文件中配置处理器适配器  
+```xml
+    <bean id="requestMappingHandlerAdapter" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+            </list>
+        </property>
+    </bean>
+```  
+3. 编写controller  
+```java
+```
 
