@@ -121,5 +121,6 @@ public User quickMethod(){
 ***  
 上述返回对象或集合的方式配置较为繁琐，可以使用mvc的注解驱动代替上述配置  
 在Spring MVC的各个组件中，处理器适配器、处理器映射器、视图解析器成为三大组件。使用`<mvc:annotion-driven>`自动加载RequestMappingHandlerMapping（处理器映射器）和RequestMappingHandlerMapping（处理器适配器），可用在spring-mvc.xml配置文件中使用代替处理器适配器和处理器映射器的配置  
-同时使用`<mvc:annotion-driven>`默认底层会集成jackson进行对象或集合的json格式
+同时使用`<mvc:annotion-driven>`默认底层会集成jackson进行对象或集合的json格式字符串的转换  
+
 
