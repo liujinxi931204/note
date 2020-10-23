@@ -67,5 +67,6 @@ public ModelAndView quickMethod(){
 public void quickMethod(HttpServletResponse response) throw IOException{
    response.getWriter().print("hello world");
 }
-```
+```  
++ 将需要的字符串直接返回，但此时需要通过@ResponseBody注解告知Spring MVC框架，方法返回的不是
 
