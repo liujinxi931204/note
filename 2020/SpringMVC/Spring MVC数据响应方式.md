@@ -78,5 +78,23 @@ public String quickMethod(){
 ```  
 #### 返回对象和集合  
 ##### 返回json格式  
-
+1. pom.xml中引入相关依赖  
+```xml
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.11.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.11.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.11.0</version>
+    </dependency>
+```  
+2. 
 
