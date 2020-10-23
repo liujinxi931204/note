@@ -70,7 +70,7 @@ public void quickMethod(HttpServletResponse response) throw IOException{
 ```  
 + 将需要的字符串直接返回，但此时需要通过@ResponseBody注解告知Spring MVC框架，方法返回的字符串不是跳转而是直接在http响应体中返回  
 ```java
-@Resul("/quick")
+@RequestMapping("/quick")
 @ResponseBody
 public String quickMethod(){
     return "hello world";
