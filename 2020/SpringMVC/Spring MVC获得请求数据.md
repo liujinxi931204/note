@@ -186,7 +186,9 @@ public void quickMethod(@requestParam("name")String username) thorws IOExecption
 此时可以在浏览器中输入下地址：http://localhost:8080/quick?name="xxx"，通过上述的@requestParam注解，可以将name的参数绑定到username中  
   
 注解@requestParam注解还有如下参数  
-+ **value**:yu
++ **value**:请求参数名称  
++ ***required*：此在指定请求参数是否必须包含，默认为true，意味着如果没有该参数，会报错  
++ defaultValue
 
 
 
