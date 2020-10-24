@@ -140,8 +140,16 @@ public class UserController {
 ```  
 这时可以在方法中使用集合类型来接收传递过来的集合类型的参数  
 #### 开启允许访问静态资源  
-在
+在Spring MVC中访问静态资源需要开启静态资源的访问,一般是jQuery、img等，方法如下：  
+```xml
 
+<!--    在Spring MVC中开放对哪些资源的访问权限，一般是静态资源-->
+    <mvc:resources mapping="/js/**" location="/js/"/>
+
+<!--    或者使用下面的配置,意味着如果Spring MVC
+找不到静态资源，交给原始的容器这里是Tomcat找对应的静态资源-->
+    <mvc:default-servlet-handler/>
+```
 
 
 
