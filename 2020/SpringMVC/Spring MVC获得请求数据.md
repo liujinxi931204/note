@@ -5,3 +5,5 @@
 + POJO类型参数(简单的java bean)  
 + 数组类型参数  
 + 集合类型参数  
+### 获得基本类型参数  
+Controller
