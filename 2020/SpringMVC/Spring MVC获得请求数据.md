@@ -149,7 +149,8 @@ public class UserController {
 <!--    或者使用下面的配置,意味着如果Spring MVC
 找不到静态资源，交给原始的容器这里是Tomcat找对应的静态资源-->
     <mvc:default-servlet-handler/>
-```
+```  
+#### 请求数据乱码问题
 
 
 
