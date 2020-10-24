@@ -49,7 +49,15 @@ public void quickMethod(String[] strs) throw IOException{
 就可以在方法quickMethod中得到strs数组，数组的内容是strs=[111,222,333]  
 ### 获得集合类型参数  
 获得集合参数是，要将集合参数包装到一个POJO中才可以  
+```java
+public class User{
+    private int id;
+    private int name;
+    //get、set方法
+}
 
+public class 
+```
 
 
 
