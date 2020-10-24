@@ -151,6 +151,7 @@ public class UserController {
     <mvc:default-servlet-handler/>
 ```  
 #### 请求数据乱码问题  
+当post请求时，数据会出现乱码，可以设置一个过滤器来进行编码的过滤  
 
 
 
