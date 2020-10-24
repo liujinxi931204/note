@@ -198,7 +198,10 @@ Restful风格的i请求是使用"URL+请求方式"表示一次请求的目的，
 + DELETE：用于删除资源  
 例如：  
 + /user/1 GET：得到id=1的user  
-+ /user/1 DELETE：删除id=1的  
++ /user/1 DELETE：删除id=1的user  
++ /user/1 PUT：更新id=1的user  
++ /user POST：新增user  
+  
 
 
 
