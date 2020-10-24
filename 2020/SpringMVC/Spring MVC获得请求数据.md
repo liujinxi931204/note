@@ -48,7 +48,7 @@ public void quickMethod(String[] strs) throw IOException{
 在浏览器输入以下地址：http://localhost:8080/quick?strs=111&strs=222&strs=333  
 就可以在方法quickMethod中得到strs数组，数组的内容是strs=[111,222,333]  
 ### 获得集合类型参数  
-+ 获得集合参数是，要将集合参数包装到一个POJO中才可以  
++ 获得集合参数时，要将集合参数包装到一个POJO中才可以  
 ```java
 public class User{
     private int id;
@@ -80,6 +80,7 @@ public void quickMethod(Vo vo){
     </form>
 ```  
 在页面的表单中提交这些数据，就可以获得Vo{userList=[User{id=111,name="xxx"},User{id=222,name="yyy"}]}这样的集合  
++ 当使用ajax提交时，可以指定contextType为json形式，那么在方法参数位置使用@ReuqestBody可以直接接收集合而
 
 
 
