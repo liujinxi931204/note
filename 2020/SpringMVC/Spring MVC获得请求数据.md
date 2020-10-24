@@ -191,7 +191,12 @@ public void quickMethod(@requestParam("name")String username) thorws IOExecption
 + **defaultValue**：当没有指定请求参数时，则使用指定的默认值进行赋值  
 #### 获得Restful风格的参数  
 Restful是一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件按。主要用于客户端和服务端交互类的软件，基于这种风格的软件可以更简洁，更有层次，更易于实现缓存机制等  
-Restful风格的i请求是使用"URL+请求方式"表示一次请求的目的，HTTP协议里  
+Restful风格的i请求是使用"URL+请求方式"表示一次请求的目的，HTTP协议里四个表示方式的动词如下：  
++ GET: 用于获取资源  
++ POST：用于新建资源  
++ PUT：用于更新资源  
++ DELETE：用于删除资源  
+  
 
 
 
