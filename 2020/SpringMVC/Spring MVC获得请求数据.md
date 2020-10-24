@@ -42,6 +42,6 @@ Controller中的业务方法数组名称与请求参数的name一致，参数值
 @RequestMapping("/quick")
 @RequestBody
 public void quickMethod(String[] strs) throw IOException{
-    Systeml.s
+    Systeml.out.println(Arrays.asList(strs));
 }
 ```
