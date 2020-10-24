@@ -189,7 +189,7 @@ public void quickMethod(@requestParam("name")String username) thorws IOExecption
 + **value**:请求参数名称  
 + **required**：此在指定请求参数是否必须包含，默认为true，意味着如果没有该参数，会报错  
 + **defaultValue**：当没有指定请求参数时，则使用指定的默认值进行赋值  
-
+#### 获得RE
 
 
 
