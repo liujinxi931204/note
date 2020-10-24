@@ -35,4 +35,4 @@ public void quickMethod(User user) throw IOException{
 }
 ```  
 在浏览器输入以下地址：http://localhost:8080/quick?name=xxx&age=18  
-就可以
+就可以在方法quickMethod中将name和age封装进user实例中，从而获得一个user对象  
