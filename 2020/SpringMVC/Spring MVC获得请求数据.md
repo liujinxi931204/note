@@ -215,7 +215,10 @@ public void quickMethod(@PathVariable(value="id",required=true)int id){
 + 但是不是所有的数据类型都提供了转换器，没有提供的就需要自定义转换器，例如：日期类型的数据就需要自定义类型转换器  
   
 自定义类型转换器的步骤  
-+ 自定义
++ 自定义转换器类实现Convert接口  
++ 在配置文件spring-mvc.xml中声明转换器  
++ 在<annotion-driven>中引用转换器  
+
 
 
 
