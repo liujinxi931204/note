@@ -210,6 +210,7 @@ public void quickMethod(@PathVariable(value="id",required=true)int id){
     System.out.println(id);
 }
 ```  
+#### 自定义类型转换器  
 
 
 
