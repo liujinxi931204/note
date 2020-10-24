@@ -19,3 +19,14 @@ public void quickMethod(String name,int age){
 可以得到name=xxx age=18的请求参数  
 ### 获得POJO类型参数  
 Controller中的业务方法的POJO参数的属性名与请求参数的name一致，参数值就会自动映射匹配  
+```java
+public class User {
+    private String name;
+    prinvate int age;
+
+    //get、set方法
+}
+
+
+
+```
