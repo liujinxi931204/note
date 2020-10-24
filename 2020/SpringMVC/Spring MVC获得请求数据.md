@@ -18,3 +18,4 @@ public void quickMethod(String name,int age){
 在浏览器输入以下地址:http://localhost:8080/quick?name=xxx&age=18  
 可以得到name=xxx age=18的请求参数  
 ### 获得POJO类型参数  
+Controller中的业务方法
