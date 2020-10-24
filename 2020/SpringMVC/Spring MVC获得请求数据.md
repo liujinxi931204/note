@@ -9,4 +9,9 @@
 Controller中的业务方法的参数名称与请求参数的name一致，参数值会自动映射匹配  
 ```java
 @RequestMapping("/quick")
+@RequestBody//代表不进行页面跳转，直接在页面回写数据
+public void quickMethod(String name,int age){
+    System.out.p
+}
+
 ```
