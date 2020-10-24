@@ -190,7 +190,8 @@ public void quickMethod(@requestParam("name")String username) thorws IOExecption
 + **required**：此在指定请求参数是否必须包含，默认为true，意味着如果没有该参数，会报错  
 + **defaultValue**：当没有指定请求参数时，则使用指定的默认值进行赋值  
 #### 获得Restful风格的参数  
-Restful是一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件按。主要用于
+Restful是一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件按。主要用于客户端和服务端交互类的软件，基于这种风格的软件可以更简洁，更有层次，更易于实现缓存机制  
+
 
 
 
