@@ -152,7 +152,22 @@ public class UserController {
 ```  
 #### 请求数据乱码问题  
 当post请求时，数据会出现乱码，可以设置一个过滤器来进行编码的过滤  
-
+在web.xml中进行如下配置  
+```xml
+<!--  配置全局过滤器,解决POST乱码问题-->
+  <filter>
+    <filter-name>characterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+```
 
 
 
