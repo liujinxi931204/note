@@ -68,8 +68,18 @@ public void quickMethod(Vo vo){
 }
 ```
 ```jsp
-
-```
+<form action="success.jsp" method="post">
+<%--        表明是第几个User对象的userId、userName--%>
+        <input type="text" name="userList[0].id"><br>
+        <input type="text" name="userList[0].name"><br>
+        <input type="text" name="userList[1].id"><br>
+        <input type="text" name="userList[1].name"><br>
+        <input type="text" name="userList[2].id"><br>
+        <input type="text" name="userList[2].name"><br>
+        <input type="submit" name="submit" >
+    </form>
+```  
+在页面的表单中提交这些数据，就可以获得
 
 
 
