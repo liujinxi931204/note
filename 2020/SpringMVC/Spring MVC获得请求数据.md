@@ -183,7 +183,7 @@ public void quickMethod(@requestParam("name")String username) thorws IOExecption
     System.out.println(username);
 }
 ```  
-
+此时可以在浏览器中输入下地址：http://localhost:8080/quick?name="xxx"，通过上述的@requestParam
 
 
 
