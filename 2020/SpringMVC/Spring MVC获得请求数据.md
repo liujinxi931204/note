@@ -81,7 +81,35 @@ public void quickMethod(Vo vo){
 ```  
 在页面的表单中提交这些数据，就可以获得Vo{userList=[User{id=111,name="xxx"},User{id=222,name="yyy"}]}这样的集合  
 + 当使用ajax提交时，可以指定contextType为json形式，那么在方法参数位置使用@ReuqestBody可以直接接收集合而无需使用POJO进行包装  
+示例如下：  
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+<%--    引入jQuery--%>
+    <script src="${pageContext.request.contextPath}/js/jquery-2.1.3.min.js"></script>
+    <script>
+        var userList=new Array();
+        userList.push({id:"1",name:"xxx"});
+        userList.push({id:"2",name:"yyy"});
+    //    发送ajax请求
+        $.ajax({
+            type:"POST",
+            url:"${pageContext.request.contextPath}/quick",
+            data:JSON.stringify(userList),
+            contentType:"application/json;charset=utf-8"
+        });
+    </script>
+</head>
+<body>
 
+</body>
+</html>
+
+```  
+在页面一开始的时候发送ajax请求，请求中设置userList  
+`
 
 
 
