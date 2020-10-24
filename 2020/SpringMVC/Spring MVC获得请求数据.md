@@ -218,6 +218,8 @@ public void quickMethod(@PathVariable(value="id",required=true)int id){
 + 自定义转换器类实现Convert接口  
 + 在配置文件spring-mvc.xml中声明转换器  
 + 在<annotion-driven>中引用转换器  
+  
+1. 自定义转换器类实现Convert接口  
 
 
 
