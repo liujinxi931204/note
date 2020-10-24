@@ -30,7 +30,9 @@ public class User {
 
 @RequestMapping("/quick")
 @RequestBody
-public void quickMethod(User user) throw IO{
+public void quickMethod(User user) throw IOException{
     Systemt.out.println(user);
 }
-```
+```  
+在浏览器输入以下地址：http://localhost:8080/quick?name=xxx&age=18  
+就可以
