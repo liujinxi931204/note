@@ -109,7 +109,36 @@ public void quickMethod(Vo vo){
 
 ```  
 在页面一开始的时候发送ajax请求，请求中设置userList  
-`
+```java
+package com.sogou.controller;
+
+import com.sogou.service.User;
+import com.sogou.service.Vo;
+import org.springframework.core.StandardReflectionParameterNameDiscoverer;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.PriorityQueue;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-10-22 0:04
+ **/
+
+@Controller
+public class UserController {
+
+    @RequestMapping("/quick")
+    @ResponseBody
+    public void quickMethod(@RequestBody List<User> userList){
+        System.out.println(userList);
+    }
+}
+
+```  
+这时可以在方法中使用List<>来接收传递过来的集合类型的参数
 
 
 
