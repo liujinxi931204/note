@@ -169,7 +169,12 @@ public class UserController {
   </filter-mapping>
 ```
 #### 参数绑定注解@requestParam  
-当请求的参数名称与Controller的业务方法参数名称不一致时，就可以通过@
+当请求的参数名称与Controller的业务方法参数名称不一致时，就可以通过@requestParam注解显式的绑定  
+```jsp
+<form action="${page	}">
+
+</form>
+```
 
 
 
