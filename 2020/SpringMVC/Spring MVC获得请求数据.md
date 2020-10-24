@@ -183,7 +183,10 @@ public void quickMethod(@requestParam("name")String username) thorws IOExecption
     System.out.println(username);
 }
 ```  
-此时可以在浏览器中输入下地址：http://localhost:8080/quick?name="xxx"，通过上述的@requestParam
+此时可以在浏览器中输入下地址：http://localhost:8080/quick?name="xxx"，通过上述的@requestParam注解，可以将name的参数绑定到username中  
+  
+注解@requestParam注解还有如下参数  
++ **value**:yu
 
 
 
