@@ -45,4 +45,5 @@ public void quickMethod(String[] strs) throw IOException{
     Systeml.out.println(Arrays.asList(strs));
 }
 ```
-在浏览器输入以下地址：http://localhost:
+在浏览器输入以下地址：http://localhost:8080/quick?strs=111&strs=222&strs=333  
+就可以在方法quickMethod中得到strs数组，数组的内容是strs=[111,222,333]  
