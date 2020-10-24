@@ -11,7 +11,8 @@ Controller中的业务方法的参数名称与请求参数的name一致，参数
 @RequestMapping("/quick")
 @RequestBody//代表不进行页面跳转，直接在页面回写数据
 public void quickMethod(String name,int age){
-    System.out.p
+    System.out.println(name);
+    System.out.println(age);
 }
-
 ```
+在浏览器输入以下地址:http://localhost:8080/quick?name=xxx&age=18
