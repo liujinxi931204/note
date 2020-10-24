@@ -79,7 +79,8 @@ public void quickMethod(Vo vo){
         <input type="submit" name="submit" >
     </form>
 ```  
-在页面的表单中提交这些数据，就可以获得Vo{userList=[User{id=111,name="xxx"},User{id=222,n}]}
+在页面的表单中提交这些数据，就可以获得Vo{userList=[User{id=111,name="xxx"},User{id=222,name="yyy"}]}这样的集合  
+
 
 
 
