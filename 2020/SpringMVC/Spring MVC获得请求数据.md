@@ -41,5 +41,7 @@ Controller中的业务方法数组名称与请求参数的name一致，参数值
 ```java
 @RequestMapping("/quick")
 @RequestBody
-public void quickMethod()
+public void quickMethod(String strs){
+    
+}
 ```
