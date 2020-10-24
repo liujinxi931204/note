@@ -179,8 +179,11 @@ public class UserController {
 ```java
 @RequestMapping("/quick")
 @ReponseBody
-public void quickMethod(@requestP)
-```
+public void quickMethod(@requestParam("name")String username) thorws IOExecption {
+    System.out.println(username);
+}
+```  
+
 
 
 
