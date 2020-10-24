@@ -234,7 +234,21 @@ public class dateConverter implements Converter<String,Date> {
         return date;
     }
 ```
-2. z
+2. 在配置spring-mvc.xml中声明转换器  
+```xml
+<!--    声明自定义类型转换器-->
+    <bean id="conversionServiceFactoryBean" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.sogou.service.dateConverter"></bean>
+            </list>
+        </property>
+    </bean>
+```  
+3. 在<annotion-driven>中引用转换器  
+```xml
+
+```
 
 
 
