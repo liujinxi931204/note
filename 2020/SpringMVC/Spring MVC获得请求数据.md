@@ -48,4 +48,4 @@ public void quickMethod(String[] strs) throw IOException{
 在浏览器输入以下地址：http://localhost:8080/quick?strs=111&strs=222&strs=333  
 就可以在方法quickMethod中得到strs数组，数组的内容是strs=[111,222,333]  
 ### 获得集合类型参数  
-获得集合参数是，要将集合参数包装到
+获得集合参数是，要将集合参数包装到一个POJO中才可以  
