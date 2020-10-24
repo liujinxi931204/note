@@ -220,8 +220,21 @@ public void quickMethod(@PathVariable(value="id",required=true)int id){
 + 在<annotion-driven>中引用转换器  
   
 1. 自定义转换器类实现Converter接口  
-
-
+```java
+public class dateConverter implements Converter<String,Date> {
+    @Override
+    public Date convert(String str) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+```
+2. 
 
 
 
