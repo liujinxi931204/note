@@ -36,3 +36,5 @@ public void quickMethod(User user) throw IOException{
 ```  
 在浏览器输入以下地址：http://localhost:8080/quick?name=xxx&age=18  
 就可以在方法quickMethod中将name和age封装进user实例中，从而获得一个user对象  
+### 获得数组类型参数  
+Controller中的业务方法数组名称与请求参数的name一致，参数值会自动映射匹配  
