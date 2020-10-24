@@ -172,9 +172,14 @@ public class UserController {
 当请求的参数名称与Controller的业务方法参数名称不一致时，就可以通过@requestParam注解显式的绑定  
 ```jsp
 <form action="${pageContext.request.contextPath}/quick" method="post">
-    <input type="txt" name="name"/></br>
-    <input>
+    <input type="txt" name="name"/><br>
+    <input type="sumbit" value="提交"/><br>
 </form>
+```  
+```java
+@RequestMapping("/quick")
+@ReponseBody
+public void quickMethod(@requestP)
 ```
 
 
