@@ -30,7 +30,7 @@ public String quickMethod(){
 @RequestMapping("/quick")
 public String quickMethod(){
     
-    return "forword:/WEB-INF/views/index.jsp"
+    return "forward:/WEB-INF/views/index.jsp"
 }
 ```  
 这种返回方式和默认返回字符串一样都是转发  
