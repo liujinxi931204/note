@@ -202,7 +202,7 @@ Restful风格的i请求是使用"URL+请求方式"表示一次请求的目的，
 + /user/1 PUT：更新id=1的user  
 + /user POST：新增user  
 上述url地址/user/1中的1就是要获得的请求参数，在Spring MVC中可以使用占位符进行参数绑定。地址/user/1可以写成/user/{id},占位符{id}对应的1就是指。在业务方法中可以使用@PathVariable注解进行占位符的匹配获取工作  
-http://localhost:8080/quick/1  
+`http://localhost:8080/quick/1`  
 ```java
 @RequestMapping("/quick/${id}")
 @ReponstBody
