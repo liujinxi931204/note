@@ -80,7 +80,8 @@ public void quickMethod(Vo vo){
     </form>
 ```  
 在页面的表单中提交这些数据，就可以获得Vo{userList=[User{id=111,name="xxx"},User{id=222,name="yyy"}]}这样的集合  
-+ 当使用ajax提交时，可以指定contextType为json形式，那么在方法参数位置使用@ReuqestBody可以直接接收集合而
++ 当使用ajax提交时，可以指定contextType为json形式，那么在方法参数位置使用@ReuqestBody可以直接接收集合而无需使用POJO进行包装  
+
 
 
 
