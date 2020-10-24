@@ -211,7 +211,8 @@ public void quickMethod(@PathVariable(value="id",required=true)int id){
 }
 ```  
 #### 自定义类型转换器  
-
++ Spring MVC默认已经提供了一些常用的类型转换器，例如客户端提交的字符串转换成int类型进行参数设置  
++ 但是不是所有的数据类型都提供了转换器，没有提供
 
 
 
