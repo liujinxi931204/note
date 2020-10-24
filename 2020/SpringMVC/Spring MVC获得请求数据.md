@@ -28,5 +28,9 @@ public class User {
 }
 
 
-
+@RequestMapping("/quick")
+@RequestBody
+public void quickMethod(User user) throw IO{
+    Systemt.out.println(user);
+}
 ```
