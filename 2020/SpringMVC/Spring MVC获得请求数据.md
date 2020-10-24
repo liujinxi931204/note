@@ -56,7 +56,13 @@ public class User{
     //get、set方法
 }
 
-public class 
+public class Vo {
+    private List<User> userList;
+}
+
+@RequestMapping("/quick")
+@ResquestBody
+public void quickMethod()
 ```
 
 
