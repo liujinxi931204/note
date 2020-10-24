@@ -168,6 +168,7 @@ public class UserController {
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 ```
+#### 参数绑定注解@requestParam  
 
 
 
