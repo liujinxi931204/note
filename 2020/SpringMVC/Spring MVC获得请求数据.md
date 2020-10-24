@@ -58,11 +58,17 @@ public class User{
 
 public class Vo {
     private List<User> userList;
+    //get、set、toString方法
 }
 
 @RequestMapping("/quick")
 @ResquestBody
-public void quickMethod()
+public void quickMethod(Vo vo){
+    System.out.println(vo);
+}
+```
+```jsp
+
 ```
 
 
