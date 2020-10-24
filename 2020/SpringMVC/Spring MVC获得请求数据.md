@@ -247,7 +247,7 @@ public class dateConverter implements Converter<String,Date> {
 ```  
 3. 在<annotion-driven>中引用转换器  
 ```xml
-
+<mvc:annotation-driven conversion-service="conversionServiceFactoryBean"/>
 ```
 
 
