@@ -7,3 +7,6 @@
 + 集合类型参数  
 ### 获得基本类型参数  
 Controller中的业务方法的参数名称与请求参数的name一致，参数值会自动映射匹配  
+```java
+@RequestMapping("/quick")
+```
