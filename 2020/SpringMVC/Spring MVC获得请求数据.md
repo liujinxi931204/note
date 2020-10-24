@@ -206,7 +206,9 @@ http://localhost:8080/quick/1
 ```java
 @RequestMapping("/quick/${id}")
 @ReponstBody
-public void quickMethod(@PathVariable(value="id",required=true)in)
+public void quickMethod(@PathVariable(value="id",required=true)int id){
+    System.out.println(id);
+}
 ```  
 
 
