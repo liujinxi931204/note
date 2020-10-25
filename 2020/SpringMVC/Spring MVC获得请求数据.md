@@ -268,7 +268,10 @@ public void quickMethod(@RequestHeader(value="User-Agent",required=false) String
 + required：是否必须携带此cookie  
 ```java
 @RequestMapping("/quick")
-@Reponse
+@ReponseBody
+public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String jsessionid){
+    System.out/pr
+}
 ```
 
 
