@@ -335,13 +335,14 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
     @ResponseBody
     public void quickMethod(String name, MultipartFile file) throws IOException {
        //这里的upload对应的是表单中的file的name，所以这里是"file"
-        String originalFilename = upload.getOriginalFilename();
+        String originalFilename = file.getOriginalFilename();
       //保存文件
-        upload.transferTo(new File("C:\\upload\\"+originalFilename));
+        file.transferTo(new File("C:\\upload\\"+originalFilename));
 
     }
 ```  
 #### 多文件上传  
+
 ```jsp
 <form action="${pageContext.request.contextPath}/quick" method="post" enctype="multipart/form-data">
     名称:<input type="text" name="name"><br>
@@ -355,9 +356,11 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
     @ResponseBody
     public void quickMethod(String name, MultipartFile file, MultipartFile file1) throws IOException {
        //这里的upload对应的是表单中的file的name，所以这里是"file"
-        String originalFilename = upload.getOriginalFilename();
+        String originalFilename = file.getOriginalFilename();
       //保存文件
-        upload.transferTo(new File("C:\\upload\\"+originalFilename));
+        file.transferTo(new File("C:\\upload\\"+originalFilename));
+        String originalFilename1 = file1.getOriginalFilename();
+        file1.transferTo(new File("C:\\upload\\"+originalFilename1));
 
     }
 ```
