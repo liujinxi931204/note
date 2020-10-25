@@ -286,7 +286,8 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
 </form>
 ```  
 ##### 文件上传原理  
-+ 当form表单项
++ 当form表单项修改为多部份表单时，request.getParameter()方法将失效  
++ enctype="application/x-www-form-urlencode"
 
 
 
