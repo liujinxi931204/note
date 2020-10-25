@@ -249,7 +249,10 @@ public class dateConverter implements Converter<String,Date> {
 ```xml
 <mvc:annotation-driven conversion-service="conversionServiceFactoryBean"/>
 ```
-
+#### 获得请求头  
+使用@RequestHeader可以获得请求头信息  
+@RequestHeader注解的属性如下：  
++ value
 
 
 
