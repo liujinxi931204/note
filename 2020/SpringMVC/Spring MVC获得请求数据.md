@@ -257,7 +257,7 @@ public class dateConverter implements Converter<String,Date> {
 ```java
 @RequestMapping("/quick")
 @ReponseBody
-public void quickMethod(){
+public void quickMethod(@RequestHeader("User-Agent") String userAgent) throws IOExcep{
     
 }
 ```
