@@ -257,7 +257,9 @@ public class dateConverter implements Converter<String,Date> {
 ```java
 @RequestMapping("/quick")
 @ReponseBody
-public void 
+public void quickMethod(){
+    
+}
 ```
 
 
