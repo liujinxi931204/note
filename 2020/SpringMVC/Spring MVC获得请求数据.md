@@ -336,6 +336,7 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
     public void quickMethod(String name, MultipartFile upload) throws IOException {
        //这里的upload对应的是表单中的file的name，所以这里是"upload"
         String originalFilename = upload.getOriginalFilename();
+      //保存文件
         upload.transferTo(new File("C:\\upload\\"+originalFilename));
 
     }
