@@ -257,10 +257,11 @@ public class dateConverter implements Converter<String,Date> {
 ```java
 @RequestMapping("/quick")
 @ReponseBody
-public void quickMethod(@RequestHeader("User-Agent") String userAgent) throws IOExcep{
-    
+public void quickMethod(@RequestHeader(value="User-Agent",required=false) String userAgent) throws IOException{
+    System.sout.println(userAgent);
 }
-```
+```  
+ ****
 
 
 
