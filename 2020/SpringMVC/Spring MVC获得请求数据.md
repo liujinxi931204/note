@@ -254,7 +254,11 @@ public class dateConverter implements Converter<String,Date> {
 @RequestHeader注解的属性如下：  
 + value：请求头的名称  
 + required：是否必须携带此请求头  
-
+```java
+@RequestMapping("/quick")
+@ReponseBody
+public void 
+```
 
 
 
