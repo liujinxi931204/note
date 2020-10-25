@@ -333,8 +333,8 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
 ```java
 @RequestMapping("/quick")
     @ResponseBody
-    public void quickMethod(String name, MultipartFile upload) throws IOException {
-       //这里的upload对应的是表单中的file的name，所以这里是"upload"
+    public void quickMethod(String name, MultipartFile file) throws IOException {
+       //这里的upload对应的是表单中的file的name，所以这里是"file"
         String originalFilename = upload.getOriginalFilename();
       //保存文件
         upload.transferTo(new File("C:\\upload\\"+originalFilename));
@@ -346,10 +346,21 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
 <form action="${pageContext.request.contextPath}/quick" method="post" enctype="multipart/form-data">
     名称:<input type="text" name="name"><br>
     文件:<input type="file" name="file"><br>
-
+    文件:<input type="file1" name="file"><br>
     <input type="sumbit" value="提交"><br>
 </form>
-```  
+```    
+```java
+@RequestMapping("/quick")
+    @ResponseBody
+    public void quickMethod(String name, MultipartFile file, MultipartFile file1) throws IOException {
+       //这里的upload对应的是表单中的file的name，所以这里是"file"
+        String originalFilename = upload.getOriginalFilename();
+      //保存文件
+        upload.transferTo(new File("C:\\upload\\"+originalFilename));
+
+    }
+```
 
 
 
