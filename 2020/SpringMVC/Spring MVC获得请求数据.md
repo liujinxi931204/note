@@ -342,7 +342,7 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
     }
 ```  
 #### 多文件上传  
-多文件上传将单文件上传表单项、上传文件代码多写一份即可  
+多文件上传将单文件上传表单项、上传文件代码多写一份即可或者使用数组接收上传的文件  
 ```jsp
 <form action="${pageContext.request.contextPath}/quick" method="post" enctype="multipart/form-data">
     名称:<input type="text" name="name"><br>
