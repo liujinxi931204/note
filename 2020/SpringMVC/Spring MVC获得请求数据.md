@@ -277,7 +277,11 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
 ##### 文件上传客户端三要素  
 + **表单项type="file"**  
 + **表单的提交方式是post**  
-+ **表单的enctype属性是多部份表单形式，以及**
++ **表单的enctype属性是多部份表单形式，以及enctype="multipart/form-data"**  
+```jsp
+<form action=>
+</form>
+```
 
 
 
