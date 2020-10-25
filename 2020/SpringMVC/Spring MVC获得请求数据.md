@@ -252,7 +252,9 @@ public class dateConverter implements Converter<String,Date> {
 #### 获得请求头  
 使用@RequestHeader可以获得请求头信息  
 @RequestHeader注解的属性如下：  
-+ value
++ value：请求头的名称  
++ required：是否必须携带此请求头  
+
 
 
 
