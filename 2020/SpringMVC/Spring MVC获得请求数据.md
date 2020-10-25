@@ -340,7 +340,9 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
         upload.transferTo(new File("C:\\upload\\"+originalFilename));
 
     }
-```
+```  
+#### 多文件上传  
+
 
 
 
