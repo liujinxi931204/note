@@ -304,7 +304,20 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
 + 导入fileupload和io坐标  
 + 配置文件上传解析器  
 + 编写文件上传代码  
-
+  
+1. 导入fileupload和io的坐标 
+```xml
+<dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.3.3</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.4</version>
+    </dependency>
+```
 
 
 
