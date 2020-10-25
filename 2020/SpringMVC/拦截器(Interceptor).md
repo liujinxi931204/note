@@ -50,4 +50,16 @@ public class myInterceptor implements HandlerInterceptor {
     }
 }
 
+```  
++ **配置拦截器**  
+在sping-mvc.xml中配置  
+```xml
+<!--    配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+<!--
+            <mvc:mapping path="/**"/>
+            <bean class="com.sogou.Intercepor.myInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 ```
