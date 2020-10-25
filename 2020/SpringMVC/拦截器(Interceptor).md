@@ -6,5 +6,6 @@ Spring MVC的拦截器类似于servlet开发中的过滤器Filter，用于对处
 #### 拦截器和过滤器的区别  
 |区别|过滤器|拦截器|
 |-|-|-|
-|使用范围|是servlet规范中的一部分，任何java web工厂都可以使用||是spring mvc框架自己的，只有使用了Spring MVC框架的工厂才能使用
-|拦截范围|在url-pattern中配置了/*之后，可以对||
+|使用范围|是servlet规范中的一部分，任何java web工厂都可以使用|是spring mvc框架自己的，只有使用了Spring MVC框架的工厂才能使用|
+|拦截范围|在url-pattern中配置了/*之后，可以对所有要访问的资源拦截|只会拦截访问的控制器方法，如果访问的是jsp，html，css，image或者js是不会进行拦截的|  
+
