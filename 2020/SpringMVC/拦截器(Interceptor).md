@@ -57,9 +57,10 @@ public class myInterceptor implements HandlerInterceptor {
 <!--    配置拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>
-<!--
+<!--对哪些资源执行拦截操作，这里是指对所有的资源-->
             <mvc:mapping path="/**"/>
             <bean class="com.sogou.Intercepor.myInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
-```
+```  
+
