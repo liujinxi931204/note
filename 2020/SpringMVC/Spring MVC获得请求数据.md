@@ -288,7 +288,8 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
 ##### 文件上传原理  
 + 当form表单项修改为多部份表单时，request.getParameter()方法将失效  
 + enctype="application/x-www-form-urlencode"时，form表单的正文内容格式是key=value&key=value...的形式  
-+ enctype="mutlipart/form-data"
++ enctype="mutlipart/form-data"时，请求正文内容就变成多部份形式：  
+
 
 
 
