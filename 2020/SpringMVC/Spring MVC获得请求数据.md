@@ -261,7 +261,9 @@ public void quickMethod(@RequestHeader(value="User-Agent",required=false) String
     System.sout.println(userAgent);
 }
 ```  
- ****
+**@CookieValue**  
+使用@CookieValue可以获得指定Cookie的值  
+@Cookie
 
 
 
