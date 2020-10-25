@@ -33,6 +33,7 @@ public class myInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("perHandler...");
         return false;
+
     }
 
 //    在目标方法执行之后，视图对象返回之前执行
