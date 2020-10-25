@@ -13,4 +13,41 @@ Spring MVC的拦截器类似于servlet开发中的过滤器Filter，用于对处
 1. 创建拦截器类实现HandlerIntercetor接口  
 2. 配置拦截器  
 3. 测试拦截器效果  
++ **创建拦截器类**  
+```java
+package com.sogou.Intercepor;
 
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-10-25 21:56
+ **/
+public class myInterceptor implements HandlerInterceptor {
+//    在目标方法之前执行
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("perHandler...");
+        return false;
+    }
+
+//    在目标方法执行之后，视图对象返回之前执行
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+        System.out.println("postHandler...");
+    }
+
+//    在流程都执行完毕后执行
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
+        System.out.println("afterHandler...");
+    }
+}
+
+```
