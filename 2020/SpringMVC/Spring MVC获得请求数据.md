@@ -263,7 +263,13 @@ public void quickMethod(@RequestHeader(value="User-Agent",required=false) String
 ```  
 **@CookieValue**  
 使用@CookieValue可以获得指定Cookie的值  
-@Cookie
+@CookieValue注解的属性如下：  
++ value：指定cookie的名称  
++ required：是否必须携带此cookie  
+```java
+@RequestMapping("/quick")
+@Reponse
+```
 
 
 
