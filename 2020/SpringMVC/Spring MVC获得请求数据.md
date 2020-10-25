@@ -289,7 +289,17 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
 + 当form表单项修改为多部份表单时，request.getParameter()方法将失效  
 + enctype="application/x-www-form-urlencode"时，form表单的正文内容格式是key=value&key=value...的形式  
 + enctype="mutlipart/form-data"时，请求正文内容就变成多部份形式：  
-
+```shell
+   Content-Type: multipart/form-data; boundary=AaB03x
+   --AaB03x
+   Content-Disposition: form-data; name="submit-name"
+   Larry
+   --AaB03x
+   Content-Disposition: form-data; name="files"; filename="file1.txt"
+   Content-Type: text/plain
+   ... contents of file1.txt ...
+   --AaB03x--
+```
 
 
 
