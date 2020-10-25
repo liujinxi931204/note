@@ -329,7 +329,17 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 ```
+3. 编写文件上传代码  
+```java
+@RequestMapping("/quick")
+    @ResponseBody
+    public void quickMethod(String name, MultipartFile upload) throws IOException {
+       //这里的upload对应的是
+        String originalFilename = upload.getOriginalFilename();
+        upload.transferTo(new File("C:\\upload\\"+originalFilename));
 
+    }
+```
 
 
 
