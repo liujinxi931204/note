@@ -65,4 +65,6 @@ public class myInterceptor implements HandlerInterceptor {
         </mvc:interceptor>
     </mvc:interceptors>
 ```  
+多个拦截器组成拦截器链，执行顺序由配置的顺序决定  
+
 
