@@ -272,7 +272,9 @@ public void quickMethod(@RequestHeader(value="User-Agent",required=false) String
 public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String jsessionid){
     System.out.println(jsessionid);
 }
-```
+```  
+#### 文件上传  
+
 
 
 
