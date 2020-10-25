@@ -280,8 +280,9 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
 + **表单的enctype属性是多部份表单形式，以及enctype="multipart/form-data"**  
 ```jsp
 <form action="${pageContext.request.contextPath}/quick" method="post" enctype="multipart/form-data">
-    名称：<>
-   
+    名称:<input type="text" name="name"/><br/>
+    文件:<input type="file" name="file"/><br/>
+    <input type="sumbit">
 </form>
 ```
 
