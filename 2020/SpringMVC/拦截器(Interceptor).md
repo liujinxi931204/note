@@ -33,7 +33,8 @@ public class myInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("perHandler...");
         return false;
-
+//这里如果返回false，则意味着被拦截，后面的方法都不执行；
+//这里如果返回true，则后面的方法会继续执行
     }
 
 //    在目标方法执行之后，视图对象返回之前执行
