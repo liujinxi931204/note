@@ -279,7 +279,9 @@ public void quickMethod(@CookieValue(value="JSESSIONID",required=false)String js
 + **表单的提交方式是post**  
 + **表单的enctype属性是多部份表单形式，以及enctype="multipart/form-data"**  
 ```jsp
-<form action=>
+<form action="${pageContext.request.contextPath}/quick" method="post" enctype="multipart/form-data">
+    名称：<>
+   
 </form>
 ```
 
