@@ -110,5 +110,20 @@ IDEA创建Maven web工程，pom.xml中添加相关依赖
 ```  
 如果源代码中还有*.xml、*.propertis、*.tld等配置文件，还需要再pom.xml文件中配置resources标签  
 ```xml
-
+<build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+          <include>**/*.propertis</include>
+          <include>**/*.tld</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
+  </build>
 ```
