@@ -406,6 +406,7 @@ import java.util.List;
  * author liujinxi@sogou-inc.com
  * date 2020-10-27 11:37
  **/
+@Repository("categoryMapper")
 public interface getCategoryMapper {
 
     List<Category> findAllCategory();
@@ -440,6 +441,7 @@ import java.util.List;
  * author liujinxi@sogou-inc.com
  * date 2020-10-27 14:10
  **/
+@Repository("productMapper")
 public interface getProductMapper {
 
     List<Product> findAllProduct();
@@ -462,6 +464,11 @@ public interface getProductMapper {
     </select>
 </mapper>
 ```  
+#### 定义service接口和impl接口实现类  
+****
+```java
+
+```
 
 
 
