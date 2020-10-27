@@ -248,7 +248,7 @@ jdbc.password=123456
 
 </beans>
 ```  
-#### 配置Spring
+#### 配置Spring MVC的配置文件
 **Spring MVC的DispatcherServlet配置文件spring-mvc.xml**  
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -282,5 +282,6 @@ jdbc.password=123456
 </beans>
 ```  
 **整合SSM，不再需要mybatis-config.xml核心配置文件**  
+
 
 
