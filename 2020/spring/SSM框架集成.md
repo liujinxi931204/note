@@ -408,7 +408,38 @@ public interface getCategoryMapper {
 }
 ```  
 ```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sogou.mapper.getCategoryMapper">
+    <select id="findAllCategory" resultType="com.sogou.pojo.Category">
+    select * from category
+  </select>
 
-```
+    <select id="findCategoryById" resultType="com.sogou.pojo.Category" parameterType="int">
+        select * from category where id = ${id}
+    </select>
+</mapper>
+```  
+**getProductMapper**  
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sogou.mapper.getProductMapper">
+    <select id="findAllProduct" resultType="com.sogou.pojo.Product">
+    select * from product
+  </select>
+
+    <select id="findProductById" resultType="com.sogou.pojo.Product" parameterType="int">
+        select * from product where id = ${id}
+    </select>
+</mapper>
+```  
+```xml
+
+
 
 
