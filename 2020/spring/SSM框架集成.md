@@ -225,8 +225,10 @@ jdbc.password=123456
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 <!--        注入数据库连接池-->
         <property name="dataSource" ref="dataSource"/>
-<!--        扫描sql配置文件：mapper需要的xml文件-->
-        <property name="mapperLocations" value="com/sogou/mapper/*.xml"/>
+<!--        扫描sql配置文件：mapper需要的xml文件
+            这里mapper映射的xml文件路径如果和mapper.java定义在统一目录下，可以不用
+-->
+        
     </bean>
 
 <!--    扫描dao接口包，动态实现dao接口，注入到spring容器-->
