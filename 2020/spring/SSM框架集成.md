@@ -184,6 +184,7 @@ IDEA创建Maven web工程，pom.xml中添加相关依赖
   </filter-mapping>
 </web-app>
 ```  
+#### 配置Spring的配置文件，applicationContext.xml  
 配置applicationContext.xml,主要需要配置注解扫描、数据库连接池、SqlSessionFactory bean对象、事务管理器和基于注解的声明式事务  
 **数据库配置文件**  
 ```properties
@@ -246,7 +247,8 @@ jdbc.password=123456
     <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
 
 </beans>
-```
+```  
+#### 配置Spring
 **Spring MVC的DispatcherServlet配置文件spring-mvc.xml**  
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
