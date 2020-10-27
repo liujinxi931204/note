@@ -226,7 +226,9 @@ jdbc.password=123456
 <!--        注入数据库连接池-->
         <property name="dataSource" ref="dataSource"/>
 <!--        扫描sql配置文件：mapper需要的xml文件
-            这里mapper映射的xml文件路径如果和mapper.java定义在统一目录下，可以不用
+            这里mapper映射的xml文件路径如果和mapper.java定义在同一目录下，可以不用设置
+            如果mapper映射的xml文件路径和mapper.java没有定义在同一目录下，则需要设置
+
 -->
         
     </bean>
