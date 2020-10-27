@@ -282,6 +282,50 @@ jdbc.password=123456
 </beans>
 ```  
 **整合SSM，不再需要mybatis-config.xml核心配置文件**  
+#### 对应实现类  
+**Cateogry**  
+```java
+package com.sogou.pojo;
+
+import org.springframework.stereotype.Component;
+
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-10-27 11:34
+ **/
+
+@Component("category")
+public class Category {
+    private int id;
+    private String name;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
+```  
+**Product**  
 
 
 
