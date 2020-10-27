@@ -387,6 +387,28 @@ public class Product {
     }
 }
 ```  
-#### 接口
+#### 接口和对应的xml映射文件  
+**getCategoryMapper**
+```java
+package com.sogou.mapper;
+
+import com.sogou.pojo.Category;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-10-27 11:37
+ **/
+public interface getCategoryMapper {
+
+    List<Category> findAllCategory();
+    Category findCategoryById(@Param("id")int id);
+}
+```  
+```xml
+
+```
 
 
