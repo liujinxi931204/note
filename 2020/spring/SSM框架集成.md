@@ -423,6 +423,9 @@ public interface getCategoryMapper {
 </mapper>
 ```  
 **getProductMapper**  
+```java
+
+```  
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
@@ -437,8 +440,7 @@ public interface getCategoryMapper {
         select * from product where id = ${id}
     </select>
 </mapper>
-```  
-```xml
+```
 
 
 
