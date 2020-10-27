@@ -142,6 +142,10 @@ IDEA创建Maven web工程，pom.xml中添加相关依赖
          version="3.0">
   <display-name>Archetype Created Web Application</display-name>
 
+<!--  配置spring的监听器，默认只加载WEB-INF目录下的applicationContext.xml配置文件-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
 <!--  web服务器启动时加载src/resources/下的applicationContext.xml配置文件-->
   <context-param>
     <param-name>contextConfigLocation</param-name>
@@ -182,7 +186,10 @@ IDEA创建Maven web工程，pom.xml中添加相关依赖
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
+
 </web-app>
+
 ```  
 #### 配置Spring的配置文件，applicationContext.xml  
 配置applicationContext.xml,主要需要配置注解扫描、数据库连接池、SqlSessionFactory bean对象、事务管理器和基于注解的声明式事务  
