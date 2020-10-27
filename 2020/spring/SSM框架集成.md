@@ -185,10 +185,14 @@ IDEA创建Maven web工程，pom.xml中添加相关依赖
 </web-app>
 ```  
 配置applicationContext.xml,主要需要配置注解扫描、数据库连接池、SqlSessionFactory bean对象、事务管理器和基于注解的声明式事务  
-**数据库配置文件**
+**数据库配置文件**  
 ```properties
-
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://10.160.58.128:3306/user_db?charsetEncoding=utf-8
+jdbc.username=root
+jdbc.password=123456
 ```  
+**Spring的配置文件applicationContext.xml**
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
