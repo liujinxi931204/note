@@ -247,8 +247,36 @@ jdbc.password=123456
 
 </beans>
 ```
-**Spring MVC的D**  
+**Spring MVC的DispatcherServlet配置文件spring-mvc.xml**  
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+<!--    扫描controller相关的注解-->
+    <context:component-scan base-package="com.sogou.controller"/>
+<!--    开启Spring MVC注解模式-->
+    <mvc:annotation-driven/>
+
+<!--    配置访问静态资源，这里设置访问jQuery-->
+    <mvc:resources mapping="/js/**" location="/js/"/>
+<!--    配置访问静态资源，这里设置访问jsp-->
+    <mvc:resources mapping="/jsp/**" location="/jsp/"/>
+
+<!--    配置jsp，显示ViewResolver-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+</beans>
 ```
 
