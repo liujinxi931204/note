@@ -184,5 +184,58 @@ IDEA创建Maven web工程，pom.xml中添加相关依赖
   </filter-mapping>
 </web-app>
 ```  
-配置applicationContext.xml,其中需要配置数据库连接池、
+配置applicationContext.xml,其中需要配置  
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+">
+
+<!--配置注解扫描-->
+    <context:component-scan base-package="com.sogou.service,com.sogou.pojo"/>
+    <context:property-placeholder location="classpath:db.properties"/>
+
+<!--    数据库连接池-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+<!--    配置SqlSessionFactory对象-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!--        注入数据库连接池-->
+        <property name="dataSource" ref="dataSource"/>
+<!--        扫描sql配置文件：mapper需要的xml文件-->
+        <property name="mapperLocations" value="com/sogou/mapper/*.xml"/>
+    </bean>
+
+<!--    扫描dao接口包，动态实现dao接口，注入到spring容器-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+<!--        注入sqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+<!--        给出需要扫描dao接口包-->
+        <property name="basePackage" value="com.sogou.mapper"/>
+    </bean>
+
+<!--    配置事务管理器-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+<!--        注入数据连接池-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+<!--    配置基于注解的声明式事务-->
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
+
+</beans>
+```
 
