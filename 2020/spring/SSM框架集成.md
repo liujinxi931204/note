@@ -184,7 +184,11 @@ IDEA创建Maven web工程，pom.xml中添加相关依赖
   </filter-mapping>
 </web-app>
 ```  
-配置applicationContext.xml,主要需要配置注解扫描、数据库连接池、  
+配置applicationContext.xml,主要需要配置注解扫描、数据库连接池、SqlSessionFactory bean对象、事务管理器和基于注解的声明式事务  
+**数据库配置文件**
+```properties
+
+```  
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
