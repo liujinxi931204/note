@@ -278,5 +278,6 @@ jdbc.password=123456
     </bean>
 
 </beans>
-```
+```  
+**整合SSM，**
 
