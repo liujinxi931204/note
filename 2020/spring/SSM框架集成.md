@@ -279,5 +279,6 @@ jdbc.password=123456
 
 </beans>
 ```  
-**整合SSM，不再需要mybatis-config.xml核心配置文件**
+**整合SSM，不再需要mybatis-config.xml核心配置文件**  
+
 
