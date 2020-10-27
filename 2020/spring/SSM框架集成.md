@@ -129,4 +129,5 @@ IDEA创建Maven web工程，pom.xml中添加相关依赖
 ```  
 #### 配置web.xml  
 在web.xml中配置Spring MVC、Spring、字符编码过滤器、加载静态资源  
+##### 
 
