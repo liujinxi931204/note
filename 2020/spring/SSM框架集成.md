@@ -183,5 +183,6 @@ IDEA创建Maven web工程，pom.xml中添加相关依赖
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 </web-app>
-```
+```  
+配置applicationContext.xml,其中需要配置数据库连接池、
 
