@@ -618,19 +618,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/Category")
 public class CategoryController {
 
-    @Qualifier("getCategory")
     @Autowired
-    private getCategoryImpl getCategoryImpl;
+    private getCategoryDao getCategoryDao;
 
     @RequestMapping("/getCategory/{id}")
     public String getCategoryById(@PathVariable("id")int id,Model model){
-        Category category = getCategoryImpl.getCategoryById(id);
+        Category category = getCategoryDao.getCategoryById(id);
         model.addAttribute("id",category.getId());
         model.addAttribute("name",category.getName());
         return "showCategory";
     }
 }
-
 ```
 **productController**  
 ```java
@@ -638,6 +636,7 @@ package com.sogou.controller;
 
 import com.sogou.impl.getProductImpl;
 import com.sogou.pojo.Product;
+import com.sogou.service.getProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -655,14 +654,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProductController {
 
     @Autowired
-    @Qualifier("getProduct")
-    private getProductImpl getProductImpl;
-
+    private getProductDao getProductDao;
 
     @RequestMapping("/getProduct/{id}")
     public String getProductById(@PathVariable("id")int id, Model model){
 
-        Product product = getProductImpl.getProductById(id);
+        Product product = getProductDao.getProductById(id);
         model.addAttribute("id",product.getId());
         model.addAttribute("name",product.getName());
         model.addAttribute("price",product.getPrice());
