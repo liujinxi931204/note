@@ -93,6 +93,11 @@ IDEA创建Maven web工程，pom.xml中添加相关依赖
       <artifactId>c3p0</artifactId>
       <version>0.9.5.2</version>
     </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.1.10</version>
+    </dependency>
 <!--     JSTL-->
     <dependency>
       <groupId>jstl</groupId>
