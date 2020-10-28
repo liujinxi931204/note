@@ -221,19 +221,31 @@ jdbc.password=123456
     <context:property-placeholder location="classpath:db.properties"/>
 
 <!--    数据库连接池-->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="driverClass" value="${jdbc.driver}"/>
-        <property name="jdbcUrl" value="${jdbc.url}"/>
-        <property name="user" value="${jdbc.username}"/>
+<!--    druid数据库连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
     </bean>
+<!--    C3P0数据库连接池-->
+<!--    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+<!--        <property name="driverClass" value="${jdbc.driver}"/>-->
+<!--        <property name="jdbcUrl" value="${jdbc.url}"/>-->
+<!--        <property name="user" value="${jdbc.username}"/>-->
+<!--        <property name="password" value="${jdbc.password}"/>-->
+<!--    </bean>-->
 
 <!--    配置SqlSessionFactory对象-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 <!--        注入数据库连接池-->
         <property name="dataSource" ref="dataSource"/>
-<!--        扫描sql配置文件：mapper需要的xml文件-->
-<!--        <property name="mapperLocations" value="/com/sogou/mapper/*.xml"/>-->
+<!--        扫描sql配置文件：mapper需要的xml文件
+            这里其实可以不用配置mapperLocations，
+            如果mapper和mapper.xml在同一个目录下，在扫描mapper的时候会自动扫描mapper.xml
+            如果mapper和mapper.xml不在同一个目录下，则需要配置mapper.xml的路径
+-->
+        <property name="mapperLocations" value="classpath*:com/sogou/mapper/**/*.xml"/>
     </bean>
 
 <!--    扫描dao接口包，动态实现dao接口，注入到spring容器-->
