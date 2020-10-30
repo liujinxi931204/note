@@ -16,4 +16,13 @@ animal : pets
 hash : {name : Steve, foo : bar }
 ```  
 #### 数组  
-一组连词
+一组连词先开头的行，构成一个数组：  
+```yml
+- cat
+- dog
+- goldfish
+```  
+数据结构的子成员是一个数组，则可以在该项下面缩进一个空格  
+```yml
+- 
+```
