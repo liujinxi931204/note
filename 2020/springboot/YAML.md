@@ -13,5 +13,7 @@ YAML语言的设计目标，就是方便人类读写。它实质上是一种通�
 对象使用一组键值对表示，使用冒号结构  
 ```yml
 animal : pets
-hash :{name:}
-```
+hash : {name : Steve, foo : bar }
+```  
+#### 数组  
+一组连词
