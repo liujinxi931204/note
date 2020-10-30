@@ -31,5 +31,7 @@ hash : {name : Steve, foo : bar }
 ```  
 数组也可以采用行内表示法  
 ```yml
-{animals : ['cat']}
+{animals : ['cat', 'dog']}
 ```
+#### 字符串  
+正常情况下字符串不用写引号，字符串内有空格或者
