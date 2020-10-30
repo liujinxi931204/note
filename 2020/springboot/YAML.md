@@ -52,7 +52,8 @@ languages :
  - Perl
  - Python
 websites :  
- YAML ： 
-
-
+ YAML : yaml.org
+ Ruby : ruby.org
+ Python : python.org
+ Perl : use.per.org 
 ```
