@@ -45,4 +45,14 @@ str : '内容 : 字符串'
 parent : ~
 ```  
 #### 复合结构  
-对象和数组可以结合使用，
+对象和数组可以结合使用，形成复合结构  
+```yml
+languages : 
+ - Ruby
+ - Perl
+ - Python
+websites :  
+ YAML ： 
+
+
+```
