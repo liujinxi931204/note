@@ -38,7 +38,9 @@ off: 数据的初始偏移量
 len: 读取的最大的字节数  
 ##### 返回  
 如果因为已经到达流的末尾而不再有数据可用，则返回-1  
-##### O
+##### FileOutputStream输出字节流    
+write(int b)  
+write(byte[] b,)  
   
 
 
