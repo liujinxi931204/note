@@ -40,7 +40,11 @@ len: 读取的最大的字节数
 如果因为已经到达流的末尾而不再有数据可用，则返回-1  
 ##### FileOutputStream输出字节流    
 write(int b)  
-write(byte[] b,)  
+write(byte[] b,int off,int len)  
+##### 关闭流  
+close()  
+使用完流以后应该关闭相应的流，否则会占用一定的资源  
+  
   
 
 
