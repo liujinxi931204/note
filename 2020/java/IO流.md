@@ -75,7 +75,10 @@ close()：关闭流并释放资源
 #### InputStreamReader和OutputStreamWriter  
 ##### InputStreamReader将字节流转换为字符流，可以使用指定的charset读取字节并将其解码为字符  
 ##### 常用方法  
-
+InputStreamReader(InputStream in)：创建一个使用默认字符集的InputStreamReader  
+InputStreamReader(InputStream in, Charset cs):创建使用给定字符集的 InputStreamReader
+InputStreamReader(InputStream in, CharsetDecoder dec):创建使用给定字符集解码器的 InputStreamReader。
+InputStreamReader(InputStream in, String charsetName)   //创建使用指定字符集的 InputStreamReader。
 
 
   
