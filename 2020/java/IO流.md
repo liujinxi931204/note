@@ -19,4 +19,7 @@ parent指定路径(父目录),也可以是File类对象，child中也可以加�
 + exists(): 判断文件或文件夹是否存在    
 ### IO流的分类  
 根据处理数据类型的不同分为：字符流和字节流  
-根据
+根据数据流向方向的不同分为：输入流和输出流  
+从流的角色划分：
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/03/1604396729231-1604396729233.png)  
+
