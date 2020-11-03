@@ -55,7 +55,8 @@ FileWriter是文件字符输出流，主要将字符输出到指定的打开的�
 **FileWriter、FileReader与FileOutputStream、FileInputStream两个类的操作方法基本相同，若操作的文件不是文本文件，建议使用FileOutputStream、FileInputStream**  
 #### BufferedReader和BufferedWriter  
 ##### BufferedReader  
-能够为字符输入流提供缓冲区，可以提高许多IO的处理速度
+能够为字符输入流提供缓冲区，可以提高许多IO的处理速度  
+
   
 
 
