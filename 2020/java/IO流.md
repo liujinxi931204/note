@@ -11,4 +11,5 @@
 + File(String parent,String child)  
 parent指定路径(父目录),也可以是File类对象，child中也可以加入路径层级  
 #### File类常用方法  
-delete()
++ createNewFile()创建文件  
++ delete()
