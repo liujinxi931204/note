@@ -34,7 +34,10 @@ read(byte[] b)
 read(byte[] b,int off,int len)  
 ##### 参数 
 b: 存储读入数据的缓冲区  
-off: 将
+off: 数据的初始偏移量  
+len: 读取的最大的字节数  
+返回  
+
   
 
 
