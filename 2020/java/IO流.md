@@ -94,7 +94,9 @@ fulsh():刷新该流的缓冲
 write(int c)：写入单个字符  
 write(char[] cr,int off,int len):写入字符数组的某一部分  
 write(String str,int off,int len):写入字符串的某一部分  
-close():关闭流并释放资源 
+close():关闭流并释放资源  
+**如果需要指定编码的格式，就需要使用InputStreamReader和OutputStreamWriter**  
+**使用Bufferread**
 
   
 
