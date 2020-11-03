@@ -84,7 +84,9 @@ close()；关闭流并释放资源
 read():读取单个字符  
 read(char[] cr,int off,int len):将字符读入数组  
 ##### OutputStreamWriter  
-将输出的字符流转化为字节流，可使用指定的charset将要写入流中的字符编码成字节
+将输出的字符流转化为字节流，可使用指定的charset将要写入流中的字符编码成字节  
+##### 常用方法  
+
 
   
 
