@@ -11,6 +11,6 @@
 + File(String parent,String child)  
 parent指定路径(父目录),也可以是File类对象，child中也可以加入路径层级  
 #### File类常用方法  
-+ createNewFile()创建文件  
-+ delete()删除文件，如果删除的是文件夹，则文件必须为空；如果要删除一个非空的文件夹，需要删除该文件夹下的所有文件和文件夹  
-+ mkdir()和mkdirs()
++ createNewFile(): 创建文件  
++ delete(): 删除文件，如果删除的是文件夹，则文件必须为空；如果要删除一个非空的文件夹，需要删除该文件夹下的所有文件和文件夹  
++ mkdir()和mkdirs(): 
