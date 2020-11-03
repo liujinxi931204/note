@@ -46,7 +46,8 @@ close()
 使用完流以后应该关闭相应的流，否则会占用一定的资源  
 #### BufferedInputStream和BufferedOutputStream  
 这两个是缓冲流，也是处理流，其构造方法需要接收节点流，即FileInputStram和FileOutputStream。这两个流可以使用缓冲区，不是每次和文件的操作都是实际的操作  
-#### 
+#### FileReader和FileWriter  
+##### 
   
 
 
