@@ -73,7 +73,9 @@ newLine()：换行
 flush()：将缓存的内容刷入文件  
 close()：关闭流并释放资源  
 #### InputStreamReader和OutputStreamWriter  
-##### InputStreamReader将字节流转换为字符流，
+##### InputStreamReader将字节流转换为字符流，可以使用指定的charset读取字节并将其解码为字符  
+##### 常用方法  
+
 
 
   
