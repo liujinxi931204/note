@@ -66,7 +66,8 @@ close():关闭该流并释放资源
 #####BufferedWriter  
 能够为其他的字符输出流提供缓冲区，提高效率  
 ##### 常用方法  
-
+write(int c)  
+write(char[] cbuff,int off,int len)
 
   
 
