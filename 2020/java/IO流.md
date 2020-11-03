@@ -44,7 +44,7 @@ write(byte[] b,int off,int len)
 ##### 关闭流  
 close()  
 使用完流以后应该关闭相应的流，否则会占用一定的资源  
-  
+#### Buffer
   
 
 
