@@ -32,6 +32,9 @@ FileInputStream和FileOutputStream是两个常用的文件字节输入输出流�
 read()  
 read(byte[] b)  
 read(byte[] b,int off,int len)  
+##### 参数 
+b: 存储读入数据的缓冲区  
+off: 将
   
 
 
