@@ -92,7 +92,9 @@ OutputStreamWriter(OutputStream out)：创建使用默认字符编码的 OutputS
 OutputStreamWriter(OutputStream out, CharsetEncoder enc)：创建使用给定字符集编码器的 OutputStreamWriter。  
 fulsh():刷新该流的缓冲  
 write(int c)：写入单个字符  
-write(char[] cr,int off,int len):
+write(char[] cr,int off,int len):写入字符数组的某一部分  
+write(String str,int off,int len):写入字符串的某一部分  
+close():关闭流并释放资源 
 
   
 
