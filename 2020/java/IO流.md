@@ -73,7 +73,7 @@ newLine()：换行
 flush()：将缓存的内容刷入文件  
 close()：关闭流并释放资源  
 #### InputStreamReader和OutputStreamWriter  
-
+##### InputStreamReader将字节流转换为字符流，
 
 
   
