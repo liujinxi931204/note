@@ -56,7 +56,7 @@ FileWriter是文件字符输出流，主要将字符输出到指定的打开的�
 #### BufferedReader和BufferedWriter  
 ##### BufferedReader  
 能够为字符输入流提供缓冲区，可以提高许多IO的处理速度  
-###### 常用方法  
+##### 常用方法  
 read()  
 read(char[],int off,int len)  
 read(cahr[])  
@@ -71,7 +71,8 @@ write(char[] cbuff,int off,int len)：将cbuff中从off开始到len结束的字�
 write(String str,int off,int len)：将str中off开头len结束的字符写入  
 newLine()：换行  
 flush()：将缓存的内容刷入文件  
-close()：
+close()：关闭流并释放资源  
+
 
   
 
