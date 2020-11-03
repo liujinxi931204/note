@@ -27,7 +27,7 @@ parent指定路径(父目录),也可以是File类对象，child中也可以加�
 ### IO流的4大基类  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/03/1604396729231-1604396729233.png)  
 #### FileInputStream和FileOutputStream  
-FileInputStream和FileOutputStream
+FileInputStream和FileOutputStream是两个常用的文件字节输入输出流，主要用于对文件以字节的方式来处理、如音乐、
 
 
 
