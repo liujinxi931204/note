@@ -48,7 +48,8 @@ close()
 这两个是缓冲流，也是处理流，其构造方法需要接收节点流，即FileInputStram和FileOutputStream。这两个流可以使用缓冲区，不是每次和文件的操作都是实际的操作  
 #### FileReader和FileWriter  
 ##### FileReader类  
-FileReader以字符作为单位读取文本文件，能够以字符流的形式读取文件内容，除此之外，与F
+FileReader以字符作为单位读取文本文件，能够以字符流的形式读取文件内容，除此之外，与FileInoutStream没有太多的区别  
+
   
 
 
