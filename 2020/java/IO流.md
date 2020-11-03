@@ -50,7 +50,7 @@ close()
 ##### FileReader类  
 FileReader以字符作为单位读取文本文件，能够以字符流的形式读取文件内容，除此之外，与FileInoutStream没有太多的区别  
 ##### FileWriter类  
-
+FileWriter是文件字符输出流，主要将字符输出到指定的
   
 
 
