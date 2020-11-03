@@ -6,4 +6,6 @@
 #### File类的构造函数  
 + File(String pathname)  
 通过将给定路径名字符串转化为抽象路径来创建一个新的File实例  
-+ File(fI)
++ File(File parent,String child)  
+根据parent抽象路径和child路径名字符串创建出一个新File实例  
++ File(String parent,String child)  
