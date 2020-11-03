@@ -66,8 +66,9 @@ close():关闭该流并释放资源
 #####BufferedWriter  
 能够为其他的字符输出流提供缓冲区，提高效率  
 ##### 常用方法  
-write(int c)  
-write(char[] cbuff,int off,int len)
+write(int c)：写入单个字符  
+write(char[] cbuff,int off,int len)：将cbuff中从off开始到len结束的字符写入  
+write(String str,int off,int len)：将str中off开头len结束的
 
   
 
