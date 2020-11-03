@@ -73,7 +73,8 @@ newLine()：换行
 flush()：将缓存的内容刷入文件  
 close()：关闭流并释放资源  
 #### InputStreamReader和OutputStreamWriter  
-##### InputStreamReader将字节流转换为字符流，可以使用指定的charset读取字节并将其解码为字符  
+##### InputStreamReader  
+将字节流转换为字符流，可以使用指定的charset读取字节并将其解码为字符  
 ##### 常用方法  
 InputStreamReader(InputStream in)：创建一个使用默认字符集的InputStreamReader  
 InputStreamReader(InputStream in, Charset cs):创建使用给定字符集的 InputStreamReader
@@ -83,7 +84,7 @@ close()；关闭流并释放资源
 read():读取单个字符  
 read(char[] cr,int off,int len):将字符读入数组  
 ##### OutputStreamWriter  
-
+将输出的字符流转化为字节流，可使用指定的charset将要写入流中的字符编码成字节
 
   
 
