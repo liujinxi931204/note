@@ -96,7 +96,7 @@ write(char[] cr,int off,int len):写入字符数组的某一部分
 write(String str,int off,int len):写入字符串的某一部分  
 close():关闭流并释放资源  
 **如果需要指定编码的格式，就需要使用InputStreamReader和OutputStreamWriter**  
-**使用Bufferread**
+**使用Bufferedread和BufferedWriter时，经常将FileRead和FileWriter放入其中，为的时提高效率**
 
   
 
