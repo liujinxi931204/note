@@ -86,7 +86,10 @@ read(char[] cr,int off,int len):将字符读入数组
 ##### OutputStreamWriter  
 将输出的字符流转化为字节流，可使用指定的charset将要写入流中的字符编码成字节  
 ##### 常用方法  
-
+OutputStreamWriter(OutputStream out, String charsetName)：创建使用指定字符集的 OutputStreamWriter。  
+OutputStreamWriter(OutputStream out, Charset cs)：创建使用给定字符集的 OutputStreamWriter。   
+OutputStreamWriter(OutputStream out)：创建使用默认字符编码的 OutputStreamWriter。  
+OutputStreamWriter(OutputStream out, CharsetEncoder enc)    创建使用给定字符集编码器的 OutputStreamWriter。
 
   
 
