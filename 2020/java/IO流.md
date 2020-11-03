@@ -81,7 +81,9 @@ InputStreamReader(InputStream in, CharsetDecoder dec):创建使用给定字符�
 InputStreamReader(InputStream in, String charsetName):创建使用指定字符集的 InputStreamReader。
 close()；关闭流并释放资源  
 read():读取单个字符  
-read(char[] cr,int off,in=t)
+read(char[] cr,int off,int len):将字符读入数组  
+##### OutputStreamWriter  
+
 
   
 
