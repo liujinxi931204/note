@@ -72,6 +72,8 @@ write(String str,int off,int len)：将str中off开头len结束的字符写入
 newLine()：换行  
 flush()：将缓存的内容刷入文件  
 close()：关闭流并释放资源  
+#### InputStreamReader和OutputStreamWriter  
+
 
 
   
