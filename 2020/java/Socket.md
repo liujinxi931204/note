@@ -35,7 +35,8 @@ Socket client = new Socket("127.0.0.1",8888);
      关闭此Socket也将关闭相关的InputStream和OutputStream  
 + **public void shutdownOutput()**：禁止此套接字的输出流  
      任何先前写出的数据将被发送，随后终止输出流  
-+ public void connect()
++ **public void connect(SocketAddress host,int timeout) throws IOException**  
+     将套接字连接到指定的主机。仅当使用无参
 #### ServerSocket类  
 ServerSocket类：该类实现了服务端套接字，该对象等待通过网络的请求  
 ##### 构造方法  
