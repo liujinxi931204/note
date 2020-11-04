@@ -49,7 +49,8 @@ ServerSocket server = new ServerSocket(8888);
 + **public int getLocalPort()**  
 返回服务器套接字正在侦听的端口  
 + **public void setTimeout(int timeout)**  
-设置服务器套接字在
+设置服务器套接字在accept()期间等待客户端的时间的超时值  
++ 
 
 
 
