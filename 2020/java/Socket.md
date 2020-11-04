@@ -46,6 +46,7 @@ ServerSocket server = new ServerSocket(8888);
 ##### 成员方法  
 + **public Socket accept()**  
 侦听并接受连接，返回一个新的Socket对象，用于和客户端实现通信。该方法回一直阻塞直到连接建立  
++ ****
 
 
 
