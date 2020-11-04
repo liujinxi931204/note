@@ -57,7 +57,7 @@ ServerSocket server = new ServerSocket(8888);
 + **public void bind(SocketAddress host,int backlog)**  
     将套接字绑定到SocketAddress对象指定的服务器和端口  
 
-
+### TCP
 
 
   
