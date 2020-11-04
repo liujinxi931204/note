@@ -38,8 +38,8 @@ Socket client = new Socket("127.0.0.1",8888);
 #### ServerSocket类  
 ServerSocket类：该类实现了服务端套接字，该对象等待通过网络的请求  
 ##### 构造方法  
-**public ServerSocket(int po)**
-
+**public ServerSocket(int port)**
+使用该构造方法在创建ServerSocket对象时，就可以将其绑定到一个指定的端口上， 
 
 
   
