@@ -30,7 +30,10 @@ Socket client = new Socket("127.0.0.1",8888);
 + **public OutputStream getOutputStream()**：返回此套接字的输出流  
      如果此Socket具有相关联的通道，则生成的OutputStream的所有操作也关联该通道  
      关闭生成的OutputStream也将关闭相关的Socket  
-+ **public void close()**：关闭此
++ **public void close()**：关闭此套接字  
+     一旦一个Socket被关闭，它不可再使用  
+     关闭此Socket也将关闭相关的InputStream和OutputStream  
++ ****
 
 
 
