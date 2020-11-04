@@ -36,7 +36,7 @@ Socket client = new Socket("127.0.0.1",8888);
 + **public void shutdownOutput()**：禁止此套接字的输出流  
      任何先前写出的数据将被发送，随后终止输出流  
 + **public void connect(SocketAddress host,int timeout) throws IOException**  
-     将套接字连接到指定的主机。仅当使用无参
+     将套接字连接到指定的主机。仅当使用无参构造函数实例化Socket时才需要此方法  
 #### ServerSocket类  
 ServerSocket类：该类实现了服务端套接字，该对象等待通过网络的请求  
 ##### 构造方法  
@@ -47,13 +47,13 @@ ServerSocket server = new ServerSocket(8888);
 ``` 
 ##### 成员方法  
 + **public Socket accept()**  
-侦听并接受连接，返回一个新的Socket对象，用于和客户端实现通信。该方法回一直阻塞直到连接建立  
+    侦听并接受连接，返回一个新的Socket对象，用于和客户端实现通信。该方法回一直阻塞直到连接建立  
 + **public int getLocalPort()**  
-返回服务器套接字正在侦听的端口  
+    返回服务器套接字正在侦听的端口  
 + **public void setTimeout(int timeout)**  
-设置服务器套接字在accept()期间等待客户端的时间的超时值  
+    设置服务器套接字在accept()期间等待客户端的时间的超时值  
 + **public void bind(SocketAddress host,int backlog)**  
-将套接字绑定到SocketAddress对象指定的服务器和端口  
+    将套接字绑定到SocketAddress对象指定的服务器和端口  
 
 
 
