@@ -134,7 +134,7 @@ UDP协议提供的服务不同于TCP协议的端到端服务，它是面向非�
 + **在传输过程中可能产生的数据错误进行了检测，并抛弃了已经损坏的数据**  
 Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端和服务端都通过DatagramSocket的send()方法和receive()方法来发送和接收数据，用DatagramPacket来包装需要发送或者接收到的数据  
   
-发送数据时，Java创建一个包含待发送信息的DatagramPacket实例，并将其作为参数传递给DatagramSocket实例的send方法；接收消息时，Java程序首先创建一个DatagramSocket实例
+发送数据时，Java创建一个包含待发送信息的DatagramPacket实例，并将其作为参数传递给DatagramSocket实例的send方法；接收消息时，Java程序首先创建一个DatagramPacket
 
   
 
