@@ -7,7 +7,9 @@ socket，又称套接字，是在不同的进程之间进行网络通讯的一�
 ### TCP socket  
 TCP协议提供面向连接的服务，通过它建立的是可靠的连接。Java为TCP协议提供了两个类：Socket类和ServerSocket类。一个Socket实例代表了TCP连接的一个客户端，而一个ServerSocket实例代表了TCP连接的服务端  
   
-一般在TCP Socket编程中，客户端
+一般在TCP Socket编程中，客户端有多个，服务端只有一个  
+  
+客户端TCP向服务端TCP发送连接请求，
   
 
 
