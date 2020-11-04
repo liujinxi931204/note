@@ -13,7 +13,7 @@ TCP协议提供面向连接的服务，通过它建立的是可靠的连接。Ja
   
 服务端需要同时处理ServerSocket实例和Socket实例，而客户端只需要使用Socket实例  
   
-每个Socket实例会
+每个Socket实例会关联一个InputStream和OutputStream对象，将字节写入套接字的OutputStream来发送数据，从套接字的InputStreamlai j
   
 
 
