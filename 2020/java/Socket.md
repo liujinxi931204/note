@@ -136,7 +136,7 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
   
 发送数据时，Java创建一个包含待发送信息的DatagramPacket实例，并将其作为参数传递给DatagramSocket实例的send方法；接收消息时，Java程序首先创建一个DatagramPacket实例，该实例预先分配了一些空间，并将接收到的消息存放在该空间中，然后把该实例作为参数传递给DatagramSocket实例的receive()方法  
   
-在创建
+在创建DatagramPacket实例时，需要注意：**如果该实例用来包装待接收的数据，则不指定数据来源的远程主机和端口号，只需要**
 
   
 
