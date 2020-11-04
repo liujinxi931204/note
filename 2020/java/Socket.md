@@ -25,6 +25,8 @@ Socket client = new Socket("127.0.0.1",8888);
 ```  
 ##### 成员方法  
 + **public InputStream getInputStream()**：返回此套接字的输入流  
+如果此Socket具有相关联的通道，则生成的InpuytStream的所有操作也关联该通道  
+关闭生成的InputStream也将关闭相关的Socket  
 
 
 
