@@ -66,7 +66,9 @@ ServerSocket server = new ServerSocket(8888);
 + 服务端的工作是建立一个通信终端，并被动等待客户端的连接  
 典型的TCP服务端要经过以下两个步骤  
 1. 创建一个ServerSocket实例并指定本地端口，用来监听客户端在该端口发送的TCP连接i请求  
-2. 重复执行：
+2. 重复执行：  
++ 调用ServerSocket的accept()方法以获取客户端的连接，并通过其返回值创建一个Socket实例  
++ 为返回的Socket
 
 
   
