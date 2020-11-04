@@ -68,7 +68,7 @@ ServerSocket server = new ServerSocket(8888);
 1. 创建一个ServerSocket实例并指定本地端口，用来监听客户端在该端口发送的TCP连接i请求  
 2. 重复执行：  
 + 调用ServerSocket的accept()方法以获取客户端的连接，并通过其返回值创建一个Socket实例  
-+ 为返回的Socket
++ 为返回的Socket实例开启新的线程，并使用返回的Socket实例的I/O流与客户端通信；通信完成后，使用Socket类的close()方法关闭该客户端的桃子姐
 
 
   
