@@ -69,7 +69,65 @@ ServerSocket server = new ServerSocket(8888);
 2. 重复执行：  
 + 调用ServerSocket的accept()方法以获取客户端的连接，并通过其返回值创建一个Socket实例  
 + 为返回的Socket实例开启新的线程，并使用返回的Socket实例的I/O流与客户端通信；通信完成后，使用Socket类的close()方法关闭该客户端的套接字连接  
+#### 实例  
+```java
+import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.SliderUI;
+import java.awt.desktop.OpenURIEvent;
+import java.io.*;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.stream.Stream;
 
+public class SocketDemo {
+
+    public static void main(String[] args) throws IOException {
+        Socket client = new Socket("localhost", 55555);
+        //从文件中获取数据
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("d://bw.txt"));
+        //获取socket的OutputStream，用于发送数据到服务端
+        OutputStream outputStream = client.getOutputStream();
+        String len=null;
+        while((len=bufferedReader.readLine())!=null){
+            //发送数据到服务端
+            outputStream.write(len.getBytes());
+        }
+        //关闭资源
+        bufferedReader.close();
+        outputStream.close();
+        client.close();
+
+    }
+}
+```
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.sql.ClientInfoStatus;
+
+public class SocketServer {
+    public static void main(String[] args) throws IOException {
+        ServerSocket serverSocket = new ServerSocket(55555);
+        Socket socket = serverSocket.accept();
+        socket.setSoTimeout(10000);
+        System.out.println("服务端");
+        //接收客户端发送的数据
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        String len=null;
+        while ((len=bufferedReader.readLine())!=null){
+            System.out.println(len);
+        }
+        bufferedReader.close();
+        socket.close();
+    }
+}
+
+```
 
 
   
