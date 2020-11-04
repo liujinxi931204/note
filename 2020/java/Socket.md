@@ -50,7 +50,8 @@ ServerSocket server = new ServerSocket(8888);
 返回服务器套接字正在侦听的端口  
 + **public void setTimeout(int timeout)**  
 设置服务器套接字在accept()期间等待客户端的时间的超时值  
-+ 
++ **public void bind(SocketAddress host,int backlog)**  
+将套接字绑定到SocketAddress对象指定的服务器
 
 
 
