@@ -35,7 +35,8 @@ Socket client = new Socket("127.0.0.1",8888);
      关闭此Socket也将关闭相关的InputStream和OutputStream  
 + **public void shutdownOutput()**：禁止此套接字的输出流  
      任何先前写出的数据将被发送，随后终止输出流  
-
+#### ServerSocket类  
+ServerSocket类：该类
 
 
 
