@@ -16,7 +16,9 @@ TCP协议提供面向连接的服务，通过它建立的是可靠的连接。Ja
 每个Socket实例会关联一个InputStream和OutputStream对象，将字节写入套接字的OutputStream来发送数据，从套接字的InputStream来接收数据  
   
 #### Socket类  
-Socket类：
+Socket类：该类实现客户端套接字  
+##### 构造方法  
+public Socket(String host,int port)：创建套接字对象并将其连接到指定
 
   
 
