@@ -132,6 +132,7 @@ public class SocketServer {
 UDP协议提供的服务不同于TCP协议的端到端服务，它是面向非连接的，属于不可靠协议，UDP套接字在使用前不需要进行连接。实际上，UDP协议只实现了两个功能：  
 + **在IP协议的基础上添加了端口**  
 + **在传输过程中可能产生的数据错误进行了检测，并抛弃了已经损坏的数据**  
+Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端
 
   
 
