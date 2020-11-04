@@ -28,7 +28,9 @@ Socket client = new Socket("127.0.0.1",8888);
      如果此Socket具有相关联的通道，则生成的InpuytStream的所有操作也关联该通道  
      关闭生成的InputStream也将关闭相关的Socket  
 + **public OutputStream getOutputStream()**：返回此套接字的输出流  
-     如果此Socket具有相关联的通道，则生成的O
+     如果此Socket具有相关联的通道，则生成的OutputStream的所有操作也关联该通道  
+     关闭生成的OutputStream也将关闭相关的Socket  
++ **public void close()**：关闭此
 
 
 
