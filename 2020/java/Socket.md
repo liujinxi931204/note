@@ -57,7 +57,10 @@ ServerSocket server = new ServerSocket(8888);
 + **public void bind(SocketAddress host,int backlog)**  
     将套接字绑定到SocketAddress对象指定的服务器和端口  
 
-### TCP
+### TCP连接的建立步骤  
+客户端向服务端发送连接请求后，就被动的等待服务端的响应  
+典型的TCP客户端要经过以下三个步骤  
+1. 
 
 
   
