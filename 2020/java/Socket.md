@@ -18,9 +18,13 @@ TCP协议提供面向连接的服务，通过它建立的是可靠的连接。Ja
 #### Socket类  
 Socket类：该类实现客户端套接字  
 ##### 构造方法  
-public Socket(String host,int port)：创建套接字对象并将其连接到指定主机上的指定端口号。如果指定的host为null，则相当于指定地址为回送地址  
+public Socket(String host,int port)  
+创建套接字对象并将其连接到指定主机上的指定端口号。如果指定的host为null，则相当于指定地址为回送地址  
 ```java
-``
+Socket client = new Socket("127.0.0.1",8888); 
+```  
+##### 成员方法  
+
 
 
   
