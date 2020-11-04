@@ -24,7 +24,7 @@ Socket类：该类实现客户端套接字
 Socket client = new Socket("127.0.0.1",8888); 
 ```  
 ##### 成员方法  
-**public InputStream getInputStream()**  
++ **public InputStream getInputStream()**：返回此套接字的输入流  
 
 
 
