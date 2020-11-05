@@ -223,10 +223,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.*;
 
-/**
- * author liujinxi@sogou-inc.com
- * date 2020-11-05 11:06
- **/
 public class UDPClient {
     public static void main(String[] args) throws IOException {
         //创建DatagramSocket，用于发送数据报
@@ -248,6 +244,32 @@ public class UDPClient {
         bufferedReader.close();
         datagramSocket.close();
     }
+}
+```
+```java
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
+import java.util.Date;
+
+public class UDPServer {
+    public static void main(String[] args) throws IOException {
+        DatagramSocket datagramSocket = new DatagramSocket(8888);
+        //设置超时时间为10000毫秒
+        datagramSocket.setSoTimeout(10000);
+        byte[] buff=new byte[1024];
+        DatagramPacket datagramPacket = new DatagramPacket(buff,buff.length);
+        System.out.println("等待数据。。。");
+        datagramSocket.receive(datagramPacket);
+        System.out.println("接收到数据。。。");
+        System.out.println(datagramPacket.getSocketAddress());
+        String str=new String(datagramPacket.getData());
+        System.out.println(str);
+        datagramSocket.close();
+
+    }
+
 }
 
 ```
