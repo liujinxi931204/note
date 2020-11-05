@@ -141,6 +141,7 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 **如果该实例用来包装待发送的数据，则需要指定发送到的目的地址和端口**  
 
 
+
   
 
 
