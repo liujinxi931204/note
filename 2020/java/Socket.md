@@ -210,6 +210,7 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 获取套接字绑定的本地主机的端口号  
 + **int getPort()**  
 获取套接字的端口  
++ **void send(DatagramPacket p)**  
 
  
  
