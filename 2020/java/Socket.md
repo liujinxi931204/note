@@ -202,7 +202,9 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 将套接字连接到远程套接字地址(通常是ip+port)  
 + **void disconnect()**  
 断开套接字的连接  
-+ 
++ **InetAddress getInetAddress()**  
+获取此套接字连接的地址  
++ **InetAddress getLocalAddress**
  
  
 
