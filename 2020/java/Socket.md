@@ -192,7 +192,7 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 + **DatagramSocket(SocketAddress bindaddr)**  
 构造数据报套接字并将其绑定到指定的本地套接字地址  
 #### 常用方法  
-
++ ***void bind()*
  
  
 
