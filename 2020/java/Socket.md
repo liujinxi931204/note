@@ -154,7 +154,8 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 #### 构造方法  
 + **public DatagramPacket(byte[] buf,int lenght)**  
 构造DatagramPacket，用来接收长度为length数据包  
-+ ****
++ **public DatagramPacket(byte[] buf,int offset,int length)**  
+构造D
 
 
 
