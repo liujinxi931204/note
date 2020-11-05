@@ -152,7 +152,7 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 ### DatagramPakcet类  
 该类用来表示数据包  
 #### 构造方法  
-+ ****
++ **public D**
 
 
 
