@@ -214,6 +214,43 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 + 创建一个DatagramPacket实例，指定本地端口号，并可以有选择地指定本地地址，此时，服务端已经准备好从任何客户端接收数据报文  
 + 使用DatagramSocket实例地recevie()方法接收一个DatagramPacket实例，当receive()方法返回时，数据报文就包含了客户端地地址，这样就知道回复信息应该发送到什么地方  
 + 使用DatagramSocket实例的send()方法向服务端返回DatagramPacket实例  
+#### 示例  
+```java
+import java.awt.image.DataBufferFloat;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.*;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-11-05 11:06
+ **/
+public class UDPClient {
+    public static void main(String[] args) throws IOException {
+        //创建DatagramSocket，用于发送数据报
+        DatagramSocket datagramSocket = new DatagramSocket();
+        SocketAddress socketAddress = new InetSocketAddress("127.0.0.1", 8888);
+        //指定数据报发送的ip和地址
+        //发送数据时，DatagramPacket必须指定ip和port，接受数据时只需要只当数据缓冲区就可以
+        byte[] buff=new byte[1024];
+        DatagramPacket datagramPacket = new DatagramPacket(buff, buff.length,socketAddress);
+        //bufferedReader用于获取文本内容
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("d://bw.txt"));
+        String str=null;
+        while((str=bufferedReader.readLine())!=null){
+            datagramPacket.setData(str.getBytes());
+            datagramSocket.send(datagramPacket);
+            System.out.println(datagramSocket.getLocalPort());
+        }
+        //关闭以释放资源
+        bufferedReader.close();
+        datagramSocket.close();
+    }
+}
+
+```
 
  
 
