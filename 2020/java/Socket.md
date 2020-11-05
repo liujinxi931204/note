@@ -204,7 +204,10 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 断开套接字的连接  
 + **InetAddress getInetAddress()**  
 获取此套接字连接的地址  
-+ **InetAddress getLocalAddress**
++ **InetAddress getLocalAddress()**  
+获取套接字连接的本地地址  
++ **int getLocalPort()**  
+获取套接字绑定的本地主机的
  
  
 
