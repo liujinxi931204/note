@@ -152,7 +152,9 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 ### DatagramPakcet类  
 该类用来表示数据包  
 #### 构造方法  
-+ **public D**
++ **public DatagramPacket(byte[] buf,int lenght)**  
+构造DatagramPacket，用来接收长度为length数据包  
++ ****
 
 
 
