@@ -139,6 +139,8 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 在创建DatagramPacket实例时，需要注意：  
 **如果该实例用来包装待接收的数据，则不指定数据来源的远程主机和端口号，只需要指定一个缓存数据的byte数组(在调用receive()方法来接收到数据后，源地址和端口号等信息会自动包含在DatagramPacket实例中)**  
 **如果该实例用来包装待发送的数据，则需要指定发送到的目的地址和端口**  
+  
+由于UDP是无连接的，
 
 
 
