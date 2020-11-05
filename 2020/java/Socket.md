@@ -165,7 +165,8 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 + **DatagramPacket(byte[] buff,int length,int offset,SocketAddress socketAddress)**  
 构造DatagramPacket，用来将长度为length偏移量为offset的包发送到指定主机的指定端口  
 #### 常用方法  
-
++ **InetAddress getAddress()**  
+返回某台机器的IP地址，此数据报将要发往该机器或者从该  
  
 
 
