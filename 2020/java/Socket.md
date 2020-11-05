@@ -182,6 +182,8 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 + **setSocketAddress(SocketAddress address)**  
 设置此数据报将要发往的地址(通常是ip+port)  
 ### DatagramSocket类  
+#### 构造方法  
++ **DatagramSocket()**  
 
 
  
