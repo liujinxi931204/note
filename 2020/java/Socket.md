@@ -196,7 +196,8 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 将此DatagramSocket绑定到特定的地址和端口  
 + **close()**  
 关闭此数据报套接字  
-+ ****
++ **void connect(InetAddress addr,int port)**  
+将套接字连接到
  
  
 
