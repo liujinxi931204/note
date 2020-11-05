@@ -180,7 +180,9 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 + **setPort(int port)**  
 设置此数据包发往的目的机器的端口  
 + **setSocketAddress(SocketAddress address)**  
-设置此数据报将要
+设置此数据报将要发往的地址(通常是ip+port)  
+
+
  
 
 
