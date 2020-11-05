@@ -147,7 +147,7 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 + 使用DatagramSocket实例地recevie()方法接收一个DatagramPacket实例，当receive()方法返回时，数据报文就包含了客户端地地址，这样就知道回复信息应该发送到什么地方  
 + 使用DatagramSocket实例的send()方法向服务端返回DatagramPacket实例  
   
-注意：**UDP程序在receive()方法出阻塞，直到收到一个数据报文或等待超时，** 
+注意：**UDP程序在receive()方法出阻塞，直到收到一个数据报文或等待超时。由于UDP协议是不可靠协议，如果数据报文在传输过程中发生丢失，那么程序将会一直阻塞在receive()方法处，这样客户端将永远** 
 
 
 
