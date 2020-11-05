@@ -157,7 +157,7 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 + **public DatagramPacket(byte[] buf,int offset,int length)**  
 构造DatagramPacket，用来接收长度为length的数据包，在缓冲区中指定了偏移量  
 + **public DatagramPacket(byte[] buff,int length,InetAddress address,int port)**  
-
+构造DatagramP
 
 
 
