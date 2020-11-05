@@ -211,8 +211,10 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 + **int getPort()**  
 获取套接字的端口  
 + **void send(DatagramPacket p)**  
-发送数据报  
-+ **void receive()**
+发送数据报P的内容  
++ **void receive(DatagramPacket p)**  
+接收数据报的内容到p中  
+
  
 
 
