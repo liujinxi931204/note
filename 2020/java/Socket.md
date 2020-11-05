@@ -175,7 +175,9 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 返回数据缓冲区  
 + **setData(byte[] buff)**  
 为此包设置数据缓冲区  
-
++ **setAddress(InetAddress address)**  
+设置要将此数据包发往的目的机器的ip  
++ **setPort()**
  
 
 
