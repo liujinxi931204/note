@@ -171,7 +171,11 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 返回某台远程主机的端口号，此数据报将要发往该机器或者从该机器接收  
 + **getSocketAddress()**  
 获取要将此数据报发送或者发出次数据报的远程主机的SocketAddress(通常是ip+port)  
-+ 
++ **byte[] getData()**  
+返回数据缓冲区  
++ **setData(byte[] buff)**  
+为此包设置数据缓冲区  
+
  
 
 
