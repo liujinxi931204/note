@@ -146,7 +146,8 @@ Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端�
 + 创建一个DatagramPacket实例，指定本地端口号，并可以有选择地指定本地地址，此时，服务端已经准备好从任何客户端接收数据报文  
 + 使用DatagramSocket实例地recevie()方法接收一个DatagramPacket实例，当receive()方法返回时，数据报文就包含了客户端地地址，这样就知道回复信息应该发送到什么地方  
 + 使用DatagramSocket实例的send()方法向服务端返回DatagramPacket实例  
- 
+  
+注意：**UDP程序在receive()方法出阻塞，直到收到一个数据报文或等待超时，** 
 
 
 
