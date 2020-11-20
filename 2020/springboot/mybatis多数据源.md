@@ -220,7 +220,7 @@ public interface TeacherMapperOne {
     List<Teacher> getAllTeacher();
 }
 ```
-这里使用@Repository是为了和上述数据源配置类里面的annotationClass限制对应起来，也可以使用mybatis自带注解@Mapper。如果使用了@Mapper，annotationClass就可以不用设置了  
+这里使用@Repository是为了和上述数据源配置类里面的annotationClass限制对应起来，也可以使用mybatis自带注解@Mapper。
 对应的xml文件  
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -233,4 +233,8 @@ public interface TeacherMapperOne {
                 select * from tb_teacher;
     </select>
 </mapper>
+```  
+**编写另一个mapper和xml**  
+```java
+
 ```
