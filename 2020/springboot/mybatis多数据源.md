@@ -71,7 +71,21 @@
             </resource>
         </resources>
     </build>
-
 </project>
+```
+### 具体实现  
+#### 多数据源配置  
+```properties
+spring.datasource.one.jdbcUrl=jdbc:mysql://10.160.58.128:3306/test_ljx
+spring.datasource.one.username=root
+spring.datasource.one.password=123456
+spring.datasource.one.driverClassName=com.mysql.cj.jdbc.Driver
+spring.datasource.one.type=com.alibaba.druid.pool.DruidDataSource
+
+spring.datasource.two.jdbcUrl=jdbc:mysql://10.160.58.128:3306/test_ljx
+spring.datasource.two.username=root
+spring.datasource.two.password=123456
+spring.datasource.two.driverClassName=com.mysql.cj.jdbc.Driver
+spring.datasource.two.type=com.alibaba.druid.pool.DruidDataSource
 
 ```
