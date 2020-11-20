@@ -80,7 +80,8 @@
 spring.datasource.one.jdbcUrl=jdbc:mysql://10.160.58.128:3306/test_ljx
 ```
 官方的解释为  
-因为连接池的数据类型没有被公开，所引在您的自定义数据源的元数据中没有生成密钥，而且在IDE中没有完成(因为DataSource接口没有暴露属性)。另外，如果您碰巧在类路径上有Hikari，那么这个基本设置就不起作用了，因为Hikari
+因为连接池的数据类型没有被公开，所引在您的自定义数据源的元数据中没有生成密钥，而且在IDE中没有完成(因为DataSource接口没有暴露属性)。另外，如果您碰巧在类路径上有Hikari，那么这个基本设置就不起作用了，因为Hikari没有url属性(但是确实有一个jdbcUrl属性)  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/20/1605841053254-1605841053256.png)  
 ```properties
 spring.datasource.one.jdbcUrl=jdbc:mysql://10.160.58.128:3306/test_ljx
 spring.datasource.one.username=root
