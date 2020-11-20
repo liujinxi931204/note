@@ -220,4 +220,17 @@ public interface TeacherMapperOne {
     List<Teacher> getAllTeacher();
 }
 ```
-这里使用@Repository是为了和上述数据源配置类里面的
+这里使用@Repository是为了和上述数据源配置类里面的annotationClass限制对应起来，也可以使用mybatis自带注解@Mapper。如果使用了@Mapper，annotationClass就可以不用设置了  
+对应的xml文件  
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sogou.bootdemo3.dao1.TeacherMapperOne">
+
+    <select id="getAllTeacher" resultType="com.sogou.bootdemo3.pojo.Teacher">
+                select * from tb_teacher;
+    </select>
+</mapper>
+```
