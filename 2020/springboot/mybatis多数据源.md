@@ -220,3 +220,4 @@ public interface TeacherMapperOne {
     List<Teacher> getAllTeacher();
 }
 ```
+这里使用@Repository是为了和上述数据源配置类里面的
