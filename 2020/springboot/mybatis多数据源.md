@@ -96,4 +96,7 @@ spring.datasource.two.password=123456
 spring.datasource.two.driverClassName=com.mysql.cj.jdbc.Driver
 spring.datasource.two.type=com.alibaba.druid.pool.DruidDataSource
 ```
-#### 
+#### 数据源配置类  
+```java
+
+```
