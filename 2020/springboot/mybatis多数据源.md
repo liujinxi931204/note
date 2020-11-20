@@ -424,4 +424,6 @@ public class HelloController {
 
 }
 ```  
-通过访问localhost:8080/one和localhost:8080/two可以发现实验成功  
+通过访问localhost:8080/one和localhost:8080/two可以发现mybatis多数据源配置成功  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/20/1605843392484-1605843392486.png)
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/20/1605843376494-1605843376496.png)
