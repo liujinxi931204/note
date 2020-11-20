@@ -325,6 +325,55 @@ public class TeacherMapperTwoImpl implements TeacherMapperTwo {
 }
 ```  
 ### 对应的javaBean  
-
+对应的实体类写在pojo目录下  
 ```java
-```
+package com.sogou.bootdemo3.pojo;
+
+import org.springframework.util.StringUtils;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-11-19 17:34
+ **/
+public class Teacher {
+
+    private int id;
+    private String name;
+    private String sex;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                '}';
+    }
+}
+```  
+### controller层  
+这里
