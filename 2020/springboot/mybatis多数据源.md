@@ -80,7 +80,7 @@
 spring.datasource.one.jdbcUrl=jdbc:mysql://10.160.58.128:3306/test_ljx
 ```
 官方的解释为  
-
+因为连接池的数据类型没有被公开，所引在您的自定义数据源的元数据中没有生成密钥，而且在IDE中没有完成
 ```properties
 spring.datasource.one.jdbcUrl=jdbc:mysql://10.160.58.128:3306/test_ljx
 spring.datasource.one.username=root
