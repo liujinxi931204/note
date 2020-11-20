@@ -263,4 +263,6 @@ public interface TeacherMapperTwo {
                 select * from tb_teacher;
     </select>
 </mapper>
-```
+```  
+### 接口实现类  
+这两个接口实现类是对上述mapper的具体实现，写在impl目录下  
