@@ -323,4 +323,8 @@ public class TeacherMapperTwoImpl implements TeacherMapperTwo {
         return teacherMapperTwo.getAllTeacher();
     }
 }
+```  
+### 对应的javaBean  
+
+```java
 ```
