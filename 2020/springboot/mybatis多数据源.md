@@ -236,5 +236,31 @@ public interface TeacherMapperOne {
 ```  
 **编写另一个mapper和xml**  
 ```java
+package com.sogou.bootdemo3.dao2;
 
+import com.sogou.bootdemo3.pojo.Teacher;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-11-19 17:32
+ **/
+@Repository("two")
+public interface TeacherMapperTwo {
+    List<Teacher> getAllTeacher();
+}
+```  
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sogou.bootdemo3.dao2.TeacherMapperTwo">
+
+    <select id="getAllTeacher" resultType="com.sogou.bootdemo3.pojo.Teacher">
+                select * from tb_teacher;
+    </select>
+</mapper>
 ```
