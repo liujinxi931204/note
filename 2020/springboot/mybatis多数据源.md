@@ -152,4 +152,53 @@ public class MyBatisConfigOne {
 }
 ```
 这里说明一下，@Configuration注解说明这个类是一个配置类，@MapperScan注解允许通过扫描自动加载mybatis的Mapper，basePackages是Mapper所在的路径。如果项目中不存在多个SqlSessionFactory或SqlSessionTemplate，可以完全不用配置sqlSessionFactoryRef和sqlSessionTemplateRef，这里需要配置多个数据源，所以需要自定义SqlSessionFactory或SqlSessionTemplate。如果同时存在SqlSessionFactory和SqlSessionTemplate，则会后者生效。annotationClass设置了注解限制，限制只扫描@Repository  
-**编写另一个数据源类**
+**编写另一个数据源类**  
+```java
+package com.sogou.bootdemo3.config;
+
+import jdk.jfr.Registered;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.stereotype.Repository;
+
+import javax.sql.DataSource;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-11-19 17:29
+ **/
+@Configuration
+@MapperScan(basePackages = "com.sogou.bootdemo3.dao2",sqlSessionFactoryRef = "sqlSessionFactoryTwo"
+        ,sqlSessionTemplateRef = "sqlSessionTemplateTwo",annotationClass = Repository.class)
+public class MyBatisConfigTwo {
+    //配置数据源2
+
+    @Bean("datasourceTwo")
+    @ConfigurationProperties("spring.datasource.two")
+    public DataSource getDataSourceTwo(){
+        return DataSourceBuilder.create().build();
+    }
+
+
+    @Bean("sqlSessionFactoryTwo")
+    public SqlSessionFactory getSqlSessionFactoryTwo(@Qualifier("datasourceTwo") DataSource dataSource) throws Exception {
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        return sqlSessionFactoryBean.getObject();
+    }
+
+    @Bean("sqlSessionTemplateTwo")
+    public SqlSessionTemplate getSqlSessionTemplateTwo(@Qualifier("sqlSessionFactoryTwo") SqlSessionFactory sqlSessionFactory){
+        return new SqlSessionTemplate(sqlSessionFactory);
+    }
+}
+```
+### 
