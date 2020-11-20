@@ -265,4 +265,62 @@ public interface TeacherMapperTwo {
 </mapper>
 ```  
 ### 接口实现类  
-这两个接口实现类是对上述mapper的具体实现，写在impl目录下  
+这两个接口实现类是对上述mapper的具体实现，写在impl目录下。这样做是为了利用多态  
+```java
+package com.sogou.bootdemo3.impl;
+
+import com.sogou.bootdemo3.dao1.TeacherMapperOne;
+import com.sogou.bootdemo3.pojo.Teacher;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-11-19 17:36
+ **/
+@Service("teacherOne")
+public class TeacherMapperOneImpl implements TeacherMapperOne {
+
+    @Autowired
+    @Qualifier("one")
+    private TeacherMapperOne teacherMapperOne;
+
+    @Override
+    public List<Teacher> getAllTeacher() {
+        return teacherMapperOne.getAllTeacher();
+    }
+}
+```
+```java
+package com.sogou.bootdemo3.impl;
+
+import com.sogou.bootdemo3.dao2.TeacherMapperTwo;
+import com.sogou.bootdemo3.pojo.Teacher;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-11-19 17:38
+ **/
+@Service("teacherTwo")
+public class TeacherMapperTwoImpl implements TeacherMapperTwo {
+
+
+    @Autowired
+    @Qualifier("two")
+    private TeacherMapperTwo teacherMapperTwo;
+
+    @Override
+    public List<Teacher> getAllTeacher() {
+        return teacherMapperTwo.getAllTeacher();
+    }
+}
+```
