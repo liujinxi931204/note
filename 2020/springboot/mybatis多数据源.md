@@ -202,4 +202,21 @@ public class MyBatisConfigTwo {
 }
 ```
 ### Mapper和对应xml  
-因为需要配置多数据源，
+因为需要配置多数据源，所以将mapper和xml文件分别写在dao1目录和dao2目录下  
+```java
+package com.sogou.bootdemo3.dao1;
+
+import com.sogou.bootdemo3.pojo.Teacher;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-11-19 17:31
+ **/
+@Repository("one")
+public interface TeacherMapperOne {
+    List<Teacher> getAllTeacher();
+}
+```
