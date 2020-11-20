@@ -151,4 +151,4 @@ public class MyBatisConfigOne {
     }
 }
 ```
-这里说明一下，@Configuration注解说明这个类是一个配置类，@MapperScan注解允许通过扫描自动加载mybatis的Mapper，basePackages是Mapper所在的路径。如果项目中不存在多个SqlSessionFactory或SqlSessionTamplate，可以完全
+这里说明一下，@Configuration注解说明这个类是一个配置类，@MapperScan注解允许通过扫描自动加载mybatis的Mapper，basePackages是Mapper所在的路径。如果项目中不存在多个SqlSessionFactory或SqlSessionTamplate，可以完全不用配置sqlSessionFactoryRef和sqlSessionTemplateRef，这里需要配置多个数据源，所以需要自定义SqlSessionFactory或S
