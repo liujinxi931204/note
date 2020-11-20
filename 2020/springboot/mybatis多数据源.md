@@ -97,6 +97,57 @@ spring.datasource.two.driverClassName=com.mysql.cj.jdbc.Driver
 spring.datasource.two.type=com.alibaba.druid.pool.DruidDataSource
 ```
 #### 数据源配置类  
+这两个数据源配置类在config目录下
 ```java
+package com.sogou.bootdemo3.config;
 
+import org.apache.ibatis.annotations.One;
+import org.apache.ibatis.jdbc.SQL;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.PathResource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.stereotype.Repository;
+
+import javax.sql.DataSource;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-11-19 17:15
+ **/
+
+@Configuration
+@MapperScan(basePackages = "com.sogou.bootdemo3.dao1",sqlSessionFactoryRef = "sqlSessionFactoryOne"
+        ,sqlSessionTemplateRef ="sqlSessionTemplateOne",annotationClass = Repository.class)
+public class MyBatisConfigOne {
+
+    //配置数据源1
+    @Bean("datasourceOne")
+    @ConfigurationProperties("spring.datasource.one")
+    public DataSource getDataSourceOne(){
+        return DataSourceBuilder.create().build();
+    }
+
+    //配置sqlSessionFactory
+    @Bean("sqlSessionFactoryOne")
+    public SqlSessionFactory getSqlSessionFactoryOne(@Qualifier("datasourceOne") DataSource dataSource) throws Exception {
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        return sqlSessionFactoryBean.getObject();
+
+    }
+
+    //配置sqlSessionTemplate
+    @Bean("sqlSessionTemplateOne")
+    public SqlSessionTemplate getSqlSessionTemplateOne(@Qualifier("sqlSessionFactoryOne") SqlSessionFactory sqlSessionFactory){
+        return new SqlSessionTemplate(sqlSessionFactory);
+    }
+}
 ```
