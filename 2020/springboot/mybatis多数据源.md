@@ -378,5 +378,49 @@ public class Teacher {
 ### controller层  
 这里使用controller作为测试，编写controller  
 ```java
+package com.sogou.bootdemo3.controller;
 
+import com.sogou.bootdemo3.dao1.TeacherMapperOne;
+import com.sogou.bootdemo3.dao2.TeacherMapperTwo;
+import com.sogou.bootdemo3.pojo.Teacher;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-11-19 17:40
+ **/
+
+
+@RestController
+public class HelloController {
+
+
+    @Autowired
+    @Qualifier("teacherOne")
+    private TeacherMapperOne teacherMapperOneImpl;
+    @Autowired
+    @Qualifier("teacherTwo")
+    private TeacherMapperTwo teacherMapperTwoImpl;
+
+
+    @GetMapping("/one")
+    public Object getAllTeacherOne(){
+
+        List<Teacher> allTeahcer = teacherMapperOneImpl.getAllTeacher();
+        return allTeahcer;
+    }
+
+
+    @GetMapping("/two")
+    public Object getAllTeacherTwo(){
+        List<Teacher> allTeacher = teacherMapperTwoImpl.getAllTeacher();
+        return allTeacher;
+    }
+
+}
 ```
