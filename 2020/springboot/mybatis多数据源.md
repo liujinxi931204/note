@@ -75,7 +75,11 @@
 ```
 ### 具体实现  
 #### 多数据源配置  
-首先编写application.properties配置文件
+首先编写application.properties配置文件，需要注意的是url一项需要写为  
+```properties
+spring.datasource.one.jdbcUrl=jdbc:mysql://10.160.58.128:3306/test_ljx
+```
+这是因为在springboot2.x中
 ```properties
 spring.datasource.one.jdbcUrl=jdbc:mysql://10.160.58.128:3306/test_ljx
 spring.datasource.one.username=root
