@@ -18,4 +18,4 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 + **TransactionStatus**：事务的一些状态信息，如是否是一个新的事务、是否已被标记为回滚  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/25/1606286957023-1606286957025.png)  
 ### 事务管理器(PlatformTransactionManager)  
-在Spring框架中并不直接管理事务，而是提供PlatformTransactionManager事务管理器接口类，对事务的概念进行抽象。它是将事务的实现交由其他持久层框架，例如Hibernate、Mybatis等实现
+在Spring框架中并不直接管理事务，而是提供PlatformTransactionManager事务管理器接口类，对事务的概念进行抽象。它是将事务的实现交由其他持久层框架。例如Hibernate、Mybatis等都是实现了Spring事务的第三方持久层框架，由于每个框架中事务的实现各不相同，所以Spring对事务接口进行了统一，事务的提交、
