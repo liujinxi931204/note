@@ -22,5 +22,6 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 ### 隔离级别  
 设置不同的事务隔离级别能解决不同的问题。在Spring中定义了五个事务隔离级别，每个隔离级别都有不同作用  
 + TransactionDefinition.ISOLATION_DEFAULT：使用数据库中配置的默认隔离级别  
-+ TransactionDefinition.ISOLATION_READ_UNCOMMITTED:
++ TransactionDefinition.ISOLATION_READ_UNCOMMITTED：最低的隔离级别，允许读取已改变而没有提交的数据，可能会导致脏读、不可重复读和幻读  
++ 
 
