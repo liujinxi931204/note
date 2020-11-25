@@ -172,7 +172,8 @@ public class ServiceB {
 2. 上面示例中两个方法都设置了事务，ServiceB.mB() 设置的事务行为是 PROPAGATION_NESTED。ServiceA.mA2() 运行调用 ServiceB.mB() 时，方法 ServiceB.mB() 发现调用自己方法也存在事务，这时方法 ServiceB.mB() 也会创建一个新的事务，与 ServiceA.mA2() 的事务形成嵌套事务。被嵌套的事务可以独立于封装事务进行提交或回滚。如果外部事务提交嵌套事务也会被提交，如果外部事务回滚嵌套事务也会进行回滚  
 ### 传播行为间的差异  
 1. **ROPAGATION_REQUIRES_NEW 与 PROPAGATION_NESTED 的差异**  
-传播行为**ROPAGATION_REQUIRES_NEW**和**** 
+传播行为**ROPAGATION_REQUIRES_NEW**和**PROPAGATION_NESTED**事务比较相似，很多时候很难分，这里简要说明下区别  
+#### PROPAGARION_REQUIRE
 
 
 
