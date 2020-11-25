@@ -55,5 +55,6 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 不过如果执行在存在事务的方法中，就将该事务暂时挂起  
 + TransactionDefinition.PROPAGATION_NEVER：
 如果该方法执行在没有事务的方法中，也就以非事务方式执行  
-不过如果执行在
+不过如果执行在存在事务的方法中，就抛出异常  
++ TransactionDefinition.PROPAGATION_NESTED：
 
