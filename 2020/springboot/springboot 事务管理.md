@@ -204,7 +204,8 @@ Spring支持编程式事务管理和声明式事务管理两种方式
 + 当发生Error时，@Transactional默认会自动回滚  
 + 当发生运行时异常(RuntimException和其子类时)，@Transactional默认会自动回滚  
 + 当发生非运行时异常(即Exception和其子类时)，@Transactional默认不会自动回滚，需要配置参数@Transactional(rollbackFor=Exception.class)才能使其进行回滚  
-+ 如果@Transacation(propagation=Propagation.NOT_)
++ 如果@Transacation(propagation=Propagation.NOT_SUPPORTED)参数时，默认不支持事务，发生错误和异常都不会进行回滚  
+
  
 
 
