@@ -21,4 +21,5 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 在Spring框架中并不直接管理事务，而是提供PlatformTransactionManager事务管理器接口类，对事务的概念进行抽象。它是将事务的实现交由其他持久层框架。例如Hibernate、Mybatis等都是实现了Spring事务的第三方持久层框架，由于每个框架中事务的实现各不相同，所以Spring对事务接口进行了统一，事务的提交、回滚等操作全部交由PlatformTransactionManager接口的实现类来进行实现  
 ### 隔离级别  
 设置不同的事务隔离级别能解决不同的问题。在Spring中定义了五个事务隔离级别，每个隔离级别都有不同作用  
++ Transaction
 
