@@ -95,4 +95,37 @@ public class ServiceB{
 #### PROPAGATION_REQUIRED_NEW  
 + 无论该方法是否执行在事务的方法中，都会创建一个新的事务  
 + 不过如果执行在存在事务的方法中，就将方法中的事务暂时挂起  
-+ 新的事务会独立提交和回滚，不受调用它的父方法的事务的
++ 新的事务会独立提交和回滚，不受调用它的父方法的事务的影响  
+```java
+@Service
+public class ServiceA {
+
+    @Autowired
+    private ServiceB serviceB;
+
+    public void mA1() {
+        // 调用另一个类中方法，测试事务传播行为
+        serviceB.mB();
+    }
+    
+    @Transactional
+    public void mA2() {
+        // 调用另一个类中方法，测试事务传播行为
+        serviceB.mB();
+    }
+    
+}
+
+@Service
+public class ServiceB {
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void mB() {
+        System.out.println("方法 mB()");
+        // 业务逻辑（略）
+    }
+
+}
+
+
+```
