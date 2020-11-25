@@ -66,4 +66,10 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 1. PROPAGATION_REQUIRED  
 + 如果该方法执行在没有事务的方法中，就创建一个新的事务  
 + 如果执行在已经存在事务的方法中，则加入到这个事务中，合并成一个事务  
+```java
+@Service
+public void ServiceA{
 
+ 
+}
+```
