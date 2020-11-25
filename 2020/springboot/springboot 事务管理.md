@@ -186,7 +186,8 @@ public class ServiceB {
 ## Spring事务的两种实现  
 ### 编程式事务和声明式事务  
 Spring支持编程式事务管理和声明式事务管理两种方式  
-+ **编程式事务**:编程式事务使用TransactionTemplate或者直接使用底层的PlatformTransactioinManager实现事务。对于编程式事务S
++ **编程式事务**:编程式事务使用TransactionTemplate或者直接使用底层的PlatformTransactioinManager实现事务。对于编程式事务Spring比较推荐使用TransactionTemplate来对事务进行管理  
++ **声明式事务**:声明式事务是建立在AOP只上的。
 
 
 
