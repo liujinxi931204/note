@@ -207,9 +207,10 @@ Spring支持编程式事务管理和声明式事务管理两种方式
 + 如果@Transacation(propagation=Propagation.NOT_SUPPORTED)参数时，默认不支持事务，发生错误和异常都不会进行回滚  
 ### @Transactional事务实现机制  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/25/1606298061005-1606298061006.png)  
+在应用系统调用声明 @Transactional 的目标方法时，Spring 默认使用 AOP 代理，在代码运行时生成一个代理对象，根据 @transactional 的属性配置信息，这个代理对象决定该声明 @transactional 的目标方法是否由拦截器 TransactionInterceptor 来使用拦截，在 TransactionInterceptor 拦截时，会在在目标方法开始执行之前创建并加入事务，并执行目标方法的逻辑, 最后根据执行情况是否出现异常, 进行业务事务提交或者回滚操作
 
-
-
+## 常见Spring事务中注意事项  
+#### 不要
 
 
 
