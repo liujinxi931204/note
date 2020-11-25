@@ -185,7 +185,8 @@ public class ServiceB {
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/25/1606296185903-1606296185905.png)  
 ## Spring事务的两种实现  
 ### 编程式事务和声明式事务  
-Spring支持编程式事务管理和
+Spring支持编程式事务管理和声明式事务管理两种方式  
++ **编程式事务**:编程式事务使用TransactionTemplate或者直接使用底层的PlatformTransactioinManager实现事务。对于编程式事务S
 
 
 
