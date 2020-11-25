@@ -42,4 +42,5 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 如果执行在已经存在事务的方法中，则加入这个事务中，合并成一个事务  
 + TransactionDefinition.PROPAGATION_SUPPORTS：  
 如果该方法执行在没有事务的方法中，就以非事务方式执行  
-如果
+如果执行在已经存在事务的方法中，则加入这个事务中，合并成一个事务  
+
