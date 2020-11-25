@@ -171,3 +171,14 @@ public class ServiceB {
 1. 上面方法中 ServiceA.mA1() 没有设置事务，而 ServiceB.mB() 设置了事务，且设置的事务行为是 PROPAGATION_NEVER。ServiceA.mA1() 运行调用 ServiceB.mB() 时，方法 ServiceB.mB() 发现调用自己的方法并没有设置事务，这时方法 ServiceB.mB() 就会创建一个新的事务  
 2. 上面示例中两个方法都设置了事务，ServiceB.mB() 设置的事务行为是 PROPAGATION_NESTED。ServiceA.mA2() 运行调用 ServiceB.mB() 时，方法 ServiceB.mB() 发现调用自己方法也存在事务，这时方法 ServiceB.mB() 也会创建一个新的事务，与 ServiceA.mA2() 的事务形成嵌套事务。被嵌套的事务可以独立于封装事务进行提交或回滚。如果外部事务提交嵌套事务也会被提交，如果外部事务回滚嵌套事务也会进行回滚  
 ### 传播行为间的差异  
+1. **ROPAGATION_REQUIRES_NEW 与 PROPAGATION_NESTED 的差异**  
+传播行为**ROPAGATION_REQUIRES_NEW**和**** 
+
+
+
+
+
+
+
+
+
