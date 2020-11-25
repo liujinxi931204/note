@@ -69,7 +69,11 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 ```java
 @Service
 public void ServiceA{
-
+   
+    @Autowired
+    private ServiceB serviceB;
+    
+    
  
 }
 ```
