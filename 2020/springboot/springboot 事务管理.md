@@ -210,7 +210,8 @@ Spring支持编程式事务管理和声明式事务管理两种方式
 在应用系统调用声明 @Transactional 的目标方法时，Spring 默认使用 AOP 代理，在代码运行时生成一个代理对象，根据 @transactional 的属性配置信息，这个代理对象决定该声明 @transactional 的目标方法是否由拦截器 TransactionInterceptor 来使用拦截，在 TransactionInterceptor 拦截时，会在在目标方法开始执行之前创建并加入事务，并执行目标方法的逻辑, 最后根据执行情况是否出现异常, 进行业务事务提交或者回滚操作
 
 ## 常见Spring事务中注意事项  
-#### 不要
+#### 不要在事务中手动捕获异常  
+
 
 
 
