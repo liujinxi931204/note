@@ -28,5 +28,7 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 + TransactionDefinition.ISOLATION_SERIALIZABLE：最高的隔离级别，完全服从ACID的隔离级别，确保不会发生脏读、不可重复读和幻读，也是最慢的事务隔离级别，因为它通常是通过完全锁定事务相关的数据库表来实现的  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/25/1606288441306-1606288441307.png)  
 ## Spring事务传播行为  
-在Spring中定义了7种事务传播行为，这种传播行为主要是为了解决事务方法调用事务或非事务方法时，如何处理事务的传播行为。在Spring中对事务的控制是通过AOP切面实现的，大部分都是通过使用@T
+在Spring中定义了7种事务传播行为，这种传播行为主要是为了解决事务方法调用事务或非事务方法时，如何处理事务的传播行为。在Spring中对事务的控制是通过AOP切面实现的，大部分都是通过使用@Transactional注解来使用事务  
+### 传播机制生效条件  
+因为Spring是使用AOP来实现
 
