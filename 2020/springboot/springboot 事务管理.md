@@ -36,4 +36,5 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 + 非事务方法调用本类中的事务方法(无效)  
 + 非事务方法调用另一个类中的事务方法(有效)  
 
-
+### 七种事务传播行为  
++ TransactionDefinition.PROPAGATION_REQUIRED（默认）
