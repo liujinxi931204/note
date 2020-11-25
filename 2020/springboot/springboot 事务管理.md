@@ -14,4 +14,5 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 ### Spring中事务核心接口类  
 在Spring中核心的事务接口主要由以下组成  
 + **PlatformTransactionManager**：事务管理器  
-+ **TransactionDefinition**：事务的
++ **TransactionDefinition**：事务的一些基础属性定义，例如事务的传播属性、隔离级别、超时时间等  
++ **TransactionStatus**：事务的一些状态信息，如是否是一个新的事务、是否
