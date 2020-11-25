@@ -211,7 +211,19 @@ Spring支持编程式事务管理和声明式事务管理两种方式
 
 ## 常见Spring事务中注意事项  
 #### 不要在事务中手动捕获异常  
-在代码中catch手动捕获异常，导致异常并不会上抛，所以Spring无法感知到发生异常，自然无法进行回滚等操作。所以使用@Transactional使用事务时，
+在代码中catch手动捕获异常，导致异常并不会上抛，所以Spring无法感知到发生异常，自然无法进行回滚等操作。所以使用@Transactional使用事务时，千万别在事务中进行手动捕获异常，而是将异常上抛，让Spring能够正常捕获异常  
+```java
+@Transactional
+public void test() throws Exception {
+    try {
+        userMapper.delete(1);
+        throw new SQLException();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+```  
+
 
 
 
