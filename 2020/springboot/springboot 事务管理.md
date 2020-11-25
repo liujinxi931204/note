@@ -232,7 +232,10 @@ public void test() throws Exception {
     throw new SQLException();
 }
 ```
-上面的代码中SQLE
+上面的代码中SQLException是Eeception的子类，解决这个问题也很简单。在@Transaction注解中设置rollbackFor=Exception.class即可  
+```java
+
+```
 
 
 
