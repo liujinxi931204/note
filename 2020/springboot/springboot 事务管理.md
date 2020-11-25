@@ -182,7 +182,7 @@ public class ServiceB {
 + 嵌套事务开始执行时，它将取得一个savepoint回滚点，如果这个嵌套事务失败，将会回滚到这个回滚点  
 + 嵌套事务是外部事物的一部分，只有外部事物结束后它才会被提交  
 2. 事务的差异总结  
-
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/25/1606296185903-1606296185905.png)
 
 
 
