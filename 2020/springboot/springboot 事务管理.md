@@ -199,7 +199,9 @@ Spring支持编程式事务管理和声明式事务管理两种方式
 ### @Transactional的作用范围  
 注解@Transactional不仅仅可以添加在方法上还可以添加到类级别上，当注解放在类级别时，表示所有该类的公共方法都配置相同的事务属性。如果类级别上和方法级别上都配置了@Transactional，方法级别的事务属性会覆盖类级别的属性  
 **一般而言，不推荐将@Transactional配置到类上**  
-### @T
+### @Transactional回滚规则  
+异常分为运行时异常、非运行时异常和Error  
++ 当发生Error时，@Transactional默认会自动
  
 
 
