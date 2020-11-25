@@ -223,6 +223,8 @@ public void test() throws Exception {
     }
 }
 ```  
+#### 遇到非运行时异常事务默认不回滚  
+Spring默认事务回滚规则时遇到运行时异常(RuntimeException)或者ErrorC
 
 
 
