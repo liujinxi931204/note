@@ -126,6 +126,9 @@ public class ServiceB {
     }
 
 }
+```  
+1. 上面方法中 ServiceA.mA1() 没有设置事务，而 ServiceB.mB() 设置了事务，且设置的事务行为是 PROPAGATION_REQUIRES_NEW。ServiceA.mA1() 运行调用 ServiceB.mB() 时，方法 ServiceB.mB() 发现调用自己的方法并没设置事务，这时方法 ServiceB.mB() 会创建一个新的事务。新事务中的提交与回滚不受调用它的父方法事务影响  
+2. 上面方法中 ServiceA.mA2() 和 ServiceB.mB() 都存在事务，当 ServiceA.mA2() 运行调用 ServiceB.mB() 时，ServiceB.mB() 发现自己执行在已经存事务的方法中，这时 ServiceB.mB() 会创建一个新的事务，且将 ServiceA.mA2() 中的事务暂时挂起，等 ServiceB.mB() 完成后，恢复 ServiceA.mA2() 的事务。
 
-
-```
+由于 ServiceB.mB() 是新起一个事务，那么 ServiceA.mA2() 在调用 ServiceB.mB() 执行时 ServiceA.mA() 事务被挂起，那么：  
++ 
