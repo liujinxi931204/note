@@ -25,5 +25,6 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 + TransactionDefinition.ISOLATION_READ_UNCOMMITTED：最低的隔离级别，允许读取已改变而没有提交的数据，可能会导致脏读、不可重复读和幻读  
 + TransacationDefinition.ISOLATION_READ_COMMITTED：允许读取事务已提交的数据，可以阻止脏读，但是可能会发生幻读、不可重复读  
 + TransactionDefinition.ISOLATION_READ_REPEATABLE_READ：对同一字段的多次读取结果都是一致的，除非数据事务本身改变，可以阻止脏读、不可重复读，但是可能会发生幻读  
-+ TransactionDefinition.ISOLATION_SERIALIZABLE：最高的隔离级别，完全服从ACID的隔离级别，确保不会发生脏读、不可重复读和幻读，也是
++ TransactionDefinition.ISOLATION_SERIALIZABLE：最高的隔离级别，完全服从ACID的隔离级别，确保不会发生脏读、不可重复读和幻读，也是最慢的事务隔离级别，因为它通常是通过完全锁定事务相关的数据库表来实现的  
+
 
