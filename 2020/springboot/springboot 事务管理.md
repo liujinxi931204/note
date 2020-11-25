@@ -68,7 +68,7 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 + 如果执行在已经存在事务的方法中，则加入到这个事务中，合并成一个事务  
 ```java
 @Service
-public void ServiceA{
+public class ServiceA{
    
     @Autowired
     private ServiceB serviceB;
@@ -77,6 +77,14 @@ public void ServiceA{
    //业务逻辑
    serviceB.mB();
    }
- 
+}
+
+
+@Service
+public class ServiceB{
+    
+    @Autowire
+
+
 }
 ```
