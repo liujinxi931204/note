@@ -63,7 +63,7 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 如果外部事务提交嵌套事务也会被提交，如果外部事务回滚嵌套事务也会进行回滚  
 **上述7中事务传播行为中比较常用的是REQUIRED、REQUIRES_NEW和NESTED**  
 ### 事务传播行为详解  
-1. PROPAGATION_REQUIRED  
+#### PROPAGATION_REQUIRED  
 + 如果该方法执行在没有事务的方法中，就创建一个新的事务  
 + 如果执行在已经存在事务的方法中，则加入到这个事务中，合并成一个事务  
 ```java
@@ -92,4 +92,5 @@ public class ServiceB{
 ```
 1. 上面两个类中，只有ServiceB.mB方法设置了事务，且设置事务的传播行为是PROPAGATION_REQUIRED，当设置此传播行为时，当Service.mA()运行调用ServiceB.mB()时，ServiceB()发现自己执行在没有事务的ServiceA()方法中，这时ServiceB()会新建一个事务  
 2. 上面两个类中的方法都设置了事务，且设置的事务传播行为是 PROPAGATION_REQUIRED，当设置此传播行为时，当 ServiceA.mA2() 运行调用 ServiceB.mB() 时，ServiceB.mB() 发现自己执行在已经存在 ServiceA.mA2() 设置的事务中，这时 ServiceB.mB() 不会再创建事务，而是直接加入到 ServiceA.mA2() 设置的事务中。这样，当 ServiceA.mA2() 或者 ServiceB.mB() 方法内发生异常时，两者都会回滚  
-2. 
+#### PROPAGATION_REQUIRED_NEW  
++ 无论该方法是否执行
