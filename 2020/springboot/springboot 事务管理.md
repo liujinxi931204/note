@@ -83,8 +83,10 @@ public class ServiceA{
 @Service
 public class ServiceB{
     
-    @Autowire
+    @Transactional(propagation=propagation.REQUIRED)
+    public void mB(){
+   //业务逻辑
 
-
+   }
 }
 ```
