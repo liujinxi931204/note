@@ -173,7 +173,9 @@ public class ServiceB {
 ### 传播行为间的差异  
 1. **ROPAGATION_REQUIRES_NEW 与 PROPAGATION_NESTED 的差异**  
 传播行为**ROPAGATION_REQUIRES_NEW**和**PROPAGATION_NESTED**事务比较相似，很多时候很难分，这里简要说明下区别  
-#### PROPAGARION_REQUIRE
+#### PROPAGARION_REQUIRES_NEW  
++ 设置PROPAGATION_REQUIRES_NEW时会创建一个"新事物",而不依赖于环境的"内部"事务  
++ 
 
 
 
