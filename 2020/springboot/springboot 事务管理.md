@@ -137,4 +137,36 @@ public class ServiceB {
 + 如果该方法执行在没有事务的方法中，就创建一个新的事务  
 + 如果执行在已经存在事务的方法中，则当前事务中嵌套创建子事务执行  
 + 被嵌套的事务可以独立于封装事务进行提交或回滚  
-+ 如果外部事务提交嵌套事务
++ 如果外部事务提交嵌套事务也会被提交，如果外部事务回滚嵌套事务也会进行回滚  
+```java
+@Service
+public class ServiceA {
+
+    @Autowired
+    private ServiceB serviceB;
+
+    public void mA1() {
+        // 调用另一个类中方法，测试事务传播行为
+        serviceB.mB();
+    }
+    
+    @Transactional
+    public void mA2() {
+        // 调用另一个类中方法，测试事务传播行为
+        serviceB.mB();
+    }
+    
+}
+@Service
+public class ServiceB {
+
+    @Transactional(propagation = Propagation.NESTED)
+    public void mB() {
+        System.out.println("方法 mB()");
+        // 业务逻辑（略）
+    }
+
+}
+```  
+1. 上面方法中 ServiceA.mA1() 没有设置事务，而 ServiceB.mB() 设置了事务，且设置的事务行为是 PROPAGATION_NEVER。ServiceA.mA1() 运行调用 ServiceB.mB() 时，方法 ServiceB.mB() 发现调用自己的方法并没有设置事务，这时方法 ServiceB.mB() 就会创建一个新的事务  
+2. 上面示例中两个方法都设置了事务，ServiceB.mB() 设置的事务行为是 PROPAGATION_NESTED。ServiceA.mA2() 运行调用 ServiceB.mB() 时，方法 ServiceB.mB() 发现调用自己方法也存在事务，这时方法 ServiceB.mB() 也会创建一个新的事务，与 ServiceA.mA2() 的事务形成嵌套事务。被嵌套的事务可以独立于封装事务进行提交或回滚。如果外部事务提交嵌套事务也会被提交，如果外部事务回滚嵌套事务也会进行回滚
