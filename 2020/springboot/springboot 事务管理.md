@@ -243,8 +243,14 @@ public void test() throws Exception {
 #### 使用public来修饰事务方法  
 如果@Transaction修饰的是private方法，那么该事务是不生效的  
 ```java
-
+@Transactional
+private void test() throws Exception {
+    userMapper.delete(1);
+    throw new SQLException();
+}
 ```
+因为@Transaction注解是通过Spring AOP代理实现的，而AOP是不能直接获取非public返回给发的，如果非要在非public方法上，可以开启AspectJ代理模式  
+
 
 
 
