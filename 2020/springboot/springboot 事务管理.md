@@ -93,4 +93,6 @@ public class ServiceB{
 1. 上面两个类中，只有ServiceB.mB方法设置了事务，且设置事务的传播行为是PROPAGATION_REQUIRED，当设置此传播行为时，当Service.mA()运行调用ServiceB.mB()时，ServiceB()发现自己执行在没有事务的ServiceA()方法中，这时ServiceB()会新建一个事务  
 2. 上面两个类中的方法都设置了事务，且设置的事务传播行为是 PROPAGATION_REQUIRED，当设置此传播行为时，当 ServiceA.mA2() 运行调用 ServiceB.mB() 时，ServiceB.mB() 发现自己执行在已经存在 ServiceA.mA2() 设置的事务中，这时 ServiceB.mB() 不会再创建事务，而是直接加入到 ServiceA.mA2() 设置的事务中。这样，当 ServiceA.mA2() 或者 ServiceB.mB() 方法内发生异常时，两者都会回滚  
 #### PROPAGATION_REQUIRED_NEW  
-+ 无论该方法是否执行
++ 无论该方法是否执行在事务的方法中，都会创建一个新的事务  
++ 不过如果执行在存在事务的方法中，就将方法中的事务暂时挂起  
++ 新的事务会独立提交和回滚，不受调用它的父方法的事务的
