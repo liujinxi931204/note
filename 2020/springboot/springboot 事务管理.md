@@ -134,4 +134,7 @@ public class ServiceB {
 + 假设 ServiceB.mB() 已经提交，那么 ServiceA.mA2() 抛出异常进行回滚，这时 ServiceB.mB() 是不会回滚的  
 + 假设 ServiceB.mB() 异常回滚，假设他抛出的异常被 ServiceA.mA2() 捕获，ServiceA.mA2() 事务仍然可能提交  
 #### PROPAGATION_NESTED  
-+ 如果该方法执行在没有事务的方法中，就创建一个新
++ 如果该方法执行在没有事务的方法中，就创建一个新的事务  
++ 如果执行在已经存在事务的方法中，则当前事务中嵌套创建子事务执行  
++ 被嵌套的事务可以独立于封装事务进行提交或回滚  
++ 如果外部事务提交嵌套事务
