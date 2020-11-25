@@ -73,7 +73,10 @@ public void ServiceA{
     @Autowired
     private ServiceB serviceB;
     
-    
+    public void mA(){
+   //业务逻辑
+   serviceB.mB();
+   }
  
 }
 ```
