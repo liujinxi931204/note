@@ -234,6 +234,15 @@ public void test() throws Exception {
 ```
 上面的代码中SQLException是Eeception的子类，解决这个问题也很简单。在@Transaction注解中设置rollbackFor=Exception.class即可  
 ```java
+@Transactional(rollbackFor = Exception.class)
+public void test() throws Exception {
+    userMapper.delete(1);
+    throw new SQLException();
+}
+```  
+#### 使用public来修饰事务方法  
+如果@Transaction修饰的是private方法，那么该事务是不生效的  
+```java
 
 ```
 
