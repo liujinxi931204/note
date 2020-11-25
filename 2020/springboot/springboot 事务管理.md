@@ -269,7 +269,25 @@ public class ServiceA {
 
 }
 ```
-+ 
++ 同一类中事务方法调用另一个事务方法，事务不生效  
+```java
+@Service
+public class ServiceB{
+
+    @Transactional
+    public void mB1() {
+        // 调用同类中的事务方法 mB2()
+        mB2();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void mB2() {
+        // 业务逻辑（略）
+    }
+
+}
+```
+上面的方法都不生效，
 
 
 
