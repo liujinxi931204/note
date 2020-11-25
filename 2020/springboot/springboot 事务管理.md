@@ -224,8 +224,15 @@ public void test() throws Exception {
 }
 ```  
 #### 遇到非运行时异常事务默认不回滚  
-Spring默认事务回滚规则时遇到运行时异常(RuntimeException)或者ErrorC
-
+Spring默认事务回滚规则时遇到运行时异常(RuntimeException)或者Error时才会回滚操作  
+```java
+@Transactional
+public void test() throws Exception {
+    userMapper.delete(1);
+    throw new SQLException();
+}
+```
+上面的代码中SQLE
 
 
 
