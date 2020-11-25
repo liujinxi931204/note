@@ -176,7 +176,9 @@ public class ServiceB {
 #### PROPAGARION_REQUIRES_NEW  
 + 设置PROPAGATION_REQUIRES_NEW时会创建一个"新事物",而不依赖于环境的"内部"事务  
 + 新事物的"提交"或"回滚"不依赖于外部事物，它拥有自己的隔离范围、锁等  
-+ 当新的内部事务开始执行时，外部事务将被
++ 当新的内部事务开始执行时，外部事务将被挂起，内事务结束时，外部事物将继续执行  
+#### PROPAGATION_NESTED   
++ PROPAGATION_NESTE
 
 
 
