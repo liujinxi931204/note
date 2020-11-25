@@ -90,3 +90,4 @@ public class ServiceB{
    }
 }
 ```
+1. 上面两个类中，只有ServiceB.mB方法设置了事务，且设置事务的传播行为是PROPAGATION_REQUIRED，当设置次
