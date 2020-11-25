@@ -251,8 +251,25 @@ private void test() throws Exception {
 ```
 因为@Transaction注解是通过Spring AOP代理实现的，而AOP是不能直接获取非public返回给发的，如果非要在非public方法上，可以开启AspectJ代理模式  
 #### 不要调用类自身事务方法  
-在使用@Transaction时，最好不要发生**自身非事务方法调用事务方法**或者**事务方法**
+在使用@Transaction时，最好不要发生**自身非事务方法调用事务方法**或者**事务方法调用自身类中的另一个事务方法**  
++ 同一类中非事务方法调用事务方法，事务不生效  
+```java
+@Service
+public class ServiceA {
 
+    public void mA1() {
+        // 调用同类中的事务方法 mA2()
+        mA2();  
+    }
+
+    @Transactional
+    public void mA2() {
+        // 业务逻辑（略）
+    }
+
+}
+```
++ 
 
 
 
