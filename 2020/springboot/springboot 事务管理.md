@@ -12,3 +12,6 @@
 Spring事务其实指的是Spring框架中的事务模块。在Spring框架中，对执行数据库事务的操作进行了一系列封装，其本质的实现还是在数据库，加入数据库不支持事务的话，Spring的事务也不会起作用，且Spring对事务进行了加强，添加了事务传播行为等功能  
 ## Spring事务抽象  
 ### Spring中事务核心接口类  
+在Spring中核心的事务接口主要由以下组成  
++ **PlatformTransactionManager**：事务管理器  
++ **TransactionDefinition**：事务的
