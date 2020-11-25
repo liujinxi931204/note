@@ -201,7 +201,8 @@ Spring支持编程式事务管理和声明式事务管理两种方式
 **一般而言，不推荐将@Transactional配置到类上**  
 ### @Transactional回滚规则  
 异常分为运行时异常、非运行时异常和Error  
-+ 当发生Error时，@Transactional默认会自动
++ 当发生Error时，@Transactional默认会自动回滚  
++ 
  
 
 
