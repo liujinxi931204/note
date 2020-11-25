@@ -131,4 +131,5 @@ public class ServiceB {
 2. 上面方法中 ServiceA.mA2() 和 ServiceB.mB() 都存在事务，当 ServiceA.mA2() 运行调用 ServiceB.mB() 时，ServiceB.mB() 发现自己执行在已经存事务的方法中，这时 ServiceB.mB() 会创建一个新的事务，且将 ServiceA.mA2() 中的事务暂时挂起，等 ServiceB.mB() 完成后，恢复 ServiceA.mA2() 的事务。
 
 由于 ServiceB.mB() 是新起一个事务，那么 ServiceA.mA2() 在调用 ServiceB.mB() 执行时 ServiceA.mA() 事务被挂起，那么：  
-+ 
++ 假设 ServiceB.mB() 已经提交，那么 ServiceA.mA2() 抛出异常进行回滚，这时 ServiceB.mB() 是不会回滚的  
++ 假设 ServiceB.mB() 异常回滚，假设他抛出的异常被 ServiceA.mA2() 捕获，ServiceA.mA2() 事务仍然可能提交  
