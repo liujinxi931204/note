@@ -178,7 +178,8 @@ public class ServiceB {
 + 新事物的"提交"或"回滚"不依赖于外部事物，它拥有自己的隔离范围、锁等  
 + 当新的内部事务开始执行时，外部事务将被挂起，内事务结束时，外部事物将继续执行  
 #### PROPAGATION_NESTED   
-+ PROPAGATION_NESTE
++ PROPAGATION_NESTED开始一个"嵌套事务",它是已经存在事务的一个真正的子事务  
++ 嵌套事务开始执行时，它将取得一个savepoint回滚点，如果这个嵌套事务失败，
 
 
 
