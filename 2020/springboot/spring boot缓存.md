@@ -43,7 +43,8 @@
 + 更新数据库成功->淘汰缓存失败->数据不一致  
 + 淘汰缓存成功->更新数据库失败->数据查询mis  
 ## Spring的缓存抽象  
-Spring框架自身并没有实现缓存解决方案，但是从3.1开始定义了org.springframework.cache.Cache和org.srping
+Spring框架自身并没有实现缓存解决方案，但是从3.1开始定义了org.springframework.cache.Cache和org.srpingframeswork.cache.CacheManager接口，提供了对缓存功能的声明，能够与多种流行的缓存实现集成  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606727529808-1606727529809.png)
 
 
 
