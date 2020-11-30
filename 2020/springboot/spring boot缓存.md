@@ -50,10 +50,16 @@ Spring框架自身并没有实现缓存解决方案，但是从3.1开始定义�
 #### Cacheable注解属性简介  
 cacheNames/value:指定缓存组件的名字，必须至少指定一个  
 ```java
-@cacheable(value="cache1")
-@cacheable(value={"cache1,cache2"})
+@Cacheable(value="cache1")
+@Cacheable(value={"cache1,cache2"})
 ```  
-key:缓存数据时使用的key，可以
+key:缓存数据时使用的key，可以根据该属性进行自定义设置，默认使用方法的参数  
+```java
+@Cacheable(value=”testcache”,key=”#userName”)
+@Cacheable(value=”testcache”,key=”#root.args[0]”)
+@Cacheable(value=”testcache”,key=”#root.methodName+'['+#id+']'”)
+```  
+keyGenerator
 
 
 
