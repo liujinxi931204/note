@@ -63,7 +63,10 @@ keyGenerator:key的生成器，可以自己指定keyGenerator组件id(自定义k
 cacheManager：指定缓存管理器；cacheResolver指定获取缓存解析器，二者二选一  
 condition：缓存的条件，可以为空，也可以使用SpEL表达式编写，返回true或者false，只有为true才进行缓存，在调用方法之前、之后都能判断  
 ```java
-```
+@Cacheable(value=”testcache”,condition=”#id>2”)
+@Cacheable(value=”testcache”,condition=”#a0>2”)
+```  
+unless:当unless的条件为true时，方法的返回值就不缓存。该表达式只在方法执行之后判断，此时可以拿到返回值result
  
 
 
