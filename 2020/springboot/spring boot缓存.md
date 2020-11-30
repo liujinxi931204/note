@@ -59,7 +59,9 @@ key:缓存数据时使用的key，可以根据该属性进行自定义设置，�
 @Cacheable(value=”testcache”,key=”#root.args[0]”)
 @Cacheable(value=”testcache”,key=”#root.methodName+'['+#id+']'”)
 ```  
-keyGenerator:key的生成器，可以自己指定keyGenerator组件id(自定义keyGenerator，不能同时和key使用)
+keyGenerator:key的生成器，可以自己指定keyGenerator组件id(自定义keyGenerator，不能同时和key使用)  
+cacheManager：指定缓存管理器；cacheResolver指定获取缓存解析器，二者二选一  
+
  
 
 
