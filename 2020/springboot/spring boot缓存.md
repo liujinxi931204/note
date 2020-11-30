@@ -66,9 +66,12 @@ condition：缓存的条件，可以为空，也可以使用SpEL表达式编写�
 @Cacheable(value=”testcache”,condition=”#id>2”)
 @Cacheable(value=”testcache”,condition=”#a0>2”)
 ```  
-unless:当unless的条件为true时，方法的返回值就不缓存。该表达式只在方法执行之后判断，此时可以拿到返回值result
- 
-
+unless:当unless的条件为true时，方法的返回值就不缓存。该表达式只在方法执行之后判断，此时可以拿到返回值result进行判断。条件为true时不会缓存，false才会缓存  
+```java
+@Cacheable(value=”testcache”,unless=”#result == null”)
+```  
+sync：是否启用异步模式。默认采用同步方式，在方法执行完将结果放入缓存，可以设置为true，启用异步模式。需要注意的是，异步模式不能与unless同时使用。
+#### C
 
 
 
