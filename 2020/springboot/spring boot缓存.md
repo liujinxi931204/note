@@ -53,7 +53,7 @@ cacheNames/value:指定缓存组件的名字，必须至少指定一个
 @cacheable(value="cache1")
 @cacheable(value={"cache1,cache2"})
 ```  
-
+key:缓存数据时使用的key，可以
 
 
 
