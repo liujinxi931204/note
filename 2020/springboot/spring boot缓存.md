@@ -103,6 +103,8 @@ public Employee getEmpByLastName(String lastName){
 同一个类中不同方法汇总缓存组件名字一般相同，可以使用@CacheConfig注解作用在类上配置共同属性值，默认对该类的所有方法起作用  
 
 ## 整合第三方缓存redis  
+### 目录结构  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606729744873-1606729744874.png)
 ### maven引入相关依赖  
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -203,15 +205,14 @@ spring.redis.lettuce.pool.max-idle=8
 spring.redis.lettuce.pool.max-wait=-1
 spring.redis.lettuce.pool.min-idle=0
 
-#mybatis配置,如果不指定这个配置，pojo类上的Alias
+#mybatis配置,如果不指定这个配置，pojo类上的Alias会找不到Bean
 mybatis.type-aliases-package=com.sogou.redisdemo2.pojo
 
 #cache配置
 spring.cache.redis.use-key-prefix=true
 spring.cache.redis.time-to-live=1d
+```  
 
-
-```
 
 
 
