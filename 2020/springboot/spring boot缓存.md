@@ -79,7 +79,12 @@ sync：是否启用异步模式。默认采用同步方式，在方法执行完�
 注意 **@CachePut中的key是不能使用#{result}的**  
 #### @CacheEvict注解使用  
 默认先执行方法，然后根据参数作为key从缓存中删除数据。如果方法执行过程中抛出了异常，则不会删除缓存中目标数据  
-allEntries:默认false，表示是否全部删除对应缓存组件中
+allEntries:默认false，表示是否全部删除对应缓存组件中的数据  
+beforeInvocation：默认false，表示是否在方法执行执行删除缓存  
+#### @Cacheing注解  
+该注解用来构建复杂规则的缓存用例  
+```java
+```
 
 
 
