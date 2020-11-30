@@ -48,7 +48,12 @@ Spring框架自身并没有实现缓存解决方案，但是从3.1开始定义�
 ### 几个重要概念&缓存注解  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606727579909-1606727579910.png)  
 #### Cacheable注解属性简介  
-cacheNames/value:指定缓存组件的名字，必须至少指定一个
+cacheNames/value:指定缓存组件的名字，必须至少指定一个  
+```java
+@cacheable(value="cache1")
+@cacheable(value={"cache1,cache2"})
+```  
+
 
 
 
