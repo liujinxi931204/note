@@ -74,7 +74,8 @@ sync：是否启用异步模式。默认采用同步方式，在方法执行完�
 #### Cache SpEL
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606728774849-1606728774851.png)  
 #### @CachePut注解使用  
-既调用方法，
+既调用方法，又更新缓存(先调用方法，然后将方法的返回结果放进缓存)  
+注意 **@CachePut中的key是不能使用#{}**
 
 
 
