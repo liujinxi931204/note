@@ -48,7 +48,7 @@ Spring框架自身并没有实现缓存解决方案，但是从3.1开始定义�
 ### 几个重要概念&缓存注解  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606727579909-1606727579910.png)  
 #### Cacheable注解属性简介  
-每次调用目标方法之前都会根据给定的方法参数检查是否
+每次调用目标方法之前都会根据给定的方法参数检查是否方法已经进行了缓存  
 cacheNames/value:指定缓存组件的名字，必须至少指定一个  
 ```java
 @Cacheable(value="cache1")
@@ -77,7 +77,8 @@ sync：是否启用异步模式。默认采用同步方式，在方法执行完�
 #### @CachePut注解使用  
 既调用方法，又更新缓存(先调用方法，然后将方法的返回结果放进缓存)  
 注意 **@CachePut中的key是不能使用#{result}的**  
-
+#### @CacheEvict注解使用  
+默认先执行方法，然后根据参数作为key从缓存中删除数据。
 
 
 
