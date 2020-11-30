@@ -73,7 +73,8 @@ unless:当unless的条件为true时，方法的返回值就不缓存。该表达
 sync：是否启用异步模式。默认采用同步方式，在方法执行完将结果放入缓存，可以设置为true，启用异步模式。需要注意的是，异步模式不能与unless同时使用。
 #### Cache SpEL
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606728774849-1606728774851.png)  
-
+#### @CachePut注解使用  
+既调用方法，
 
 
 
