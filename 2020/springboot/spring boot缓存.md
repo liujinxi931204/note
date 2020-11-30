@@ -100,7 +100,9 @@ public Employee getEmpByLastName(String lastName){
 ```  
 第一次按照lastName进行缓存的同时(cacheable 注解)，@CachePut注解也起作用–分别以id和email为key在缓存中放入数据。再次进行查询的时候方法仍然会调用，因为@CachePut注解一直起作用！  
 #### @CacheConfig注解使用  
-同一个类中不同方法汇总缓存组件名字一般相同，可以使用@CacheConfig注解作用在类上配置
+同一个类中不同方法汇总缓存组件名字一般相同，可以使用@CacheConfig注解作用在类上配置共同属性值，默认对该类的所有方法起作用  
+
+## 整合redis
 
 
 
