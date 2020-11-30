@@ -187,6 +187,31 @@ public Employee getEmpByLastName(String lastName){
     </build>
 </project>
 ```  
+### 配置数据库、redis、mybatis、cache相关配置  
+```properties
+#数据库配置
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+spring.datasource.url=jdbc:mysql://10.160.58.128:3306/test_ljx
+spring.datasource.username=root
+spring.datasource.password=123456
+
+#redis配置
+spring.redis.host=10.160.58.128
+spring.redis.port=6379
+spring.redis.lettuce.pool.max-active=8
+spring.redis.lettuce.pool.max-idle=8
+spring.redis.lettuce.pool.max-wait=-1
+spring.redis.lettuce.pool.min-idle=0
+
+#mybatis配置,如果不指定这个配置，pojo类上的Alias
+mybatis.type-aliases-package=com.sogou.redisdemo2.pojo
+
+#cache配置
+spring.cache.redis.use-key-prefix=true
+spring.cache.redis.time-to-live=1d
+
+
+```
 
 
 
