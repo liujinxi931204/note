@@ -84,7 +84,22 @@ beforeInvocation：默认false，表示是否在方法执行执行删除缓存
 #### @Cacheing注解  
 该注解用来构建复杂规则的缓存用例  
 ```java
-```
+@Caching(
+            cacheable ={
+                    @Cacheable(value ="emp",key = "#lastName")
+            },
+            put = {
+                    @CachePut(value = "emp",key = "#result.id"),
+                    @CachePut(value = "emp",key = "#result.email")
+            }
+    )
+public Employee getEmpByLastName(String lastName){
+     System.out.println("调用复杂缓存方法");
+     return employeeMapper.getEmpByLastName(lastName);
+ }
+```  
+第一次按照lastName进行缓存的同时(cacheable 注解)，@CachePut注解也起作用–分别以id和email为key在缓存中放入数据。再次进行查询的时候方法仍然会调用，因为@CachePut注解一直起作用！  
+
 
 
 
