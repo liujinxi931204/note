@@ -61,7 +61,9 @@ key:缓存数据时使用的key，可以根据该属性进行自定义设置，�
 ```  
 keyGenerator:key的生成器，可以自己指定keyGenerator组件id(自定义keyGenerator，不能同时和key使用)  
 cacheManager：指定缓存管理器；cacheResolver指定获取缓存解析器，二者二选一  
-
+condition：缓存的条件，可以为空，也可以使用SpEL表达式编写，返回true或者false，只有为true才进行缓存，在调用方法之前、之后都能判断  
+```java
+```
  
 
 
