@@ -61,10 +61,11 @@ view.setOnClickListener(new OnClickListener(){
 ```
 从java8 开始，单参数的匿名内部类可以简写成如下  
 ```java
-(x)->{
+([类名] 变量名)->{
     执行语句
 }
 ```
+其中类名是可以省略的，因为lambda表达式是可以自己推断出类型的。那么上面的例子可以
 
 
 
