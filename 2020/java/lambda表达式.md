@@ -57,7 +57,7 @@ view.setOnClickListener(new OnClickListener(){
     public void onClick(View v){
        v.setVisibility(View.GONE);
    }
-})
+});
 ```
 从java8 开始，单参数的匿名内部类可以简写成如下  
 ```java
@@ -71,9 +71,11 @@ view.setOnClickListener((View v)->{
     v.setVisibility(View.GONE);
 });
 
-view.setOnClickListener(v)->{
-v.set}
+view.setOnClickListener((v)->{
+    v.setVisibility(View.GONE);
+});
 ```
+单参数函数甚至可以把括号去掉，官方也更建议使用
 
 
 
