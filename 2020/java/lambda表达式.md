@@ -30,5 +30,9 @@ new Thread(new Runnable(){
 ```
 这样接口名和函数名就可以省略掉了。那么，上面的示例可以简写成：  
 ```java
-new Thread(()->)
-```
+new Thread(()->{
+    System.out.println("hello");
+    System.out.println("Jimmy")；
+}).start();
+```  
+如果执行的语句只有一条的时候，还可以对代码块进行
