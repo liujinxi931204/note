@@ -247,6 +247,7 @@ public class redisConfig {
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer=new Jackson2JsonRedisSerializer<>(Object.class);
 //        ObjectMapper类是Jackson库的主要类。它提供一些功能将转换成Java对象匹配JSON结构
         ObjectMapper objectMapper = new ObjectMapper();
+//        指定要序列化的域，filed、get和set，以及修饰符范围，ANY是都包括private、public
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
