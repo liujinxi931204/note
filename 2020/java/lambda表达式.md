@@ -14,5 +14,11 @@ public interface Runnable{
 ```  
 在没有使用lambda的时候，可以使用匿名内部类的形式  
 ```java
-new Thread(new Run)
+new Thread(new Runnable(){
+    @Override
+    public void run(){
+        System.out.println("hello");
+        System.out.println("Jimmy");
+    }
+}).start();
 ```
