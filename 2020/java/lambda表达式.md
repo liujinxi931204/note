@@ -39,7 +39,10 @@ new Thread(()->{
 ```java
 ()->执行语句
 ```
-
+所以，如果上面的例子中只有一条执行语句的时候，还可以简写  
+```java
+new Thread(()->System.out.println("hello")).start();
+```
 
 
 
