@@ -382,6 +382,126 @@ public interface TeacherDao {
 ```
 ### service层  
 ```java
+package com.sogou.redisdemo2.impl;
+
+import com.sogou.redisdemo2.dao.TeacherDao;
+import com.sogou.redisdemo2.pojo.Teacher;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-11-27 19:18
+ **/
+@Service("teacherDaoImpl")
+public class TeacherDaoImpl  implements TeacherDao {
+
+    @Autowired
+    @Qualifier("teacherDao")
+    private TeacherDao teacherDao;
+
+    @Override
+    public List<Teacher> getAllTeacher() {
+        return teacherDao.getAllTeacher();
+    }
+
+    @Override
+    public int updateTeacher(Teacher teacher) {
+        return teacherDao.updateTeacher(teacher);
+    }
+
+    @Override
+    public Teacher getTeacherById(int id) {
+        return teacherDao.getTeacherById(id);
+    }
+    
+}
+
+```
+### controller层  
+```java
+package com.sogou.redisdemo2.controller;
+
+import com.sogou.redisdemo2.dao.TeacherDao;
+import com.sogou.redisdemo2.pojo.Teacher;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.core.style.ToStringCreator;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-11-27 19:24
+ **/
+
+@RestController
+public class helloController {
+
+    @Autowired
+    @Qualifier("teacherDaoImpl")
+    private TeacherDao teacherDao;
+
+
+    @GetMapping("/get")
+    @Cacheable(value = "teacherCache",key = "#root.target")
+    public Object getAllTeacher(){
+        System.out.println("调用了方法，没有使用缓存");
+        List<Teacher> allTeacher = teacherDao.getAllTeacher();
+        return allTeacher;
+    }
+
+    @GetMapping("/update/{name}/{id}")
+    @Caching(
+//            每次更新之后，更新#id缓存
+            put = {
+                    @CachePut(value = "teacherCache",key = "#id")
+            },
+//            每次更新之后，清除#root.target缓存，为的是查询所有的时候直接从数据库获取到最新的
+            evict = {
+                    @CacheEvict(value = "teacherCache",key = "#root.target")
+            }
+    )
+    public Teacher updateTeacher(@PathVariable("name")String name,@PathVariable("id")int id){
+        System.out.println("调用了方法，没有使用缓存");
+        Teacher teacher = teacherDao.getTeacherById(id);
+        teacher.setId(id);
+        teacher.setName(name);
+        teacherDao.updateTeacher(teacher);
+        return teacher;
+    }
+
+
+    @GetMapping("/get/{id}")
+    @Cacheable(value = "teacherCache",key = "#id")
+    public Teacher getTeacherById(@PathVariable("id") int id){
+        System.out.println("调用了方法，没有使用缓存");
+        return teacherDao.getTeacherById(id);
+    }
+
+    @Override
+//    重写toString方法，为的是使用缓存注解的时候key可以使用#root
+//    如果不重写toString方法，会存在Cannot convert cache key的错误
+    public String toString() {
+        return "helloController";
+    }
+}
 
 ```
 
