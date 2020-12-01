@@ -237,10 +237,13 @@ import java.util.Arrays;
 @Configuration
 public class redisConfig {
 
+//    由于原生redis自动装配，在存储key和value的时候，没有设置序列化，创建自己的redisTemplate
     @Bean
     public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory redisConnectionFactory){
         RedisTemplate<String,Object> redisTemplate=new RedisTemplate<>();
+//配置连接工厂
         redisTemplate.setConnectionFactory(redisConnectionFactory);
+//        使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值，如果不适用的话，默认使用JDK序列化
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer=new Jackson2JsonRedisSerializer<>(Object.class);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
