@@ -55,11 +55,11 @@ public interface OnClickListener{
 view.setOnClickListener(new OnClickListener(){
     @override
     public void onClick(View v){
-       v.set
+       v.setVisibility(View.GONE);
    }
-    
 })
 ```
+
 
 
 
