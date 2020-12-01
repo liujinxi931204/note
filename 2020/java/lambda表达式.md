@@ -59,7 +59,12 @@ view.setOnClickListener(new OnClickListener(){
    }
 })
 ```
-
+从java8 开始，单参数的匿名内部类可以简写成如下  
+```java
+(x)->{
+    执行语句
+}
+```
 
 
 
