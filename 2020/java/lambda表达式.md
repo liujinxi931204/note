@@ -75,7 +75,14 @@ view.setOnClickListener((v)->{
     v.setVisibility(View.GONE);
 });
 ```
-单参数函数甚至可以把括号去掉，官方也更建议使用
+单参数函数甚至可以把括号去掉，官方也更建议使用这种方式  
+```java
+```
+```java
+view.setOnClickListener(v->{
+    v.setVisibility(View.GONE);
+});
+```
 
 
 
