@@ -93,7 +93,7 @@ view.setOnClickListener(v->{
 ```  
 那么上面的例子还可以简化成如下格式  
 ```java
-view.setOnClickListener(v->v.set)
+view.setOnClickListener(v->v.setVisibility(View.GONE));
 ```
 
 
