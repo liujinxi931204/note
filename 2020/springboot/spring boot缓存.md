@@ -212,7 +212,7 @@ mybatis.type-aliases-package=com.sogou.redisdemo2.pojo
 spring.cache.redis.use-key-prefix=true
 spring.cache.redis.time-to-live=1d
 ```  
-#### 自定义配置类  
+### 自定义配置类  
 ```java
 package com.sogou.redisdemo2.config;
 
@@ -255,8 +255,9 @@ public class redisConfig {
         redisTemplate.setKeySerializer(new StringRedisSerializer());
 //        设置value使用Jackson2JsonRedisSerializer序列化
         redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
-
+//        设置hash key使用StringRedisSerializer序列化
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+//        设置hash value使用jackson2JsonRedisSerializer序列化
         redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
@@ -282,8 +283,9 @@ public class redisConfig {
 //    }
 
 }
+```  
+### pojo类  
 
-```
 
 
 
