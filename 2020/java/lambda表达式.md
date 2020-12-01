@@ -50,7 +50,10 @@ public interface OnClickListener{
     void onClick(View v);
 }
 ```  
-不适用
+不使用lambda表达式可以使用如下的方式  
+```java
+view.setOnClickListener()
+```
 
 
 
