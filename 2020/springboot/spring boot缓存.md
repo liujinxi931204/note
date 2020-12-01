@@ -339,6 +339,28 @@ public class Teacher implements Serializable {
 
 ### mybatis配置的dao层和xml映射文件  
 ```java
+package com.sogou.redisdemo2.dao;
+
+import com.sogou.redisdemo2.pojo.Teacher;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/**
+ * author liujinxi@sogou-inc.com
+ * date 2020-11-27 19:17
+ **/
+@Repository("teacherDao")
+public interface TeacherDao {
+
+    public List<Teacher> getAllTeacher();
+    public int updateTeacher(Teacher teacher);
+    public Teacher getTeacherById(int id);
+
+}
+
+```  
+```xml
 
 ```
 
