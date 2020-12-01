@@ -89,7 +89,11 @@ view.setOnClickListener(v->{
 ```  
 当只有一句执行语句的时候，依然可以对代码块进行简化  
 ```java
-
+变量名->执行语句 
+```  
+那么上面的例子还可以简化成如下格式  
+```java
+view.setOnClickListener(v->v.set)
 ```
 
 
