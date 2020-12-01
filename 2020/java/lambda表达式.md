@@ -67,7 +67,12 @@ view.setOnClickListener(new OnClickListener(){
 ```
 其中类名是可以省略的，因为lambda表达式是可以自己推断出类型的。那么上面的例子可以简写成如下  
 ```java
-view.setOnClickListener((View v)->{v.setVisibility(View.GONE)});
+view.setOnClickListener((View v)->{
+    v.setVisibility(View.GONE);
+});
+
+view.setOnClickListener(v)->{
+v.set}
 ```
 
 
