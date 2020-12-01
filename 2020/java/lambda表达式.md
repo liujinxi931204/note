@@ -46,6 +46,11 @@ new Thread(()->System.out.println("hello")).start();
 ### 单参数函数的简写  
 单参数函数是指只有一个参数的函数。例如，View内部的接口OnClickListener的方法，onClick(View v)，其定义如下  
 ```java
+public interface OnClickListener{
+    void onClick(View v);
+}
+```  
+不适用
 
 
 
