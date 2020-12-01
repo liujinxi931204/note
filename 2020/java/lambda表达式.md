@@ -77,11 +77,19 @@ view.setOnClickListener((v)->{
 ```
 单参数函数甚至可以把括号去掉，官方也更建议使用这种方式  
 ```java
+变量名->{
+    执行语句;
+}
 ```
+上述例子可以写成如下形式  
 ```java
 view.setOnClickListener(v->{
     v.setVisibility(View.GONE);
 });
+```  
+当只有一句执行语句的时候，依然可以对代码块进行简化  
+```java
+
 ```
 
 
