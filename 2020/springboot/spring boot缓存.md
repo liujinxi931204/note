@@ -245,6 +245,7 @@ public class redisConfig {
         redisTemplate.setConnectionFactory(redisConnectionFactory);
 //        使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值，如果不适用的话，默认使用JDK序列化
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer=new Jackson2JsonRedisSerializer<>(Object.class);
+//        ObjectMapper类是Jackson库的主要类。它提供一些功能将转换成Java对象匹配JSON结构
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,ObjectMapper.DefaultTyping.NON_FINAL);
