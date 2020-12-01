@@ -361,6 +361,27 @@ public interface TeacherDao {
 
 ```  
 ```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sogou.redisdemo2.dao.TeacherDao">
+
+    <select id="getAllTeacher" resultType="teacher">
+                select * from tb_teacher;
+    </select>
+
+    <select id="getTeacherById" parameterType="int">
+        select * from tb_teacher where id=#{id}
+    </select>
+
+    <update id="updateTeacher" parameterType="Teacher">
+        update tb_teacher set name=#{name} where id=#{id}
+    </update>
+</mapper>
+```
+### service层  
+```java
 
 ```
 
