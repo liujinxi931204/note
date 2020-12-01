@@ -249,10 +249,11 @@ public class redisConfig {
         ObjectMapper objectMapper = new ObjectMapper();
 //        指定要序列化的域，filed、get和set，以及修饰符范围，ANY是都包括private、public
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,ObjectMapper.DefaultTyping.NON_FINAL);
+//        指定序列化输入的类型，类必须是非final修饰的类，比如String、Integer等会跑出错误        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
-
+//        设置key使用StringRedisSerializer序列化
         redisTemplate.setKeySerializer(new StringRedisSerializer());
+//        设置value使用Jackson2JsonRedisSerializer序列化
         redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
 
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
