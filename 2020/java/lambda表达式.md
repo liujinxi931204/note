@@ -52,7 +52,13 @@ public interface OnClickListener{
 ```  
 不使用lambda表达式可以使用如下的方式  
 ```java
-view.setOnClickListener()
+view.setOnClickListener(new OnClickListener(){
+    @override
+    public void onClick(View v){
+       v.set
+   }
+    
+})
 ```
 
 
