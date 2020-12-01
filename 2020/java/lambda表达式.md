@@ -22,3 +22,4 @@ new Thread(new Runnable(){
     }
 }).start();
 ```
+从java8 开始，无参函数的匿名内部类可以简写成如下
