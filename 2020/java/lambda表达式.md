@@ -9,6 +9,10 @@ lambda表达式的另一个依据是**类型推断机制**。在上下文信息�
 ```java
 @FunctionalInterface
 public interface Runnable{
-    public adstract
+    public adstract void run();
 }
+```  
+在没有使用lambda的时候，可以使用匿名内部类的形式  
+```java
+new Thread(new Run)
 ```
