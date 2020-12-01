@@ -5,4 +5,10 @@ java8 引入的lambda表达式的主要作用就是简化部分的写法
 lambda表达式的另一个依据是**类型推断机制**。在上下文信息足够的情况下，编译器可以推断出参数表的类型，而不需要显式指名  
 ## 常见用法  
 ### 无参函数的简写  
-无参函数就是没有参数的
+无参函数就是没有参数的函数，例如Runnable接口的run()方法，其定义如下  
+```java
+@FunctionalInterface
+public interface Runnable{
+    public adstract
+}
+```
