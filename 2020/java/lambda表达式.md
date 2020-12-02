@@ -201,9 +201,18 @@ boolean test(T t);
 ```java
 public List<String> filterStr(List<String> str,Predicate<String> pre){
     List<String> strList=new ArrayList<>();
-    for(String str:strList){
-        if(pre.test(str))
+    for(String str:list){
+        if(pre.test(str)){
+             strList.add(str);
+        }
     }
+    return strList;
+}
+
+
+@Test
+public void test4(){
+
 }
 ```
 
