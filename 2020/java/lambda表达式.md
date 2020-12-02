@@ -139,7 +139,12 @@ Collections.sort(list,(o1,o2)->o1.compareTo(o2));
 ## Java内置四大核心函数式接口  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/02/1606874161734-1606874161736.png)  
 ### 消费型接口  
-Consumer<T>
+Consumer<T> 消费型接口  
+```java
+public void hello(String str,Consumer<String> con){
+
+}
+```
 
 
 
