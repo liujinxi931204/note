@@ -320,7 +320,9 @@ Collections.sort(list,(o1,o2)->o1.compareTo(o2));
 使用方法引用可以简化为  
 ```java
 Collections.sort(list,Integer::compareTo);
-```
+```  
+### 引用构造方法  
+当要执行的表达式就是创建一个对象，并且这个对象的构造方法的参数列表和接口里函数的
 
 
 
