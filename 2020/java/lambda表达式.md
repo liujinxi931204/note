@@ -189,7 +189,8 @@ public String setHandler(String str,Function<String,String> func){
 
 @Test
 public void test3(){
-    String newStr1=setHander()
+    String newStr1=setHander("ttt 这是一个函数接口",str->str.trim());
+    System.out.println()
 
 }
 ```
