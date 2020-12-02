@@ -140,7 +140,9 @@ Collections.sort(list,(o1,o2)->o1.compareTo(o2));
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/02/1606874161734-1606874161736.png)  
 ### 消费型接口  
 Consumer<T> 消费型接口  
-void 
+```java
+void accept(T t);
+```
 ```java
 public void hello(String str,Consumer<String> con){
     con.accept(str);
@@ -153,6 +155,9 @@ public void test1(){
 ```  
 ### 供给型接口  
 Supplier<T> 供给型接口  
+```java
+T get();
+```
 ```java
 //需求：产生指定个数的整数，并放入集合
 public List<Integer> getNumList(int num,Supplier<Integer> sup){
@@ -174,6 +179,9 @@ public void test2(){
 ```  
 ### 函数型接口  
 Function<T,R> 函数型接口  
+```java
+R apply(T t);
+```
 ```java
 public String setHandler(String str,Function<String,String> func){
     return func.apply(str);
