@@ -158,7 +158,14 @@ public List<Integer> getNumList(int num,Supplier<Integer> sup){
     List<Integer> list=new ArrayList<>();
     for(int i=0;i<num;i++){
         Integer n=sup.get();
+        list.add(n)；
     }
+    return List;
+}
+
+@Test
+public void test2(){
+    List list=new 
 }
 ```
 
