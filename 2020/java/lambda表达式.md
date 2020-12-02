@@ -173,7 +173,9 @@ public void test2(){
 ```  
 ### 函数型接口  
 Function<T,R> 函数型接口  
-
+```java
+public 
+```
 
 
 
