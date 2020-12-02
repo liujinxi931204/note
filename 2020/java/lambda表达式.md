@@ -167,7 +167,9 @@ public List<Integer> getNumList(int num,Supplier<Integer> sup){
 public void test2(){
     List list=Arrays.asList(121,1231,455,56,67,78);
     List<Integer> numList=getNumList(1,()->(int)(Math.random()*100));
-    for(Integer)
+    for(Integer num:nunList){
+        System.out.println(num);
+    }
 }
 ```
 
