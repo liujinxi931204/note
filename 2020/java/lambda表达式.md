@@ -269,7 +269,12 @@ public class myClass{
     }
 }
 ```  
-当我们创建一个该类的对象，并在Lambda表达式中
+当我们创建一个该类的对象，并在Lambda表达式中使用该对象的方法时，一般可以这么写  
+```java
+myClass myclass=new myClass();
+Collections.sort(list,(o1,o2)->myclass.compare(o1,o2));
+```
+
 
 
 
