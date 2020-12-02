@@ -285,7 +285,13 @@ this::方法名
 ```  
 例如在Lambda表达式所在的类添加如下方法  
 ```java
-private int compare(Integer o1,Intege)
+private int compare(Integer o1,Integer o2){
+    return o1.compareTo(o2);
+}
+```  
+那么采用方法引用的方式，可以简写成如下形式  
+```java
+Collections.sort(list,this::compare);
 ```
 
 
