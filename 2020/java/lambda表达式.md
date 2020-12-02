@@ -279,7 +279,10 @@ Collections.sort(list,(o1,o2)->myclass.compare(o1,o2));
 myClass myclass=new myClass();
 Collectons.sort(list,myclass::compare);
 ```  
-此外，当我们要执行的
+此外，当我们要执行的表达式是调用Lambda表达式所在类的方法时，还可以才用如下格式  
+```java
+this::方法名
+```
 
 
 
