@@ -98,7 +98,12 @@ view.setOnClickListener(v->v.setVisibility(View.GONE));
 ### 多参数函数的简写  
 多参数函数是指具有两个及以上参数的函数。例如Comparator接口的compare(T o1,T o2)方法就具有两个参数，其定义如下  
 ```java
-```
+@FunctionalInterface
+public interface Comparor<T> {
+    int compare(T o1,T o2)；
+}
+```  
+
 
 
 
