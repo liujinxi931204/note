@@ -136,8 +136,7 @@ Collections.sort(list,(o1,o2)->{
 ```java
 Collections.sort(list,(o1,o2)->o1.compareTo(o2));
 ```
-## sh
-
+## J
 
 
 
