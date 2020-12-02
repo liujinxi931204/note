@@ -340,7 +340,11 @@ Function<Integer,ArrayList> function=new Function<>(){
     }
 }
 ```  
-使用引用构造方法的
+使用引用构造方法的方式，可以简写成  
+```java
+Function<Integer,ArrayList> function=ArrayList::new
+```  
+
 
 
 
