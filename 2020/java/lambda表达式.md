@@ -140,6 +140,7 @@ Collections.sort(list,(o1,o2)->o1.compareTo(o2));
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/02/1606874161734-1606874161736.png)  
 ### 消费型接口  
 Consumer<T> 消费型接口  
+void 
 ```java
 public void hello(String str,Consumer<String> con){
     con.accept(str);
@@ -174,7 +175,9 @@ public void test2(){
 ### 函数型接口  
 Function<T,R> 函数型接口  
 ```java
-public 
+public String setHandler(String str,Function<String,String> func){
+    return func.apply(str);
+}
 ```
 
 
