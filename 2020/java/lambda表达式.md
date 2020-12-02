@@ -331,6 +331,7 @@ Collections.sort(list,Integer::compareTo);
 ```java
 类名::new
 ```
+用Function接口,
 
 
 
