@@ -294,7 +294,7 @@ private int compare(Integer o1,Integer o2){
 Collections.sort(list,this::compare);
 ```  
 ### 引用类的方法  
-
+引用类的方法所采用的参数对应形式与以上两种略有不同。如果Lambda表达式的"->"的右边要执行的表达式是调用
 
 
 
