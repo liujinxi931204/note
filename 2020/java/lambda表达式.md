@@ -103,7 +103,11 @@ public interface Comparor<T> {
     int compare(T o1,T o2)；
 }
 ```  
-在不适用Lambda表达式的时候，
+在不适用Lambda表达式的时候，当我们对一个集合进行排序时，通常会这么写  
+```java
+ArrayList<Integer> list=Array.asList(1,2,3);
+
+```
 
 
 
