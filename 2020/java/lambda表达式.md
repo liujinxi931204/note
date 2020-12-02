@@ -238,9 +238,12 @@ public void test4(){
 首先创建一个工具类，代码如下  
 ```java
 public class Utils{
-    public static int compare(Integer)
+    public static int compare(Integer o1,Integer o2){
+        return o1.compareTo(o2);
+    }
 }
-```
+```  
+注意这里的
 
 
 
