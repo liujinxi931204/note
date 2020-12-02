@@ -235,7 +235,12 @@ public void test4(){
 类名::静态方法名 
 ```  
 注意这里静态方法名后面不需要加括号，也不用加参数，因为编译器可以推断出类型  
-
+首先创建一个工具类，代码如下  
+```java
+public class Utils{
+    public static int compare(Integer)
+}
+```
 
 
 
