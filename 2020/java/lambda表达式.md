@@ -292,7 +292,9 @@ private int compare(Integer o1,Integer o2){
 那么采用方法引用的方式，可以简写成如下形式  
 ```java
 Collections.sort(list,this::compare);
-```
+```  
+### 引用类的方法  
+
 
 
 
