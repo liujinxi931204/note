@@ -103,7 +103,7 @@ public interface Comparor<T> {
     int compare(T o1,T o2)；
 }
 ```  
-
+在不适用Lambda表达式的时候，
 
 
 
