@@ -122,10 +122,14 @@ Collections.sort(list,new Compartor<Integet>{
 同样类名可以省略，那么上面的例子可以写成  
 ```java
 Collections.sort(list,(Integer o1,Integer o2)->{
+    o1.compareTo(o2);    
+});  
+Collections.sort(list,(o1,o2)->{
     o1.compareTo(o2);
-    }
-);  
-Collections.sort(list)
+});
+```  
+当只有一条执行语句的时候，依然可以对代码块进行简化  
+```java
 ```
 
 
