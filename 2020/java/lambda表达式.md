@@ -208,14 +208,12 @@ public List<String> filterStr(List<String> str,Predicate<String> pre){
     }
     return strList;
 }
-
-
 @Test
 public void test4(){
     List<String> list=Arrays.asList("hello","java","Lambda","www","ok");
     List<String> strList=filterStr(list,str->str.length()>3);
     for(String str:strList){
-
+        System.out.println(str);
     }
 }
 ```
