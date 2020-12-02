@@ -335,7 +335,9 @@ Collections.sort(list,Integer::compareTo);
 ```java
 Function<Integer,ArrayList> function=new Function<>(){
     @Override
-    public ArrayList 
+    public ArrayList apply(Integer n){
+        retrun new ArrayList(n);
+    }
 }
 ```
 
