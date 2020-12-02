@@ -344,8 +344,3 @@ Function<Integer,ArrayList> function=new Function<>(){
 ```java
 Function<Integer,ArrayList> function=ArrayList::new
 ```  
-
-
-
-
-
