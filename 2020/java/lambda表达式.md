@@ -279,7 +279,7 @@ Collections.sort(list,(o1,o2)->myclass.compare(o1,o2));
 myClass myclass=new myClass();
 Collectons.sort(list,myclass::compare);
 ```  
-
+此外，当我们要执行的
 
 
 
