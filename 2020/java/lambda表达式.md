@@ -250,7 +250,9 @@ Collectoins.sort(list,(o1,o2)->o1.compareTo(o2));
 如果采用引用的方式可以写成如下形式  
 ```java
 Collections.sort(list,Utils::compare);
-```
+```  
+### 引用对象的方法  
+当要执行的表达式是调用某个对象的方法，并且这个方法的参数列表和接口里
 
 
 
