@@ -263,8 +263,13 @@ Collections.sort(list,Utils::compare);
 ```  
 例如创建如下类  
 ```java
-public class 
-```
+public class myClass{
+    public int compare(Integer o1,Integer o2){
+        return o1.compareTo(o2);
+    }
+}
+```  
+当我们创建一个该类的对象，并在Lambda表达式中
 
 
 
