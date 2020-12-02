@@ -121,7 +121,11 @@ Collections.sort(list,new Compartor<Integet>{
 ```
 同样类名可以省略，那么上面的例子可以写成  
 ```java
-Collections.sort(list,())
+Collections.sort(list,(Integer o1,Integer o2)->{
+    o1.compareTo(o2);
+    }
+);  
+Collections.sort(list)
 ```
 
 
