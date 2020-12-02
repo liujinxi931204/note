@@ -147,8 +147,13 @@ public void hello(String str,Consumer<String> con){
 
 @Test
 public void test1(){
-    hello("张三",m->System.out.println(""m));
+    hello("张三",m->System.out.println("你好"+m));
 }
+```  
+### 供给型接口  
+Supplier<T> 供给型接口  
+```java
+
 ```
 
 
