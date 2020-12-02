@@ -282,6 +282,10 @@ Collectons.sort(list,myclass::compare);
 此外，当我们要执行的表达式是调用Lambda表达式所在类的方法时，还可以才用如下格式  
 ```java
 this::方法名
+```  
+例如在Lambda表达式所在的类添加如下方法  
+```java
+private int compare(Integer o1,Intege)
 ```
 
 
