@@ -331,7 +331,13 @@ Collections.sort(list,Integer::compareTo);
 ```java
 类名::new
 ```
-用Function接口,
+用Function接口,创建一个指定大小的ArrayList  
+```java
+Function<Integer,ArrayList> function=new Function<>(){
+    @Override
+    public ArrayList 
+}
+```
 
 
 
