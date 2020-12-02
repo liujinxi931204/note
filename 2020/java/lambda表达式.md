@@ -109,9 +109,13 @@ ArrayList<Integer> list=Array.asList(1,2,3);
 Collections.sort(list,new Compartor<Integet>{
     @Override
     public int compare(Integer o1,Integer o2){
-        return o1.compare
+        return o1.compareTo(o2);
     }
 })
+```  
+多参数的匿名内部类可以使用Lambda表达式简写成如下形式  
+```java
+([类名1])
 ```
 
 
