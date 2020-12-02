@@ -95,6 +95,7 @@ view.setOnClickListener(v->{
 ```java
 view.setOnClickListener(v->v.setVisibility(View.GONE));
 ```
+### 多参数函数的简写  
 
 
 
