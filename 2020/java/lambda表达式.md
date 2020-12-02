@@ -329,7 +329,7 @@ Collections.sort(list,Integer::compareTo);
 ```
 可以缩写成如下格式  
 ```java
-类名::new  
+类名::new
 ```
 
 
