@@ -106,7 +106,12 @@ public interface Comparor<T> {
 在不适用Lambda表达式的时候，当我们对一个集合进行排序时，通常会这么写  
 ```java
 ArrayList<Integer> list=Array.asList(1,2,3);
-
+Collections.sort(list,new Compartor<Integet>{
+    @Override
+    public int compare(Integer o1,Integer o2){
+        return o1.compare
+    }
+})
 ```
 
 
