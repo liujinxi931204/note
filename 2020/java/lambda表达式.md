@@ -186,6 +186,12 @@ R apply(T t);
 public String setHandler(String str,Function<String,String> func){
     return func.apply(str);
 }
+
+@Test
+public void test3(){
+    String newStr1=setHander()
+
+}
 ```
 
 
