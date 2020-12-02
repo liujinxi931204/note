@@ -153,8 +153,12 @@ public void test1(){
 ### 供给型接口  
 Supplier<T> 供给型接口  
 ```java
+//需求：产生指定个数的整数，并放入集合
 public List<Integer> getNumList(int num,Supplier<Integer> sup){
-    List<Integer>
+    List<Integer> list=new ArrayList<>();
+    for(int i=0;i<num;i++){
+        Integer n=sup.get();
+    }
 }
 ```
 
