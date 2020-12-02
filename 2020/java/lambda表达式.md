@@ -339,7 +339,8 @@ Function<Integer,ArrayList> function=new Function<>(){
         retrun new ArrayList(n);
     }
 }
-```
+```  
+使用引用构造方法的
 
 
 
