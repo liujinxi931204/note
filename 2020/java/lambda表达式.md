@@ -301,7 +301,11 @@ Collections.sort(list,this::compare);
 ```  
 那么代码可以简化成  
 ```java
-变量1对应的类名::实例方法  
+变量1对应的类名::实例方法
+```  
+例如创建如下类  
+```java
+public class
 ```
 
 
