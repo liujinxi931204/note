@@ -165,7 +165,8 @@ public List<Integer> getNumList(int num,Supplier<Integer> sup){
 
 @Test
 public void test2(){
-    List list=new 
+    List list=Arrays.asList(121,1231,455,56,67,78);
+    List<Integer> numList=getNumList(1,()->Math.random()*100)
 }
 ```
 
