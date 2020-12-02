@@ -142,7 +142,12 @@ Collections.sort(list,(o1,o2)->o1.compareTo(o2));
 Consumer<T> 消费型接口  
 ```java
 public void hello(String str,Consumer<String> con){
+    con.accept(str);
+}
 
+@Test
+public void test1(){
+    hello("张三",m->System.out.println(""m));
 }
 ```
 
