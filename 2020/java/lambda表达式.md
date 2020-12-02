@@ -243,7 +243,10 @@ public class Utils{
     }
 }
 ```  
-注意这里的
+注意这里的compare()函数的参数和Comparable接口的compare()函数的参数是一一对应的。然后一般的Lambda表达式可以写成如下形式  
+```java
+Collectoins.
+```
 
 
 
