@@ -274,7 +274,7 @@ public class myClass{
 myClass myclass=new myClass();
 Collections.sort(list,(o1,o2)->myclass.compare(o1,o2));
 ```
-
+注意这里函数参数也是一一对应的，那么采用引用对象方法的方法是
 
 
 
