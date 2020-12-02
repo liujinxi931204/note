@@ -298,6 +298,10 @@ Collections.sort(list,this::compare);
 假如Lambda表达式符合如下格式  
 ```java
 (变量1,[变量2,...])->变量1.实例方法()
+```  
+那么代码可以简化成  
+```java
+变量1对应的类名::实例方法  
 ```
 
 
