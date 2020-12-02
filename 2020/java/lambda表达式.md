@@ -322,7 +322,7 @@ Collections.sort(list,(o1,o2)->o1.compareTo(o2));
 Collections.sort(list,Integer::compareTo);
 ```  
 ### 引用构造方法  
-当要执行的表达式就是创建一个对象，并且这个对象的构造方法的参数列表和接口里函数的
+当要执行的表达式就是创建一个对象，并且这个对象的构造方法的参数列表和接口里函数的参数列表一一对应时，就可以采用
 
 
 
