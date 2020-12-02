@@ -313,7 +313,14 @@ Collections.sort(list, new Comparator<Integer>() {
     }
 });
 ```  
-
+使用Lambda表达式可以写为  
+```java
+Collections.sort(list,(o1,o2)->o1.compareTo(o2));
+```  
+使用方法引用可以简化为  
+```java
+Collections.sort(list,Integer::compareTo);
+```
 
 
 
