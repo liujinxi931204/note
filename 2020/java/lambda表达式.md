@@ -212,7 +212,7 @@ public List<String> filterStr(List<String> str,Predicate<String> pre){
 
 @Test
 public void test4(){
-
+    List<String> list=Arrays.asList("hello","java","Lambda","")
 }
 ```
 
