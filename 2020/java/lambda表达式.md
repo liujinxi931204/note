@@ -115,7 +115,13 @@ Collections.sort(list,new Compartor<Integet>{
 ```  
 多参数的匿名内部类可以使用Lambda表达式简写成如下形式  
 ```java
-([类名1])
+([类名1]变量名1，[类名2]变量名2)->{
+    执行语句；
+}
+```
+同样类名可以省略，那么上面的例子可以写成  
+```java
+Collections.sort(list,())
 ```
 
 
