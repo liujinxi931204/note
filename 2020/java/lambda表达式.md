@@ -153,7 +153,9 @@ public void test1(){
 ### 供给型接口  
 Supplier<T> 供给型接口  
 ```java
-
+public List<Integer> getNumList(int num,Supplier<Integer> sup){
+    List<Integer>
+}
 ```
 
 
