@@ -303,10 +303,17 @@ Collections.sort(list,this::compare);
 ```java
 变量1对应的类名::实例方法
 ```  
-例如创建如下类  
+例如下面的例子 
 ```java
-public class
-```
+List<Integer> list = Arrays.asList(1, 2, 3);
+Collections.sort(list, new Comparator<Integer>() {
+    @Override
+    public int compare(Integer o1, Integer o2) {
+        return o1.compareTo(o2);
+    }
+});
+```  
+
 
 
 
