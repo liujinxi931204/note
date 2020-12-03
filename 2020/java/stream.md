@@ -54,6 +54,8 @@ public class StreamTest{
     boolean b=list.stream().anyMatch(x->x>6);
     System.out.println(b);
 }
-```
+```  
+### 筛选  
+筛选，是按照一定的规则校验
 
 
