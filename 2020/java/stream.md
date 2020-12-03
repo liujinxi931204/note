@@ -58,6 +58,15 @@ public class StreamTest{
 ### 筛选  
 筛选，是按照一定的规则校验流中的元素，将符合条件的元素提取到新的流中进行操作  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606980169070-1606980169074.png)  
+```java
+public class StreamTest {
+	public static void main(String[] args) {
+		List<Integer> list = Arrays.asList(6, 7, 3, 8, 1, 2, 9);
+		Stream<Integer> stream = list.stream();
+		stream.filter(x -> x > 7).forEach(System.out::println);
+	}
+}
+```  
 
 
 
