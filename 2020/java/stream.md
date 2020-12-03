@@ -97,6 +97,8 @@ public void test3(){
         System.out.println(count);
 
     }
-```
+```  
+### 映射  
++ map:接收一个函数作为参数，该函数会
 
 
