@@ -56,6 +56,8 @@ public class StreamTest{
 }
 ```  
 ### 筛选  
-筛选，是按照一定的规则校验
+筛选，是按照一定的规则校验流中的元素，将符合条件的元素提取到新的流中进行操作  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606980169070-1606980169074.png)  
+
 
 
