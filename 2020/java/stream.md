@@ -41,7 +41,9 @@ Stream也是支持类似集合的遍历和匹配元素的，只是stream中的�
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606978493081-1606978493087.png)  
 ```java
 public class StreamTest{
-   List<Integer> list=Arrays.asList()
+    List<Integer> list=Arrays.asList(7,6,9,3,8,2,1);
+//遍历符合条件的元素
+    list.stream().filter(x->x>6).forEach(System.out::println)
 
 }
 ```
