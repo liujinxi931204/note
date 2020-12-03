@@ -46,6 +46,9 @@ public class StreamTest{
     list.stream().filter(x->x>6).forEach(System.out::println);
 //匹配第一个
     Optional<Integer> first=list.stream().filter(x->x>6).findFirst();
+    System.out.println(first.get());
+//匹配任意一个，可以使用并行流
+    Optional<Integer> any=list.parallelStream().filter(x->x>6).findAny();
 
 }
 ```
