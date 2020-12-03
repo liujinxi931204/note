@@ -226,12 +226,20 @@ public void test2(){
     personList.add(new Person("Anni", 8200, 24, "female", "New York"));
     personList.add(new Person("Owen", 9500, 25, "male", "New York"));
     personList.add(new Person("Alisa", 7900, 26, "female", "New York"));
+    //按照薪资高于8000分组
+    Map<Boolean, List<Person>> collect = personList.stream().collect(Collectors.partitioningBy(x -> x.getSalary() > 8000));
+    System.out.println(collect);
 
+        //按照性别分组
+    Map<String, List<Person>> collect2 = personList.stream().collect(Collectors.groupingBy(Person::getSex));
+    System.out.println(collect2);
 
-
-
+        //先按照性别，在按照地域分组
+    Map<String, Map<String, List<Person>>> collect1 = personList.stream().collect(Collectors.groupingBy(Person::getSex, Collectors.groupingBy(Person::getArea)));
+    System.out.println(collect1);
 }
-```
+```  
+### 
 
 
 
