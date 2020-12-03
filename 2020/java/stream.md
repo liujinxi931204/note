@@ -51,6 +51,8 @@ public class StreamTest{
     Optional<Integer> any=list.parallelStream().filter(x->x>6).findAny();
     System.out.println(any.get());
 
+//
+
 }
 ```
 
