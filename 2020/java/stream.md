@@ -114,7 +114,11 @@ public void test3(){
 ``` 
 #### 整数数组每个元素+3   
 ```java
-
+    @Test
+    public void  test4(){
+        List<Integer> intList = Arrays.asList(1, 3, 5, 7, 9, 11);
+        intList.stream().map(x->x+3).forEach(System.out::println);
+    }
 ```
 
 
