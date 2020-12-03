@@ -158,7 +158,8 @@ collect，可以说是内容最繁多、功能最丰富的部分了。从字面�
 + 计数  count  
 + 平均值  averageInt、averageDouble、averageLong  
 + 最值  maxBy、minBy  
-+ 求和 sunmmingInt、
++ 求和 summingInt、summingLong、summmingDouble  
++ 统计以上所有  summarizingInt、summarizingLong、summariziing
 
 
 
