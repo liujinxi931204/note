@@ -21,3 +21,9 @@ Stream<String> paraStream=list.parallelStream();
 int[] array={1,2,5,7,9};
 IntStream stream=Arrays.Stream(array);
 ```  
+### 使用Stream的静态方法of()、iterate()、generate()  
+```java
+Stream<Integer> stream=Stream.of(1,2,3,4,5);
+
+
+```
