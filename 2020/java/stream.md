@@ -19,5 +19,5 @@ Stream<String> paraStream=list.parallelStream();
 ### 通过Java.util.Arrays.stream(T[] array)方法用数组创建流  
 ```java
 int[] array={1,2,5,7,9};
-Stream<>
-```
+IntStream stream=Arrays.Stream(array);
+```  
