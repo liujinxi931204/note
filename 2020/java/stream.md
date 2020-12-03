@@ -70,6 +70,13 @@ public class StreamTest {
 ### 聚合  
 max、min、count极大的方便了对集合、数组的数据统计工作  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606980809263-1606980809266.png)  
-
+#### 获取长度最长的字符串  
+```java
+public void test3(){
+        List<String> list = Arrays.asList("adnm", "admmt", "pot", "xbangd", "weoujgsd");
+        Optional<String> max = list.stream().min((x1,x2)-> x1.length()-x2.length());
+        System.out.println(max.get());
+    }
+```
 
 
