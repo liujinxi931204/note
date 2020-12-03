@@ -49,6 +49,7 @@ public class StreamTest{
     System.out.println(first.get());
 //匹配任意一个，可以使用并行流
     Optional<Integer> any=list.parallelStream().filter(x->x>6).findAny();
+    System.out.println(any.get());
 
 }
 ```
