@@ -152,6 +152,21 @@ collect，可以说是内容最繁多、功能最丰富的部分了。从字面�
 **collect主要依赖java.util.stream.Collectors类内置的静态方法**  
 ### 归集  
 因为流不存储数据，那么在流中的数据完成处理后，需要将流中的数据重新归集到新的集合里。toList、toSet、toMap比较常用  
+#### 找出薪资大于8000的人的姓名和薪资  
+```java
+
+@Test
+public void test2(){
+        List<Person> personList = new ArrayList<Person>();
+        personList.add(new Person("Tom", 8900, 23, "male", "New York"));
+        personList.add(new Person("Jack", 7000, 25, "male", "Washington"));
+        personList.add(new Person("Lily", 7800, 21, "female", "Washington"));
+        personList.add(new Person("Anni", 8200, 24, "female", "New York"));
+        personList.add(new Person("Owen", 9500, 25, "male", "New York"));
+        personList.add(new Person("Alisa", 7900, 26, "female", "New York"));
+
+}
+```
 
 
 ### 统计  
@@ -159,7 +174,7 @@ collect，可以说是内容最繁多、功能最丰富的部分了。从字面�
 + 平均值  averageInt、averageDouble、averageLong  
 + 最值  maxBy、minBy  
 + 求和 summingInt、summingLong、summmingDouble  
-+ 统计以上所有  summarizingInt、summarizingLong、summariziing
++ 统计以上所有  summarizingInt、summarizingLong、summarizingDouble
 
 
 
