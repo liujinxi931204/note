@@ -67,6 +67,8 @@ public class StreamTest {
 	}
 }
 ```  
+### 聚合  
+max、min、count极大的方便了对集合、数组的数据统计同坐  
 
 
 
