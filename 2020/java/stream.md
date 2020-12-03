@@ -147,5 +147,7 @@ public void test5(){
 		System.out.println("list求和：" + max.get() + "," + max2);
 }
 ```
+## 收集  
+collect，可以说是内容最繁多、功能最丰富的部分了。从字面上理解，就是把一个流收集起来，最终可以是收集车工一个值也可以收集成一个新
 
 
