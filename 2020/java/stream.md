@@ -16,4 +16,8 @@ Stream<String> stream=list.stream();
 //创建一个并行流  
 Stream<String> paraStream=list.parallelStream();
 ```
-### 通过Java.
+### 通过Java.util.Arrays.stream(T[] array)方法用数组创建流  
+```java
+int[] array={1,2,5,7,9};
+Stream<>
+```
