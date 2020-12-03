@@ -239,7 +239,8 @@ public void test2(){
     System.out.println(collect1);
 }
 ```  
-### 
+### 接合  
+joining可以将stream中的元素用特定的连接符(没有的话，)
 
 
 
