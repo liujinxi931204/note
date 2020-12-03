@@ -13,5 +13,6 @@ Stream可以由数组或集合创建，对流的操作分为两种
 List<String> list=Arrays.asList("a","b","c");
 //创建一个顺序流  
 Stream<String> stream=list.stream();
-//创建一个
+//创建一个并行流  
+Stream<String> pa
 ```
