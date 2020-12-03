@@ -105,6 +105,15 @@ public void test3(){
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606985730953-1606985730957.png)  
 #### 英文字符串数组的元素全部改为大写  
 ```java
+    @Test
+    public void  test4(){
+        String[] strArr = { "abcd", "bcdd", "defde", "fTr" };
+        Stream<String> stream = Arrays.stream(strArr);
+        stream.map(String::toUpperCase).forEach(System.out::println);
+    }
+``` 
+#### 整数数组每个元素+3   
+```java
 
 ```
 
