@@ -103,6 +103,9 @@ public void test3(){
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606982562306-1606982562309.png)  
 + flatMap:接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606985730953-1606985730957.png)  
+#### 英文字符串数组的元素全部改为大写  
+```java
 
+```
 
 
