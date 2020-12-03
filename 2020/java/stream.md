@@ -25,5 +25,8 @@ IntStream stream=Arrays.Stream(array);
 ```java
 Stream<Integer> stream=Stream.of(1,2,3,4,5);
 
-Stream<Integer> stream2=Stream.iterate()
+Stream<Integer> stream2=Stream.iterate(0,x->x+3).limit(4);
+stream2.forEach(System.out::println);
+
+
 ```
