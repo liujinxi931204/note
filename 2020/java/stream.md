@@ -31,4 +31,5 @@ stream2.forEach(System.out::println);
 Stream<Integer> stream3=Stream.generate(Math::random).limit(3);
 Stream3.forEach(System.out::println);
 ```  
-### stream和parallelStream
+### stream和parallelStream的简单区分  
+stream是顺序流，由主线程按顺序对流执行操作，而parallelStream是并行流，内部以多线程
