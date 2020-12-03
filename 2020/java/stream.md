@@ -34,4 +34,7 @@ Stream3.forEach(System.out::println);
 ### stream和parallelStream的简单区分  
 stream是顺序流，由主线程按顺序对流执行操作，而parallelStream是并行流，内部以多线程并行执行的方式对流进行操作，但前提是流中数据处理顺序没有要求  
 除了直接创建并行流之外，还可以通过parallel()把顺序流转化成并行流  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606966971000-1606966971034.png)  
+
+
 
