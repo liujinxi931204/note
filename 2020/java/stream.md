@@ -16,3 +16,4 @@ Stream<String> stream=list.stream();
 //创建一个并行流  
 Stream<String> paraStream=list.parallelStream();
 ```
+### 通过Java.
