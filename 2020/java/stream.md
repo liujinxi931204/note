@@ -78,6 +78,15 @@ public void test3(){
         System.out.println(max.get());
     }
 ```  
+#### 获取数组中最小的元素  
+```java
+@Test
+    public void test3(){
+        List<Integer> list = Arrays.asList(7, 6, 9, 4, 11, 6);
+        Optional<Integer> max = list.stream().min(Integer::compareTo);
+        System.out.println(max.get());
 
+    }
+```
 
 
