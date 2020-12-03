@@ -88,6 +88,15 @@ public void test3(){
 
     }
 ```  
-#### 统计数组中大于6的元素的
+#### 统计数组中大于6的元素的数量  
+```java
+    @Test
+    public void test3(){
+        List<Integer> list = Arrays.asList(7, 6, 9, 4, 11, 6);
+        long count = list.stream().filter(x->x>6).count;
+        System.out.println(count);
+
+    }
+```
 
 
