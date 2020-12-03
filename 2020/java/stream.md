@@ -43,7 +43,9 @@ Stream也是支持类似集合的遍历和匹配元素的，只是stream中的�
 public class StreamTest{
     List<Integer> list=Arrays.asList(7,6,9,3,8,2,1);
 //遍历符合条件的元素
-    list.stream().filter(x->x>6).forEach(System.out::println)
+    list.stream().filter(x->x>6).forEach(System.out::println);
+//匹配第一个
+    Optional<Integer> first=list.stream().filter(x->x>6).findFirst();
 
 }
 ```
