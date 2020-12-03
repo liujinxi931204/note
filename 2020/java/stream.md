@@ -14,5 +14,5 @@ List<String> list=Arrays.asList("a","b","c");
 //创建一个顺序流  
 Stream<String> stream=list.stream();
 //创建一个并行流  
-Stream<String> pallStream=list.para
+Stream<String> paraStream=list.parallelStream();
 ```
