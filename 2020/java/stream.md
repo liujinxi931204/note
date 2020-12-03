@@ -124,7 +124,28 @@ public void test3(){
 规约，也称缩减，是把一个流缩减成一个值，能够实现对集合求和、求乘积和求最值操作  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606988233272-1606988233276.png)  
 ```java
+@Test
+public void test5(){
+                List<Integer> list = Arrays.asList(1, 3, 2, 8, 11, 4);
+		// 求和方式1
+		Optional<Integer> sum = list.stream().reduce((x, y) -> x + y);
+		// 求和方式2
+		Optional<Integer> sum2 = list.stream().reduce(Integer::sum);
+		// 求和方式3
+		Integer sum3 = list.stream().reduce(0, Integer::sum);
+		
+		// 求乘积
+		Optional<Integer> product = list.stream().reduce((x, y) -> x * y);
 
+		// 求最大值方式1
+		Optional<Integer> max = list.stream().reduce((x, y) -> x > y ? x : y);
+		// 求最大值写法2
+		Integer max2 = list.stream().reduce(1, Integer::max);
+
+		System.out.println("list求和：" + sum.get() + "," + sum2.get() + "," + sum3);
+		System.out.println("list求积：" + product.get());
+		System.out.println("list求和：" + max.get() + "," + max2);
+}
 ```
 
 
