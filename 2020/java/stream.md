@@ -175,7 +175,6 @@ public void test2(){
 }
 ```
 
-
 ### 统计  
 + 计数  count  
 + 平均值  averageInt、averageDouble、averageLong  
