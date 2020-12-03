@@ -28,5 +28,6 @@ Stream<Integer> stream=Stream.of(1,2,3,4,5);
 Stream<Integer> stream2=Stream.iterate(0,x->x+3).limit(4);
 stream2.forEach(System.out::println);
 
-
+Stream<Integer> stream3=Stream.generate(Math::random).limit(3);
+Stream3.forEach(System.out::println);
 ```
