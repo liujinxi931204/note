@@ -191,6 +191,28 @@ public void test2(){
     personList.add(new Person("Anni", 8200, 24, "female", "New York"));
     personList.add(new Person("Owen", 9500, 25, "male", "New York"));
     personList.add(new Person("Alisa", 7900, 26, "female", "New York"));
-```
+//求员工总数
+    Long collect2 = personList.stream().collect(Collectors.counting());
+    System.out.println(collect2);
+
+
+        //求平均工资
+    Double collect1 = personList.stream().collect(Collectors.averagingInt(Person::getSalary));
+    System.out.println(collect1);
+
+        //求最高工资
+    Optional<Integer> collect3 = personList.stream().map(x -> x.getSalary()).collect(Collectors.maxBy(Integer::compareTo));
+    System.out.println(collect3.get());
+
+        //求工资之和
+    Integer collect = personList.stream().collect(Collectors.summingInt(Person::getSalary));
+    System.out.println(collect);
+
+        //一次性统计所有信息
+    IntSummaryStatistics collect4 = personList.stream().collect(Collectors.summarizingInt(Person::getSalary));
+    System.out.println(collect4);
+    }
+```  
+
 
 
