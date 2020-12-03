@@ -8,3 +8,7 @@ Stream可以由数组或集合创建，对流的操作分为两种
 + stream不会改变数据源，通常情况下会产生一个新的集合或一个值  
 + stream具体延迟执行特性，只有调用终端操作时，中间操作才会执行  
 ## Stream的创建  
+### 通过Java.util.Collection.stream()方法用集合创建  
+```java
+
+```
