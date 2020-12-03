@@ -36,6 +36,7 @@ stream是顺序流，由主线程按顺序对流执行操作，而parallelStream
 除了直接创建并行流之外，还可以通过parallel()把顺序流转化成并行流  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606966971000-1606966971034.png)  
 ## Stream流使用  
-
+### 遍历/匹配(forEach/find/match)  
+Stream也是支持类似集合的遍历
 
 
