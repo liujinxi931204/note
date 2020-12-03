@@ -164,7 +164,12 @@ public void test2(){
         personList.add(new Person("Anni", 8200, 24, "female", "New York"));
         personList.add(new Person("Owen", 9500, 25, "male", "New York"));
         personList.add(new Person("Alisa", 7900, 26, "female", "New York"));
+        Map<String, Integer> collect = personList.stream().filter(x -> x.getSalary() > 8000).collect(Collectors.toMap(Person::getName, Person::getSalary));
 
+        Set<Map.Entry<String, Integer>> entries = collect.entrySet();
+        for(Map.Entry e :entries){
+            System.out.println(e.getKey() + "" + e.getValue());
+        }
 }
 ```
 
