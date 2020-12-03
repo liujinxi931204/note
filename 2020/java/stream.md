@@ -240,7 +240,10 @@ public void test2(){
 }
 ```  
 ### 接合  
-joining可以将stream中的元素用特定的连接符(没有的话，)
+joining可以将stream中的元素用特定的连接符(没有的话，则直接连接)连成一个字符串  
+```java
+
+```
 
 
 
