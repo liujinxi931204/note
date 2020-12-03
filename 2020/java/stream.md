@@ -101,6 +101,6 @@ public void test3(){
 ### 映射  
 + map:接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606982562306-1606982562309.png)  
-+ flatMap:接收一个函数作为参数，将流中的每个值都换成另一个流，
++ flatMap:接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接
 
 
