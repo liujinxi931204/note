@@ -37,6 +37,8 @@ stream是顺序流，由主线程按顺序对流执行操作，而parallelStream
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606966971000-1606966971034.png)  
 ## Stream流使用  
 ### 遍历/匹配(forEach/find/match)  
-Stream也是支持类似集合的遍历
+Stream也是支持类似集合的遍历和匹配元素的，只是stream中的元素是以Optional类型存在的  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606978493081-1606978493087.png)  
+
 
 
