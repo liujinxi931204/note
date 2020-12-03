@@ -121,6 +121,7 @@ public void test3(){
     }
 ```  
 ### 规约  
-
+规约，也称缩减，是把一个流缩减成一个值，能够实现对集合求和、求乘积和求最值操作  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606988233272-1606988233276.png)
 
 
