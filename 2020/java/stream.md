@@ -74,9 +74,10 @@ max、min、count极大的方便了对集合、数组的数据统计工作
 ```java
 public void test3(){
         List<String> list = Arrays.asList("adnm", "admmt", "pot", "xbangd", "weoujgsd");
-        Optional<String> max = list.stream().min((x1,x2)-> x1.length()-x2.length());
+        Optional<String> max = list.stream().max((x1,x2)-> x1.length()-x2.length());
         System.out.println(max.get());
     }
-```
+```  
+
 
 
