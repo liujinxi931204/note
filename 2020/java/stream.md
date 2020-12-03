@@ -50,8 +50,8 @@ public class StreamTest{
 //匹配任意一个，可以使用并行流
     Optional<Integer> any=list.parallelStream().filter(x->x>6).findAny();
     System.out.println(any.get());
-
-//
+//是否包含符合特定条件的元素
+    boolean b=list.stream().filter(x->x>6).anyMatch();
 
 }
 ```
