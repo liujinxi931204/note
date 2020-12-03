@@ -30,4 +30,5 @@ stream2.forEach(System.out::println);
 
 Stream<Integer> stream3=Stream.generate(Math::random).limit(3);
 Stream3.forEach(System.out::println);
-```
+```  
+### stream和parallelStream
