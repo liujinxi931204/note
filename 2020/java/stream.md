@@ -214,6 +214,8 @@ public void test2(){
     }
 ```  
 ### 分组  
-+ partitioningBy，
++ partitioningBy，分区，将stream按照条件分为两个map  
++ groupingBy，分组，将集合分为多个map  
+
 
 
