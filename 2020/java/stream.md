@@ -68,7 +68,8 @@ public class StreamTest {
 }
 ```  
 ### 聚合  
-max、min、count极大的方便了对集合、数组的数据统计同坐  
+max、min、count极大的方便了对集合、数组的数据统计工作  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/03/1606980809263-1606980809266.png)  
 
 
 
