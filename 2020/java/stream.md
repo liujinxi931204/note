@@ -10,5 +10,5 @@ Stream可以由数组或集合创建，对流的操作分为两种
 ## Stream的创建  
 ### 通过Java.util.Collection.stream()方法用集合创建  
 ```java
-
+List<String> list=Arrays.asList("a","")
 ```
