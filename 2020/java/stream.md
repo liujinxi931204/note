@@ -25,5 +25,5 @@ IntStream stream=Arrays.Stream(array);
 ```java
 Stream<Integer> stream=Stream.of(1,2,3,4,5);
 
-
+Stream<Integer> stream2=Stream.iterate()
 ```
