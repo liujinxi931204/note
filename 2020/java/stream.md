@@ -170,6 +170,8 @@ public void test2(){
         for(Map.Entry e :entries){
             System.out.println(e.getKey() + "" + e.getValue());
         }
+        //也可以使用
+        //collect.forEach((k,v)-> System.out.println(k+"   "+v));
 }
 ```
 
