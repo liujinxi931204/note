@@ -51,8 +51,8 @@ public class StreamTest{
     Optional<Integer> any=list.parallelStream().filter(x->x>6).findAny();
     System.out.println(any.get());
 //是否包含符合特定条件的元素
-    boolean b=list.stream().filter(x->x>6).anyMatch();
-
+    boolean b=list.stream().anyMatch(x->x>6);
+    System.out.println(b);
 }
 ```
 
