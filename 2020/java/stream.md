@@ -119,6 +119,8 @@ public void test3(){
         List<Integer> intList = Arrays.asList(1, 3, 5, 7, 9, 11);
         intList.stream().map(x->x+3).forEach(System.out::println);
     }
-```
+```  
+### 规约  
+
 
 
