@@ -249,6 +249,7 @@ public void tes65(){
     System.out.println(collect);
 }
 ```
-
+### 规约  
+Collectors类提供的reducing方法，相比于stream本身的reduce方法，增加了对
 
 
