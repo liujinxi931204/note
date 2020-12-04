@@ -279,7 +279,7 @@ public void test8(){
     personList.add(new Person("Owen", 9500, 25, "male", "New York"));
     personList.add(new Person("Alisa", 7900, 26, "female", "New York"));
 
-//按工资升序排列
+        //按工资升序排列
     List<String> collect = personList.stream().sorted(Comparator.comparingInt(Person::getSalary)).map(Person::getName).collect(Collectors.toList());
     System.out.println(collect);
         //按工资降序排列
@@ -293,12 +293,12 @@ public void test8(){
         //先按工资降序排列，在按年龄降序排列(自定义排序)
     List<String> collect3 = personList.stream().sorted((x1, x2) -> {
         if (x1.getSalary() == x2.getSalary()) {
-                return x2.getAge() - x1.getAge();
-            } else {
-                return x2.getSalary() - x1.getSalary();
-            }
-        }).map(Person::getName).collect(Collectors.toList());
-        System.out.println(collect3);
+            return x2.getAge() - x1.getAge();
+        } else {
+            return x2.getSalary() - x1.getSalary();
+        }
+    }).map(Person::getName).collect(Collectors.toList());
+    System.out.println(collect3);
 
 }
 ```
