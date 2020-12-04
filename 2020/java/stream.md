@@ -271,7 +271,35 @@ sorted，中间操作。有两种排序
 ```java
 @Test
 public void test8(){
-    
+    List<Person> personList = new ArrayList<Person>();
+    personList.add(new Person("Tom", 9000, 23, "male", "New York"));
+    personList.add(new Person("Jack", 7000, 25, "male", "Washington"));
+    personList.add(new Person("Lily", 7800, 21, "female", "Washington"));
+    personList.add(new Person("Anni", 9000, 24, "female", "New York"));
+    personList.add(new Person("Owen", 9500, 25, "male", "New York"));
+    personList.add(new Person("Alisa", 7900, 26, "female", "New York"));
+
+//按工资升序排列
+    List<String> collect = personList.stream().sorted(Comparator.comparingInt(Person::getSalary)).map(Person::getName).collect(Collectors.toList());
+    System.out.println(collect);
+        //按工资降序排列
+    List<String> collect1= personList.stream().sorted(Comparator.comparingInt(Person::getSalary).reversed()).map(Person::getName).collect(Collectors.toList());
+    System.out.println(collect1);
+
+        //先按照工资排序，在按照年龄排序
+    List<String> collect2 = personList.stream().sorted(Comparator.comparingInt(Person::getSalary).thenComparing(Person::getAge)).map(Person::getName).collect(Collectors.toList());
+    System.out.println(collect2);
+
+        //先按工资降序排列，在按年龄降序排列(自定义排序)
+    List<String> collect3 = personList.stream().sorted((x1, x2) -> {
+        if (x1.getSalary() == x2.getSalary()) {
+                return x2.getAge() - x1.getAge();
+            } else {
+                return x2.getSalary() - x1.getSalary();
+            }
+        }).map(Person::getName).collect(Collectors.toList());
+        System.out.println(collect3);
+
 }
 ```
 
