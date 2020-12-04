@@ -20,6 +20,8 @@
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/04/1607073222653-1607073222658.png)  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/04/1607073267197-1607073267198.png)  
 ## 使用多线程  
-实现多线程主要有两种方法：一种是继承Thread类，另一种是
+实现多线程主要有两种方法：一种是继承Thread类，另一种是实现Runnable接口  
+### 继承Thread类  
+
 
 
