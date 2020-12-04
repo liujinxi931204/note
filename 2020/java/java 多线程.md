@@ -41,6 +41,28 @@ public class threadFirst extends Thread{
 }
 ```
 ### 实现Runnable接口  
+```java
+package com.sogou;
 
+
+public class threadSecond implements Runnable {
+    //实现Runnable接口，需要重写其中的run方法，run()中是需要为多线程执行的任务
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName());
+    }
+
+    public static void main(String[] args) {
+        threadSecond threadSecond = new threadSecond();
+        //创建一个Thread对象，将实现了Runnable接口的对象传给Thread对象，调用Thread对象的start()方法
+        Thread thread = new Thread(threadSecond);
+        thread.start();
+
+        System.out.println(Thread.currentThread().getName());
+
+    }
+}
+
+```
 
 
