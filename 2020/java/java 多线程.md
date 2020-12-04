@@ -65,5 +65,5 @@ public class threadSecond implements Runnable {
 **使用Runnable接口的方式实现多线程可以避免Java的单继承问题，而且实现Runnable接口的方式更容易实现数据的共享，此外Thread本质上也是实现了Runnable接口的**  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/04/1607075667626-1607075667628.png)  
 **可以看到Thread类也是继承了Runnable接口的**  
-
+如下实现了一个简单实现Runnable接口实现
 
