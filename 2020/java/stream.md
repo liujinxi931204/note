@@ -301,6 +301,10 @@ public void test8(){
     System.out.println(collect3);
 }
 ```  
+## 提取  
+流也可以进行合并、去重、限制、跳过  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/04/1607050736166-1607050736170.png)  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/04/1607050752405-1607050752408.png)
 
 
 
