@@ -299,7 +299,6 @@ public void test8(){
         }
     }).map(Person::getName).collect(Collectors.toList());
     System.out.println(collect3);
-
 }
 ```  
 
