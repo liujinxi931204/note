@@ -22,6 +22,23 @@
 ## 使用多线程  
 实现多线程主要有两种方法：一种是继承Thread类，另一种是实现Runnable接口  
 ### 继承Thread类  
+```java
+package com.sogou;
 
+public class threadFirst extends Thread{
+    //继承Thread类，重写run()方法，run()中是需要为多线程执行的任务
+    @Override
+    public void run() {
+        super.run();
+        System.out.println(Thread.currentThread().getName());
+    }
+    public static void main(String[] args) {
+        threadFirst threadFirst = new threadFirst();
+        //使用start()方法会是线程进入可执行状态，具体是否会执行还需要CPU的调度
+        threadFirst.start();
+        System.out.println(Thread.currentThread().getName());
+    }
+}
+```
 
 
