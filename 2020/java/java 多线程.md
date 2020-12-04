@@ -18,5 +18,7 @@
 + 终止(dead)状态：一旦线程完成窒息感，它的状态就变成dead，线程销毁  
 ### 线程的状态转换  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/04/1607073222653-1607073222658.png)  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/04/1607073267197-1607073267198.png)
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/04/1607073267197-1607073267198.png)  
+
+
 
