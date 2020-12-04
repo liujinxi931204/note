@@ -40,5 +40,7 @@ public class threadFirst extends Thread{
     }
 }
 ```
+### 实现Runnable接口  
+
 
 
