@@ -243,7 +243,7 @@ public void test2(){
 joining可以将stream中的元素用特定的连接符(没有的话，则直接连接)连成一个字符串  
 ```java
 @Test
-public void tes65(){
+public void test6(){
     List<String> list = Arrays.asList("A", "B", "C");
     String collect = list.stream().collect(Collectors.joining("-"));
     System.out.println(collect);
@@ -253,7 +253,16 @@ public void tes65(){
 Collectors类提供的reducing方法，相比于stream本身的reduce方法，增加了对自定义规约的支持  
 ```java
 @Test
-public void test
+public void test7(){
+    List<Person> personList = new ArrayList<Person>();
+    personList.add(new Person("Tom", 8900, 23, "male", "New York"));
+    personList.add(new Person("Jack", 7000, 25, "male", "Washington"));
+    personList.add(new Person("Lily", 7800, 21, "female", "Washington"));
+
+		// 每个员工减去起征点后的薪资之和
+    Integer sum = personList.stream().collect(Collectors.reducing(0, Person::getSalary, (i, j) -> (i + j - 5000)));
+    System.out.println("员工扣税薪资总和：" + sum);
+}
 ```
 
 
