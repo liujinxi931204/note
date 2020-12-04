@@ -59,10 +59,8 @@ public class threadSecond implements Runnable {
         thread.start();
 
         System.out.println(Thread.currentThread().getName());
-
     }
 }
-
 ```
 
 
