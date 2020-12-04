@@ -306,7 +306,27 @@ public void test8(){
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/04/1607050736166-1607050736170.png)  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/04/1607050752405-1607050752408.png)
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/04/1607050763716-1607050763718.png)  
+```java
 
+    @Test
+    public void test7(){
+        String[] arr1 = { "a", "b", "c", "d" };
+        String[] arr2 = { "d", "e", "f", "g" };
+
+
+        //合并两个流并去重
+        List<String> collect = Stream.concat(Arrays.stream(arr1), Arrays.stream(arr2)).distinct().collect(Collectors.toList());
+        System.out.println(collect);
+
+        //limit:限制从流中获取前n个数据
+        List<String> collect1 = Arrays.stream(arr1).limit(3).collect(Collectors.toList());
+        System.out.println(collect1);
+
+        //skip:跳过前n个数据
+        List<String> collect2 = Arrays.stream(arr2).skip(3).collect(Collectors.toList());
+        System.out.println(collect2);
+    }
+```
 
 
 
