@@ -264,6 +264,9 @@ public void test7(){
     System.out.println("员工扣税薪资总和：" + sum);
 }
 ```
+## 排序  
+sorted，中间操作。有两种排序  
++ 
 
 
 
