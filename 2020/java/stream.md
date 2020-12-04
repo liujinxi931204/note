@@ -251,6 +251,10 @@ public void tes65(){
 ```
 ### 规约  
 Collectors类提供的reducing方法，相比于stream本身的reduce方法，增加了对自定义规约的支持  
+```java
+@Test
+public void test
+```
 
 
 
