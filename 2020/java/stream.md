@@ -266,7 +266,8 @@ public void test7(){
 ```
 ## 排序  
 sorted，中间操作。有两种排序  
-+ 
++ sorted()，自然排序，流中元素需实现Comparable接口  
++ sorted(Comparator com):C
 
 
 
