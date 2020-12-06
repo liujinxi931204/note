@@ -122,5 +122,6 @@ public class threadThird implements Runnable {
     }
 }
 ```  
-#### 
+#### isAlive  
+
 
