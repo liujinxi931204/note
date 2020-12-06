@@ -93,6 +93,7 @@ public class threadSecond implements Runnable {
 ```
 ### 常见错误：调用run()方法而非start()方法  
 创建并运行一个线程所犯的常见错误是调用线程的run()方法而非start()方法  
+Thread.java 类中的start()方法通知“线程规划器”此线程已经准备就绪，等待调用线程对象的run()方法  
 ```java
 Thread newThread=new Thread(myRunnable);
 newThread.run()；//应该是start()
