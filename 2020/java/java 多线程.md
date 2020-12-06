@@ -208,5 +208,5 @@ public class threadFifth implements Runnable {
 出现这样就是因为sleep的时候不会释放当前线程的锁  
 ### 停止线程  
 停止线程不像break那样简单粗暴，需要一些技巧性的处理  
-+ 
+有以下3种
 
