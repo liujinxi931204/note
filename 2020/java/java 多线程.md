@@ -200,5 +200,10 @@ public class threadFifth implements Runnable {
 
 }
 ```  
-
+上述两个方法的输出结果分别是  
+```java
+0011223344
+0123401234
+```
+出现
 
