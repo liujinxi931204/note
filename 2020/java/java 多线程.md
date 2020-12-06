@@ -209,5 +209,6 @@ public class threadFifth implements Runnable {
 ### 停止线程  
 停止线程不像break那样简单粗暴，需要一些技巧性的处理  
 有以下3种方式  
-+ 使用退出标志，使线程正常退出，也就是
++ 使用退出标志，使线程正常退出，也就是当run()方法执行完以后  
++ 使用stop()方法
 
