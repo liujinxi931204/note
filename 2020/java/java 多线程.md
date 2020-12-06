@@ -206,5 +206,5 @@ public class threadFifth implements Runnable {
 0123401234
 ```
 出现这样就是因为sleep的时候不会释放当前线程的锁  
-
+##
 
