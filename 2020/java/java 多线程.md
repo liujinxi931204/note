@@ -149,8 +149,7 @@ public class threadFourth  implements Runnable{
 ```  
 ### sleep  
 Thread.sleep()方法是Thread类的静态方法，是当前线程进入休眠状态，这时会交出CPU的使用权，如果线程在sleep状态被中断，将会抛出IterruptedException中断异常  
-sleep()方法只是线程交出CPU使用权，不代表会立即重新获得使用权  
-sleep()方法不会释放它所持有的锁  
+sleep()方法只是线程交出CPU使用权，不代表会立即重新获得使用权   
 ```java
 package com.sogou;
 
@@ -173,5 +172,33 @@ public class threadFifth implements Runnable {
         new Thread(threadFifth).start();
     }
 }
-```
+```  
+**sleep()方法是不会释放所持有的锁**  
+```java
+package com.sogou;
+
+public class threadFifth implements Runnable {
+    @Override
+    public void run() {
+        synchronized (this){
+            try {
+                for (int i = 0; i <5 ; i++) {
+                    System.out.println(i);
+                    Thread.sleep(30);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        threadFifth threadFifth = new threadFifth();
+        new Thread(threadFifth).start();
+        new Thread(threadFifth).start();
+    }
+
+}
+```  
+
 
