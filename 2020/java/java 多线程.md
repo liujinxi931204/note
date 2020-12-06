@@ -148,5 +148,6 @@ public class threadFourth  implements Runnable{
 
 ```  
 ### sleep  
-Thread.sleep()方法是Thread类的静态方法，是当前线程进入休眠状态，这时会交出CPU的使用权，如果线程在sleep状态被kill
+Thread.sleep()方法是Thread类的静态方法，是当前线程进入休眠状态，这时会交出CPU的使用权，如果线程在sleep状态被中断，将会抛出IterruptedException中断异常  
+sleep()方法只是线程
 
