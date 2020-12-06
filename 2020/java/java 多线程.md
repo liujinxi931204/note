@@ -171,8 +171,6 @@ public class threadFifth implements Runnable {
         new Thread(threadFifth).start();
         new Thread(threadFifth).start();
     }
-
 }
-
 ```
 
