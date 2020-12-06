@@ -99,5 +99,5 @@ Thread newThread=new Thread(myRunnable);
 newThread.run()；//应该是start()
 ```  
 事实上，run()方法并非是由刚创建的新线程所执行的，而是由被创建现场的当前线程所执行了。也就是由被执行上述两行代码的线程所执行  
-
+### 线程控制
 
