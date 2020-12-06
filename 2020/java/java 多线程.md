@@ -123,5 +123,28 @@ public class threadThird implements Runnable {
 }
 ```  
 #### isAlive  
-当调用Thread类的start()方法并且没有线程尚未死亡时，线程被任务是活着的。
+当调用Thread类的start()方法并且没有线程尚未死亡时，线程被任务是活着的  
+```java
+package com.sogou;
+
+
+public class threadFourth  implements Runnable{
+    @Override
+    public void run() {
+        try {
+            Thread.sleep(30);
+            System.out.println("当前线程是否存活"+Thread.currentThread().isAlive());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void main(String[] args) {
+        threadFourth threadFourth = new threadFourth();
+        new Thread(threadFourth).start();
+    }
+}
+
+```
 
