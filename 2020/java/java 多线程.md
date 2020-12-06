@@ -109,6 +109,7 @@ package com.sogou;
 public class threadThird implements Runnable {
     @Override
     public void run() {
+        //打印当前线程的线程名
         System.out.println(Thread.currentThread().getName());
     }
 
@@ -120,5 +121,6 @@ public class threadThird implements Runnable {
         System.out.println(Thread.currentThread().getName());
     }
 }
-```
+```  
+#### 
 
