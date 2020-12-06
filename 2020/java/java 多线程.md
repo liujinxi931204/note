@@ -101,8 +101,26 @@ newThread.run()；//应该是start()
 事实上，run()方法并非是由刚创建的新线程所执行的，而是由被创建现场的当前线程所执行了。也就是由被执行上述两行代码的线程所执行  
 ### 线程控制的方法  
 #### currentThread  
-currentThread()方法可以返回代码段正在被哪个线程调用的信息  
+currentThread()方法是Thread类的静态方法，可以返回代码段正在被哪个线程调用的信息  
 ```java
+package com.sogou;
+
+
+public class threadThird implements Runnable {
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName());
+    }
+
+
+    public static void main(String[] args) {
+        threadThird threadThird = new threadThird();
+        new Thread(threadThird,"线程1").start();
+        new Thread(threadThird, "线程2").start();
+
+        System.out.println(Thread.currentThread().getName());
+    }
+}
 
 ```
 
