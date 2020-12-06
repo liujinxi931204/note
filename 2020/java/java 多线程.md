@@ -123,5 +123,5 @@ public class threadThird implements Runnable {
 }
 ```  
 #### isAlive  
-当调用Thread类的start()方法并且没有线程尚未死亡时，
+当调用Thread类的start()方法并且没有线程尚未死亡时，线程被任务是活着的。
 
