@@ -296,6 +296,9 @@ public class threadSeventh implements Runnable {
         thread.interrupt();
     }
 }
+```  
++ 使用isInterruped()方法来停止线程  
+```java
 
 ```
 
