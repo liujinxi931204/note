@@ -250,3 +250,4 @@ interrupt()方法**只是改变中断状态，不会中断一个正在运行地�
 如果线程被Object.wait()、Thread.join()和Thread.sleep()三种方法之一阻塞，此时调用该线程的interrput()方法，那么该线程将抛出一个interruptedExection中断异常(该线程必须提前处理好此异常)，从而提早地终结被阻塞状态。如果线程没有被阻塞，这时调用interrupt(）将不起作用，直到执行到wait()、sleep()、join()时，才会马上抛出interruptedExection  
 
 
+
