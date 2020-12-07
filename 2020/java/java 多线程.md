@@ -256,6 +256,6 @@ public static boolean interrupted()
 ```java
 public boolean isInterrupted()
 ```  
-interrupted()方法是Thread类的静态方法，使用该方法不仅
+interrupted()方法是Thread类的静态方法，使用该方法不仅可以判断当前线程是否已经中断，而且还会清除该线程的标记
 
 
