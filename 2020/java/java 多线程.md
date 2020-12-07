@@ -299,6 +299,37 @@ public class threadSeventh implements Runnable {
 ```  
 + 使用isInterruped()方法来停止线程  
 ```java
+package com.sogou;
+
+
+public class threadSeventh implements Runnable {
+
+    @Override
+    public void run() {
+        try{
+            for (int i = 0; i <= 5000; i++) {
+                //判断当前线程是否已经中断
+                if(Thread.currentThread().isInterrupted()){
+                    //不会清除标记位，所以输出位true
+                    System.out.println(Thread.currentThread().isInterrupted());
+                    System.out.println("线程结束");
+                    throw new InterruptedException();
+                }
+                System.out.println(i);
+            }
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        threadSeventh threadSeventh = new threadSeventh();
+        Thread thread = new Thread(threadSeventh);
+        thread.start();
+        Thread.sleep(1);
+        thread.interrupt();
+    }
+}
 
 ```
 
