@@ -245,6 +245,6 @@ public class test1 {
 }
 ```  
 #### 使用interupt方法  
-
+Tread.interrupt()方法：作用是中断线程，
 
 
