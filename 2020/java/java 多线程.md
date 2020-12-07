@@ -254,7 +254,8 @@ Thread提供了两个方法来判断
 public static boolean interrupted()
 ```  
 ```java
-
-```
+public boolean isInterrupted()
+```  
+interrupted()方法是Thread类的静态方法，使用该方法不仅
 
 
