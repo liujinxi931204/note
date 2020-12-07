@@ -260,6 +260,42 @@ interrupted()方法是Thread类的静态方法，使用该方法不仅可以判�
 isInterrputed()方法是Thread类的实例方法，使用该方法仅仅会判断当前线程是否已经中断，不会清除该线程的标记  
 + 使用interupterred()方法来退出线程  
 ```java
+package com.sogou;
+
+
+public class threadSeventh implements Runnable {
+
+    @Override
+    public void run() {
+        try{
+            for (int i = 0; i <= 5000; i++) {
+                //判断当前线程是否已经中断
+                if(Thread.interrupted()){
+                    //会清除标记位，所以输出false
+                    Thread.interrupted();
+                    System.out.println(Thread.currentThread().isInterrupted());
+                    //会清除标记位,所以输出false
+                    Thread.interrupted();
+                    System.out.println(Thread.currentThread().isInterrupted());
+                    System.out.println("线程结束");
+                    throw new InterruptedException();
+                }
+                System.out.println(i);
+            }
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        threadSeventh threadSeventh = new threadSeventh();
+        Thread thread = new Thread(threadSeventh);
+        thread.start();
+        Thread.sleep(1);
+        //线程中断，标记位设为true
+        thread.interrupt();
+    }
+}
 
 ```
 
