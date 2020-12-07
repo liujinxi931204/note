@@ -217,3 +217,4 @@ public class threadFifth implements Runnable {
 在这种情况下，一般是将这些任务放在一个循环里，如while循环。如果想使while循环在某一特定条件下退出，最直接的方法就是设置一个boolean类型的标志位，并通过这个标志位true或者false来控制while循环是否退出  
 
 
+
