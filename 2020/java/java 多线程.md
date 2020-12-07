@@ -212,5 +212,6 @@ public class threadFifth implements Runnable {
 + 使用退出标志，使线程正常退出，也就是当run()方法执行完以后  
 + 使用stop()方法强行终止，但是不推荐这个方法，这个方法已经被放弃了，使用以后可能会产生不可预料的后果  
 + 使用interput()方法中断线程  
+#### 使用退出标志  
 
 
