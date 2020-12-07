@@ -244,6 +244,7 @@ public class test1 {
     }
 }
 ```  
-#### shi
+#### 使用interupt方法  
+
 
 
