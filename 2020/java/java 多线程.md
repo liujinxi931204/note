@@ -215,6 +215,35 @@ public class threadFifth implements Runnable {
 #### 使用退出标志  
 当run()方法执行以后，线程就会退出。但有时run()方法是永远不会结束的，如果在服务端程序中使用线程进行客户端监听请求，或是其他的需要循环处理的任务  
 在这种情况下，一般是将这些任务放在一个循环里，如while循环。如果想使while循环在某一特定条件下退出，最直接的方法就是设置一个boolean类型的标志位，并通过这个标志位true或者false来控制while循环是否退出  
+```java
+public class test1 {
 
+    public static volatile boolean exit =false;  //退出标志
+    
+    public static void main(String[] args) {
+        new Thread() {
+            public void run() {
+                System.out.println("线程启动了");
+                while (!exit) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println("线程结束了");
+            }
+        }.start();
+        
+        try {
+            Thread.sleep(1000 * 5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        exit = true;//5秒后更改退出标志的值,没有这段代码，线程就一直不能停止
+    }
+}
+```  
+#### shi
 
 
