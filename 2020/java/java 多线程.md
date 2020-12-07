@@ -332,6 +332,8 @@ public class threadSeventh implements Runnable {
 }
 
 ```  
-#### 
+#### interrupt()和sleep()方法使用时的一些问题  
+
+
 
 
