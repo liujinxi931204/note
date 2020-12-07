@@ -245,6 +245,6 @@ public class test1 {
 }
 ```  
 #### 使用interupt方法  
-Tread.interrupt()方法：作用是中断线程，
+Tread.interrupt()方法：作用是中断线程。将会设置线程的中断状态位，即设置位true，中断的结果是线程死亡、还是等待新的任务或者是继续运行到下一步，就
 
 
