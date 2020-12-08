@@ -489,8 +489,27 @@ class MyThread extends Thread {
 ```
 在JDK中，join方法的源码如下  
 ```java
-
-```
+public final synchronized void join(final long millis)
+    throws InterruptedException {
+        if (millis > 0) {
+            if (isAlive()) {
+                final long startTime = System.nanoTime();
+                long delay = millis;
+                do {
+                    wait(delay);
+                } while (isAlive() && (delay = millis -
+                        TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime)) > 0);
+            }
+        } else if (millis == 0) {
+            while (isAlive()) {
+                wait(0);
+            }
+        } else {
+            throw new IllegalArgumentException("timeout value is negative");
+        }
+    }
+```  
+join方法实现是通过调用wait方法实现。当main线程调用t.join时候，main线程会获得线程对象的锁
 
 
 
