@@ -464,8 +464,31 @@ void join(long millis)
     当前线程等待该线程终止的时间最长为 millis 毫秒。 如果在millis时间内，该线程没有执行完，那么当前线程进入就绪状态，重新等待cpu调度   
 void join(long millis,int nanos)    
     等待该线程终止的时间最长为 millis 毫秒 + nanos 纳秒。如果在millis时间内，该线程没有执行完，那么当前线程进入就绪状态，重新等待cpu调度
+```  
+下面是一个例子  
+```java
+public class Test1 {  
+    public static void main(String[] args) throws InterruptedException {  
+        MyThread t=new MyThread();  
+        t.start();  
+        t.join(1);//将主线程加入到子线程后面，不过如果子线程在1毫秒时间内没执行完，则主线程便不再等待它执行完，进入就绪状态，等待cpu调度  
+        for(int i=0;i<30;i++){  
+            System.out.println(Thread.currentThread().getName() + "线程第" + i + "次执行！");  
+        }  
+    }  
+}  
+  
+class MyThread extends Thread {  
+    @Override  
+    public void run() {  
+        for (int i = 0; i < 1000; i++) {  
+            System.out.println(this.getName() + "线程第" + i + "次执行！");  
+        }  
+    }  
+}  
 
 ```
+
 
 
 
