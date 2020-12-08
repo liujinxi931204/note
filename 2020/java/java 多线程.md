@@ -334,7 +334,7 @@ public class threadSeventh implements Runnable {
 ```  
 #### interrupt()和sleep()方法的关系  
  
-interrput()
+interrput()方法在java内部实际是设定一个标志位interrput status，可以中断任何阻塞状态，包括sleep()在内，当sleep()那行代码要阻塞的时候检查到
 
 
 
