@@ -335,7 +335,12 @@ public class threadSeventh implements Runnable {
 #### interrupt()和sleep()方法的关系  
  
 interrput()方法在java内部实际是设定一个标志位interrput status，可以中断任何阻塞状态，包括sleep()在内，当sleep()那行代码要阻塞的时候检查到这个标志位被设置为true，就会自己抛出异常InterrputedExection，并将这个标志位重置为false  
-也就是说，如果先执行sleep()方法，后执行interrput()方法，阻塞会被打断，并抛出异常；如果先执行interrput()，后执行sleep()方法，
+也就是说，如果先执行sleep()方法，后执行interrput()方法，阻塞会被打断，并抛出异常；如果先执行interrput()，后执行sleep()方法，则会直接抛出异常  
+如下示例  
++ 先sleep()，后interrupt()  
+```java
+
+```
 
 
 
