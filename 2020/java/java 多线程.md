@@ -601,7 +601,7 @@ class test{
 
 }
 ```  
-以上
+以上代码会在notify()之后再阻塞5秒钟才会释放锁，因此不建议再notify()/notifyAll()方法后面
 
 
 
