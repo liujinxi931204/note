@@ -486,7 +486,6 @@ class MyThread extends Thread {
         }  
     }  
 }  
-
 ```
 
 
