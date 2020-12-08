@@ -367,7 +367,7 @@ public class threadNingth implements  Runnable{
     }
 }
 ```  
-
+此时会立刻结束阻塞状态，并且抛出InterruptedExection的异常
 
 
 
