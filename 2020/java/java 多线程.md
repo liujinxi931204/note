@@ -458,6 +458,12 @@ public class threadTenth implements Runnable {
 ### join  
 线程的合并的含义就是**将几个并行线程合并为一个单线程**，应用场景是**当一个线程必须等待另一个线程执行完毕才能执行时**，Thread类提供给了join的实例方法来完成这个功能，注意**jion()方法不是静态方法**  
 ```java
+void join()    
+    当前线程等该加入该线程后面，等待该线程终止。    
+void join(long millis)    
+    当前线程等待该线程终止的时间最长为 millis 毫秒。 如果在millis时间内，该线程没有执行完，那么当前线程进入就绪状态，重新等待cpu调度   
+void join(long millis,int nanos)    
+    等待该线程终止的时间最长为 millis 毫秒 + nanos 纳秒。如果在millis时间内，该线程没有执行完，那么当前线程进入就绪状态，重新等待cpu调度
 
 ```
 
