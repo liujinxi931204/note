@@ -487,6 +487,10 @@ class MyThread extends Thread {
     }  
 }  
 ```
+在JDK中，join方法的源码如下  
+```java
+
+```
 
 
 
