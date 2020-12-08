@@ -401,6 +401,6 @@ public class threadNingth implements  Runnable{
     }
 }
 ```
-因为先执行interrupt()方法，所以先将interrupt status标志位设置为true，然后
+因为先执行interrupt()方法，所以先将interrupt status标志位设置为true，然后执行到sleep()方法的时候，检查该标志位
 
 
