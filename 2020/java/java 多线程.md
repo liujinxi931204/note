@@ -403,7 +403,8 @@ public class threadNingth implements  Runnable{
 ```
 因为先执行interrupt()方法，所以先将interrupt status标志位设置为true，然后执行到sleep()方法的时候，检查该标志位位true，则会结束阻塞状态，抛出InterruptedExection异常，然后将interrupt status标志位重新置为false，结束线程  
   
-**不过还是建议使用“抛出异常的方式”来实现线程的停止，因为在catch块种**
+**不过还是建议使用“抛出异常的方式”来实现线程的停止，因为在catch块种可以对异常信息进行相关的处理，而且使用异常能更好、更方便的控制程序的运行流程，不至于在代码中出现多个return，造成污染**  
+
 
 
 
