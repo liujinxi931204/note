@@ -207,8 +207,22 @@ public class threadFifth implements Runnable {
 0123401234
 ```
 出现这样就是因为sleep的时候不会释放当前线程的锁  
+  
 **sleep是静态方法，最好不用使用Thread的实例对象调用它，因为它睡眠的始终是当前正在运行的线程，而不是调用它的线程对象，它只对正在运行状态的线程对象有效**  
 ```java
+public class Test1 {  
+    public static void main(String[] args) throws InterruptedException {  
+        System.out.println(Thread.currentThread().getName());  
+        MyThread myThread=new MyThread();  
+        myThread.start();  
+        // 这里sleep的就是main线程，而非myThread线程 
+        myThread.sleep(1000); 
+        Thread.sleep(10);  
+        for(int i=0;i<100;i++){  
+            System.out.println("main"+i);  
+        }  
+    }  
+}  
 
 ```
 ### 停止线程  
