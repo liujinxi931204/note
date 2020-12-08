@@ -367,7 +367,8 @@ public class threadNingth implements  Runnable{
     }
 }
 ```  
-此时会立刻结束阻塞状态，并且抛出InterruptedExection的异常
+此时会立刻结束阻塞状态，并且抛出InterruptedExection的异常，这时就会结束线程  
++ 先执行interrupt()
 
 
 
