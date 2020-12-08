@@ -207,6 +207,7 @@ public class threadFifth implements Runnable {
 0123401234
 ```
 出现这样就是因为sleep的时候不会释放当前线程的锁  
+**sleep是静态方法，最好不用使用Thread的实例对象调用它，因为它睡眠的是**
 ### 停止线程  
 停止线程不像break那样简单粗暴，需要一些技巧性的处理  
 有以下3种方式  
