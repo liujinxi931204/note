@@ -408,8 +408,9 @@ public class threadNingth implements  Runnable{
 yield()方法的作用是放弃当前的CPU资源，将它让给其他的任务去占用CPU时间。但放弃的时间不确定，有可能刚刚放弃，马上又获得CPU时间片  
 ```java
 public static void yield()
-//
-```
+//暂停当前正在执行的线程对象，并执行其他线程
+```  
+
 
 
 
