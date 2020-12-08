@@ -339,8 +339,35 @@ interrput()方法在java内部实际是设定一个标志位interrput status，�
 如下示例  
 + 先sleep()，后interrupt()  
 ```java
+package com.sogou;
 
-```
+public class threadNingth implements  Runnable{
+
+    @Override
+    public void run() {
+        System.out.println("开始线程");
+        try {
+            System.out.println(System.currentTimeMillis());
+            Thread.sleep(100000);
+            System.out.println(System.currentTimeMillis());
+        }catch (InterruptedException e){
+            System.out.println("线程中断");
+            System.out.println(System.currentTimeMillis());
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void main(String[] args) throws InterruptedException {
+        threadNingth threadNingth = new threadNingth();
+        Thread thread = new Thread(threadNingth);
+        thread.start();
+        Thread.sleep(5000);
+        thread.interrupt();
+    }
+}
+```  
+
 
 
 
