@@ -411,7 +411,31 @@ public static void yield()
 //暂停当前正在执行的线程对象，并执行其他线程
 ```  
 
+```java
+package com.sogou;
 
+public class threadTenth implements Runnable {
+    @Override
+    public void run() {
+        for (int i = 0; i <500000 ; i++) {
+            System.out.println(Thread.currentThread().getName()+"---"+i);
+            //当前线程让出CPU使用权，进入就绪状态
+            Thread.yield();
+        }
+    }
+
+    public static void main(String[] args) {
+        threadTenth threadTenth = new threadTenth();
+        Thread thread1 = new Thread(threadTenth);
+        Thread thread2 = new Thread(threadTenth);
+
+        thread1.start();
+        thread2.start();
+
+    }
+}
+```  
+上述代码的结果不确定，就是因为当前线程
 
 
 
