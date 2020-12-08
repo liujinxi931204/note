@@ -397,12 +397,10 @@ public class threadNingth implements  Runnable{
         threadNingth threadNingth = new threadNingth();
         Thread thread = new Thread(threadNingth);
         thread.start();
-        //Thread.sleep(5000);
         thread.interrupt();
     }
 }
-
 ```
-
+因为先执行interrupt()方法，所以先将interrupt status标志位设置为true，然后
 
 
