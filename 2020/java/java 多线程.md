@@ -368,7 +368,41 @@ public class threadNingth implements  Runnable{
 }
 ```  
 此时会立刻结束阻塞状态，并且抛出InterruptedExection的异常，这时就会结束线程  
-+ 先执行interrupt()
++ 先执行interrupt(),后执行sleep()方法  
+```java
+package com.sogou;
+
+public class threadNingth implements  Runnable{
+
+    @Override
+    public void run() {
+        System.out.println("开始线程");
+        for (int i = 0; i <50000 ; i++) {
+            System.out.println(i);
+        }
+        System.out.println(Thread.currentThread().isInterrupted());
+        try {
+            System.out.println(System.currentTimeMillis());
+            Thread.sleep(10000);
+            System.out.println(System.currentTimeMillis());
+        }catch (InterruptedException e){
+            System.out.println("线程中断");
+            System.out.println(System.currentTimeMillis());
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void main(String[] args) throws InterruptedException {
+        threadNingth threadNingth = new threadNingth();
+        Thread thread = new Thread(threadNingth);
+        thread.start();
+        //Thread.sleep(5000);
+        thread.interrupt();
+    }
+}
+
+```
 
 
 
