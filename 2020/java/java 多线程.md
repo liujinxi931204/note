@@ -514,5 +514,7 @@ join方法实现是通过调用wait方法实现。当main线程调用t.join时�
 ##### wait()与notify()/notifyAll()方法必须在同步代码块中使用    
 wait()、notify()/notifyAll()方法是Object类的方法，在执行两个方法时，必须要先获得锁，即在synchornized修饰的同步代码块或方法里调用wait()或notify()/notifyAll()方法  
 ##### wai()与notify()/notifyAll()的执行过程  
-由于wait()与notify()/notifyAll()是放在同步代码块中的，**因此线程在执行它们时，肯定是进入了临界区中的，**
+由于wait()与notify()/notifyAll()是放在同步代码块中的，**因此线程在执行它们时，肯定是进入了临界区中的，即该线程肯定是获得了锁的**  
+当线程执行wait()方法时，会把当前的锁释放，然后让出CPU，进入等待状态  
+当执行notify()/notifyAll()方法时，会唤醒一个处于等待
 
