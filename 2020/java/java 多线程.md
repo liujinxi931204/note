@@ -511,4 +511,4 @@ public final synchronized void join(final long millis)
 ```  
 join方法实现是通过调用wait方法实现。当main线程调用t.join时候，main线程会获得线程对象的锁(wait意味着拿到该对象的锁)，调用该对象的wait(等待时间),直到该对象唤醒main线程，比如推出后，这就意味着main线程调用t.join时，必须能够拿到t对象的锁  
 #### wait/notify  
-
+**wait()与notify/notifyall**
