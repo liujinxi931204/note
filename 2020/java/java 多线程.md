@@ -225,13 +225,13 @@ public class Test1 {
 }  
 
 ```
-### 停止线程  
+#### 停止线程  
 停止线程不像break那样简单粗暴，需要一些技巧性的处理  
 有以下3种方式  
 + 使用退出标志，使线程正常退出，也就是当run()方法执行完以后  
 + 使用stop()方法强行终止，但是不推荐这个方法，这个方法已经被放弃了，使用以后可能会产生不可预料的后果  
 + 使用interput()方法中断线程  
-#### 使用退出标志  
+##### 使用退出标志  
 当run()方法执行以后，线程就会退出。但有时run()方法是永远不会结束的，如果在服务端程序中使用线程进行客户端监听请求，或是其他的需要循环处理的任务  
 在这种情况下，一般是将这些任务放在一个循环里，如while循环。如果想使while循环在某一特定条件下退出，最直接的方法就是设置一个boolean类型的标志位，并通过这个标志位true或者false来控制while循环是否退出  
 ```java
@@ -263,7 +263,7 @@ public class test1 {
     }
 }
 ```  
-#### 使用interupt方法  
+##### 使用interupt方法  
 Tread.interrupt()方法：作用是中断线程。将会设置线程的中断状态位，即设置位true，中断的结果是线程死亡、还是等待新的任务或者是继续运行到下一步，就取决于这个程序本身。线程会不时地检测这个中断标志位，以判断线程是否应该被中断(中断标识是否位true)。它并不像stop()方法那样中断一个正在运行地线程  
 interrupt()方法**只是改变中断状态，不会中断一个正在运行地线程**。需要用户自己去监视线程的状态。支持线程中断的方法(也就是线程中断后会抛出interruptedException的方法)就是在**监视线程的中断状态，一旦线程的中断状态被置为"中断状态"，就会抛出异常**。这一方法实际完成的是，给受阻塞的线程发出一个中断信号，这一受阻塞的线程检查到中断标识，就得以退出阻塞状态  
 如果线程被Object.wait()、Thread.join()和Thread.sleep()三种方法之一阻塞，此时调用该线程的interrput()方法，那么该线程将抛出一个interruptedExection中断异常(该线程必须提前处理好此异常)，从而提早地终结被阻塞状态。如果线程没有被阻塞，这时调用interrupt(）将不起作用，直到执行到wait()、sleep()、join()时，才会马上抛出interruptedExection  
@@ -351,7 +351,7 @@ public class threadSeventh implements Runnable {
 }
 
 ```  
-#### interrupt()和sleep()方法的关系  
+##### interrupt()和sleep()方法的关系  
  
 interrput()方法在java内部实际是设定一个标志位interrput status，可以中断任何阻塞状态，包括sleep()在内，当sleep()那行代码要阻塞的时候检查到这个标志位被设置为true，就会自己抛出异常InterrputedExection，并将这个标志位重置为false  
 也就是说，如果先执行sleep()方法，后执行interrput()方法，阻塞会被打断，并抛出异常；如果先执行interrput()，后执行sleep()方法，则会直接抛出异常  
@@ -423,7 +423,7 @@ public class threadNingth implements  Runnable{
 因为先执行interrupt()方法，所以先将interrupt status标志位设置为true，然后执行到sleep()方法的时候，检查该标志位位true，则会结束阻塞状态，抛出InterruptedExection异常，然后将interrupt status标志位重新置为false，结束线程  
   
 **不过还是建议使用“抛出异常的方式”来实现线程的停止，因为在catch块种可以对异常信息进行相关的处理，而且使用异常能更好、更方便的控制程序的运行流程，不至于在代码中出现多个return，造成污染**  
-### yield方法  
+#### yield方法  
 yield()方法的作用是放弃当前的CPU资源，将它让给其他的任务去占用CPU时间。但放弃的时间不确定，有可能刚刚放弃，马上又获得CPU时间片  
 ```java
 public static void yield()
@@ -455,7 +455,7 @@ public class threadTenth implements Runnable {
 }
 ```  
 上述代码的结果不确定，就是因为当前线程放弃CPU使用权之后，在下一个线程执行的时候，此线程有可能被执行，也有可能不会被执行  
-### join  
+#### join  
 线程的合并的含义就是**将几个并行线程合并为一个单线程**，应用场景是**当一个线程必须等待另一个线程执行完毕才能执行时**，Thread类提供给了join的实例方法来完成这个功能，注意**jion()方法不是静态方法**  
 ```java
 void join()    
@@ -510,3 +510,4 @@ public final synchronized void join(final long millis)
     }
 ```  
 join方法实现是通过调用wait方法实现。当main线程调用t.join时候，main线程会获得线程对象的锁(wait意味着拿到该对象的锁)，调用该对象的wait(等待时间),直到该对象唤醒main线程，比如推出后，这就意味着main线程调用t.join时，必须能够拿到t对象的锁  
+#### wait
