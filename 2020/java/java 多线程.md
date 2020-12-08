@@ -519,7 +519,89 @@ wait()、notify()/notifyAll()方法是Object类的方法，在执行两个方法
 当执行notify()/notifyAll()方法时，会唤醒一个处于等待该对象锁的线程，然后继续往下执行，直到执行完退出对象锁锁住的区域，后再释放锁  
 可以看出，notify()/notify'All()方法执行后，并不会立即释放锁，而是需要等到执行完临界区中的代码后再释放。**应该再线程调用notify()/noyifyAll()方法后立即退出临界区，即不要在notify()/noyifyAll()后面在写一些耗时的代码**  
 
+```java
+package com.sogou;
 
+public class service {
+
+    public void testWait(Object lock){
+        try{
+            synchronized (lock){
+                System.out.println("begin wait"+ "   "+ Thread.currentThread().getName());
+                lock.wait();
+                System.out.println("end wait"+"    "+ Thread.currentThread().getName());
+            }
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public void testNotify(Object lock){
+
+        try{
+            synchronized (lock){
+                System.out.println("begin notify" + "    "+ Thread.currentThread().getName());
+                System.out.println(System.currentTimeMillis());
+                //唤醒被wait的进程
+                lock.notify();
+                //执行完notify之后不会立即释放锁，而是需要执行完同步代码块中红的内容后释放锁
+                Thread.sleep(5000);
+                System.out.println(System.currentTimeMillis());
+                System.out.println("end notify"+"    "+Thread.currentThread().getName());
+            }
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+}
+
+class A implements Runnable{
+    private Object lock;
+
+    A(Object lock){
+        this.lock=lock;
+    }
+
+    @Override
+    public void run() {
+        service service = new service();
+        service.testWait(lock);
+    }
+}
+
+
+class B implements Runnable{
+    private Object lock;
+
+    B(Object lock){
+        this.lock=lock;
+    }
+
+    @Override
+    public void run() {
+        service service = new service();
+        service.testNotify(lock);
+    }
+}
+
+
+class test{
+
+    public static void main(String[] args) throws InterruptedException {
+        Object lock=new Object();
+        A a = new A(lock);
+        B b = new B(lock);
+        Thread thread1 = new Thread(a);
+        Thread thread2 = new Thread(b);
+        thread1.start();
+        Thread.sleep(1000);
+        thread2.start();
+    }
+
+}
+```  
+以上
 
 
 
