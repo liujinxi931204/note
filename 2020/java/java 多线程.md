@@ -405,8 +405,11 @@ public class threadNingth implements  Runnable{
   
 **不过还是建议使用“抛出异常的方式”来实现线程的停止，因为在catch块种可以对异常信息进行相关的处理，而且使用异常能更好、更方便的控制程序的运行流程，不至于在代码中出现多个return，造成污染**  
 ### yield方法  
-yield()方法的作用是放弃当前的CPU资源，将它让给其他的任务
-
+yield()方法的作用是放弃当前的CPU资源，将它让给其他的任务去占用CPU时间。但放弃的时间不确定，有可能刚刚放弃，马上又获得CPU时间片  
+```java
+public static void yield()
+//
+```
 
 
 
