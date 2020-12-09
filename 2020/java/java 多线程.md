@@ -607,7 +607,7 @@ class test{
 #### wait与interrupt  
 wait也会像sleep方法一样检查当前线程的interrupt status的状态。如果标志位为true，那么wait方法不再被阻塞，会抛出一个InterrupedExection异常，但是并没有因此重新获得锁，所以能否向下执行还需要获得相应的锁  
 如果先执行了wait()方法，后执行力interrupt()方法，调用wait()方法的线程不再被阻塞，而是抛出一个InterruptedExection异常，然后开始争抢锁  
-如果先执行了interrupt()方法，然后执行了wait()方法，调用wait()方法会直接跳出，就像没有，而是抛出一个InterruptedExection异常，然后开始争抢锁
+如果先执行了interrupt()方法，然后执行了wait()方法，调用wait()方法会直接跳出，就像什么都没有发生一样，然后抛出一个InterruptedExection异常并开始争抢锁
 
 
 
