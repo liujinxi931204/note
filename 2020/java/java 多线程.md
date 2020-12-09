@@ -606,7 +606,8 @@ class test{
 以上代码会在notify()之后再阻塞5秒钟才会释放锁，因此不建议再notify()/notifyAll()方法后面执行耗时的操作，而应该立即结束释放锁  
 #### wait与interrupt  
 wait也会像sleep方法一样检查当前线程的interrupt status的状态。如果标志位为true，那么wait方法不再被阻塞，会抛出一个InterrupedExection异常，但是并没有因此重新获得锁，所以能否向下执行还需要获得相应的锁  
-因此像sleep一样，如果先执行了wait()方法，后执行力interrupt()方法，
+因此像sleep一样，如果先执行了wait()方法，后执行力interrupt()方法，wait()方法不再被阻塞，而是抛出一个InterruptedExection异常，然后开始争抢锁  
+如果先执行了interrupt()方法，然后执行了wait()方法，wait()
 
 
 
