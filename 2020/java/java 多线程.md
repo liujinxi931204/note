@@ -518,7 +518,8 @@ wait()、notify()/notifyAll()方法是Object类的方法，在执行两个方法
 当线程执行wait()方法时，会把当前的锁释放，然后让出CPU，进入等待状态  
 当执行notify()/notifyAll()方法时，会唤醒一个处于等待该对象锁的线程，然后继续往下执行，直到执行完退出对象锁锁住的区域，后再释放锁  
 可以看出，notify()/notify'All()方法执行后，并不会立即释放锁，而是需要等到执行完临界区中的代码后再释放。**应该再线程调用notify()/noyifyAll()方法后立即退出临界区，即不要在notify()/noyifyAll()后面在写一些耗时的代码**  
-**synchornized wait notify/notifyAll三个的对象应该是**
+
+**synchornized wait notify/notifyAll三个的对象应该是用同一个对象**
 
 ```java
 package com.sogou;
