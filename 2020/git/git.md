@@ -39,8 +39,9 @@ $ git clone http://git.oschina.net/yiibai/git-start.git mygit-start
 ### 在现有的目录中初始化仓库  
 如果不克隆现有的仓库，而是打算使用Git对现有的项目进行管理，只需要进入该目录并执行下面的命令即可  
 ```shell
-git init  
-```
+$ git init
+```  
+该命令会创建一个名为.git的子目录，这个子目录含有初始化的Git仓库中的所有的必须文件
 
 
 
