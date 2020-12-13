@@ -26,7 +26,7 @@ git config --global user.email user@email.com
 ### 获取Git仓库  
 获取Git仓库有两种办法，第一种是从一个服务器克隆一个现有的Git仓库，另一种是在现有目录或项目下导入所有文件到Git中  
 #### 克隆现有的仓库  
-
+如果想要得到一份已经存在Git仓库的拷贝，这时就要用到`git clone`命令
 
 
 
