@@ -20,7 +20,7 @@ Git自带一个`git config`工具来帮助控制设置Git外观和行为的配�
 git config --global user.name username
 git config --global user.email user@email.com
 ```  
-如果设置了global，那么只需要设置一次，之后的每次提交都会使用这个信息
+如果设置了global，那么只需要设置一次，之后的每次提交都会使用这个信息。当你想针对特定项目使用不同的用户名称与邮件地址时，可以在那个项目目录下运行不使用 --global 选项的命令来配置
 
 
 
