@@ -32,6 +32,10 @@ git config --global user.email user@email.com
 $ git clone http://git.oschina.net/yiibai/git-start.git
 ```  
 执行这个命令会当前目录下创建一个名为'git-start.git'的目录并在这个目录下初始化一个 .git 文件夹，从远程仓库拉取下所有数据放入 .git 文件夹，然后从中读取最新版本的文件的拷贝。  
+如果在克隆的时候想自定义本地仓库的名字，可以使用如下命令  
+```shell
+$ git clone http://git.oschina.net/yiibai/git-start.git mygit-start
+```  
 
 
 
