@@ -45,8 +45,24 @@ $ git init
 如果是在一个已经存在文件的目录中(不是空文件夹)中初始化Git仓库来进行版本控制的话，应该开始跟踪这些文件并提交。可通过`git add`命令来跟踪文件，通过`git commit`来提交到本地仓库  
 现假设目录下有一个文件hello.py，内容如下  
 ```python
+#!/usr/bin/env python
+#coding=utf-8
 
+print("This is my first Python Programming")
+```  
+此时在该目录下执行`git status`命令可以看到如下内容  
+```shell
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	hello.py
+nothing added to commit but untracked files present (use "git add" to track)
 ```
+这段
 
 
 
