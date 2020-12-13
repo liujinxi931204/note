@@ -81,7 +81,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 使用`git add`命令开始跟踪一个新文件  
 先使用`git add`命令跟踪一个新文件，然后使用`git status`命令查看这个文件的状态，会发现这个文件已被跟踪，处于暂存的状态  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/13/1607872504316-1607872504317.png)  
-
+上图中Changes to be 
 
 
 
