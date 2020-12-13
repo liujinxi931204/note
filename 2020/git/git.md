@@ -71,8 +71,9 @@ nothing added to commit but untracked files present (use "git add" to track)
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/13/1607870560699-1607870560701.png)  
 ### 检查当前文件状态  
 要查看文件处于什么状态，可以使用`git status`命令  
-如果在克隆后立即使用此命令，可能会看到如下的  
-
+如果在克隆后立即使用此命令，可能会看到如下的结果    
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/13/1607871071297-1607871071298.png)  
+这说明当前目录
 
 
 
