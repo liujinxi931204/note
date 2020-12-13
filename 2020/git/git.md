@@ -70,7 +70,9 @@ nothing added to commit but untracked files present (use "git add" to track)
 编辑过某些文件之后，由于自上次提交之后对它做了修改，Git将它们标记为已修改文件。逐步将这些修改过的文件放入暂存区，然后提交所有暂存修改，如此反复。所以使用Git时文件的声明周期如下  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/13/1607870560699-1607870560701.png)  
 ### 检查当前文件状态  
-要查看文件处于什么状态，可以使用`git status`命令
+要查看文件处于什么状态，可以使用`git status`命令  
+如果在克隆后立即使用此命令，可能会看到如下的  
+
 
 
 
