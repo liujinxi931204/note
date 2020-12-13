@@ -76,7 +76,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 这说明当前目录非常干净，所有已被跟踪的文件在上次提交之后都没有被修改过  
 如果在目录下创建一个新的文件，再执行`git status`命令，将看到一个新的未被跟踪的文件，如下所示  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/13/1607871253744-1607871253751.png)  
-  
+这里会看到一个untracked files，表明该没有纳入Git的跟踪范围，除非明白地告诉Git需要跟踪该  
 
 
 
