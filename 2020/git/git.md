@@ -16,7 +16,8 @@ Git自带一个`git config`工具来帮助控制设置Git外观和行为的配�
 #### 用户信息  
 当安装完Git后的第一件事就是应该设置用户名称和邮件地址，这很重要，因为每一个Git的提交都会使用这些信息，并且写入到每一次的提交中不可更改  
 ```shell
-
+git config --global user.name "username"
+git config --global use
 ```
 
 
