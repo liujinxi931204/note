@@ -25,7 +25,8 @@ git config --global user.email user@email.com
 如果想要检查你的配置信息可以使用命令`git config --list`命令来列出所有Git当时能找出的配置信息  
 ### 获取Git仓库  
 获取Git仓库有两种办法，第一种是从一个服务器克隆一个现有的Git仓库，另一种是在现有目录或项目下导入所有文件到Git中  
-#### 克隆仓库  
+#### 克隆现有的仓库  
+
 
 
 
