@@ -78,7 +78,8 @@ nothing added to commit but untracked files present (use "git add" to track)
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/13/1607871253744-1607871253751.png)  
 这里会看到一个untracked files，表明该文见没有纳入Git的跟踪范围，除非明白地告诉Git需要跟踪该文件  
 ### 跟踪新文件  
-
+使用`git add`命令开始跟踪一个新文件  
+先使用`git add`命令
 
 
 
