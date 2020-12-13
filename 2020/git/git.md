@@ -63,7 +63,8 @@ print("This is my first Python Programming")
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 这段是提示有一个文件hello.py没有被跟踪，执行`git add`操作用以跟踪hello.py这个文件  
- 
+## 更新记录到库  
+ 工作目录下每一个文件都不外乎这两种状态：已跟踪或未跟踪
 
 
 
