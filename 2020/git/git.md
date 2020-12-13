@@ -41,7 +41,8 @@ $ git clone http://git.oschina.net/yiibai/git-start.git mygit-start
 ```shell
 $ git init
 ```  
-该命令会创建一个名为.git的子目录，这个子目录含有初始化的Git仓库中的所有的必须文件
+该命令会创建一个名为.git的子目录，这个子目录含有初始化的Git仓库中的所有的必须文件，这些文件时Git仓库的骨干。但是，在这个时候只是做了一个初始化的操作，项目里的文件还没有被跟踪  
+
 
 
 
