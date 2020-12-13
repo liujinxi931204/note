@@ -79,7 +79,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 这里会看到一个untracked files，表明该文见没有纳入Git的跟踪范围，除非明白地告诉Git需要跟踪该文件  
 ### 跟踪新文件  
 使用`git add`命令开始跟踪一个新文件  
-先使用`git add`命令
+先使用`git add`命令跟踪一个新文件，然后使用`git status`命令查看这个文件的状态，会发现这个文件已被跟踪，处于暂存的状态  
 
 
 
