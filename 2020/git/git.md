@@ -108,6 +108,8 @@ nothing added to commit but untracked files present (use "git add" to track)
 如果删除之前文件已经被修改过并且已经存放到暂存区的话，就必须要用强制删除选项-f，这是一种安全特性，用于防止误删还没有添加到快照的数据，这样的数据不能被Git恢复  
 另外一种情况是，想把文件从Git仓库中删除(亦即从暂存区中移除)，但仍然希望保留在当前工作目录中。换句话说，就是继续保留文件在磁盘中，但是不像让Git继续追踪。为达到这一目的，可以使用--cached选项  
 #### 移动文件  
+要在Git中对文件改名，可以这么做  
+`git mv file_from file_to`  
 
 
 
