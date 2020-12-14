@@ -85,7 +85,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 ### 暂存已修改文件  
 对已跟踪的文件，进行修改，然后执行`git status`会得到以下结果  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/14/1607910225374-1607910225375.png)  
-
+`Changes not`说明已跟踪文件的内容发生了变化，但是还没有放入到暂存区。要
 
 
 
