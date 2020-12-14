@@ -218,7 +218,10 @@ origin  http://git.oschina.net/yiibai/git-start.git (push)
 默认情况下，`git clone`命令会自动设置本地master分支跟踪克隆远程仓库的master分支。运行`git pull`通常会从最初克隆的服务器上抓取数据自动尝试合并到当前所在的分支  
 #### 推送到远程仓库  
 使用命令`git push [remote-name] [branch-name]`将本地项目推送到远程仓库  
-`git push origin master`是将本地master分支推送到origin服务器。只有当你有服务器的写权限并且之前没有人推送过时，这条命令才能生效。当和其他人一起克隆，别人先推送你再推送时，该推送毫无疑问会被拒绝。必须先将别人的项目拉下来并合并进你的
+`git push origin master`是将本地master分支推送到origin服务器。只有当你有服务器的写权限并且之前没有人推送过时，这条命令才能生效。当和其他人一起克隆，别人先推送你再推送时，该推送毫无疑问会被拒绝。必须先将别人的项目拉下来并合并进你的项目后才能再推送  
+#### 查看远程仓库  
+如果想要查看某一个远程仓库的更多信息时，
+
 
 
 
