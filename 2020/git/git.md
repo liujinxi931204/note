@@ -182,7 +182,19 @@ Changes not staged for commit:
 ### 远程仓库的使用  
 #### 查看远程仓库  
 如果想查看已经配置的远程仓库，可以运行`git remote`命令，该命令会列出指定的每一个远程服务器的简写  
-也可以指定选项`-v`
+也可以指定选项`-v`,会显示需要读写远程仓库使用的Git保存的简写与其对应的URL  
+```shell
+$ git remote -v
+mydoor  http://git.oschina.net/yiibai/git-start.git (fetch)
+mydoor  http://git.oschina.net/yiibai/git-start.git (push)
+curry     http://git.oschina.net/yiibai/git-start.git (fetch)
+curry     http://git.oschina.net/yiibai/git-start.git (push)
+deepfun   http://git.oschina.net/yiibai/git-start.git (fetch)
+deepfun   http://git.oschina.net/yiibai/git-start.git (push)
+koke      http://git.oschina.net/yiibai/git-start.git (fetch)
+koke      http://git.oschina.net/yiibai/git-start.git (push)
+```  
+如果远程仓库
 
 
 
