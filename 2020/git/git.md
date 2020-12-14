@@ -209,6 +209,7 @@ origin  http://git.oschina.net/yiibai/git-start.git (fetch)
 origin  http://git.oschina.net/yiibai/git-start.git (push) 
 ```  
 可以在命令行中使用简写来替代整个URL  
+#### 从远程仓库抓取与拉取  
 
 
 
