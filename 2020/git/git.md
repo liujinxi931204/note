@@ -177,8 +177,7 @@ Changes not staged for commit:
 
         deleted:    mytext.txt
 ```  
-
-
+`Changes not staged for commit`后面提示我们可以使用``
 
 
 
