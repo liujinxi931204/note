@@ -90,7 +90,8 @@ nothing added to commit but untracked files present (use "git add" to track)
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/14/1607911129477-1607911129478.png)  
 可以发现此时被修改的文件同时出现在了暂存区和工作区。实际上，此时如果执行提交命令，那么存储到本地仓库的内容就是暂存区中的内容，而不是工作区中已修改的内容。如果需要在本地仓库中存储已修改后的内容，需要重新执行`git add`命令，之后再执行`git commit`操作  
 #### 忽略文件  
-一般总会有些文件 
+一般总会有些文件无需纳入Git管理，也不希望他们出现在未跟踪列表。这种情况下，可以创建一个名为.gitignore的文件，列出要忽略的文件模式  
+ 
 
 
 
