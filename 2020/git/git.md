@@ -100,7 +100,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/14/1607913421222-1607913421223.png)  
 在上图中，"+"表示添加了一行，"-"表示删除了一行  
 #### 提交更新  
-在提交更新之前，一定要确认还有什么修改过的或新建的文件没有`git add`过，否则提交的时候不会记录这些还没有暂存起来的变化。所以，在每次调剂哦
+在提交更新之前，一定要确认还有什么修改过的或新建的文件没有`git add`过，否则提交的时候不会记录这些还没有暂存起来的变化。所以，在每次提交之前，先用`git status`看一下文件是不是都已暂存起来的了，如果没有暂存起来则先要使用命令`git add .`将所有的
 
 
 
