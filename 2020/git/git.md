@@ -117,11 +117,15 @@ $ git status
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
-
     renamed:    README.md -> README
+```  
+其实，运行`git mv`就相当于运行了下面三条命令  
+```shell
+$ mv README.md README
+$ git rm README.md
+$ git add README
+```  
 
-
-```
 
 
 
