@@ -100,7 +100,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/14/1607913421222-1607913421223.png)  
 在上图中，"+"表示添加了一行，"-"表示删除了一行  
 #### 提交更新  
-
+在提交更新之前，
 
 
 
