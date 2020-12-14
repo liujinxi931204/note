@@ -142,7 +142,8 @@ $ git add forgotten_file
 $ git commit --amend
 ```  
 最终只有一个提交，第二次提交将替代第一次提交的结果  
-#### 
+#### 取消暂存的文件  
+
 
 
 
