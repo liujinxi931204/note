@@ -143,7 +143,20 @@ $ git commit --amend
 ```  
 最终只有一个提交，第二次提交将替代第一次提交的结果  
 #### 取消暂存的文件  
-如果有两个文件本来想要作为两次独立的修改提交，但是却意外的输入
+如果有两个文件本来想要作为两次独立的修改提交，但是却意外的输入了`git add *`暂存了他们两个。那么如何取消只暂存一个呢？可以输入`git status`命令提示  
+```shell
+$ git add *
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        renamed:    README.md -> README
+        deleted:    mytext.txt
+```
 
 
 
