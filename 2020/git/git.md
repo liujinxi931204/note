@@ -159,7 +159,7 @@ Changes to be committed:
 ```  
 从`Changes to be committed:`下面的提示可以看到，`git reset HEAD <file>...`命令来取消暂存  
 #### 撤销对文件的修改  
-
+如何方便
 
 
 
