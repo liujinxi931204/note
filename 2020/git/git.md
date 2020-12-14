@@ -156,7 +156,8 @@ Changes to be committed:
 
         renamed:    README.md -> README
         deleted:    mytext.txt
-```
+```  
+从`Changes to be committed:`下面的提示可以看到，`git reset HEAD <file>...`命令来取消暂存，所以可以使用`git reset HEAD <file>`
 
 
 
