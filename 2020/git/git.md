@@ -36,7 +36,7 @@ $ git clone http://git.oschina.net/yiibai/git-start.git
 ```shell
 $ git clone http://git.oschina.net/yiibai/git-start.git mygit-start
 ```  
-### 在现有的目录中初始化仓库  
+#### 在现有的目录中初始化仓库  
 如果不克隆现有的仓库，而是打算使用Git对现有的项目进行管理，只需要进入该目录并执行下面的命令即可  
 ```shell
 $ git init
@@ -63,13 +63,13 @@ print("This is my first Python Programming")
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 这段是提示有一个文件hello.py没有被跟踪，执行`git add`操作用以跟踪hello.py这个文件  
-## 更新记录到库  
-### 记录每次更新到仓库  
+### 更新记录到库  
+#### 记录每次更新到仓库  
  工作目录下每一个文件都不外乎这两种状态：已跟踪或未跟踪。已跟踪的文件是指那些被纳入版本控制的文件，在上一次快照中有它们的记录，在工作一段时间后，它们的状态肯处于未修改、已修改或已放入暂存区。工作目录中除了已跟踪文件以外的所有其他文件都属于未跟踪文件，它们既不存在于上次快照的记录中，也没有放入暂存区中。  
 除此克隆某个仓库的时候，工作目录中的所有文件都属于已跟踪文件，并处于未修改状态  
 编辑过某些文件之后，由于自上次提交之后对它做了修改，Git将它们标记为已修改文件。逐步将这些修改过的文件放入暂存区，然后提交所有暂存修改，如此反复。所以使用Git时文件的声明周期如下  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/13/1607870560699-1607870560701.png)  
-### 检查当前文件状态  
+#### 检查当前文件状态  
 要查看文件处于什么状态，可以使用`git status`命令  
 如果在克隆后立即使用此命令，可能会看到如下的结果    
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/13/1607871071297-1607871071298.png)  
@@ -77,19 +77,20 @@ nothing added to commit but untracked files present (use "git add" to track)
 如果在目录下创建一个新的文件，再执行`git status`命令，将看到一个新的未被跟踪的文件，如下所示  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/13/1607871253744-1607871253751.png)  
 这里会看到一个untracked files，表明该文见没有纳入Git的跟踪范围，除非明白地告诉Git需要跟踪该文件  
-### 跟踪新文件  
+#### 跟踪新文件  
 使用`git add`命令开始跟踪一个新文件  
 先使用`git add`命令跟踪一个新文件，然后使用`git status`命令查看这个文件的状态，会发现这个文件已被跟踪，处于暂存的状态  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/13/1607872504316-1607872504317.png)  
 上图说明该文件已被跟踪。如果此时提交，那么该文件此时此刻的版本会被保留在历史记录中。`git add`命令使用文件或者目录的路径作为参数，如果参数是目录的路径，该命令会递归地跟踪改目录下的所有文件  
-### 暂存已修改文件  
+#### 暂存已修改文件  
 对已跟踪的文件，进行修改，然后执行`git status`会得到以下结果  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/14/1607910225374-1607910225375.png)  
 `Changes not staged for commit`下面的内容说明已跟踪文件的内容发生了变化，但是还没有放入到暂存区，需要执行`git add`命令暂存这次更新。这个命令是多功能命令，可以用它开始跟踪新文件或者把已跟踪的文件放到暂存区，可以将这个命令理解为"添加内容到下一次提交中"  
 如果此时向以暂存的文件中添加内容会发生什么？执行`git status`可以看到如下  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/14/1607911129477-1607911129478.png)  
 可以发现此时被修改的文件同时出现在了暂存区和工作区。实际上，此时如果执行提交命令，那么存储到本地仓库的内容就是暂存区中的内容，而不是工作区中已修改的内容。如果需要在本地仓库中存储已修改后的内容，需要重新执行`git add`命令，之后再执行`git commit`操作  
-## 
+#### 忽略文件  
+一般总会有些文件 
 
 
 
