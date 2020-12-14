@@ -212,7 +212,8 @@ origin  http://git.oschina.net/yiibai/git-start.git (push)
 #### 从远程仓库抓取与拉取  
 `git fetch [remote-name]`  
 这个命令会访问远程仓库，从中拉取所有还没有的数据。执行完后，将会拥有那个远程仓库中所有分支的引用，可以随时合并或查看  
-
+注意  
+**`git fetch`**命令会将数据
 
 
 
