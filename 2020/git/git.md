@@ -195,7 +195,9 @@ koke      http://git.oschina.net/yiibai/git-start.git (fetch)
 koke      http://git.oschina.net/yiibai/git-start.git (push)
 ```  
 如果远程仓库不止一个，该命令会将它们全部列出  
-#### 
+#### 添加远程仓库  
+使用命令`git remote add <shortname> <URL>`添加一个远程的Git仓库，同时指定一个URL的简写  
+```s
 
 
 
