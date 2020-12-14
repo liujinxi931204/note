@@ -159,7 +159,25 @@ Changes to be committed:
 ```  
 从`Changes to be committed:`下面的提示可以看到，`git reset HEAD <file>...`命令来取消暂存  
 #### 撤销对文件的修改  
-如何不想保存对文件的修改该怎么办？幸运的是，`git status`命令明确的告诉了我们该如何
+如何不想保存对文件的修改该怎么办？幸运的是，`git status`命令明确的告诉了我们该如何做  
+```shell
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        renamed:    README.md -> README
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    mytext.txt
+```  
+
 
 
 
