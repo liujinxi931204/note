@@ -223,7 +223,8 @@ origin  http://git.oschina.net/yiibai/git-start.git (push)
 如果想要查看某一个远程仓库的更多信息时，可以使用`git remote show [remote-name]`命令  
 #### 远程仓库的移除与重命名  
 如果想要重命名引用的名字，可以运行`git remote renmae old_name new_name`  
-值得注意的是这同样也会修改远程分支的名字。过去
+值得注意的是这同样也会修改远程分支的名字。过去那些引用old_name/master的现在会引用new_name/master  
+如果想要移除一个远程仓库，
 
 
 
