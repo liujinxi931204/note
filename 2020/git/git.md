@@ -126,6 +126,7 @@ $ git rm README.md
 $ git add README
 ```  
 即便如此操作，Git也会意识到这是一次重命名操作  
+### 查看历史提交  
 
 
 
