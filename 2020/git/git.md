@@ -92,6 +92,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 #### 忽略文件  
 一般总会有些文件无需纳入Git管理，也不希望他们出现在未跟踪列表。这种情况下，可以创建一个名为.gitignore的文件，列出要忽略的文件模式。要养成以开始就设置好.gitignore文件的习惯，以免将来误提交这类无用的文件  
 #### 查看已暂存和未暂存文件的修改  
+要查看尚未暂存的文件更新了哪些部分，不加参数直接输入`git diff`  
 
  
 
