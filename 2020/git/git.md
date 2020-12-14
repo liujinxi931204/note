@@ -221,6 +221,7 @@ origin  http://git.oschina.net/yiibai/git-start.git (push)
 `git push origin master`是将本地master分支推送到origin服务器。只有当你有服务器的写权限并且之前没有人推送过时，这条命令才能生效。当和其他人一起克隆，别人先推送你再推送时，该推送毫无疑问会被拒绝。必须先将别人的项目拉下来并合并进你的项目后才能再推送  
 #### 查看远程仓库  
 如果想要查看某一个远程仓库的更多信息时，可以使用`git remote show [remote-name]`命令  
+#### 远程仓库的移除与重命名  
 
 
 
