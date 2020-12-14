@@ -177,7 +177,8 @@ Changes not staged for commit:
 
         deleted:    mytext.txt
 ```  
-`Changes not staged for commit`后面提示我们可以使用``
+`Changes not staged for commit`后面提示我们可以使用`git checkout -- <file>`来取消对工作区中文件的修改  
+在Git中，任何已提交的东西几乎总是可以恢复的。然而，未提交的东西有可能会在丢失后
 
 
 
