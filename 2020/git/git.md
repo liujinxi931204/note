@@ -88,7 +88,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 `Changes not staged for commit`下面的内容说明已跟踪文件的内容发生了变化，但是还没有放入到暂存区，需要执行`git add`命令暂存这次更新。这个命令是多功能命令，可以用它开始跟踪新文件或者把已跟踪的文件放到暂存区，可以将这个命令理解为"添加内容到下一次提交中"  
 如果此时向以暂存的文件中添加内容会发生什么？执行`git status`可以看到如下  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/14/1607911129477-1607911129478.png)  
-可以发现此时被修改的文件同时出现在了暂存区和工作区。实际上，此时如果执行提交命令，那么
+可以发现此时被修改的文件同时出现在了暂存区和工作区。实际上，此时如果执行提交命令，那么存储到本地仓库的内容就是暂存区中的内容，而不是工作区中已修改的内容。如果需要在本地仓库中存储已修改后的内容，需要重新执行`git add`命令，之后再执行`git `
 
 
 
