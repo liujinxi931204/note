@@ -194,7 +194,8 @@ deepfun   http://git.oschina.net/yiibai/git-start.git (push)
 koke      http://git.oschina.net/yiibai/git-start.git (fetch)
 koke      http://git.oschina.net/yiibai/git-start.git (push)
 ```  
-如果远程仓库
+如果远程仓库不止一个，该命令会将它们全部列出  
+#### 
 
 
 
