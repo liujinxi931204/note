@@ -95,7 +95,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 要查看尚未暂存的文件更新了哪些部分，不加参数直接输入`git diff`  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/14/1607912997692-1607912997693.png)  
 上面红色的部分前面带有一个"+"号，表示该文件添加了一行  
-请注意，
+请注意，`git diff`本身只是显示尚未暂存的改动，而不是自上次提交以来所做的所有改动。
  
 
 
