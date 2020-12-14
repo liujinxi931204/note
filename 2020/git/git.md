@@ -99,7 +99,8 @@ nothing added to commit but untracked files present (use "git add" to track)
 如果要查看已暂存起来的变化，可以使用`git diff --cached`或者`git diff --staged`命令  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/14/1607913421222-1607913421223.png)  
 在上图中，"+"表示添加了一行，"-"表示删除了一行  
-  
+#### 提交更新  
+
 
 
 
