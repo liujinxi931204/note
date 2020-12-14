@@ -110,7 +110,18 @@ nothing added to commit but untracked files present (use "git add" to track)
 #### 移动文件  
 要在Git中对文件改名，可以这么做  
 `git mv file_from file_to`  
+它会恰如预期般正常工作，实际上，即便此时产看状态，也会明白无误地看到关于重命名地操作  
+```shell
+$ git mv README.md README
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
 
+    renamed:    README.md -> README
+
+
+```
 
 
 
