@@ -276,7 +276,8 @@ git push origin newBranchName:newBranchName
 # git branch --set-upstream-to=origin/<远程分支名> <本地分支名>
 # 如设置当前分支，第二个参数可以省略不写
 git branch --set-upstream-to=origin/<branch> newBranchName
-# --set-up
+# --set-upstream-to等价于-u，所以上述可以写成
+git branch -u=origin/<branch> newBranchName
 ```
 
 
