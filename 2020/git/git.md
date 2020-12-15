@@ -243,11 +243,11 @@ origin  http://git.oschina.net/yiibai/git-start.git (push)
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608019145224-1608019145226.png)  
 绿色分支表示其为当前分支，所以得切换至master分支  
 ```shell
-//切换至master分支
+#切换至master分支
 git checkout master
-//更新本地master代码至最新，如果本地master分支没有关联远程master分支，git pull origin master
+#更新本地master代码至最新，如果本地master分支没有关联远程master分支，git pull origin master
 git pull 
-//基于本地master分支创建新分支，并切换至创建的新分支  
+#基于本地master分支创建新分支，并切换至创建的新分支  
 git checkout -b newBranchName
 ```  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608019323168-1608019323169.png)
@@ -257,7 +257,9 @@ git checkout -b newBranchName
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608020403515-1608020403516.png)  
 其中，白色显示为本地分支、绿色显示为当前分支、红色显示为远程分支  
 ```shell
-
+# 切换至远程分支  
+git checkout remotes/origin/master
+# 
 ```
 
 
