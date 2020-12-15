@@ -245,7 +245,8 @@ origin  http://git.oschina.net/yiibai/git-start.git (push)
 ```shell
 //切换至master分支
 git checkout master
-//
+//更新本地master代码至最新，如果本地master分支没有关联远程master分支，git pull origin master
+git pull 
 
 ```
 
