@@ -252,6 +252,8 @@ git checkout -b newBranchName
 ```  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608019323168-1608019323169.png)
 ##### 基于远程master分支创建分支  
+首先查看本地、线上分支信息(调用以下命令前，建议先执行"git pull -p"防止本地git分支缓存)    
+`git branch -a`  
 
 
 
