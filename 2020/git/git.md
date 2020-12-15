@@ -264,7 +264,7 @@ git checkout -b newBranchName
 ```  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608020569803-1608020569804.png)
 #### 创建远程分支  
-
+创建远程分支可以直接由
 
 
 
