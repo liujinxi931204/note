@@ -229,6 +229,10 @@ origin  http://git.oschina.net/yiibai/git-start.git (push)
 如果想要重命名引用的名字，可以运行`git remote renmae old_name new_name`  
 值得注意的是这同样也会修改远程分支的名字。过去那些引用old_name/master的现在会引用new_name/master  
 如果想要移除一个远程仓库，可以使用`git remote rm`  
+### Git分支  
+首先得知道，Git分支包括本地分支和远程分支  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608018649261-1608018649263.png)  
+
 
 
 
