@@ -311,7 +311,15 @@ git stash pop
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608025641199-1608025641200.png)
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608025649439-1608025649440.png)  
 如果本来想在A分支上开发，开发过程中才发现当前处在B分支，想强制将工作区代码迁移到A分支，也可以借助"工作现场"完成  
-
+```shell
+# 保存现场
+git stash
+# 切换分支
+git checkout A
+# 恢复现场 
+git stash pop
+# 如果有冲突
+```
 
 
 
