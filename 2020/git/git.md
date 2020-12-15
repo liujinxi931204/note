@@ -290,8 +290,9 @@ git checkout --track origin/branch_name
 #### 工作区没新代码切换分支 
 创建好分支以后就可以在新分支进行开发了，但可能需要中途去维护其他分支代码；这个时候就得切换分支了，切换分支指令  
 ```shell
-git checkout n
-```
+git checkout newBranchName 
+```  
+编辑代码不会直接在develop、master分支操作，因为最终代码要同时合并到这两个分支上，所以一般均在新分支上开发(即使是)
 
 
 
