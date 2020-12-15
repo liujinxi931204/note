@@ -286,6 +286,7 @@ git branch -u=origin/<branch> newBranchName
 git checkout --track origin/branch_name
 ```  
 这时本地会创建一个名叫branch_name的分支，自动跟踪远程的同名分支  
+### Git切换分支  
 
 
 
