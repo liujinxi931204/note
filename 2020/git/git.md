@@ -350,7 +350,10 @@ git merge newBranchName
 ```  
 **其实可直接将远程的分支代码合并到本地`git pull origin newBranchName`**  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608026701688-1608026701689.png)
-
+### 删除分支  
+git的分支在完成它的使命以后就没有必要存在了  
+#### 删除本地分支  
+`s`
 
 
 
