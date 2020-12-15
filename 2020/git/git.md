@@ -395,7 +395,13 @@ git checkout head test.txt
 # 将本地仓库所有文件代码覆盖工作区(谨慎操作)  
 git checkout head .
 ```
-#### b
+#### 版本回退  
+```shell
+# 本地工作区代码回退到上一个版本、上上一个版本、前10个版本
+git reset --hard HEAD^
+git reset --hard HEAD^^
+git 
+```
 
 
 
