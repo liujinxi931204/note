@@ -305,8 +305,11 @@ git checkout B
 # 解决问题。。。
 # 切回分支
 git checkout A
-# 
-```
+# 恢复现场  
+git stash pop
+```  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608025641199-1608025641200.png)
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608025649439-1608025649440.png)
 
 
 
