@@ -369,8 +369,14 @@ git push origin --delete newBranchName
 #### 缓存区代码覆盖工作区代码  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608032615532-1608032615533.png)
 ```shell
-# 将缓存区某一文件
+# 将缓存区某一文件代码覆盖本地工作区
+git checkout -- test.txt
+# 将匹配的文件覆盖
+git checkout -- *.txt
+# 将所有文件覆盖
+git checkout -- .
 ```
+#### 
 
 
 
