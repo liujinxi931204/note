@@ -272,7 +272,9 @@ git push origin newBranchName:newBranchName
 ```
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608020929174-1608020929175.png)
 ##### 本地分支关联远程分支  
-```shel
+```shell
+git branch --set-upstream-to
+```
 
 
 
