@@ -293,7 +293,8 @@ git checkout --track origin/branch_name
 git checkout newBranchName 
 ```  
 编辑代码不会直接在develop、master分支操作，因为最终代码要同时合并到这两个分支上，所以一般均在新分支上开发(即使是很小的改动)  
-#### 工作区由新代码切换分支  
+#### 工作区有新代码切换分支  
+
 
 
 
