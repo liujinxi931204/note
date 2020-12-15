@@ -234,7 +234,9 @@ origin  http://git.oschina.net/yiibai/git-start.git (push)
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608018649261-1608018649263.png)  
 以下具体说明，如何创建本地分支和远程分支  
 #### 创建本地分支  
-新分支都是基于
+新分支都是基于原有分支创建，而在实践开发中基本都是从master分支创建  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608018758034-1608018758035.png)  
+从master分支创建本地分支也有两种凡是
 
 
 
