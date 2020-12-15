@@ -323,7 +323,9 @@ git add
 ```
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608026241144-1608026241145.png)
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608026250043-1608026250044.png)
-**stash空间的**
+**说明：stash空间的内容是所有分支共享的**  
+### Git合并分支  
+合并分支也分为
 
 
 
