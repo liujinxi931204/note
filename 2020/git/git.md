@@ -390,7 +390,10 @@ git reset HEAD .
 #### 本地仓库覆盖工作区代码  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608032854996-1608032854997.png)  
 ```shell
-# 将本地仓库
+# 将本地仓库某一文件代码覆盖工作区
+git checkout head test.txt
+# 将本地仓库所有文件代码覆盖工作区(谨慎操作)  
+git checkout head .
 ```
 
 
