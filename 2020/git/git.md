@@ -386,7 +386,12 @@ git reset HEAD *.txt
 # 将所有文件覆盖缓存区
 git reset HEAD .
 ```
-**这个改变的是缓存区的代码，工作区的代码**
+**这个改变的是缓存区的代码，工作区的代码不会变(编辑器的代码不会改变)**  
+#### 本地仓库覆盖工作区代码  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608032854996-1608032854997.png)  
+```shell
+# 将本地仓库
+```
 
 
 
