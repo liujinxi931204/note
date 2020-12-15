@@ -376,7 +376,13 @@ git checkout -- *.txt
 # 将所有文件覆盖
 git checkout -- .
 ```
-#### 
+#### 本地仓库代码覆盖缓存区代码  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608032719020-1608032719021.png)  
+```shell
+# 将本地仓库某一文件覆盖缓存区
+git reset HEAD test.txt
+# 将
+```
 
 
 
