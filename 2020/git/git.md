@@ -279,7 +279,8 @@ git branch --set-upstream-to=origin/<branch> newBranchName
 # --set-upstream-to等价于-u，所以上述可以写成
 git branch -u=origin/<branch> newBranchName
 ```  
-注：关联本地分支和远程分支，可以直接使用git pull或者git push
+注：关联本地分支和远程分支，可以直接使用git pull或者git push命令，而不需要指定远程分支  
+
 
 
 
