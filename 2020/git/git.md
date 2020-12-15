@@ -381,8 +381,12 @@ git checkout -- .
 ```shell
 # 将本地仓库某一文件覆盖缓存区
 git reset HEAD test.txt
-# 将
+# 将匹配的文件覆盖缓存区
+git reset HEAD *.txt
+# 将所有文件覆盖缓存区
+git reset HEAD .
 ```
+**这个改变的是缓存区的代码，工作区的代码**
 
 
 
