@@ -273,7 +273,10 @@ git push origin newBranchName:newBranchName
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608020929174-1608020929175.png)
 ##### 本地分支关联远程分支  
 ```shell
-git branch --set-upstream-to=origin/<branch> newB
+# git branch --set-upstream-to=origin/<远程分支名> <本地分支名>
+# 如设置当前分支，第二个参数可以省略不写
+git branch --set-upstream-to=origin/<branch> newBranchName
+# --set-up
 ```
 
 
