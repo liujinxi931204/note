@@ -340,7 +340,13 @@ git push
 如果新分支由多人维护，为保证更新代码为最新，使用上述方式合并分支会比较麻烦  
 ```shell
 # 切换到newBranchName分支
-
+git checkout newBranchName
+# 更新代码
+git pull
+# 切换到develop分支
+git checkout develop
+# 执行合并
+git merge newBranchName
 ```
 
 
