@@ -318,10 +318,12 @@ git stash
 git checkout A
 # 恢复现场 
 git stash pop
-# 如果有冲突
+# 如果有冲突，解决冲突
+git add 
 ```
-
-
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608026241144-1608026241145.png)
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608026250043-1608026250044.png)
+**stash空间的**
 
 
 
