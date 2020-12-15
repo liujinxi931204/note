@@ -263,6 +263,7 @@ git checkout remotes/origin/master
 git checkout -b newBranchName 
 ```  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608020569803-1608020569804.png)
+#### 创建远程分支  
 
 
 
