@@ -238,6 +238,8 @@ origin  http://git.oschina.net/yiibai/git-start.git (push)
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608018758034-1608018758035.png)  
 从master分支创建本地分支也有两种方式  
 ##### 基于本地master分支创建分支  
+查看当前分支是否在master分支  
+`git branch`  
 
 
 
