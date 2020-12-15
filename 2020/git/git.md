@@ -232,7 +232,9 @@ origin  http://git.oschina.net/yiibai/git-start.git (push)
 ### Git分支  
 首先得知道，Git分支包括本地分支和远程分支  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608018649261-1608018649263.png)  
-
+以下具体说明，如何创建本地分支和远程分支  
+#### 创建本地分支  
+新分支都是基于
 
 
 
