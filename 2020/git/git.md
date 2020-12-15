@@ -332,8 +332,12 @@ git add
 git checkout develop
 # 合并newBranchName的代码  
 git merge newBranchName
-# 提交
-```
+# 提交commit到远程
+git push
+```  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608026539012-1608026539013.png)  
+#### 合并远程分支  
+如果新分支由多人维护，为保证
 
 
 
