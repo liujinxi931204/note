@@ -328,8 +328,11 @@ git add
 合并分支也分为：合并本地分支代码、合并远程分支代码  
 #### 合并本地分支代码  
 ```shell
-# 切换到devleop的分支  
-
+# 切换到develop的分支  
+git checkout develop
+# 合并newBranchName的代码  
+git merge newBranchName
+# 提交
 ```
 
 
