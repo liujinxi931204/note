@@ -411,7 +411,8 @@ git reset --hard commit_id
 # 本地工作区代码回退到远程版本
 git reset --hard origin/master
 ```
-
+#### git reset和git revert的区别  
++ git revert是用一次新的commit来回滚之前的commit，git reset是直接删除指定的commit
 
 
 
