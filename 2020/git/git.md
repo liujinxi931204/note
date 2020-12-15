@@ -347,8 +347,9 @@ git pull
 git checkout develop
 # 执行合并
 git merge newBranchName
-```
+```  
 
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608026701688-1608026701689.png)
 
 
 
