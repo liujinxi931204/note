@@ -216,6 +216,9 @@ origin  http://git.oschina.net/yiibai/git-start.git (push)
 **`git fetch` 命令会将数据拉取到本地仓库，它并不会自动合并或修改当前的工作。当准备好时必须手动将其合并入自己的工作区**  
 如果有一个分支设置为跟踪一个远程分支，可以使用`git pull`命令来自动抓取然后合并远程分支到当前分支  
 默认情况下，`git clone`命令会自动设置本地master分支跟踪克隆远程仓库的master分支。运行`git pull`通常会从最初克隆的服务器上抓取数据自动尝试合并到当前所在的分支  
+#### git fetch和git pull的区别  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608003042789-1608003042790.png)  
+根据上图，
 #### 推送到远程仓库  
 使用命令`git push [remote-name] [branch-name]`将本地项目推送到远程仓库  
 `git push origin master`是将本地master分支推送到origin服务器。只有当你有服务器的写权限并且之前没有人推送过时，这条命令才能生效。当和其他人一起克隆，别人先推送你再推送时，该推送毫无疑问会被拒绝。必须先将别人的项目拉下来并合并进你的项目后才能再推送  
