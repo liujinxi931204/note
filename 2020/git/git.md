@@ -405,7 +405,11 @@ git reset --hard HEAD~10
 #回退到指定版本
 git reset --hard commit_id
 ```  
-#### 
+#### 远程仓库代码覆盖本地仓库  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608033218968-1608033218970.png)  
+```shell
+# 本地工作区
+```
 
 
 
