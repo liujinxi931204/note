@@ -281,7 +281,11 @@ git branch --set-upstream-to=origin/<branch> newBranchName
 git branch -u=origin/<branch> newBranchName
 ```  
 注：关联本地分支和远程分支，可以直接使用git pull或者git push命令，而不需要指定远程分支  
-##
+###### 如果远程新建了一个分支，而本地没有该分支  
+```shell
+git checkout --track origin/branch_name
+```  
+这时本地会创建一个名叫branch_name的分支
 
 
 
