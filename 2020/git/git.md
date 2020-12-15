@@ -298,9 +298,14 @@ git checkout newBranchName
 如果工作区中有新修改的代码，切换分支时一般会这样  
 ```shell
 # 如果直接git stash 则将上次commit注释作为说明
-# 使用‘’
+# 使用"工作现场"将代码暂存
 git stash save "存储说明"
-
+# 切换分支
+git checkout B
+# 解决问题。。。
+# 切回分支
+git checkout A
+# 
 ```
 
 
