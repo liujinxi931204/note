@@ -400,8 +400,12 @@ git checkout head .
 # 本地工作区代码回退到上一个版本、上上一个版本、前10个版本
 git reset --hard HEAD^
 git reset --hard HEAD^^
-git 
-```
+git reset --hard HEAD~10
+
+#回退到指定版本
+git reset --hard commit_id
+```  
+#### 
 
 
 
