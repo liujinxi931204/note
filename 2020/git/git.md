@@ -360,7 +360,12 @@ git branch -D xxx
 ```  
 #### 删除远程分支  
 删除远程分支有两种方式  
-1 
+1. 在git管理系统的Web页面操作  
+2. 本地指令完成  
+```shell
+git push origin --delete newBranchName
+```  
+
 
 
 
