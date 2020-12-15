@@ -241,7 +241,7 @@ origin  http://git.oschina.net/yiibai/git-start.git (push)
 查看当前分支是否在master分支  
 `git branch`  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608019145224-1608019145226.png)  
-绿色分支表示其为当前分支，所以嘚切换至master分支  
+绿色分支表示其为当前分支，所以得切换至master分支  
 ```shell
 //切换至master分支
 git checkout master
@@ -250,6 +250,8 @@ git pull
 //基于本地master分支创建新分支，并切换至创建的新分支  
 git checkout -b newBranchName
 ```  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608019323168-1608019323169.png)
+##### 基于远程master分支创建分支  
 
 
 
