@@ -414,7 +414,9 @@ git reset --hard origin/master
 #### git reset和git revert的区别  
 + git revert是用一次新的commit来回滚之前的commit，git reset是直接删除指定的commit  
 + 在回滚这一操作上看，效果差不多。但是在日后merge以前的老版本的时候有区别。因为git revert是一次逆向的commit"中和"之前的提交，因此日后合并老版本时，导致这部分改变不会再次出现；git reset是直接把某些commit在某个branch上删除，因而和老本并再次merge的时候，这些回滚的commit应该还会再次本引入  
-+ git reset是把HEAD向后移动了胰腺癌
++ git reset是把HEAD向后移动了一下，而git revert是HEAD继续前进，只是新的commit的内容和revert的内容正好相反，能够抵消要被revert的内容  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608033653283-1608033653284.png)  
+
 
 
 
