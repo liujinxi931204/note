@@ -254,8 +254,11 @@ git checkout -b newBranchName
 ##### 基于远程master分支创建分支  
 首先查看本地、线上分支信息(调用以下命令前，建议先执行"git pull -p"防止本地git分支缓存)    
 `git branch -a`  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608020403515-1608020403516.png)  
+其中，白色显示为本地分支、绿色显示为当前分支、红色显示为远程分支  
+```shell
 
-
+```
 
 
 
