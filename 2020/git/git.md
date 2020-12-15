@@ -264,7 +264,9 @@ git checkout -b newBranchName
 ```  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608020569803-1608020569804.png)
 #### 创建远程分支  
-创建远程分支可以直接由
+创建远程分支可以直接由本地分支推送完成也可以在远程分支管理系统(github、gitlab)上可视化操作完成  
+##### 本地新分支推送创建远程分支  
+
 
 
 
