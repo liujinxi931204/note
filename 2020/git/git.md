@@ -259,8 +259,10 @@ git checkout -b newBranchName
 ```shell
 # 切换至远程分支  
 git checkout remotes/origin/master
-# 
-```
+# 基于远程master分支创建新分支
+git checkout -b newBranchName 
+```  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608020569803-1608020569804.png)
 
 
 
