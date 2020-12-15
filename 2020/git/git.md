@@ -325,7 +325,9 @@ git add
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608026250043-1608026250044.png)
 **说明：stash空间的内容是所有分支共享的**  
 ### Git合并分支  
-合并分支也分为
+合并分支也分为：合并本地分支代码、合并远程分支代码  
+#### 合并本地分支代码  
+
 
 
 
