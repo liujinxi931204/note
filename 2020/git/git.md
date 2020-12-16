@@ -417,12 +417,3 @@ git reset --hard origin/master
 + git reset是把HEAD向后移动了一下，而git revert是HEAD继续前进，只是新的commit的内容和revert的内容正好相反，能够抵消要被revert的内容  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608033653283-1608033653284.png)  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/15/1608033664463-1608033664464.png)
-
-
-
-
-
-
-
-
-
