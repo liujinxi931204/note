@@ -110,7 +110,8 @@ public void doWork(){
     }
 }
 ```  
-xianc
+线程1执行doWork()的过程中，可能有另外的线程2调用了shutdown，所以boolean变量必须是volatile  
+
 
 
 
