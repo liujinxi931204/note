@@ -97,7 +97,15 @@ synchornized关键字是防止多个线程同时执行一段代码，那么就�
 + 对变量的写操作不依赖于当前值  
 + 该变量没有包含在具有其他变量的不变式中  
 ### 状态标志 
+```java
+volatile boolean shutdownRequest;
 
+public void shutdown(){
+    shutdownRequest=true;
+}
+
+public void 
+```
 
 
 
