@@ -1,1 +1,1 @@
-volatile可以看作是轻量级的synchornized，它只保证共享变量的可见性。在线程A修改被volatile修饰的变量后
+volatile可以看作是轻量级的synchornized，它只保证共享变量的可见性。在线程A修改被volatile修饰的变量后，线程B能够读取到正确的值。java在多线程中操作共享变量的过程中，会存在
