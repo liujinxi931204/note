@@ -69,6 +69,7 @@ public class Test {
 那么两个线程分别进行了一次自增操作，inc只增加了1  
 
 **解决方案，可以通过synchornized或Lock来加锁，也可以同AtomicInteger**  
+### volatile保证有序性  
 
 
 
