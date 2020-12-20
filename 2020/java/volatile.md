@@ -111,7 +111,7 @@ public void doWork(){
 }
 ```  
 线程1执行doWork()的过程中，可能有另外的线程2调用了shutdown，所以boolean变量必须是volatile  
-
+如果使用synchornized要比volatile标志麻烦的多，
 
 
 
