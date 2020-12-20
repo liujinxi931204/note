@@ -1,1 +1,1 @@
-volatile可以看作是
+volatile可以看作是轻量级的synchornized，它只保证共享变量的可见性。在线程A
