@@ -59,7 +59,8 @@ public class Test {
         System.out.println(test.inc);    
     }
 }
-```
+```  
+事实上这段代码的每次运行结果都不一致，都是一个小于10000的数字。
 
 
 
