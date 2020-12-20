@@ -70,7 +70,8 @@ public class Test {
 
 **解决方案，可以通过synchornized或Lock来加锁，也可以同AtomicInteger**  
 ### volatile保证有序性  
-
+volatile关键字禁止指令重排序有两层意思  
++ 
 
 
 
