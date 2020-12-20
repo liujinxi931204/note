@@ -104,7 +104,11 @@ public void shutdown(){
     shutdownRequest=true;
 }
 
-public void 
+public void doWork(){
+    while(!shutdownRequst){
+        //do stuff
+    }
+}
 ```
 
 
