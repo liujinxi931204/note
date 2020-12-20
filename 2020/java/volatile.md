@@ -71,7 +71,7 @@ public class Test {
 **解决方案，可以通过synchornized或Lock来加锁，也可以同AtomicInteger**  
 ### volatile保证有序性  
 volatile关键字禁止指令重排序有两层意思  
-+ 
++ 当程序执行到volatile变量的读操作或者写操作时，在其前面的操作的更改肯定全部已经进行，且结果已经对后面的操作可见；在
 
 
 
