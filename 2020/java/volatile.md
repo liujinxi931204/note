@@ -39,7 +39,17 @@ java内存模型只能保证基本读取和赋值操作是原子操作，如果�
 + 由于线程1的工作内存中缓存变量stop的缓存行无效，所以线程1再次读取变量stop的值时会去主内存中读取  
 ### 原子性  
 ```java
-``
+public class Test {    
+    public volatile int inc = 0;     
+    public void increase() {        
+        inc++;    
+    }     
+    public static void main(String[] args) {        
+        final Test test = new Test();        
+        for(int i=0;i<10;i++){            
+		new Thread(){                
+ public void run() {                    for(int j=0;j<1000;j++)                        test.increase();                };            }.start();        }         while(Thread.activeCount()>1)  //保证前面的线程都执行完            Thread.yield();        System.out.println(test.inc);    }}
+```
 
 
 
