@@ -151,7 +151,7 @@ singleton=new Singleton();
 指令2：初始化singletone对象  
 指令3：将这块内存地址，指向引用变量singleton  
 由于volatile禁止JVM对指令进行重排序，所以创建对象的过程仍然会按照指令1-2-3有序执行  
-反之，如果没有
+反之，如果没有volatile关键字，假设线程A正常创建一个实例，那么指令执行的顺序可能是2-1-3，当指令执行到1的时候，线程B执行getInstance()方法，这时获取到的就是
 
 
 
