@@ -115,7 +115,29 @@ public void doWork(){
 ### 一次性安全发布  
 在缺乏同步的情况下，可能会遇到某个对象引用的更新值(由另一个线程写入)和该对象状态的旧值同时存在  
 这就是著名的双重检查锁定(double-checked-locking)问题的根源，其中对象引用在没有同步的情况下进行读操作，产生的问题是可能会看到一个更新的引用，但是仍然会通过该引用看到不完全构造的对象  
-下面示例，其中后台线程在启动阶段从数据库加载一些数据，其他代码在
+下面示例，其中后台线程在启动阶段从数据库加载一些数据，其他代码在能够利用这些数据时，在使用之前将检查这些数据是否曾经发布过  
+```java
+public class BackgroundFloobleLoader {
+    public volatile Flooble theFlooble;
+ 
+    public void initInBackground() {
+        // do lots of stuff
+        theFlooble = new Flooble();  // this is the only write to theFlooble
+    }
+}
+ 
+public class SomeOtherClass {
+    public void doWork() {
+        while (true) { 
+            // do some stuff...
+            // use the Flooble, but only if it is ready
+            if (floobleLoader.theFlooble != null) 
+                doSomething(floobleLoader.theFlooble);
+        }
+    }
+}
+```  
+
 ### 单例模式  
 ```java
 public class Singleton {  
