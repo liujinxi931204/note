@@ -142,7 +142,11 @@ public class Singleton {
 3. 此时，线程A再次获得时间片，由于刚刚经过第一次判断singleton=null(不会重复判断)，进入同步代码块，这个时候，如果不加第二次判断的话，那么线程A又会创造一个实例singleton，就不满租单例模式的要求，所以第二次判断非常有必要  
 + **为什么要加volatile关键字**  
 既然已经使用了synchornized作为限制，为什么还要加入volatile？  
-首先，需要知道volatile可以保证可见性和有序性，但是不能
+首先，需要知道volatile可以保证可见性和有序性，但是不能保证原子性  
+其次，这点也很关键，就是对象的创建不是一步完成的，是一个复合操作，需要3个指令  
+```java
+singleton=new Singleton();
+```
 
 
 
