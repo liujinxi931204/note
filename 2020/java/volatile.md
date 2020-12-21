@@ -154,8 +154,9 @@ singleton=new Singleton();
 反之，如果没有volatile关键字，假设线程A正常创建一个实例，那么指令执行的顺序可能是1-3-2，当指令执行到1的时候，线程B执行getInstance()方法，这时获取到的可能就是对象的一部分或者不正确的对象  
 ## volatile和synchornized的区别  
 + volatile只能修饰实例和变量，而synchornized可以修饰方法和代码块  
-+ volatile可以保证数据的可见性，但是不保证原子性；
-
++ volatile可以保证数据的可见性，但是不保证原子性；synchornized是一种排他互斥的机制，既保证可见性，又保证原子性  
++ 
+volatile不会造成线程的阻塞，synchornized
 
 
 
