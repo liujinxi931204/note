@@ -138,6 +138,7 @@ public class SomeOtherClass {
 }
 ```  
 如果theFlooble引用不是volatile类型，doWrok()中的代码在解除对theFlooble的引用时，将会得到一个不完全构造的Flooble  
+该模式的
 
 ### 单例模式  
 ```java
