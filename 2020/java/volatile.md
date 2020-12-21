@@ -134,7 +134,7 @@ public class Singleton {
 }
 ```  
 + **第一次判断singleton是否为null**  
-第一次判断是在
+第一次判断是在synchornized同步代码块外进行判断，由于单例模式只会创建一个实例，并通过getInstance()方法返回singleton对象，所以，第一次判断，是为了在singleton对象已经创建的情况下，
 
 
 
