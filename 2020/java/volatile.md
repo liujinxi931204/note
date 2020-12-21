@@ -147,6 +147,9 @@ public class Singleton {
 ```java
 singleton=new Singleton();
 ```
+指令1：获取singletone对象内存地址  
+指令2：初始化singletone对象  
+指令3：将这块内存地址，指向引用变量singleton  
 
 
 
