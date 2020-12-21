@@ -156,7 +156,8 @@ singleton=new Singleton();
 + volatile只能修饰实例和变量，而synchornized可以修饰方法和代码块  
 + volatile可以保证数据的可见性，但是不保证原子性；synchornized是一种排他互斥的机制，既保证可见性，又保证原子性  
 + volatile不会造成线程的阻塞，synchornized可能会造成线程的阻塞  
-+ volatile可以看作是synchornized的轻量版，volatile不保证原子性，但是如果对一个共享变量进行多个
++ volatile可以看作是synchornized的轻量版，volatile不保证原子性，但是如果对一个共享变量进行多个线程的赋值，而没有其他的操作，可以使用volatile来替代synchornized，因为赋值本身是有原子性的，而volatile有保证了可见性和有序性，所以就是线程安全的  
+
 
 
 
