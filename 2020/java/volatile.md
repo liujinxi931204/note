@@ -138,7 +138,7 @@ public class Singleton {
 + **第二次判断singletone是否为null**  
 第二次判断是为了避免以下情况发生  
 1. 假设：线程A已经经过第一次判断，判断singletone=null，准备进入同步代码块  
-2. 此时线程B获得时间片，由于线程A并没有创建实例，所以，singleton
+2. 此时线程B获得时间片，由于线程A并没有创建实例，所以，singleton任然等于null，并通过
 
 
 
