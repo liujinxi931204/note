@@ -150,7 +150,8 @@ singleton=new Singleton();
 指令1：获取singletone对象内存地址  
 指令2：初始化singletone对象  
 指令3：将这块内存地址，指向引用变量singleton  
-
+由于volatile禁止JVM对指令进行重排序，所以创建对象的过程仍然会按照指令1-2-3有序执行  
+反之，如果没有
 
 
 
