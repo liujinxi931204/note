@@ -121,7 +121,7 @@ public class Singleton {
     private volatile static Singleton singleton;  
     private Singleton (){}  
     public static Singleton getSingleton() { 
-//双重 
+//双重检查加锁，只有在第一次实例化时才启用同步机制，提高了性能 
     if (singleton == null) {  
         synchronized (Singleton.class) {  
         if (singleton == null) {  
@@ -133,6 +133,8 @@ public class Singleton {
     }  
 }
 ```  
++ **第一次判断singleton是否为null**  
+第一次判断是在
 
 
 
