@@ -140,7 +140,23 @@ public class SomeOtherClass {
 如果theFlooble引用不是volatile类型，doWrok()中的代码在解除对theFlooble的引用时，将会得到一个不完全构造的Flooble  
 该模式的一个必要条件是：被发布的对象必须是线程安全的，或者是有效的不可变对象(有效的不可变意味着对象的状态在发布之后永远不会被修改)。volatile类型的引用可以确保对象的发布形式的可见性，但是如果对象的状态在发布后将发生改变，那么就需要额外的同步  
 ### 独立观察  
-安全使用volatile的另一种简单模式是定期发布观察结果供程序内部使用。例如，假设有一种环境传感器能够感觉环境温度。一个后台线程可能会每隔几秒读取一次该传感器，并更新包含当前文档的volatile变量。然后i，其他线程可以读取这个变量，从而随时能够看到最新的
+安全使用volatile的另一种简单模式是定期发布观察结果供程序内部使用。例如，假设有一种环境传感器能够感觉环境温度。一个后台线程可能会每隔几秒读取一次该传感器，并更新包含当前文档的volatile变量。然后i，其他线程可以读取这个变量，从而随时能够看到最新的温度值  
+```java
+public class UserManager {
+    public volatile String lastUser;
+ 
+    public boolean authenticate(String user, String password) {
+        boolean valid = passwordIsValid(user, password);
+        if (valid) {
+            User u = new User();
+            activeUsers.add(u);
+            lastUser = user;
+        }
+        return valid;
+    }
+}
+```  
+该模式是前面模式的扩展，将某个值发布以程序内
 ### 单例模式  
 ```java
 public class Singleton {  
