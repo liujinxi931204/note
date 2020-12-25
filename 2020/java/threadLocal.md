@@ -159,7 +159,11 @@ public T get() {
     return setInitialValue();
 }
 ```  
-get()方法的思维与set()方法的思维正好相反。只有当ThreadLocalMap不为null且以当前threadLocal为key的entry
+get()方法的思维与set()方法的思维正好相反。只有当ThreadLocalMap不为null且以当前threadLocal为key的entry不为null的时候，才可以拿到当前下线程threadLocal的变量的值  
+接下来看一下setInitialValue()方法  
+```java
+
+```
 
 
 
