@@ -181,7 +181,8 @@ protected T initialValue() {
 ```
 这个方法**是protected修饰的，也就是说继承ThreadLocal的子类可以重写该方法，实现赋值为其他的初始值**  
 ### 总结  
-**get()方法通过当前线程thread实例获取到它所维护的threadLocalMap，然后以当前threadLocal实例为key获取该map中的键值对(Entry),若Entry不为null则返回Entry的value；如果获取的threadLocalMap为null或者Entry为null，就以当前threadLocal为**
+**get()方法通过当前线程thread实例获取到它所维护的threadLocalMap，然后以当前threadLocal实例为key获取该map中的键值对(Entry),若Entry不为null则返回Entry的value；如果获取的threadLocalMap为null或者Entry为null，就以当前threadLocal为key，value值为null，存入threadLocalMap中，然后返回null**  
+
 
 
 
