@@ -31,6 +31,25 @@ public void remove();
 
 //initialValue()是一个protected方法，一般是用来在使用时进行重写的，如果在没有set()的时候就是用get()，会调用initialValue()方法初始化内容  
 protected T initvalValue();
-```
+```  
+如下  
+```java
+void step1() {
+    User u = threadLocalUser.get();
+    log();
+    printUser();
+}
+
+void log() {
+    User u = threadLocalUser.get();
+    println(u.name);
+}
+
+void step2() {
+    User u = threadLocalUser.get();
+    checkUser(u.id);
+}
+```  
+
  
 
