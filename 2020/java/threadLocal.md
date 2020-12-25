@@ -127,7 +127,8 @@ ThreadLocalMap getMap(Thread t) {
     return t.threadLocals;
 }
 ```  
-
+该方法直接返回的就是当前线程对象t的一个成员变量threadLocals  
+也就是说，ThreadLocalMap的引用作为Thread的一个成员变量
 
 
 
