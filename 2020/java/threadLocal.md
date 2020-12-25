@@ -137,7 +137,28 @@ void createMap(Thread t, T firstValue) {
 该方法就是new一个ThreadLocalMap实例对象，然后统一以当前ThreadLocal实例作为key，值为value存放到ThreadLocalMap中，然后将该ThreadLocalMap赋值给当前线程的threadLocals  
 ### 总结  
 **通过当前线程对象thread获取thread所维护的threadLocalMap，若threadLocalMap不为null，则以当前threadLocal实例为key，值为value的键值对存入threadLocalMap；若threadLocalMap为null，则就新建threadLocalMap然后再以当前threadLocal为key，值为value的键值对存入threadLocalMap中**  
-  
+## get()方法  
+**get()方法是获取当前线程中的ThreadLocal变量的值**  
+```java
+public T get() {
+    //1. 获取当前线程的实例对象
+    Thread t = Thread.currentThread();
+    //2. 获取当前线程的threadLocalMap
+    ThreadLocalMap map = getMap(t);
+    if (map != null) {
+        //3. 获取map中当前threadLocal实例为key的值的entry
+        ThreadLocalMap.Entry e = map.getEntry(this);
+        if (e != null) {
+            @SuppressWarnings("unchecked")
+            //4. 当前entitiy不为null的话，就返回相应的值value
+            T result = (T)e.value;
+            return result;
+        }
+    }
+    //5. 若map为null或者entry为null的话通过该方法初始化，并返回该方法返回的value
+    return setInitialValue();
+}
+```  
 
 
 
