@@ -162,8 +162,18 @@ public T get() {
 get()方法的思维与set()方法的思维正好相反。只有当ThreadLocalMap不为null且以当前threadLocal为key的entry不为null的时候，才可以拿到当前下线程threadLocal的变量的值  
 接下来看一下setInitialValue()方法  
 ```java
-
-```
+private T setInitialValue() {
+    T value = initialValue();
+    Thread t = Thread.currentThread();
+    ThreadLocalMap map = getMap(t);
+    if (map != null)
+        map.set(this, value);
+    else
+        createMap(t, value);
+    return value;
+}
+```  
+这段代码的逻辑和set()方法几乎一致，另外值得关注一下
 
 
 
