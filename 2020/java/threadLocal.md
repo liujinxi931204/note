@@ -179,7 +179,9 @@ protected T initialValue() {
     return null;
 }
 ```
-这个方法**是protected**
+这个方法**是protected修饰的，也就是说继承ThreadLocal的子类可以重写该方法，实现赋值为其他的初始值**  
+### 总结  
+**get()方法通过当前线程thr**
 
 
 
