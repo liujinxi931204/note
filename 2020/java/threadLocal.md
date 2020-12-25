@@ -12,4 +12,7 @@ ThreadLocal这个类提供局部变量，这些变量与其他正常变量的不
 ThreadLocal和synchornized都是为了解决多线程中相同变量的访问冲突问题，不同的点是  
 + synchornized是通过线程等待，牺牲时间来解决访问冲突  
 + ThreadLocal是通过每个线程单独一份存储空间，牺牲空间来解决冲突  
+  
 相比较于synchonized，ThreadLocal具有线程隔离的效果，只有在线程内才能获取到对应的值，线程外则不能访问到想要的值  
+  
+正因为ThreadLocal的线程隔离特性，所以它的应用场景更为特殊一些。当某些数据是以线程为作用域并且不同线程
