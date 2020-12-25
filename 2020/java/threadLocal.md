@@ -52,5 +52,6 @@ void step2() {
 ```  
 注意到普通的方法调用一定是同一个线程执行的，所以step1()、step2()、log()方法内，threadLocalUser.get()获取的User对象是同一个实例。**也就是说，可以利用ThreadLocal在不同方法之间传递参数**  
 
+
  
 
