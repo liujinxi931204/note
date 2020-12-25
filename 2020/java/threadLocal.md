@@ -104,7 +104,8 @@ thread2 join
 如果线程之间是共享ThreadLocal，则thread2的set操作会覆盖thread1的set操作，两者输出都是thread2的值，结果却看到输出不同的值，说明thread1、thread2的ThreadLocal是不共享的  
 ## ThreadLocal实现原理  
 ### set()方法  
-**set()方法设置在当前线程中ThreadLocal变量的值**，
+**set()方法设置在当前线程中ThreadLocal变量的值**，该方法的源码为  
+
 
 
 
