@@ -50,6 +50,6 @@ void step2() {
     checkUser(u.id);
 }
 ```  
-
+注意到普通的方法调用一定是同一个线程执行的，所以step1()、step2()、log()方法内，threadLocalUser.get()获取
  
 
