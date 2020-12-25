@@ -88,7 +88,17 @@ public class ThreadLocalExample {
         thread2.join(); //wait for thread 2 to terminate
     }
 }
+```    
+输出结果  
+```java
+thread1 start
+thread2 start
+38
+thread1 join
+78
+thread2 join
 ```  
+如果线程之间是共享ThreadLocal
 
 
 
