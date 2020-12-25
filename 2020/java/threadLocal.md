@@ -136,7 +136,7 @@ void createMap(Thread t, T firstValue) {
 ```  
 该方法就是new一个ThreadLocalMap实例对象，然后统一以当前ThreadLocal实例作为key，值为value存放到ThreadLocalMap中，然后将该ThreadLocalMap赋值给当前线程的threadLocals  
 ### 总结  
-通过当前线程对象thread获取thread所维护的
+通过当前线程对象thread获取thread所维护的threadLocalMap，若threadLocalMap不为null，则以当前threadLocal实例为key，值为value的键值对存入threadLocalMap；若threadLocalMap为null，则就新建
 
 
 
