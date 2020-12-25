@@ -98,7 +98,7 @@ thread1 join
 78
 thread2 join
 ```  
-如果线程之间是共享ThreadLocal
+如果线程之间是共享ThreadLocal，则thread2的set操作会覆盖thread1的set操作，两者输出都是thread2的值，结果却看到输出不同的值，说明thread1、thread2的T
 
 
 
