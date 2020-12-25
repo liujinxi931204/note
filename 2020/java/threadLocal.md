@@ -18,7 +18,11 @@ ThreadLocal和synchornized都是为了解决多线程中相同变量的访问冲
 正因为ThreadLocal的线程隔离特性，所以它的应用场景更为特殊一些。当某些数据是以线程为作用域并且不同线程具有不同的数据副本的时候，就可以考虑采用ThreadLocal实现  
 ## ThreadLocal的方法  
 ```java
-//get()方法是用来获取
+//get()方法是用来获取ThreadLocal在当前线程中保存的变量副本  
+public T get();
+
+//set()方法是用来设置当前线程中变量的副本
+public void set(T value)
 ```
  
 
