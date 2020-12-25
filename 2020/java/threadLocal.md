@@ -119,7 +119,8 @@ public void set(T value) {
         createMap(t, value);
 }
 ```  
-通过源码可以知道value是存放在了ThreadLocalMap中的，当前先把它理解为一个普普通通的Map即可，也就是说，**数据value是真正存放在了ThreadLocalMap这个容器中，并且是以当前**
+通过源码可以知道value是存放在了ThreadLocalMap中的，当前先把它理解为一个普普通通的Map即可，也就是说，**数据value是真正存放在了ThreadLocalMap这个容器中，并且是以当前threadLocal实例为key**  
+
 
 
 
