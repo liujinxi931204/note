@@ -6,4 +6,4 @@ ThreadLocal这个类提供局部变量，这些变量与其他正常变量的不
     
 **ThreadLocal的作用和同步机制有些相反：同步机制是为了保证多线程环境下数据的一致性；而ThreadLocal是保证了多线程环境下数据的独立性**  
 ## ThreadLocal类用在哪些场景  
-
+一般来说，ThreadLocal在实际工业生产中并不常见，但是在很多框架中使用却能解决一些框架问题；比如如Spring中的事务、Spring中
