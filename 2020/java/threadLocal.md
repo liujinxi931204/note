@@ -173,8 +173,13 @@ private T setInitialValue() {
     return value;
 }
 ```  
-这段代码的逻辑和set()方法几乎一致，另外值得关注一下
-
+这段代码的逻辑和set()方法几乎一致，另外值得关注一下initialValue()方法  
+```java
+protected T initialValue() {
+    return null;
+}
+```
+这个方法**是protected**
 
 
 
