@@ -16,6 +16,8 @@ ThreadLocal和synchornized都是为了解决多线程中相同变量的访问冲
 相比较于synchonized，ThreadLocal具有线程隔离的效果，只有在线程内才能获取到对应的值，线程外则不能访问到想要的值  
   
 正因为ThreadLocal的线程隔离特性，所以它的应用场景更为特殊一些。当某些数据是以线程为作用域并且不同线程具有不同的数据副本的时候，就可以考虑采用ThreadLocal实现  
+  
+
 ## ThreadLocal的方法  
 ```java
 //ThreadLocal是可以带泛型的
