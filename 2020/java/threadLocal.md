@@ -29,7 +29,8 @@ public void set(T value)；
 //remove()方法是用来移除当前线程中变量的副本
 public void remove();
 
-//initialValue()是一个protected方法，一般是用来在使用时进行重写的，如果在没有set()的时候就是用get()，会
+//initialValue()是一个protected方法，一般是用来在使用时进行重写的，如果在没有set()的时候就是用get()，会调用initialValue()方法初始化内容  
+protected T initvalValue();
 ```
  
 
