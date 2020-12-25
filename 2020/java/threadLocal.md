@@ -128,7 +128,13 @@ ThreadLocalMap getMap(Thread t) {
 }
 ```  
 该方法直接返回的就是当前线程对象t的一个成员变量threadLocals  
-也就是说，**ThreadLocalMap的引用作为Thread的一个成员变量，被Thread进行维护**
+也就是说，**ThreadLocalMap的引用作为Thread的一个成员变量，被Thread进行维护**。当map为null的时候会通过createMap(t,value)方法  
+```java
+void createMap(Thread t, T firstValue) {
+    t.threadLocals = new ThreadLocalMap(this, firstValue);
+}
+```  
+
 
 
 
