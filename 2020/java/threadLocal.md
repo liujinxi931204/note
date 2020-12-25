@@ -51,6 +51,45 @@ void step2() {
 }
 ```  
 注意到普通的方法调用一定是同一个线程执行的，所以step1()、step2()、log()方法内，threadLocalUser.get()获取的User对象是同一个实例。**也就是说，可以利用ThreadLocal在不同方法之间传递参数**  
+### 示例  
+```java
+public class ThreadLocalExample {
+    public static class MyRunnable implements Runnable {
+
+        private ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>();
+
+        @Override
+        public void run() {
+            //注意这里 set的值是run函数的内部变量，如果是MyRunnable的全局变量
+            //则无法起到线程隔离的作用
+            threadLocal.set((int) (Math.random() * 100D));
+            try {
+                //sleep两秒的作用是让thread2 set操作在thread1的输出之前执行
+                //如果线程之间是共用threadLocal，则thread2 set操作会覆盖掉thread1的set操作
+                //从而两者的输出都是thread2 set的值
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+            System.out.println(threadLocal.get());
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        MyRunnable sharedRunnableInstance = new MyRunnable();
+
+        Thread thread1 = new Thread(sharedRunnableInstance);
+        Thread thread2 = new Thread(sharedRunnableInstance);
+
+        thread1.start();
+        thread2.start();
+
+        thread1.join(); //wait for thread 1 to terminate
+        thread2.join(); //wait for thread 2 to terminate
+    }
+}
+```  
+
 
 
  
