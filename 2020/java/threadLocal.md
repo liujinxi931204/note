@@ -17,6 +17,7 @@ ThreadLocal和synchornized都是为了解决多线程中相同变量的访问冲
   
 正因为ThreadLocal的线程隔离特性，所以它的应用场景更为特殊一些。当某些数据是以线程为作用域并且不同线程具有不同的数据副本的时候，就可以考虑采用ThreadLocal实现  
   
+**但是由于ThreadLocal在每个线程中都创建了副本，所以要考虑它对资源的消耗，比如内存的占用比会比不适用ThreadLocal更大**  
 
 ## ThreadLocal的方法  
 ```java
