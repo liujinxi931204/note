@@ -159,7 +159,7 @@ public T get() {
     return setInitialValue();
 }
 ```  
-
+get()方法的思维与set()方法的思维正好相反。只有当ThreadLocalMap不为null且以当前threadLocal为key的entry
 
 
 
