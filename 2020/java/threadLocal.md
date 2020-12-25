@@ -105,6 +105,21 @@ thread2 join
 ## ThreadLocal实现原理  
 ### set()方法  
 **set()方法设置在当前线程中ThreadLocal变量的值**，该方法的源码为  
+```java
+public void set(T value) {
+    //1. 获取当前线程实例对象
+    Thread t = Thread.currentThread();
+    //2. 通过当前线程实例获取到ThreadLocalMap对象
+    ThreadLocalMap map = getMap(t);
+    if (map != null)
+        //3. 如果Map不为null,则以当前threadLocl实例为key,值为value进行存入
+        map.set(this, value);
+    else
+        //4.map为null,则新建ThreadLocalMap并存入value
+        createMap(t, value);
+}
+```  
+通过源码可以知道value是存放在了T
 
 
 
