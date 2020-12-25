@@ -8,3 +8,5 @@ ThreadLocal这个类提供局部变量，这些变量与其他正常变量的不
 ## ThreadLocal类用在哪些场景  
 一般来说，ThreadLocal在实际工业生产中并不常见，但是在很多框架中使用却能解决一些框架问题；比如如Spring中的事务、Spring中作用域Scope为Request的Bean使用ThreadLocal来解决  
 
+## ThradLocal的特性  
+ThreadLocal和synchornized都是为了解决多线程中相同变量的
