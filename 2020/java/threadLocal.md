@@ -198,7 +198,14 @@ public void remove() {
 ### Entry数据结构  
 ThreadLocalMap是threadLocal一个静态内部类，和大多数容器一样内部维护了一个数组，同样的，threadLocalMap内部维护了Entry类型的table数组  
 ```java
-```
+/**
+ * The table, resized as necessary.
+ * table.length MUST always be a power of two.
+ */
+private Entry[] table;
+```  
+通过注释可以看出，table数组的长度为2的幂次方  
+
 
 
 
