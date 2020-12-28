@@ -315,7 +315,43 @@ private void set(ThreadLocal<?> key, Object value) {
   
 扩容  
   
-从set方法中可以看出当hash表的size大于threadhold的时候，会通过
+从set方法中可以看出当hash表的size大于threadhold的时候，会通过resize方法进行扩容  
+```java
+/**
+ * Double the capacity of the table.
+ */
+private void resize() {
+    Entry[] oldTab = table;
+    int oldLen = oldTab.length;
+    //新数组为原数组的2倍
+    int newLen = oldLen * 2;
+    Entry[] newTab = new Entry[newLen];
+    int count = 0;
+
+    for (int j = 0; j < oldLen; ++j) {
+        Entry e = oldTab[j];
+        if (e != null) {
+            ThreadLocal<?> k = e.get();
+            //遍历过程中如果遇到脏entry的话直接另value为null,有助于value能够被回收
+            if (k == null) {
+                e.value = null; // Help the GC
+            } else {
+                //重新确定entry在新数组的位置，然后进行插入
+                int h = k.threadLocalHashCode & (newLen - 1);
+                while (newTab[h] != null)
+                    h = nextIndex(h, newLen);
+                newTab[h] = e;
+                count++;
+            }
+        }
+    }
+    //设置新哈希表的threshHold和size属性
+    setThreshold(newLen);
+    size = count;
+    table = newTab;
+}   
+```  
+
 
 
 
