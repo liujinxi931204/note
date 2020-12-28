@@ -137,7 +137,7 @@ void createMap(Thread t, T firstValue) {
 该方法就是new一个ThreadLocalMap实例对象，然后统一以当前ThreadLocal实例作为key，值为value存放到ThreadLocalMap中，然后将该ThreadLocalMap赋值给当前线程的threadLocals  
 ### 总结  
 **通过当前线程对象thread获取thread所维护的threadLocalMap，若threadLocalMap不为null，则以当前threadLocal实例为key，值为value的键值对存入threadLocalMap；若threadLocalMap为null，则就新建threadLocalMap然后再以当前threadLocal为key，值为value的键值对存入threadLocalMap中**  
-## get()方法  
+### get()方法  
 **get()方法是获取当前线程中的ThreadLocal变量的值**  
 ```java
 public T get() {
@@ -182,6 +182,17 @@ protected T initialValue() {
 这个方法**是protected修饰的，也就是说继承ThreadLocal的子类可以重写该方法，实现赋值为其他的初始值**  
 ### 总结  
 **get()方法通过当前线程thread实例获取到它所维护的threadLocalMap，然后以当前threadLocal实例为key获取该map中的键值对(Entry),若Entry不为null则返回Entry的value；如果获取的threadLocalMap为null或者Entry为null，就以当前threadLocal为key，value值为null，存入threadLocalMap中，然后返回null**  
+### remove()方法  
+```java
+public void remove() {
+    //1. 获取当前线程的threadLocalMap
+    ThreadLocalMap m = getMap(Thread.currentThread());
+    if (m != null)
+        //2. 从map中删除以当前threadLocal实例为key的键值对
+        m.remove(this);
+}
+```  
+
 
 
 
