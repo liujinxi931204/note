@@ -277,7 +277,7 @@ private void set(ThreadLocal<?> key, Object value) {
  
 怎么样确定新值插入到hash表中的位置？  
   
-该操作的源码为`key.threadLocalHashCode & (len-1)`,同hashMap和concurrentHashMap等容器的方式一样，利用当前key(即threadLocal实例)的hashCode与哈希表的大小相与，因为哈希表大小总是2的幂次方，所以相与等同于取模的
+该操作的源码为`key.threadLocalHashCode & (len-1)`,同hashMap和concurrentHashMap等容器的方式一样，利用当前key(即threadLocal实例)的hashCode与哈希表的大小相与，因为哈希表大小总是2的幂次方，所以相与等同于取模的过程，这样可以通过key分配到具体的哈希桶中去。而至于为什么取模要通过位与运算的原因就是位运算的执行效率远远高于
 
 
 
