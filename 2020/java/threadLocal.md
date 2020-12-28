@@ -283,7 +283,9 @@ private void set(ThreadLocal<?> key, Object value) {
   
 源码中通过`nextIndex(i, len)`方法来解决hash冲突的问题，该方法位`((i + 1 < len) ? i + 1 : 0);`,也就是不断往后探测，当到哈希表尾的时候再从0开始，呈环形  
 
-怎么样
+怎么样解决"脏"Entry  
+   
+在分析threadLocal,threadLocalMap以及Entry的关系的时候，我们已经知道使用threadLocal有可能存在内存泄漏（对象创建出来后，在之后的逻辑一直没有使用该对象，但是垃圾回收器无法回收这个部分的内存），在源码中针对这种key为null的Entry称之为“stale entry”，直译为不新鲜的entry，我把它理解为“脏entry”，自然而然，Josh Bloch and Doug Lea大师考虑到了这种情况,在set方法的for循环中寻找和当前Key相同的可覆盖entry的过程中通过replaceStaleEntry方法解决脏entry的问题。如果当前table[i]为null的话，直接插入新entry后也会通过cleanSomeSlots来解决脏entry的问题
 
 
 
