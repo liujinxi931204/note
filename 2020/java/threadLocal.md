@@ -231,7 +231,48 @@ Entry是一个以ThreadLocal为key，Object为value的键值对，另外需要�
 ##### 开放定址法  
 开放定址法不会创建链表，当关键字散列到的数组单元已经被另一个关键字占用的时候，就会尝试在数组中寻找其他的单元，直到找到一个空的单元。探测数组空单元的方式有很多，最简单的线性探测法。线性探测法就是从冲突的数组单元开始，依次往后搜索空单元，如果到数组结尾，再从头部开始搜索(环形查找)  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/28/1609127435667-1609127435669.png)  
-**ThreadLocalMap中使用开放定址法来处理散列冲突，而hashMap中使用分离链表法。之所以采用不同的方式主要是因为：在ThreadLocalMap中的散列值分散的十分均匀，很少会出现冲突。并且ThreadLocalMap经常需要清除无用的对象，使用纯数组**
+**ThreadLocalMap中使用开放定址法来处理散列冲突，而hashMap中使用分离链表法。之所以采用不同的方式主要是因为：在ThreadLocalMap中的散列值分散的十分均匀，很少会出现冲突。并且ThreadLocalMap经常需要清除无用的对象，使用纯数组更加方便**  
+  
+**set方法的源码**  
+```java
+private void set(ThreadLocal<?> key, Object value) {
+
+    // We don't use a fast path as with get() because it is at
+    // least as common to use set() to create new entries as
+    // it is to replace existing ones, in which case, a fast
+    // path would fail more often than not.
+
+    Entry[] tab = table;
+    int len = tab.length;
+    //根据threadLocal的hashCode确定Entry应该存放的位置
+    int i = key.threadLocalHashCode & (len-1);
+
+    //采用开放地址法，hash冲突的时候使用线性探测
+    for (Entry e = tab[i];
+         e != null;
+         e = tab[i = nextIndex(i, len)]) {
+        ThreadLocal<?> k = e.get();
+        //覆盖旧Entry
+        if (k == key) {
+            e.value = value;
+            return;
+        }
+        //当key为null时，说明threadLocal强引用已经被释放掉，那么就无法
+        //再通过这个key获取threadLocalMap中对应的entry，这里就存在内存泄漏的可能性
+        if (k == null) {
+            //用当前插入的值替换掉这个key为null的“脏”entry
+            replaceStaleEntry(key, value, i);
+            return;
+        }
+    }
+    //新建entry并插入table中i处
+    tab[i] = new Entry(key, value);
+    int sz = ++size;
+    //插入后再次清除一些key为null的“脏”entry,如果大于阈值就需要扩容
+    if (!cleanSomeSlots(i, sz) && sz >= threshold)
+        rehash();
+}
+```
 
 
 
