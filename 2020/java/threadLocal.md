@@ -193,6 +193,8 @@ public void remove() {
 }
 ```  
 **删除数据当然是从map中删除数据，先获取与当前线程相关联的threadLocalMap然后从map中删除该threadLocal实例为key的键值对即可**  
+## ThreadLocalMap详解  
+
 
 
 
