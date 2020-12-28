@@ -196,7 +196,9 @@ public void remove() {
 ## ThreadLocalMap详解  
 从上面的分析可以知道，数据其实都是放在了ThreadLocalMap中，threadLocal的get、set和remove方法实际上具体是通过threadLocalMap的getEntry、set和remove来实现的  
 ### Entry数据结构  
-ThreadLocalMap是threadLocal一个静态内部类，和大多数容器一样内部维护了一个数组，同样的，threadLocalMap内部维护了
+ThreadLocalMap是threadLocal一个静态内部类，和大多数容器一样内部维护了一个数组，同样的，threadLocalMap内部维护了Entry类型的table数组  
+```java
+```
 
 
 
