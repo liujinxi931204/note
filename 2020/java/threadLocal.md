@@ -227,6 +227,7 @@ Entry是一个以ThreadLocal为key，Object为value的键值对，另外需要�
 ，这种情况称为散列冲突。为了解决散列冲突，主要采用下面两种方式，分离链表法和开发定址法
 ##### 分离链表法  
 分离链表法使用链表解决冲突，将散列值相同的元素都保存到一个链表中。当查询的时候，收i先找到元素所在的链表，然后遍历链表查找对应的元素，典型实现为hashMap、concurrentHashMap的拉链法  
+![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/28/1609127022897-1609127022898.png)
 
 
 
