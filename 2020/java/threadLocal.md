@@ -281,7 +281,8 @@ private void set(ThreadLocal<?> key, Object value) {
   
 怎么样解决hash冲突  
   
-源码中通过`nextIndex(i, len)`方法来解决hash冲突的问题，该方法位``
+源码中通过`nextIndex(i, len)`方法来解决hash冲突的问题，该方法位`((i + 1 < len) ? i + 1 : 0);`,也就是不断往后探测，当到哈希表尾的时候再从0开始，呈环形  
+
 
 
 
