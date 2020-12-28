@@ -192,7 +192,7 @@ public void remove() {
         m.remove(this);
 }
 ```  
-
+**删除数据当然是从map中删除数据，先获取**
 
 
 
