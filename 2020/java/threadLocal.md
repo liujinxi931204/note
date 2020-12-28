@@ -352,6 +352,21 @@ private void resize() {
 }   
 ```  
 新建一个大小为数组长度的两倍的数组，然后遍历旧数组中的entry并将其插入到新的hash数组中，主要注意的是，**在扩容的过程中针对脏entry的话会令value为null，以便能够被垃圾回收器能够回收，解决隐藏的内存泄漏的问题**  
+### getEntry()方法  
+```java
+private Entry getEntry(ThreadLocal<?> key) {
+    //1. 确定在散列数组中的位置
+    int i = key.threadLocalHashCode & (table.length - 1);
+    //2. 根据索引i获取entry
+    Entry e = table[i];
+    //3. 满足条件则返回该entry
+    if (e != null && e.get() == key)
+        return e;
+    else
+        //4. 未查找到满足条件的entry，额外在做的处理
+        return getEntryAfterMiss(key, i, e);
+}
+```  
 
 
 
