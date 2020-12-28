@@ -221,7 +221,8 @@ Entry是一个以ThreadLocal为key，Object为value的键值对，另外需要�
 ### set()方法  
 与concurrentHashMap、hashMap等容器一样，threadLocalMap也是采用散列表进行实现的  
 #### 散列表  
-理想状态下，
+理想状态下，散列表就是一个包含关键字的固定大小的数组，通过使用散列函数，将关键字映射到数组的不同位置  
+
 
 
 
