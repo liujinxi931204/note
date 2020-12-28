@@ -273,7 +273,7 @@ private void set(ThreadLocal<?> key, Object value) {
         rehash();
 }
 ```
-从源码中可以
+从源码中可以清楚的看到threadLocal实例的hashCode()方法实现，该方法实际上总是用一个AtomicInteger加上0x61c88647
 
 
 
