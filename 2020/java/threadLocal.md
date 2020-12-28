@@ -309,8 +309,9 @@ private void set(ThreadLocal<?> key, Object value) {
      */
     private void setThreshold(int len) {
         threshold = len * 2 / 3;
-    }
-根据源码可知，在第一次为threadLocal进行赋值的时候会创建初始化大小为16的threadLocalMap，并且通过setThreadhold方法设置
+    }  
+```
+根据源码可知，在第一次为threadLocal进行赋值的时候会创建初始化大小为16的threadLocalMap，并且通过setThreadhold方法设置threadhold，其值为当前哈希数组长度乘以2/3，也就是说
 
 
 
