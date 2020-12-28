@@ -389,7 +389,8 @@ private Entry getEntryAfterMiss(ThreadLocal<?> key, int i, Entry e) {
     return null;
 }
 ```  
-通过nextIndex往后环形查找，如果找到和查询的key相同的entry的话就直接返回，如果在查找过程中遇到脏entry的话就是用expungeStaleEntry方法进行处理。
+通过nextIndex往后环形查找，如果找到和查询的key相同的entry的话就直接返回，如果在查找过程中遇到脏entry的话就是用expungeStaleEntry方法进行处理  
+**为了解决潜在的内存泄露的问题，在set、resize、getEntry这些地方都会对这些脏entry进行处理，可见为了尽可能解决这个问题几乎**
 
 
 
