@@ -273,9 +273,11 @@ private void set(ThreadLocal<?> key, Object value) {
         rehash();
 }
 ```
-从源码中可以清楚的看到threadLocal实例的hashCode()方法实现，该方法实际上总是用一个AtomicInteger加上0x61c88647来实现的。0x61c88647这个数是有特殊意义的，它从能够保证hash表的每个散列桶能够均匀的分布，这是Fibonacci Hashing。也正是能够均匀分布，所以threadLocal选择使用开发地址法来解决hash冲突的问题  
+从源码中可以清楚的看到threadLocal实例的hashCode()方法实现，该方法实际上总是用一个AtomicInteger加上0x61c88647来实现的。0x61c88647这个数是有特殊意义的，它从能够保证hash表的每个散列桶能够均匀的分布，这是Fibonacci Hashing。也正是能够均匀分布，所以threadLocal选择使用开发地址法来解决hash冲突的问题 
+ 
 怎么样确定新值插入到hash表中的位置？  
-该操作的源码为`key.threadLocalHashCode & (len-1)`
+  
+该操作的源码为`key.threadLocalHashCode & (len-1)`,同hashMap和concurrentHashMap
 
 
 
