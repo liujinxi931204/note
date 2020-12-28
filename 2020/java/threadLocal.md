@@ -351,7 +351,7 @@ private void resize() {
     table = newTab;
 }   
 ```  
-
+新建一个大小为数组长度的两倍的数组，然后遍历旧数组中的entry并将其插入到新的hash数组中，主要
 
 
 
