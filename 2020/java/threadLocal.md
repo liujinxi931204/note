@@ -231,7 +231,7 @@ Entry是一个以ThreadLocal为key，Object为value的键值对，另外需要�
 ##### 开放定址法  
 开放定址法不会创建链表，当关键字散列到的数组单元已经被另一个关键字占用的时候，就会尝试在数组中寻找其他的单元，直到找到一个空的单元。探测数组空单元的方式有很多，最简单的线性探测法。线性探测法就是从冲突的数组单元开始，依次往后搜索空单元，如果到数组结尾，再从头部开始搜索(环形查找)  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/28/1609127435667-1609127435669.png)  
-**ThreadLocalM**
+**ThreadLocalMap中使用开放定址法来处理散列冲突，而hashMap中使用分离链表法。之所以**
 
 
 
