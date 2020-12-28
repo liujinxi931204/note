@@ -315,7 +315,7 @@ private void set(ThreadLocal<?> key, Object value) {
   
 扩容  
   
-
+从set方法中可以看出当hash表的size
 
 
 
