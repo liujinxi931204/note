@@ -392,7 +392,27 @@ private Entry getEntryAfterMiss(ThreadLocal<?> key, int i, Entry e) {
 通过nextIndex往后环形查找，如果找到和查询的key相同的entry的话就直接返回，如果在查找过程中遇到脏entry的话就是用expungeStaleEntry方法进行处理  
 **为了解决潜在的内存泄露的问题，在set、resize、getEntry这些地方都会对这些脏entry进行处理，可见为了尽可能解决这个问题几乎无时无刻都在做努力**  
 ### remove()方法  
-
+```java
+/**
+ * Remove the entry for key.
+ */
+private void remove(ThreadLocal<?> key) {
+    Entry[] tab = table;
+    int len = tab.length;
+    int i = key.threadLocalHashCode & (len-1);
+    for (Entry e = tab[i];
+         e != null;
+         e = tab[i = nextIndex(i, len)]) {
+        if (e.get() == key) {
+            //将entry的key置为null
+            e.clear();
+            //将该entry的value也置为null
+            expungeStaleEntry(i);
+            return;
+        }
+    }
+}
+```
 
 
 
