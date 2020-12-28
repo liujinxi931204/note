@@ -369,8 +369,27 @@ private Entry getEntry(ThreadLocal<?> key) {
 ```  
 若能当前定位的entry的key和查找的key相同的话就直接返回entry，否则的话就是在set的时候存在hash冲突的情况下，需要通过getEntryAfterMiss做进一步处理  
 ```java
+private Entry getEntryAfterMiss(ThreadLocal<?> key, int i, Entry e) {
+    Entry[] tab = table;
+    int len = tab.length;
 
-```
+    while (e != null) {
+        ThreadLocal<?> k = e.get();
+        if (k == key)
+            //找到和查询的key相同的entry则返回
+            return e;
+        if (k == null)
+            //解决脏entry的问题
+            expungeStaleEntry(i);
+        else
+            //继续向后环形查找
+            i = nextIndex(i, len);
+        e = tab[i];
+    }
+    return null;
+}
+```  
+
 
 
 
