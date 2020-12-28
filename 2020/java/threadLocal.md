@@ -216,7 +216,7 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
     }
 }
 ```
-
+Entry是一个以ThreadLocal为key，Object为value的键值对，另外需要注意的是这里的**ThreadLocal是弱引用，因为Entry继承了WeakReferenec**
 
 
 
