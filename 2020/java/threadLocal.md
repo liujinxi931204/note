@@ -367,7 +367,7 @@ private Entry getEntry(ThreadLocal<?> key) {
         return getEntryAfterMiss(key, i, e);
 }
 ```  
-
+若能当前定位的entry的key和查找的key相同的话就直接返回entry，否则的话就是在set
 
 
 
