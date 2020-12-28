@@ -311,7 +311,7 @@ private void set(ThreadLocal<?> key, Object value) {
         threshold = len * 2 / 3;
     }  
 ```
-根据源码可知，在第一次为threadLocal进行赋值的时候会创建初始化大小为16的threadLocalMap，并且通过setThreadhold方法设置threadhold，其值为当前哈希数组长度乘以2/3，也就是说加载因子为2/3(**加载因子是衡量哈希表密集程度的参数，如果加载因子越大，说明哈希表被装载的越多，出现hash冲突的可能性越大；反之，则被装载的越少，出现hash**)
+根据源码可知，在第一次为threadLocal进行赋值的时候会创建初始化大小为16的threadLocalMap，并且通过setThreadhold方法设置threadhold，其值为当前哈希数组长度乘以2/3，也就是说加载因子为2/3(**加载因子是衡量哈希表密集程度的参数，如果加载因子越大，说明哈希表被装载的越多，出现hash冲突的可能性越大；反之，则被装载的越少，出现hash冲突的可能性越小。同时如果过小，很显然内存使用率不高，该值取值应该考虑到内存使用率和hash冲突概率的一个平衡，如**)
 
 
 
