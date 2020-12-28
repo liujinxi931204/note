@@ -229,7 +229,7 @@ Entry是一个以ThreadLocal为key，Object为value的键值对，另外需要�
 分离链表法使用链表解决冲突，将散列值相同的元素都保存到一个链表中。当查询的时候，收i先找到元素所在的链表，然后遍历链表查找对应的元素，典型实现为hashMap、concurrentHashMap的拉链法  
 ![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/28/1609127022897-1609127022898.png)
 ##### 开放定址法  
-开放
+开放定址法不会创建链表，当关键字散列到的数组单元已经被另一个关键字占用的时候，就会
 
 
 
