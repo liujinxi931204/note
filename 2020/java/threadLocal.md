@@ -413,7 +413,7 @@ private void remove(ThreadLocal<?> key) {
     }
 }
 ```  
-
+该方法通过往后环形查找到与指定key相同的entry后，先通过clear方法将key置为null后，使其转换为一个脏entry，然后
 
 
 
