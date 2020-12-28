@@ -205,6 +205,16 @@ ThreadLocalMap是threadLocal一个静态内部类，和大多数容器一样内�
 private Entry[] table;
 ```  
 通过注释可以看出，table数组的长度为2的幂次方  
+```java
+static class Entry extends WeakReference<ThreadLocal<?>> {
+    /** The value associated with this ThreadLocal. */
+    Object value;
+
+    Entry(ThreadLocal<?> k, Object v) {
+        super(k);
+        value = v;
+    }
+}
 ```
 
 
