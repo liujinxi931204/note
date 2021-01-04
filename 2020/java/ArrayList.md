@@ -42,3 +42,6 @@ ArrayList是线程不安全的，在并发环境下，多个线程同时操作Ar
     private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
 ```  
 这里特别需要注意elementData.length是指数组的长度，size是指List的长度，这两个长度不是同一个概念  
+### 构造方法  
+```java
+```
