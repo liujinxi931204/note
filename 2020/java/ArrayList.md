@@ -1,3 +1,3 @@
 ## 概述  
 ArrayList是一种变长的集合类，基于定长数组实现。ArrayList允许空值和重复元素，当往ArrayList中添加的元素数量大于其底层数组容量时，其会通过扩容机制重新生成一个更大的数组  
-ArrayList是线程不安全的，在并发环境下，多个线程同时操作ArrayList，
+ArrayList是线程不安全的，在并发环境下，多个线程同时操作ArrayList，会引发不可预知的错误  
