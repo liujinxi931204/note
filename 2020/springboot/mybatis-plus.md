@@ -298,7 +298,10 @@ class Select8Test {
 }
 ```  
 + selectMapsPage:根据wrapper条件，查询全部记录  
-这个方法的使用和上面一致，仅仅是
+这个方法的使用和上面一致，仅仅是返回类型不同  
+```java
+```
+
 
 
 
