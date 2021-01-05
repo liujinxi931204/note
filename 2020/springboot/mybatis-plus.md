@@ -160,6 +160,26 @@ class Select8Test {
     }
  
 }
+```  
++ selectCount:根据构建的Wrapper条件对象查询数据条数  
+```java
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        //相当于select * from user where id<=1;
+        //wrapper的条件构造函数
+        wrapper.le("id", 1);
+        User userBean = simpleMapper.selectOne(wrapper);
+        System.out.println(userBean);
+    }
+ 
+}
 ```
 
 
