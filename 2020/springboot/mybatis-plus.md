@@ -322,6 +322,7 @@ class Select8Test {
 ```
 #### insert保存数据  
 + insert：插入一条记录  
+需要注意的是，insert
 
 
 
