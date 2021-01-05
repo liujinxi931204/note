@@ -358,6 +358,7 @@ class Select8Test {
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         userQueryWrapper.eq("id",3);
 //相当于update user set age=22 where id=3；
+//就是根据条件更新某一条记录卡
         userMapper.update(user, userQueryWrapper);
         }
     }
