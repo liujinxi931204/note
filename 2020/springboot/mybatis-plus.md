@@ -181,7 +181,10 @@ class Select8Test {
 }
 ```  
 #### select复杂查询  
-+ selectList(@Param(Constants.WRAPPER) Wrapper<T> qu)
++ selectList:根据entity条件，查询全部记录  
+```java
+
+```
 
 
 
