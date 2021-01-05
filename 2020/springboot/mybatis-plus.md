@@ -308,11 +308,14 @@ class Select8Test {
  
     @Test
     void contextLoads() {
-        Page<Map<String,Object>> page = new Page<>(1, 4);
-        simpleMapper.selectMapsPage(page, null);
-        System.out.println("pages: " + page.getPages());
-        for(Map<String,Object> map : page.getRecords()) {
-            System.out.println(map);
+        System.out.println("------------selectAll method test--------------");
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.isNotNull("id");
+//        创建分页对象(1表示第一页，2表示每页大小为2)
+        Page<Map<String,Object>> page=new Page<>(2,2);
+        Page<Map<String, Object>> userResult = userMapper.selectMapsPage(page,userQueryWrapper);
+        List<Map<String, Object>> records = userResult.getRecords();
+        records.forEach(System.out::println);
         }
     }
 }
