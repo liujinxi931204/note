@@ -322,7 +322,8 @@ class Select8Test {
 ```
 #### insert保存数据  
 + insert：插入一条记录  
-需要注意的是，insert
+需要注意的是，insert一个实体对象需要使用@TableName和@TableId注解，说明该实体对应哪个表，并且哪个字段是ID字段  
+
 
 
 
