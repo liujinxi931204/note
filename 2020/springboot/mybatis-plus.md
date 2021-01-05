@@ -256,7 +256,7 @@ class Select2Test {
 ```xml
 <if test="null!=age">
     and age=#{age}
-<>
+</if>
 ```
 
 
