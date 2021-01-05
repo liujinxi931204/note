@@ -88,7 +88,10 @@ int deleteById(Serializable id);
 // 根据 columnMap 条件，删除记录
 int deleteByMap(@Param(Constants.COLUMN_MAP) Map<String, Object> columnMap);
 ```  
+使用Mapper CRUD接口首先需要自定义mapper接口继承BaseMapper  
+```java
 
+```
 #### select 简单查询  
 
 
