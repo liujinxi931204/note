@@ -111,8 +111,20 @@ public class MybatisDemo2Application {
 在查询中select语句主要作用是查询，Wrapper对象的作用地是构建查询条件
 + selectById:根据ID查询  
 ```java
-
-```
+@SpringBootTest
+class Select0Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        User userBean = userMapper.selectById(1);
+        System.out.println(userBean);
+    }
+}
+```  
++ selectBatch
 
 
 
