@@ -278,7 +278,22 @@ public class MybatisPlusConfig {
 ```  
 + selectPage:根据entity条件，查询全部记录  
 ```java
-
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        Hash<String,Object> map=new HashMap<>();
+        map.put("id",1);
+        map.put("age",18)
+        //相当于select * from user where id=1 and age=18;
+        List<User> userList=userMapper.selectByMap(map);
+        userList.forEach(System.out::println);
+    }
+}
 ```
 
 
