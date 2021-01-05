@@ -16,7 +16,13 @@ Mybatis-Plus，简称MP，是一个Mybatis的增强工具，在Mybatis的基础�
 ### 数据准备  
 ```sql
 drop table if exists user;
-create table user
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 ```  
 ### Mapper CRUD接口 
