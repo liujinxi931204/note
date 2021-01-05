@@ -24,5 +24,14 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
+
+drop table if exists book;
+CREATE TABLE `book` (
+  `book_id` int(10) NOT NULL AUTO_INCREMENT,
+  `book_name` varchar(400) DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `content` text,
+  PRIMARY KEY (`book_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 ```  
 ### Mapper CRUD接口 
