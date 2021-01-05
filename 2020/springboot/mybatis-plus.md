@@ -389,7 +389,23 @@ class Select8Test {
 ```  
 #### delete删除数据  
 + delete:根据wrapper条件删除记录  
-
+```java
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        
+//相当于update user set name=xxx and age=xxx and email=xxx where id=3；
+//就是根据条件更新某一条记录卡
+        userMapper.update(user, userQueryWrapper);
+        }
+    }
+}
+```
 
 
 
