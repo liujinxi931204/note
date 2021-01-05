@@ -65,7 +65,11 @@ IPage<Map<String, Object>> selectMapsPage(IPage<T> page, @Param(Constants.WRAPPE
 // 根据 Wrapper 条件，查询总记录数
 Integer selectCount(@Param(Constants.WRAPPER) Wrapper<T> queryWrapper);
 ```  
-
+#### insert插入数据  
+```java
+// 插入一条记录，entity 为实体对象
+int insert(T entity);
+```
 
 
 
