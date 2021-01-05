@@ -252,7 +252,12 @@ class Select2Test {
  
 }
 ```
-上面的查询中，会发现"wrapper(null!=age,"age",age);"语句的第一个参数是一个布尔值，当该布尔值为true时，则该条件应用到
+上面的查询中，会发现"wrapper(null!=age,"age",age);"语句的第一个参数是一个布尔值，当该布尔值为true时，则该条件应用到结果集中，类似于Mybatis xml文件中的<if>标签，等同于如下  
+```xml
+<if test="null!=age">
+    and age=#{age}
+<>
+```
 
 
 
