@@ -258,6 +258,8 @@ class Select2Test {
     and age=#{age}
 </if>
 ```
+#### select 分页查询  
+在进行分页查询的时候，需要配置分页插件，因此需要通过@Configuration和@Bean注解来添加配置  
 
 
 
