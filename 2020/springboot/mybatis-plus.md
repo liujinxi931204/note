@@ -135,12 +135,10 @@ class Select1Test {
     @Test
     void contextLoads() {
         List<Integer> ids = Arrays.asList(1, 2, 3);
-        List<UserBean> userBeanList = uMapper.selectBatchIds(ids);
-        for(UserBean userBean : userBeanList) {
-            System.out.println(userBean);
-        }
+        List<User> userBeanList = userMapper.selectBatchIds(ids);
+        userBeanList.forEach(System.out::println);
     }
- 
+
 }
 ```
 
