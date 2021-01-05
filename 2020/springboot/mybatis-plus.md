@@ -345,7 +345,23 @@ class Select8Test {
 #### update更新数据  
 + update：根据Entity条件更新记录  
 ```java
-
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        User user = new User();
+        user.setAge(22);
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.eq("id",3);
+//相当于update user set age=
+        userMapper.update(user, userQueryWrapper);
+        }
+    }
+}
 ```
 
 
