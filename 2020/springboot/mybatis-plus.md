@@ -202,7 +202,21 @@ class Select8Test {
 ```  
 + selectByMap:根据查询条件(columnMap条件)，查询全部记录  
 ```java
-
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        Hash<String,Object> map=new HashMap<>();
+        map.put("id",1);
+        map.put("age",)
+        List<User> userList=userMapper.selectList(wrapper);
+        userList.forEach(System.out::println);
+    }
+}
 ```
 
 
