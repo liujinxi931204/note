@@ -141,7 +141,24 @@ class Select1Test {
 
 }
 ```  
-+ selectOne:根据
++ selectOne:根据构建的Wrapper条件查询数据，且只返回一个结果对象  
+```java
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.le("id", 1);
+        UserBean userBean = simpleMapper.selectOne(wrapper);
+        System.out.println(userBean);
+    }
+ 
+}
+```
 
 
 
