@@ -174,8 +174,8 @@ class Select8Test {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         //相当于select * from user where id<=1;
         //wrapper的条件构造函数
-        wrapper.le("id", 1);
-        User userBean = simpleMapper.selectOne(wrapper);
+        wrapper.ge("age", 20);
+        int coun = simpleMapper.selectCount(wrapper);
         System.out.println(userBean);
     }
  
