@@ -388,6 +388,7 @@ class Select8Test {
 }
 ```  
 #### delete删除数据  
++ delete:根据wrapper条件删除记录  
 
 
 
