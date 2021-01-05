@@ -152,8 +152,10 @@ class Select8Test {
     @Test
     void contextLoads() {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
+        //相当于select * from user where id<=1;
+        //wrapper的条件构造函数
         wrapper.le("id", 1);
-        UserBean userBean = simpleMapper.selectOne(wrapper);
+        User userBean = simpleMapper.selectOne(wrapper);
         System.out.println(userBean);
     }
  
