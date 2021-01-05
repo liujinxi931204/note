@@ -181,7 +181,7 @@ class Select8Test {
 }
 ```  
 #### select复杂查询  
-
++ selectList(@Param(Constants.WRAPPER) Wrapper<T> qu)
 
 
 
