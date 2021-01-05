@@ -90,8 +90,14 @@ int deleteByMap(@Param(Constants.COLUMN_MAP) Map<String, Object> columnMap);
 ```  
 使用Mapper CRUD接口首先需要自定义mapper接口继承BaseMapper  
 ```java
+public interface UserMapper extends BaseMapper<User> {
 
-```
+}
+```  
+然后在MybatisDemo2Application上使用@MapperScan扫面自定义的mapper接口  
+```java
+
+``` 
 #### select 简单查询  
 
 
