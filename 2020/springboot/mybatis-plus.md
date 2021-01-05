@@ -172,11 +172,11 @@ class Select8Test {
     @Test
     void contextLoads() {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
-        //相当于select * from user where id<=1;
+        //相当于select count(1) from user where age>=20;
         //wrapper的条件构造函数
         wrapper.ge("age", 20);
-        int coun = simpleMapper.selectCount(wrapper);
-        System.out.println(userBean);
+        int count = simpleMapper.selectCount(wrapper);
+        System.out.println(count);
     }
  
 }
