@@ -96,8 +96,17 @@ public interface UserMapper extends BaseMapper<User> {
 ```  
 然后在MybatisDemo2Application上使用@MapperScan扫面自定义的mapper接口  
 ```java
+@SpringBootApplication
+@MapperScan("com.sogou.mybatisdemo2.mapper")
+public class MybatisDemo2Application {
 
-``` 
+    public static void main(String[] args) {
+        ConfigurableApplicationContext run = SpringApplication.run(MybatisDemo2Application.class, args);
+    }
+
+}
+```  
+可以看到上面的代码中没有任何自定义的方法，所有的方法均从BaseMapper中
 #### select 简单查询  
 
 
