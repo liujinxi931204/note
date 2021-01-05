@@ -69,6 +69,24 @@ Integer selectCount(@Param(Constants.WRAPPER) Wrapper<T> queryWrapper);
 ```java
 // 插入一条记录，entity 为实体对象
 int insert(T entity);
+```  
+#### update更新数据  
+```java
+// 根据 whereEntity 条件，更新记录
+int update(@Param(Constants.ENTITY) T entity, @Param(Constants.WRAPPER) Wrapper<T> updateWrapper);
+// 根据 ID 修改
+int updateById(@Param(Constants.ENTITY) T entity);
+```  
+#### delete删除数据  
+```java
+// 根据 entity 条件，删除记录
+int delete(@Param(Constants.WRAPPER) Wrapper<T> wrapper);
+// 删除（根据ID 批量删除）
+int deleteBatchIds(@Param(Constants.COLLECTION) Collection<? extends Serializable> idList);
+// 根据 ID 删除
+int deleteById(Serializable id);
+// 根据 columnMap 条件，删除记录
+int deleteByMap(@Param(Constants.COLUMN_MAP) Map<String, Object> columnMap);
 ```
 
 
