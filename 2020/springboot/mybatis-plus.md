@@ -106,7 +106,7 @@ public class MybatisDemo2Application {
 
 }
 ```  
-可以看到上面的代码中没有任何自定义的方法，所有的方法均从BaseMapper中
+可以看到上面的代码中没有任何自定义的方法，所有的方法均从BaseMapper中继承而来  
 #### select 简单查询  
 
 
