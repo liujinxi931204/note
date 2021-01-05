@@ -332,14 +332,12 @@ class Select8Test {
  
     @Test
     void contextLoads() {
-        System.out.println("------------selectAll method test--------------");
-        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-        userQueryWrapper.isNotNull("id");
-//        创建分页对象(1表示第一页，2表示每页大小为2)
-        Page<Map<String,Object>> page=new Page<>(2,2);
-        Page<Map<String, Object>> userResult = userMapper.selectMapsPage(page,userQueryWrapper);
-        List<Map<String, Object>> records = userResult.getRecords();
-        records.forEach(System.out::println);
+        User user = new User();
+        user.setId(6);
+        user.setName("Henry");
+        user.setAge(25);
+        user.setEmail("test1@baomidou.com");
+        int insert = userMapper.insert(user);
         }
     }
 }
