@@ -376,16 +376,19 @@ class Select8Test {
     @Test
     void contextLoads() {
         User user = new User();
-        user.setAge(22);
-        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-        userQueryWrapper.eq("id",3);
+        user.setId(7);
+        user.setName("Jerry");
+        user.setAge(25);
+        user.setEmail("test1@baomidou.com");
 //相当于update user set name=xxx and age=xxx and email=xxx where id=3；
 //就是根据条件更新某一条记录卡
         userMapper.update(user, userQueryWrapper);
         }
     }
 }
-```
+```  
+#### delete删除数据  
+
 
 
 
