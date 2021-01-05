@@ -212,8 +212,9 @@ class Select8Test {
     void contextLoads() {
         Hash<String,Object> map=new HashMap<>();
         map.put("id",1);
-        map.put("age",)
-        List<User> userList=userMapper.selectList(wrapper);
+        map.put("age",18)
+        //相当于select * from user where id=1 and age=18;
+        List<User> userList=userMapper.selectByMap(map);
         userList.forEach(System.out::println);
     }
 }
