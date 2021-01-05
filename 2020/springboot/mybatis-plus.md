@@ -37,7 +37,12 @@ CREATE TABLE `book` (
 ### Mapper CRUD接口 
 **说明**  
 通用CURD封装BaseMapper接口，为Mybatis-Plus启动时自动解析实体表关系映射转化为Mybatis内部对象注入容器  
-BaseMapper接口的
+BaseMapper接口的全限定名为`com.baomidou.mybatisplus.core.mapper.BaseMapper<T>`，该接口提供了插入、修改、删除和查询接口  
+如下  
+#### select 查询  
+```java
+
+```
 
 
 
