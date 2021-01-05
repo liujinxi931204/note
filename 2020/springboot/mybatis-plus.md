@@ -323,8 +323,27 @@ class Select8Test {
 #### insert保存数据  
 + insert：插入一条记录  
 需要注意的是，insert一个实体对象需要使用@TableName和@TableId注解，说明该实体对应哪个表，并且哪个字段是ID字段  
-
-
+```java
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        System.out.println("------------selectAll method test--------------");
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.isNotNull("id");
+//        创建分页对象(1表示第一页，2表示每页大小为2)
+        Page<Map<String,Object>> page=new Page<>(2,2);
+        Page<Map<String, Object>> userResult = userMapper.selectMapsPage(page,userQueryWrapper);
+        List<Map<String, Object>> records = userResult.getRecords();
+        records.forEach(System.out::println);
+        }
+    }
+}
+```
 
 
 
