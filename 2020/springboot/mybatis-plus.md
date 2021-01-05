@@ -300,7 +300,24 @@ class Select8Test {
 + selectMapsPage:根据wrapper条件，查询全部记录  
 这个方法的使用和上面一致，仅仅是返回类型不同  
 ```java
-
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        System.out.println("------------selectAll method test--------------");
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.isNotNull("id");
+//        创建分页对象(1表示第一页，2表示每页大小为2)
+        Page<User> userPage = new Page<>(1,2);
+        Page<User> userResult = userMapper.selectPage(userPage, userQueryWrapper);
+        List<User> records = userResult.getRecords();
+        records.forEach(System.out::println);
+    }
+}
 ```
 
 
