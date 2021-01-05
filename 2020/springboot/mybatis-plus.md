@@ -124,7 +124,25 @@ class Select0Test {
     }
 }
 ```  
-+ selectBatch
++ selectBatchIds:根据ID批量查询，即一次传入多个ID  
+```java
+@SpringBootTest
+class Select1Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        List<Integer> ids = Arrays.asList(1, 2, 3);
+        List<UserBean> userBeanList = uMapper.selectBatchIds(ids);
+        for(UserBean userBean : userBeanList) {
+            System.out.println(userBean);
+        }
+    }
+ 
+}
+```
 
 
 
