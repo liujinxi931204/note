@@ -260,7 +260,22 @@ class Select2Test {
 ```
 #### select 分页查询  
 在进行分页查询的时候，需要配置分页插件，因此需要通过@Configuration和@Bean注解来添加配置  
-
+```java
+@Configuration
+public class MybatisPlusConfig {
+ 
+    /**
+     * 分页插件。如果你不配置，分页插件将不生效
+     */
+    @Bean
+    public MybatisPlusInterceptor paginationInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        // 指定数据库方言为 MYSQL
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        return interceptor;
+    }
+}
+```
 
 
 
