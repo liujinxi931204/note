@@ -286,15 +286,19 @@ class Select8Test {
  
     @Test
     void contextLoads() {
-        Hash<String,Object> map=new HashMap<>();
-        map.put("id",1);
-        map.put("age",18)
-        //相当于select * from user where id=1 and age=18;
-        List<User> userList=userMapper.selectByMap(map);
-        userList.forEach(System.out::println);
+        System.out.println("------------selectAll method test--------------");
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.isNotNull("id");
+//        创建分页对象(1表示第一页，2表示每页大小为2)
+        Page<User> userPage = new Page<>(1,2);
+        Page<User> userResult = userMapper.selectPage(userPage, userQueryWrapper);
+        List<User> records = userResult.getRecords();
+        records.forEach(System.out::println);
     }
 }
-```
+```  
++ selectMapsPage:根据wrapper条件，查询全部记录  
+这个方法的使用和上面一致，仅仅是
 
 
 
