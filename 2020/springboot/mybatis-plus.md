@@ -342,6 +342,8 @@ class Select8Test {
     }
 }
 ```
+#### update更新数据  
++ update：根据Entity条件
 
 
 
