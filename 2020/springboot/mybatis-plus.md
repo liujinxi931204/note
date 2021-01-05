@@ -192,14 +192,16 @@ class Select8Test {
     @Test
     void contextLoads() {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
-        //相当于select count(1) from user where age>=20;
+        //相当于select * from user where age=20;
         //wrapper的条件构造函数
         wrapper.eq("age", 20);
         List<User> userList=userMapper.selectList(wrapper);
-        userList.forEach(System)
+        userList.forEach(System.out::println);
     }
 }
-```
+```  
++ selectByMap:根据查询条件(columnMap条件)，查询全部记录  
+
 
 
 
