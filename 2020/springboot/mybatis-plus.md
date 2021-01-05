@@ -15,6 +15,8 @@ Mybatis-Plus，简称MP，是一个Mybatis的增强工具，在Mybatis的基础�
 ```
 ### 数据准备  
 ```sql
-drop table if
+drop table if exists user;
+create table user
+
 ```  
 ### Mapper CRUD接口 
