@@ -35,3 +35,22 @@ CREATE TABLE `book` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 ```  
 ### Mapper CRUD接口 
+**说明**  
+通用CURD封装BaseMapper接口，为Mybatis-Plus
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
