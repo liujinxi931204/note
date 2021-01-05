@@ -220,7 +220,39 @@ class Select8Test {
 }
 ```  
 #### 动态select查询  
-
+```java
+@SpringBootTest
+class Select2Test {
+ 
+    @Autowired
+    private SimpleMapper simpleMapper;
+ 
+    @Test
+    void contextLoads() {
+        query(1, null, null);
+        query(1, "赫仑", null);
+        query(1, "赫仑", 27);
+    }
+ 
+    private void query(int userId, String name, Integer age) {
+        System.out.println("\n查询数据：");
+        QueryWrapper<UserBean> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", userId);
+ 
+        // 第一个参数为是否执行条件，为true则执行该条件
+        // 下面实现根据 name 和 age 动态查询
+        wrapper.eq(StringUtils.isNotEmpty(name), "name", name);
+        wrapper.eq(null != age, "age", age);
+ 
+        List<UserBean> userBeanList = simpleMapper.selectList(wrapper);
+        for(UserBean userBean : userBeanList) {
+            System.out.println(userBean);
+        }
+    }
+ 
+}
+```
+上面的查询中，会发现
 
 
 
