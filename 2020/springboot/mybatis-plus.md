@@ -275,6 +275,10 @@ public class MybatisPlusConfig {
         return interceptor;
     }
 }
+```  
++ selectPage:根据entity条件，查询全部记录  
+```java
+
 ```
 
 
