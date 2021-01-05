@@ -357,7 +357,7 @@ class Select8Test {
         user.setAge(22);
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         userQueryWrapper.eq("id",3);
-//相当于update user set age=
+//相当于update user set age=22 where id=3；
         userMapper.update(user, userQueryWrapper);
         }
     }
