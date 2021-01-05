@@ -365,7 +365,27 @@ class Select8Test {
 }
 ```  
 + updateById:根据id更新记录  
-
+**注意这里传入的参数是实体类而不是具体的id数值**  
+```java
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        User user = new User();
+        user.setAge(22);
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.eq("id",3);
+//相当于update user set age=22 where id=3；
+//就是根据条件更新某一条记录卡
+        userMapper.update(user, userQueryWrapper);
+        }
+    }
+}
+```
 
 
 
