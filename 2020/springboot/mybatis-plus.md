@@ -363,7 +363,9 @@ class Select8Test {
         }
     }
 }
-```
+```  
++ updateById:根据id更新记录  
+
 
 
 
