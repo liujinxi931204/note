@@ -183,7 +183,22 @@ class Select8Test {
 #### select复杂查询  
 + selectList:根据entity条件，查询全部记录  
 ```java
-
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        //相当于select count(1) from user where age>=20;
+        //wrapper的条件构造函数
+        wrapper.eq("age", 20);
+        List<User> userList=userMapper.selectList(wrapper);
+        userList.forEach(System)
+    }
+}
 ```
 
 
