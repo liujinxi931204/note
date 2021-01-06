@@ -596,7 +596,7 @@ update().eq("column", value).remove();
 lambdaUpdate().eq(Entity::getId, value).update(entity);
 ```
 #### 链式查询  
-
+在IService中提供了一个query方法，该方法返回QueryChainWrapper对象，可以使用该对象
 
 
 
