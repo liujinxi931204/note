@@ -483,8 +483,23 @@ boolean save(T entity);
 boolean saveBatch(Collection<T> entityList);
 // 插入（批量）
 boolean saveBatch(Collection<T> entityList, int batchSize);
-```
+```  
+**保存或更新(saveOrUpdate)**  
+```java
+// TableId 注解存在更新记录，否插入一条记录
+boolean saveOrUpdate(T entity);
+// 根据updateWrapper尝试更新，否继续执行saveOrUpdate(T)方法
+boolean saveOrUpdate(T entity, Wrapper<T> updateWrapper);
+// 批量修改插入
+boolean saveOrUpdateBatch(Collection<T> entityList);
+// 批量修改插入
+boolean saveOrUpdateBatch(Collection<T> entityList, int batchSize);
+```  
+**移除数据(remove)**  
+```java
 
+```
+ 
 
 
 
