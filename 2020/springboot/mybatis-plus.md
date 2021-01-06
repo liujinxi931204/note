@@ -398,10 +398,11 @@ class Select8Test {
  
     @Test
     void contextLoads() {
-        
-//相当于update user set name=xxx and age=xxx and email=xxx where id=3；
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.eq("id",3);
+//相当于；
 //就是根据条件更新某一条记录卡
-        
+        userMapper.delete()
         }
     }
 }
