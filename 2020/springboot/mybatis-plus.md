@@ -433,12 +433,12 @@ class Select8Test {
  
     @Test
     void contextLoads() {
-        List<Integer> idList=Arrays.asList(1,2,3,4);
-        userMapper.deleteBatchIds(idList);
+        userMapper.deleteById(999);
         }
     }
 }
 ```
++ deleteByMp
 
 
 
