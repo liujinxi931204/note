@@ -555,7 +555,18 @@ List<Object> listObjs(Wrapper<T> queryWrapper);
 // 根据 Wrapper 条件，查询全部记录
 <V> List<V> listObjs(Wrapper<T> queryWrapper, Function<? super Object, V> mapper);
 ```
-
+**分页**  
+```java
+// 无条件分页查询
+IPage<T> page(IPage<T> page);
+// 条件分页查询
+IPage<T> page(IPage<T> page, Wrapper<T> queryWrapper);
+// 无条件分页查询
+IPage<Map<String, Object>> pageMaps(IPage<T> page);
+// 条件分页查询
+IPage<Map<String, Object>> pageMaps(IPage<T> page, Wrapper<T> queryWrapper);
+```
+****
 
 
 
