@@ -409,7 +409,19 @@ class Select8Test {
 ```
 + deleteBatchIds:根据id批量删除  
 ```java
-
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        List<Integer> idList=Arrays.asList(1,2,3,4);
+        userMapper.deleteByIds();
+        }
+    }
+}
 ```
 
 
