@@ -519,7 +519,7 @@ boolean updateBatchById(Collection<T> entityList);
 // 根据ID 批量更新
 boolean updateBatchById(Collection<T> entityList, int batchSize);
 ```
-**获取单条数据**  
+**获取单条数据(get)**  
 ```java
 // 根据 ID 查询
 T getById(Serializable id);
@@ -566,7 +566,14 @@ IPage<Map<String, Object>> pageMaps(IPage<T> page);
 // 条件分页查询
 IPage<Map<String, Object>> pageMaps(IPage<T> page, Wrapper<T> queryWrapper);
 ```
-****
+**查询记录数**  
+```java
+// 查询总记录数
+int count();
+// 根据 Wrapper 条件，查询总记录数
+int count(Wrapper<T> queryWrapper);
+```  
+**链式查询**  
 
 
 
