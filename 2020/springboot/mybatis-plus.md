@@ -438,7 +438,23 @@ class Select8Test {
     }
 }
 ```
-+ deleteByMp
++ deleteByMap:根据columnMap删除  
+```java
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        Map<String,Object> userMap=new HashMap<>();
+        us
+        userMapper.deleteById(999);
+        }
+    }
+}
+```
 
 
 
