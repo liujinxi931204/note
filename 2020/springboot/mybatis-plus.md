@@ -497,7 +497,27 @@ boolean saveOrUpdateBatch(Collection<T> entityList, int batchSize);
 ```  
 **移除数据(remove)**  
 ```java
-
+// 根据 entity 条件，删除记录
+boolean remove(Wrapper<T> queryWrapper);
+// 根据 ID 删除
+boolean removeById(Serializable id);
+// 根据 columnMap 条件，删除记录
+boolean removeByMap(Map<String, Object> columnMap);
+// 删除（根据ID 批量删除）
+boolean removeByIds(Collection<? extends Serializable> idList);
+```
+**更新数据(update)**  
+```java
+// 根据 UpdateWrapper 条件，更新记录 需要设置sqlset
+boolean update(Wrapper<T> updateWrapper);
+// 根据 whereEntity 条件，更新记录
+boolean update(T entity, Wrapper<T> updateWrapper);
+// 根据 ID 选择修改
+boolean updateById(T entity);
+// 根据ID 批量更新
+boolean updateBatchById(Collection<T> entityList);
+// 根据ID 批量更新
+boolean updateBatchById(Collection<T> entityList, int batchSize);
 ```
  
 
