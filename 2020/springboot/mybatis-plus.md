@@ -400,9 +400,9 @@ class Select8Test {
     void contextLoads() {
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         userQueryWrapper.eq("id",3);
-//相当于；
+//相当于delete from user where id=3；
 //就是根据条件更新某一条记录卡
-        userMapper.delete()
+        userMapper.delete(userQueryWrapper);
         }
     }
 }
