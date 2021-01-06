@@ -584,6 +584,17 @@ LambdaQueryChainWrapper<T> lambdaQuery();
 query().eq("column", value).one();
 lambdaQuery().eq(Entity::getId, value).list();
 ```  
+**链式更新(chain update)**  
+```java
+// 链式更改 普通
+UpdateChainWrapper<T> update();
+// 链式更改 lambda 式。注意：不支持 Kotlin 
+LambdaUpdateChainWrapper<T> lambdaUpdate();
+ 
+// 示例：
+update().eq("column", value).remove();
+lambdaUpdate().eq(Entity::getId, value).update(entity);
+```
 
 
 
