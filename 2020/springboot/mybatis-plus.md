@@ -457,7 +457,7 @@ class Select8Test {
 }
 ```  
 ### Service CRUD  
-MyBatis Plus提供了除通用的Mapper接口(即BaseMapper)，该接口对应的DAO层。除了BaseMapper接口之外，还提供了IService接口，该接口对应Service层
+MyBatis Plus提供了除通用的Mapper接口(即BaseMapper)，该接口对应的DAO层。除了BaseMapper接口之外，还提供了IService接口，该接口对应Service层。MyBatis Plus通用的Service CRUD实现了IService接口，进一步封装了CRUD。为了避免与BaseMapper中定义的 
 
 
 
