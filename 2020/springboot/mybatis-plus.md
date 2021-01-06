@@ -407,6 +407,10 @@ class Select8Test {
     }
 }
 ```
++ deleteBatchIds:根据id批量删除  
+```java
+
+```
 
 
 
