@@ -418,7 +418,23 @@ class Select8Test {
     @Test
     void contextLoads() {
         List<Integer> idList=Arrays.asList(1,2,3,4);
-        userMapper.deleteByIds();
+        userMapper.deleteBatchIds(idList);
+        }
+    }
+}
+```  
++ deleteById:根据id删除  
+```java
+@SpringBootTest
+class Select8Test {
+ 
+    @Autowired
+    private UserMapper userMapper;
+ 
+    @Test
+    void contextLoads() {
+        List<Integer> idList=Arrays.asList(1,2,3,4);
+        userMapper.deleteBatchIds(idList);
         }
     }
 }
