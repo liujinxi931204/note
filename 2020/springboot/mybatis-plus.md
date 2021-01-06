@@ -461,6 +461,7 @@ MyBatis Plus提供了除通用的Mapper接口(即BaseMapper)，该接口对应�
 MyBatis-Plus使用ServiceImpl类实现了IService接口，因此在使用时需要service层的类继承ServiceImpl类  
 部分源码如下  
 ```java
+//IService实现类(泛型：M是Mapper对象，T是实体)
 public class ServiceImpl<M extends BaseMapper<T>, T> implements IService<T> {
     protected Log log = LogFactory.getLog(this.getClass());
     @Autowired
@@ -470,8 +471,9 @@ public class ServiceImpl<M extends BaseMapper<T>, T> implements IService<T> {
 
     public ServiceImpl() {
     }  
-    //
-```
+    //忽略其他代码
+```  
+
 
 
 
