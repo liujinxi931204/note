@@ -473,8 +473,17 @@ public class ServiceImpl<M extends BaseMapper<T>, T> implements IService<T> {
     }  
     //忽略其他代码
 ```  
-从
-
+从源码上看，IService内部还是基于BaseMapper进行封装的  
+IService提供以下方法：  
+**保存数据(save)**  
+```java
+// 插入一条记录（选择字段，策略插入）
+boolean save(T entity);
+// 插入（批量）
+boolean saveBatch(Collection<T> entityList);
+// 插入（批量）
+boolean saveBatch(Collection<T> entityList, int batchSize);
+```
 
 
 
