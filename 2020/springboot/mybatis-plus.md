@@ -519,7 +519,7 @@ boolean updateBatchById(Collection<T> entityList);
 // 根据ID 批量更新
 boolean updateBatchById(Collection<T> entityList, int batchSize);
 ```
- 
+**获取单条数据**  
 
 
 
