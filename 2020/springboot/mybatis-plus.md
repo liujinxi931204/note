@@ -597,7 +597,10 @@ lambdaUpdate().eq(Entity::getId, value).update(entity);
 ```
 #### 链式查询  
 在IService中提供了一个query方法，该方法返回QueryChainWrapper对象，可以使用该对象实现链式查询，避免每次都创建QueryWrapper对象  
+例如查询book表中，book_id>=2,price>=2的书籍  
+```java
 
+```
 
 
 
