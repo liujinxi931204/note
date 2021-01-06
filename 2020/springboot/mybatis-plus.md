@@ -532,7 +532,7 @@ Map<String, Object> getMap(Wrapper<T> queryWrapper);
 // 根据 Wrapper，查询一条记录
 <V> V getObj(Wrapper<T> queryWrapper, Function<? super Object, V> mapper);
 ```
-**获取数据列表**  
+**获取数据列表(list)**  
 ```java
 // 查询所有
 List<T> list();
@@ -555,7 +555,7 @@ List<Object> listObjs(Wrapper<T> queryWrapper);
 // 根据 Wrapper 条件，查询全部记录
 <V> List<V> listObjs(Wrapper<T> queryWrapper, Function<? super Object, V> mapper);
 ```
-**分页**  
+**分页(page)**  
 ```java
 // 无条件分页查询
 IPage<T> page(IPage<T> page);
@@ -566,14 +566,25 @@ IPage<Map<String, Object>> pageMaps(IPage<T> page);
 // 条件分页查询
 IPage<Map<String, Object>> pageMaps(IPage<T> page, Wrapper<T> queryWrapper);
 ```
-**查询记录数**  
+**查询记录数(count)**  
 ```java
 // 查询总记录数
 int count();
 // 根据 Wrapper 条件，查询总记录数
 int count(Wrapper<T> queryWrapper);
 ```  
-**链式查询**  
+**链式查询(chain query)**
+```java
+// 链式查询 普通
+QueryChainWrapper<T> query();
+// 链式查询 lambda 式。注意：不支持 Kotlin
+LambdaQueryChainWrapper<T> lambdaQuery(); 
+ 
+// 示例：
+query().eq("column", value).one();
+lambdaQuery().eq(Entity::getId, value).list();
+```  
+
 
 
 
