@@ -449,8 +449,9 @@ class Select8Test {
     @Test
     void contextLoads() {
         Map<String,Object> userMap=new HashMap<>();
-        us
-        userMapper.deleteById(999);
+        userMap.put("age",20);
+//相当于执行delete from user where age=20;
+        userMapper.deleteByMap(userMap);
         }
     }
 }
