@@ -13,7 +13,7 @@ NR表示截至到目前读取的行数
 
 # awk常用内建变量：  
 
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589767002974-1589767002976.png)
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/05/18/1589767002974-1589767002976.png)
 # awk的内建函数： 
 
 length(s)返回字符串s的长度  
@@ -33,8 +33,8 @@ substr(s,p,n)返回字符串中从p位置开始长度为n的后缀
 
 # awk常用内建函数：  
 
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589767124676-1589767124678.png)
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/05/18/1589767124676-1589767124678.png)
 # 正则表达式：  
 
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/18/1589767456222-1589767456225.png)
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/05/18/1589767456222-1589767456225.png)
 
