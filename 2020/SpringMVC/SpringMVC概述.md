@@ -1,11 +1,11 @@
 ## SpringMVC概述  
 SpringMVC是一种基于java实现的MVC设计模式的请求驱动类型的轻量级的WEB框架，即使用MVC架构模式的思想，将web层进行职责解耦，基于驱动请求指的就是请求--响应模型，属于Spring FrameWork的后续产品，已经融合到Spring Web Flow中  
-  
+
 Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套注解，让一个简单的Java类成为处理请求的控制器，而无需实现任何接口。同时它还支持RESTful编程风格的请求   
-  
+
 ### Spring MVC处理请求的流程  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/10/22/1603337222739-1603337222741.png)  
-  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/10/22/1603337222739-1603337222741.png)  
+
 具体执行步骤如下：  
 1. 首先用户发送请求---->前端控制器，前端控制器根据请求信息(如URL)来决定选择哪一个页面控制器进行处理并把请求委托给它，即一千的控制器的控制逻辑部分；图中的1、2步骤  
   
@@ -14,10 +14,10 @@ Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套�
 3.  前端控制器收回控制权，然后根据返回的逻辑视图名，选择相应的视图进行渲染，并把模型数据传入以便视图渲染；图中的6，7步骤  
   
 4. 前端控制器再次收回控制权，将响应返回给用户，图中的步骤8  
-  
+
 ### Spring MVC核心架构  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/10/22/1603337268750-1603337268751.png)  
-  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/10/22/1603337268750-1603337268751.png)  
+
 核心架构的具体流程步骤如下：  
 1. 首先用户发送请求---->DispatcherServlet，前端控制器收到请求后自己不进行处理，而是委托给其他的解析器处理，作为统一的访问点，进行全局的流程控制  
   
@@ -32,7 +32,7 @@ Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套�
 6. View----渲染，View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构，因此很容易支持其视图技术  
   
 7. 返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束  
-  
+
 ### Spring MVC工作原理总结  
 1. 启动服务器，根据web.xml的配置加载前端控制器DispatcherServlet，加载（包括加载springmvc-servlet.xml这样的配置文件）时会完成一系列的初始化动作  
   
@@ -41,7 +41,7 @@ Spring MVC目前已经称为最主流的的MVC的框架之一。它通过一套�
 3. 后端控制器调用相应的逻辑层代码，完成处理并返回视图对象(ModelAndView)给前端处理器  
   
 4. 前端控制器根据后端控制器返回的ModelAndView对象，并结合一些配置，返回一个相应的页面给客户端  
-  
+
 ### Spring MVC的角色划分  
 1. DispatcherServlet在web.xml中部署描述，从而拦截请求到Spring Web MVC  
   

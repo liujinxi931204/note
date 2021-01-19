@@ -6,7 +6,7 @@
 + **服务端缓存**：一般指在远端服务器上，考虑到客户端请求量多，某些数据请求量大，这些热点数据经常要到数据库中读取数据，给数据库造成压力，还有就是IO、网络等原因造成一定延迟，响应客户端较慢。所以，在一些不考虑实时性的数据中，经常将这些数据存在内存中(内存速度非常快)，当请求时，能够直接读取内存中的数据及时响应  
 ### 为什么使用缓存  
 用缓存，主要解决高性能、高并发与减少数据库压力。缓存本质就是将数据存储在内存中，当数据没有发生本质变化的时候，应该尽量避免直接连接数据库进行查询，因为并发高时很可能会将数据库压塌，而是应去读取数据，只有缓存中未查找到时再去数据库中查询，这样就大大降低了数据库的读写次数，增加系统的性能和能提供的并发量  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606724988682-1606724988733.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/30/1606724988682-1606724988733.png)  
 ### 缓存的优缺点  
 #### 优点  
 + 加快响应速度  
@@ -17,19 +17,19 @@
 + 因为内存断电就清空数据，存放到内存中的数据可能丢失  
 ## 缓存后可能遇见的问题  
 ### 缓存穿透  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606725860708-1606725860711.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/30/1606725860708-1606725860711.png)  
 **缓存穿透**：指查询一个一定不存在的数据，由于缓存是不命中时需要从数据库查询，查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要去到数据库去查询，造成缓存穿透  
 #### 缓存穿透几种解决办法  
 + 缓存空值，在从DB查询对象为空时，也要将控制存入缓存，具体的值需要使用特殊的标识，能和真正缓存的数据区分开，另外也要将其过期时间设为较短  
 + 使用布隆过滤器，布隆过滤器能判断一个key一定不存在(不保证一定存在，因为布隆过滤器结构原因，不能删除，但是旧值可能被新值替换，而将旧值删除后它可能依旧判断其可能存在)，在缓存的基础上，构建布隆过滤器数据结构，在布隆过滤器中存储对应的key，如果存在，则说明key对应的值为空  
 ### 缓存击穿  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606726327408-1606726327410.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/30/1606726327408-1606726327410.png)  
 **缓存击穿**：某个key非常热点，访问非常频繁，处于集中式高并发访问的情况，当这个key在失效的瞬间，大量的请求就击穿了缓存，直接请求数据库，就像是在一道屏障上凿开了一个洞  
 #### 缓存击穿几种解决办法  
 + 设置二级缓存，或者设置热点缓存永不过期，需要根据实际情况进行配置  
 + 使用互斥锁，在执行过程中，如果缓存过期，那么先获取分布式锁，在执行从数据库中加载数据，如果找到数据就存入缓存，没有就继续该有的动作，在这个过程中能保证只有一个线程操作，避免了对数据库的大量请求  
 ### 缓存雪崩  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606726885946-1606726885947.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/30/1606726885946-1606726885947.png)  
 **缓存雪崩**：当缓存服务器重启、或者大量缓存集中在某一个时段失效，这样失效的时候，也会给后端系统带来很大的压力，造成数据库后端故障，从而引起应用服务器雪崩  
 #### 缓存雪崩几种解决办法  
 + 缓存组件设计高可用，缓存高可用是指，存储缓存的组件高可用，能够防止单点故障、机器故障、机房宕机等一系列问题。例如redis 的sentinel和redis cluster  
@@ -44,36 +44,36 @@
 + 淘汰缓存成功->更新数据库失败->数据查询mis  
 ## Spring的缓存抽象  
 Spring框架自身并没有实现缓存解决方案，但是从3.1开始定义了org.springframework.cache.Cache和org.srpingframeswork.cache.CacheManager接口，提供了对缓存功能的声明，能够与多种流行的缓存实现集成  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606727529808-1606727529809.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/30/1606727529808-1606727529809.png)  
 ### 几个重要概念&缓存注解  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606727579909-1606727579910.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/30/1606727579909-1606727579910.png)  
 #### Cacheable注解属性简介  
 每次调用目标方法之前都会根据给定的方法参数检查是否方法已经进行了缓存  
 cacheNames/value:指定缓存组件的名字，必须至少指定一个  
 ```java
 @Cacheable(value="cache1")
 @Cacheable(value={"cache1,cache2"})
-```  
+```
 key:缓存数据时使用的key，可以根据该属性进行自定义设置，默认使用方法的参数  
 ```java
 @Cacheable(value=”testcache”,key=”#userName”)
 @Cacheable(value=”testcache”,key=”#root.args[0]”)
 @Cacheable(value=”testcache”,key=”#root.methodName+'['+#id+']'”)
-```  
+```
 keyGenerator:key的生成器，可以自己指定keyGenerator组件id(自定义keyGenerator，不能同时和key使用)  
 cacheManager：指定缓存管理器；cacheResolver指定获取缓存解析器，二者二选一  
 condition：缓存的条件，可以为空，也可以使用SpEL表达式编写，返回true或者false，只有为true才进行缓存，在调用方法之前、之后都能判断  
 ```java
 @Cacheable(value=”testcache”,condition=”#id>2”)
 @Cacheable(value=”testcache”,condition=”#a0>2”)
-```  
+```
 unless:当unless的条件为true时，方法的返回值就不缓存。该表达式只在方法执行之后判断，此时可以拿到返回值result进行判断。条件为true时不会缓存，false才会缓存  
 ```java
 @Cacheable(value=”testcache”,unless=”#result == null”)
-```  
+```
 sync：是否启用异步模式。默认采用同步方式，在方法执行完将结果放入缓存，可以设置为true，启用异步模式。需要注意的是，异步模式不能与unless同时使用。
 #### Cache SpEL
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606728774849-1606728774851.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/30/1606728774849-1606728774851.png)  
 #### @CachePut注解使用  
 既调用方法，又更新缓存(先调用方法，然后将方法的返回结果放进缓存)  
 注意 **@CachePut中的key是不能使用#{result}的**  
@@ -97,14 +97,14 @@ public Employee getEmpByLastName(String lastName){
      System.out.println("调用复杂缓存方法");
      return employeeMapper.getEmpByLastName(lastName);
  }
-```  
+```
 第一次按照lastName进行缓存的同时(cacheable 注解)，@CachePut注解也起作用–分别以id和email为key在缓存中放入数据。再次进行查询的时候方法仍然会调用，因为@CachePut注解一直起作用！  
 #### @CacheConfig注解使用  
 同一个类中不同方法汇总缓存组件名字一般相同，可以使用@CacheConfig注解作用在类上配置共同属性值，默认对该类的所有方法起作用  
 
 ## 整合第三方缓存redis  
 ### 目录结构  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/30/1606729744873-1606729744874.png)
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/30/1606729744873-1606729744874.png)
 ### maven引入相关依赖  
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -188,7 +188,7 @@ public Employee getEmpByLastName(String lastName){
         </resources>
     </build>
 </project>
-```  
+```
 ### 配置数据库、redis、mybatis、cache相关配置  
 ```properties
 #数据库配置
@@ -211,7 +211,7 @@ mybatis.type-aliases-package=com.sogou.redisdemo2.pojo
 #cache配置
 spring.cache.redis.use-key-prefix=true
 spring.cache.redis.time-to-live=1d
-```  
+```
 ### 自定义配置类  
 ```java
 package com.sogou.redisdemo2.config;
@@ -283,7 +283,7 @@ public class redisConfig {
 //    }
 
 }
-```  
+```
 ### pojo类  
 package com.sogou.redisdemo2.pojo;
 
@@ -302,31 +302,31 @@ public class Teacher implements Serializable {
     private int id;
     private String name;
     private String sex;
-
+    
     public int getId() {
         return id;
     }
-
+    
     public void setId(int id) {
         this.id = id;
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
-
+    
     public String getSex() {
         return sex;
     }
-
+    
     public void setSex(String sex) {
         this.sex = sex;
     }
-
+    
     @Override
     public String toString() {
         return "Teacher{" +
@@ -359,7 +359,7 @@ public interface TeacherDao {
 
 }
 
-```  
+```
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper

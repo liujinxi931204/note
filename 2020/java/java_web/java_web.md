@@ -8,7 +8,7 @@ client指客户端，server指服务端
 3.client再次访问server的时候会在请求头中带上保存的cookie，将cookie传递到server  
 4.server接收到cookie之后，会解析其中的内容，并将相应的信息返回给client  
 在cookie没有失效之前都是围绕着2-4步来进行的  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/24/1590311881370-1590311881374.png)
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/05/24/1590311881370-1590311881374.png)
 ### cookie的创建的代码实现
 ```java
 
@@ -34,12 +34,12 @@ public void doGet(HttpServletRequest,HttpServletResponse resp){
         }
 
 } 
-```  
+```
 ### session的创建过程  
 1.session是基于cookie的，所以首先要产生cookie。在client访问server的时候，server会随机产生一个sessionId，并将其放在响应头中，以cookie的形式返回给client    
 2.server会将需要保存的数据存放在对应sessionId的之下，将sessionId保存在内存中  
 3.client再次访问server的时候会带上sessionId在cookie中，server获取到sessionId,然后在内存中查找，如果找到就返回信息给client  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/24/1590311982792-1590311982797.png)
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/05/24/1590311982792-1590311982797.png)
 ### session的创建的代码实现  
 ```java
 public void doGet(HttpServletRequest req,HttpServletReponse resp){
@@ -61,8 +61,8 @@ public void doGet(HttpServletRequest req,HttpServletReponse resp){
         //立即销毁session
 
 }
-```  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/05/24/1590311942442-1590311942445.png)  
+```
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/05/24/1590311942442-1590311942445.png)  
 
 
 ### session和cookie的区别  

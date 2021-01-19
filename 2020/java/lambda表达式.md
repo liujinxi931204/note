@@ -1,4 +1,4 @@
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/01/1606821435116-1606821435140.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/12/01/1606821435116-1606821435140.png)  
 ## 概述  
 java8 引入的lambda表达式的主要作用就是简化部分的写法  
 能够使用lambda表达式的一个重要依据是必须有相应的**函数接口**。所谓函数接口，是指内部有且仅有一个抽象方法的接口  
@@ -11,7 +11,7 @@ lambda表达式的另一个依据是**类型推断机制**。在上下文信息�
 public interface Runnable{
     public abstract void run();
 }
-```  
+```
 在没有使用lambda的时候，可以使用匿名内部类的形式  
 ```java
 new Thread(new Runnable(){
@@ -34,7 +34,7 @@ new Thread(()->{
     System.out.println("hello");
     System.out.println("Jimmy")；
 }).start();
-```  
+```
 如果执行的语句只有一条的时候，还可以对代码块进行简写  
 ```java
 ()->执行语句
@@ -49,7 +49,7 @@ new Thread(()->System.out.println("hello")).start();
 public interface OnClickListener{
     void onClick(View v);
 }
-```  
+```
 不使用lambda表达式可以使用如下的方式  
 ```java
 view.setOnClickListener(new OnClickListener(){
@@ -86,11 +86,11 @@ view.setOnClickListener((v)->{
 view.setOnClickListener(v->{
     v.setVisibility(View.GONE);
 });
-```  
+```
 当只有一句执行语句的时候，依然可以对代码块进行简化  
 ```java
 变量名->执行语句 
-```  
+```
 那么上面的例子还可以简化成如下格式  
 ```java
 view.setOnClickListener(v->v.setVisibility(View.GONE));
@@ -102,7 +102,7 @@ view.setOnClickListener(v->v.setVisibility(View.GONE));
 public interface Comparor<T> {
     int compare(T o1,T o2)；
 }
-```  
+```
 在不使用Lambda表达式的时候，当我们对一个集合进行排序时，通常会这么写  
 ```java
 ArrayList<Integer> list=Array.asList(1,2,3);
@@ -112,7 +112,7 @@ Collections.sort(list,new Compartor<Integet>{
         return o1.compareTo(o2);
     }
 })
-```  
+```
 多参数的匿名内部类可以使用Lambda表达式简写成如下形式  
 ```java
 ([类名1]变量名1，[类名2]变量名2)->{
@@ -127,17 +127,17 @@ Collections.sort(list,(Integer o1,Integer o2)->{
 Collections.sort(list,(o1,o2)->{
     o1.compareTo(o2);
 });
-```  
+```
 当只有一条执行语句的时候，依然可以对代码块进行简化  
 ```java
 ([类名1] 变量名1，[类名2] 变量名2)->执行语句
-```  
+```
 此时类名可以省略，但是括号不能省略。如果这条语句需要返回值，那么return也可以省略。那么上面的例子就可以简化为  
 ```java
 Collections.sort(list,(o1,o2)->o1.compareTo(o2));
 ```
 ## Java内置四大核心函数式接口  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/12/02/1606874161734-1606874161736.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/12/02/1606874161734-1606874161736.png)  
 ### 消费型接口  
 Consumer<T> 消费型接口  
 ```java
@@ -152,7 +152,7 @@ public void hello(String str,Consumer<String> con){
 public void test1(){
     hello("张三",m->System.out.println("你好"+m));
 }
-```  
+```
 ### 供给型接口  
 Supplier<T> 供给型接口  
 ```java
@@ -176,7 +176,7 @@ public void test2(){
         System.out.println(num);
     }
 }
-```  
+```
 ### 函数型接口  
 Function<T,R> 函数型接口  
 ```java
@@ -192,7 +192,7 @@ public void test3(){
     String newStr1=setHander("ttt 这是一个函数接口",str->str.trim());
     System.out.println(newStr1);
 }
-```  
+```
 ### 断定型接口  
 Predicate<T> 断定型接口  
 ```java
@@ -233,7 +233,7 @@ public void test4(){
 可以简化成如下格式  
 ```java
 类名::静态方法名 
-```  
+```
 注意这里静态方法名后面不需要加括号，也不用加参数，因为编译器可以推断出类型  
 首先创建一个工具类，代码如下  
 ```java
@@ -242,15 +242,15 @@ public class Utils{
         return o1.compareTo(o2);
     }
 }
-```  
+```
 注意这里的compare()函数的参数和Comparable接口的compare()函数的参数是一一对应的。然后一般的Lambda表达式可以写成如下形式  
 ```java
 Collectoins.sort(list,(o1,o2)->o1.compareTo(o2));
-```  
+```
 如果采用引用的方式可以写成如下形式  
 ```java
 Collections.sort(list,Utils::compare);
-```  
+```
 ### 引用对象的方法  
 当要执行的表达式是调用某个对象的方法，并且这个方法的参数列表和接口里抽象函数的参数一一对应时，就可以采用引用对象的方法的格式  
 假如Lambda表达式符合如下格式  
@@ -260,7 +260,7 @@ Collections.sort(list,Utils::compare);
 可以简写成如下形式  
 ```java
 对象引用::方法名
-```  
+```
 例如创建如下类  
 ```java
 public class myClass{
@@ -268,7 +268,7 @@ public class myClass{
         return o1.compareTo(o2);
     }
 }
-```  
+```
 当我们创建一个该类的对象，并在Lambda表达式中使用该对象的方法时，一般可以这么写  
 ```java
 myClass myclass=new myClass();
@@ -278,31 +278,31 @@ Collections.sort(list,(o1,o2)->myclass.compare(o1,o2));
 ```java
 myClass myclass=new myClass();
 Collectons.sort(list,myclass::compare);
-```  
+```
 此外，当我们要执行的表达式是调用Lambda表达式所在类的方法时，还可以才用如下格式  
 ```java
 this::方法名
-```  
+```
 例如在Lambda表达式所在的类添加如下方法  
 ```java
 private int compare(Integer o1,Integer o2){
     return o1.compareTo(o2);
 }
-```  
+```
 那么采用方法引用的方式，可以简写成如下形式  
 ```java
 Collections.sort(list,this::compare);
-```  
+```
 ### 引用类的方法  
 引用类的方法所采用的参数对应形式与以上两种略有不同。如果Lambda表达式的"->"的右边要执行的表达式是调用"->"的左边第一个参数的某个实例方法，并且从第二个参数开始(或无参)对应到该实例方法列表时，就可以使用这种方法  
 假如Lambda表达式符合如下格式  
 ```java
 (变量1,[变量2,...])->变量1.实例方法()
-```  
+```
 那么代码可以简化成  
 ```java
 变量1对应的类名::实例方法
-```  
+```
 例如下面的例子 
 ```java
 List<Integer> list = Arrays.asList(1, 2, 3);
@@ -312,15 +312,15 @@ Collections.sort(list, new Comparator<Integer>() {
         return o1.compareTo(o2);
     }
 });
-```  
+```
 使用Lambda表达式可以写为  
 ```java
 Collections.sort(list,(o1,o2)->o1.compareTo(o2));
-```  
+```
 使用方法引用可以简化为  
 ```java
 Collections.sort(list,Integer::compareTo);
-```  
+```
 ### 引用构造方法  
 当要执行的表达式就是创建一个对象，并且这个对象的构造方法的参数列表和接口里函数的参数列表一一对应时，就可以采用引用构造方法的格式  
 假如Lambda表达式符合如下格式  
@@ -339,8 +339,8 @@ Function<Integer,ArrayList> function=new Function<>(){
         retrun new ArrayList(n);
     }
 }
-```  
+```
 使用引用构造方法的方式，可以简写成  
 ```java
 Function<Integer,ArrayList> function=ArrayList::new
-```  
+```

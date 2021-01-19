@@ -1,6 +1,6 @@
 在某些场景下可能需要配置多个数据源，使用多个数据源(例如实现数据库读写分离)来缓解系统的压力等。这里主要是springboot+mybatis实现多数据源的配置  
 ### 系统目录  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/20/1605843230737-1605843230739.png)   
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/20/1605843230737-1605843230739.png)   
 ### 环境准备  
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -81,7 +81,7 @@ spring.datasource.one.jdbcUrl=jdbc:mysql://10.160.58.128:3306/test_ljx
 ```
 官方的解释为  
 因为连接池的数据类型没有被公开，所引在您的自定义数据源的元数据中没有生成密钥，而且在IDE中没有完成(因为DataSource接口没有暴露属性)。另外，如果您碰巧在类路径上有Hikari，那么这个基本设置就不起作用了，因为Hikari没有url属性(但是确实有一个jdbcUrl属性)  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/20/1605841053254-1605841053256.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/20/1605841053254-1605841053256.png)  
 **如果配置成了spring.datasource.one.url=jdbc:mysql://10.160.58.128:3306/test_ljx会报jdbcUrl is required with driverClassName.错误**
 ```properties
 spring.datasource.one.jdbcUrl=jdbc:mysql://10.160.58.128:3306/test_ljx
@@ -233,7 +233,7 @@ public interface TeacherMapperOne {
                 select * from tb_teacher;
     </select>
 </mapper>
-```  
+```
 **编写另一个mapper和xml**  
 ```java
 package com.sogou.bootdemo3.dao2;
@@ -251,7 +251,7 @@ import java.util.List;
 public interface TeacherMapperTwo {
     List<Teacher> getAllTeacher();
 }
-```  
+```
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
@@ -263,7 +263,7 @@ public interface TeacherMapperTwo {
                 select * from tb_teacher;
     </select>
 </mapper>
-```  
+```
 ### 接口实现类  
 这两个接口实现类是对上述mapper的具体实现，写在impl目录下。这样做是为了利用多态  
 ```java
@@ -323,7 +323,7 @@ public class TeacherMapperTwoImpl implements TeacherMapperTwo {
         return teacherMapperTwo.getAllTeacher();
     }
 }
-```  
+```
 ### 对应的javaBean  
 对应的实体类写在pojo目录下  
 ```java
@@ -374,7 +374,7 @@ public class Teacher {
                 '}';
     }
 }
-```  
+```
 ### controller层  
 这里使用controller作为测试，编写controller  
 ```java
@@ -423,8 +423,8 @@ public class HelloController {
     }
 
 }
-```  
+```
 通过访问localhost:8080/one和localhost:8080/two可以发现mybatis多数据源配置成功  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/20/1605843392484-1605843392486.png)
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/20/1605843376494-1605843376496.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/20/1605843392484-1605843392486.png)
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/20/1605843376494-1605843376496.png)  
 **其实关于多数据源，复杂的应该直接使用分布式数据库中间件，简单的在考虑多数据源**

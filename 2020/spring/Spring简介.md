@@ -1,6 +1,6 @@
 ## Spring是什么  
 Spring是分层的Java SE/EE 应full-stack轻量级开源框架，以IoC(Inverse of Control：控制反转)和AOP(Aspect Oriented Programming:面向切面编程)为内核  
-  
+
 提供了展现层Spring MVC和持久层Spring JDBCTemplate以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多著名的第三方框架和类库，逐渐成为使用最多的Java EE企业应用开源框架  
 ### Spring的优势  
 1. **方便解耦，简化开发**  
@@ -23,10 +23,10 @@ Spring对Java EE API(如JDBC、JavaMail、远程调用等)进行了薄薄的封�
   
 7. **Java源码是经典学习范例**  
 Spring的源代码设计精妙、结构清晰、匠心独拥、，处处体现着大师对Java设计模式灵活运用以及对Java技术的高深造诣。它的源代码无疑是学习Java技术的最佳实践的范例  
-  
-## Spring体系结构  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/13/1599988281757-1599988281851.png) 
- 
 
-  
+## Spring体系结构  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/13/1599988281757-1599988281851.png) 
+
+
+
 

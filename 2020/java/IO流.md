@@ -1,6 +1,6 @@
 ### 流的概念和作用  
 流(stream)是一组有顺序的、有起点和终点的字节集合，是对数据传输的总称或抽象。即数据在两设备间的传输称为流，流的本质是数据传输，根据数据传输特性将流抽象为各种类，方便值观的进行数据操作  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/03/1604394591834-1604394591921.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/03/1604394591834-1604394591921.png)  
 ### File类  
 通过java.io.File类实现对文件的基本属性进行操作，包括文件属性读取、文件创建、文件删除、文件添加等。File是一个类，那么在使用的时候就需要创建对象，但是File类的实例是不可变的，也就是说，一旦创建，由File对象标识的抽象路径名将永远不会改变，也就是说，利用构造方法，指定路径名、文件名等来构造File类的对象，之后调用该对象的createNewFile()方法就可以创建出相应的文件  
 #### File类的构造函数  
@@ -25,7 +25,7 @@ parent指定路径(父目录),也可以是File类对象，child中也可以加�
 2. 处理流：通过构造方法接收一个节点流，对节点流使用装饰着模式增加更多的功能，处理流必须依赖于一个节点流，因为只有节点流最终可以将数据流输入输出到IO设备中  
 
 ### IO流的4大基类  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/03/1604396729231-1604396729233.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/03/1604396729231-1604396729233.png)  
 #### FileInputStream和FileOutputStream  
 FileInputStream和FileOutputStream是两个常用的文件字节输入输出流，主要用于对文件以字节的方式来处理、如音乐、视频、图片等  
 ##### FileInputStream读取数据流字节  
@@ -51,7 +51,7 @@ close()
 FileReader以字符作为单位读取文本文件，能够以字符流的形式读取文件内容，除此之外，与FileInoutStream没有太多的区别  
 ##### FileWriter类  
 FileWriter是文件字符输出流，主要将字符输出到指定的打开的文件中  
-  
+
 **FileWriter、FileReader与FileOutputStream、FileInputStream两个类的操作方法基本相同，若操作的文件不是文本文件，建议使用FileOutputStream、FileInputStream**  
 #### BufferedReader和BufferedWriter  
 ##### BufferedReader  
@@ -95,7 +95,7 @@ write(int c)：写入单个字符
 write(char[] cr,int off,int len):写入字符数组的某一部分  
 write(String str,int off,int len):写入字符串的某一部分  
 close():关闭流并释放资源  
-  
+
 
 **如果需要指定编码的格式，就需要使用InputStreamReader和OutputStreamWriter**  
 **使用Bufferedread和BufferedWriter时，经常将FileRead和FileWriter放入其中，为的时提高效率**  

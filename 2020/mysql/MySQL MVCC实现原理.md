@@ -24,7 +24,7 @@ MySQL除了每行记录除了用户自已定义的字段外，还会有**DB_TRX_
 3. DB_ROW_ID  
 6 byte，隐含的自增ID(隐藏主键)，如果数据库没有主键，InnDB会自动以DB_ROW_ID产生一个聚簇索引  
 实际上还有一个删除flag隐藏字段，即记录被删除不代表真的删除，而是删除flag变了  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599202238249-1599202238349.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/04/1599202238249-1599202238349.png)  
 如上图，DB_ROW_ID是数据库默认为该行记录生成的唯一隐式主键，DB_TRX_ID是当前操作该记录的事务ID，DB_ROLL_PTR是一个回滚指针，用于配合undo log，指向上一个版本  
 ### undo log日志  
 undo log主要有两种：
@@ -34,19 +34,19 @@ undo log主要有两种：
 事务在进行update或者delete时产生的undo log，不仅在事务回滚时需要，在快照读时也需要，所以不能随便删除，只有在快照读或者事务回滚不涉及该日志时，对应的日志才会被purge线程统一清楚  
 对MVCC有帮助的实际时update undo log，undo log实际上就是存在rollback segment中旧链表  
 一、比如一个事务在persion表中插入了一条新纪录  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599204450085-1599204450089.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/04/1599204450085-1599204450089.png)  
 二、现在来了一个事务1对该记录的name做出了修改，改为Tom
 1. 在事务1修改该行记录时，数据库会先对该行加锁  
 2. 然后把该行记录拷贝到undo log中，作为旧记录，即在undo log中有当前行的拷贝副本  
 3. 拷贝完毕以后，修改该行name为Tom，并且修改隐藏字段的事务为当前事务1的ID，这里假设从1开始之后递增；回滚指针指向拷贝到undo log中的记录副本，表示我的上一个版本就是它  
 4. 事务提交，释放锁  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599204859793-1599204859795.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/04/1599204859793-1599204859795.png)  
 三、这时又有一个事务2对该记录的age做出了修改，改为30  
 1. 在事务2修改该行记录时，数据库会先对该行记录加锁  
 2. 然后把该行记录拷贝到undo log中，作为旧记录，发现该行记录已经有了undo log，那么最新的旧数据作为链表的表头，插在该行记录的undo log最前面  
 3. 修改该行记录的age为30，并且修改隐藏字段的事务ID为当前事务2的ID，就是2；回滚指针指向刚刚拷贝到undo log的副本记录  
 4. 事务提交，释放锁  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599205250465-1599205250466.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/04/1599205250465-1599205250466.png)  
 从上面可以看出，不同事务或者相同事务对同一记录的修改，会导致该记录的undo log成为一条记录版本链表，undo log的表头就是最新的旧记录，表尾就是最早的旧记录。(当然，undo log的节点会被purge线程清理掉)  
 ### Read View  
 #### 什么是Read View  
@@ -63,29 +63,29 @@ Read View主要是用来做可见性判断的，即当前事务执行快照读�
 比较DB_TRX_ID<up_limit_id,如果成立，则说明当前事务能够看到DB_TRX_ID所在的记录，否则进入下一个判断  
 接下来判断DB_TRX_ID>=low_limit_id,如果成立，则说明DB_TRX_ID所在的记录在Read View生成之后才出现，因此DB_TRX_ID所在的记录对当前事务不可见，否则进入下一个判断  
 判断DB_TRX_ID是否在活跃事务当中，如果在，则说明Read View生成时刻，DB_TRX_ID的事务还没有提交，所以DB_TRX_ID修改的数据当前事务看不到；如果不在，说明Read View生成时刻，DB_TRX_ID的事务已经提交，所以DB_TRX_ID修改的数据当前事务可以看到  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599206807691-1599206807695.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/04/1599206807691-1599206807695.png)  
 ### 整体流程  
 可以模拟一下整体的流程  
 1. 有1，2，3，4四个事务，事务2执行了快照读，此时还有事务1和事务3处在活跃中，事务4在事务2执行快照读之前已经提交了修改  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599209133932-1599209133934.png)    
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/04/1599209133932-1599209133934.png)    
 此时要判断事务2的快照读能够读到哪个事务做出的修改，因此trx_list的值为1、3，up_limit_id为1，low_limit_id为5，即已出现的最大事务ID+1  
 此时该行记录和undo log为下图所示  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599207411857-1599207411864.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/04/1599207411857-1599207411864.png)  
 因此事务2快照读时DB_TRX_ID字段记录的事务ID为4，下面开始判断  
 首先先用快照读时的DB_TRX_ID字段记录的事务ID 4去和Read View中的up_limit_id 1去比较，发现4>1,不满足DB_TRX_ID<up_limit_id,进入下一个判断；接着用DB_TRX_id 4和Read View中low_limit_id 5去比较，发现4<5,进入下一个判断；发现4不在Read View的trx_list中，说明DB_TRX_ID字段为4的记录可以被事务2读取到  
 2. 有1，2，3，4四个事务，事务2执行了快照读，此时还有事务1和事务3处于活跃状态中，事务4在事务2执行快照读之前提交了修改，事务1在事务4修改之后在事务2执行快照读之前进行了修改，但并未提交  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599209065965-1599209065967.png)
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/04/1599209065965-1599209065967.png)
 此时要判断事务2的快照读能够读到哪个事务做出的修改，因此trx_list的值为1、3，up_limit_id为1，low_limit_id为5，即已出现的最大事务ID+1  
 此时该行记录和undo log为下图所示  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599208471244-1599208471246.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/04/1599208471244-1599208471246.png)  
 因此事务2执行快照读时DB_TRX_ID字段记录的事务ID为1，下面开始判断  
 首先先用快照读时的DB_TRX_ID字段记录的事务ID 1去和Read View中的up_limit_id 1去比较，发现1=1,不满足DB_TRX_ID<up_limit_id，进入下一个判断；接着用DB_TRX_ID 1和Read View中low_limit_id 5去比较，发现1<5，进入下一个判断；发现1在Read View的trx_list说明，说明DB_TRX_ID字段为1的事务还在活跃中，该事务的修改对当前事务不可见，所以沿着链表去寻找下一条记录，由图可以看出这条记录就是DB_TRX_ID为4的记录
 然后先用DB_TRX_ID字段记录的事务ID 4去和Read View中的up_limit_id 1去比较，发现4>1,不满足DB_TRX_ID<up_limit_id,进入下一个判断；接着用DB_TRX_id 4和Read View中low_limit_id 5去比较，发现4<5,进入下一个判断；发现4不在Read View的trx_list中，说明DB_TRX_ID字段为4的记录可以被事务2读取到  
 ## MVCC相关问题  
 ### RR是如何在RC级别的基础上解决不可重复读的？  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599209767642-1599209767643.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/04/1599209767642-1599209767643.png)  
 在上表的顺序下，事务B在事务A提交之后的快照读是旧版本的数据，当前读是新版本的数据  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/04/1599209908898-1599209908899.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/04/1599209908898-1599209908899.png)  
 表2中快照读和当前读都是新版本的数据，这是为什么呢？  
 **表1和表2中唯一的区别就在于首次快照读出现的地方。表1快照读出现在修改提交之前，表2快照读出现在修改提交之后。所以知道事务中快照读的结果是非常依赖该事务首次快照读出现的地方**  
 ### RC和RR隔离级别下，InnoDB快照读由什么不同  

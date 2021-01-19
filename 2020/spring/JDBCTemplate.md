@@ -2,7 +2,7 @@
 + Spring框架对JDBC进行封装，使用JDBCTemplate方便实现对数据库的操作  
 + 准备工作  
 1. 准备jar包，引入依赖
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/09/20/1600611409859-1600611409920.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/09/20/1600611409859-1600611409920.png)  
 
 2. 在Spring配置文件中配置数据库连接池（也可以使用配置jdbc.properties，然后读取到Spring的配置文件中）  
 ```java
@@ -14,7 +14,7 @@
         <property name="password" value="123465" />
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
     </bean>
-```  
+```
 3. 配置JDBCTemplate对象，注入dataSource对象  
 ```java
 <!--    jdbcTemplate对象-->
@@ -22,7 +22,7 @@
 <!--        注入dataSource-->
         <property name="dataSource" ref="dataSource"></property>
     </bean>
-```  
+```
 4. 创建service类，dao类，在dao类注入jdbcTemplate对象  
 ```java
 配置文件开启注解扫描  

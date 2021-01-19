@@ -3,7 +3,7 @@ Mybatis-Plus，简称MP，是一个Mybatis的增强工具，在Mybatis的基础�
 ### 支持数据库  
 任何能使用mybatis进行crud，并且支持标准sql的数据库  
 ### 框架结构  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2021/01/05/1609810091271-1609810091331.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2021/01/05/1609810091271-1609810091331.png)  
 ### 安装  
 ```xml
 <!--        引入mybatis-plus的starter-->
@@ -33,7 +33,7 @@ CREATE TABLE `book` (
   `content` text,
   PRIMARY KEY (`book_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-```  
+```
 ### Mapper CRUD接口 
 **说明**  
 通用CURD封装BaseMapper接口，为Mybatis-Plus启动时自动解析实体表关系映射转化为Mybatis内部对象注入容器  
@@ -64,19 +64,19 @@ IPage<Map<String, Object>> selectMapsPage(IPage<T> page, @Param(Constants.WRAPPE
  
 // 根据 Wrapper 条件，查询总记录数
 Integer selectCount(@Param(Constants.WRAPPER) Wrapper<T> queryWrapper);
-```  
+```
 #### insert插入数据  
 ```java
 // 插入一条记录，entity 为实体对象
 int insert(T entity);
-```  
+```
 #### update更新数据  
 ```java
 // 根据 whereEntity 条件，更新记录
 int update(@Param(Constants.ENTITY) T entity, @Param(Constants.WRAPPER) Wrapper<T> updateWrapper);
 // 根据 ID 修改
 int updateById(@Param(Constants.ENTITY) T entity);
-```  
+```
 #### delete删除数据  
 ```java
 // 根据 entity 条件，删除记录
@@ -87,13 +87,13 @@ int deleteBatchIds(@Param(Constants.COLLECTION) Collection<? extends Serializabl
 int deleteById(Serializable id);
 // 根据 columnMap 条件，删除记录
 int deleteByMap(@Param(Constants.COLUMN_MAP) Map<String, Object> columnMap);
-```  
+```
 使用Mapper CRUD接口首先需要自定义mapper接口继承BaseMapper  
 ```java
 public interface UserMapper extends BaseMapper<User> {
 
 }
-```  
+```
 然后在MybatisDemo2Application上使用@MapperScan扫面自定义的mapper接口  
 ```java
 @SpringBootApplication
@@ -105,7 +105,7 @@ public class MybatisDemo2Application {
     }
 
 }
-```  
+```
 可以看到上面的代码中没有任何自定义的方法，所有的方法均从BaseMapper中继承而来  
 #### select 简单查询  
 在查询中select语句主要作用是查询，Wrapper对象的作用地是构建查询条件
@@ -123,7 +123,7 @@ class Select0Test {
         System.out.println(userBean);
     }
 }
-```  
+```
 + selectBatchIds:根据ID批量查询，即一次传入多个ID  
 ```java
 @SpringBootTest
@@ -140,7 +140,7 @@ class Select1Test {
     }
 
 }
-```  
+```
 + selectOne:根据构建的Wrapper条件查询数据，且只返回一个结果对象  
 ```java
 @SpringBootTest
@@ -160,7 +160,7 @@ class Select8Test {
     }
  
 }
-```  
+```
 + selectCount:根据构建的Wrapper条件对象查询数据条数  
 ```java
 @SpringBootTest
@@ -179,7 +179,7 @@ class Select8Test {
         System.out.println(count);
     }
 }
-```  
+```
 #### select复杂查询  
 + selectList:根据entity条件，查询全部记录  
 ```java
@@ -199,7 +199,7 @@ class Select8Test {
         userList.forEach(System.out::println);
     }
 }
-```  
+```
 + selectByMap:根据查询条件(columnMap条件)，查询全部记录  
 ```java
 @SpringBootTest
@@ -218,7 +218,7 @@ class Select8Test {
         userList.forEach(System.out::println);
     }
 }
-```  
+```
 #### 动态select查询  
 ```java
 @SpringBootTest
@@ -275,7 +275,7 @@ public class MybatisPlusConfig {
         return interceptor;
     }
 }
-```  
+```
 + selectPage:根据entity条件，查询全部记录  
 ```java
 @SpringBootTest
@@ -296,7 +296,7 @@ class Select8Test {
         records.forEach(System.out::println);
     }
 }
-```  
+```
 + selectMapsPage:根据wrapper条件，查询全部记录  
 这个方法的使用和上面一致，仅仅是返回类型不同  
 ```java
@@ -363,7 +363,7 @@ class Select8Test {
         }
     }
 }
-```  
+```
 + updateById:根据id更新记录  
 **注意这里传入的参数是实体类而不是具体的id数值**  
 ```java
@@ -386,7 +386,7 @@ class Select8Test {
         }
     }
 }
-```  
+```
 #### delete删除数据  
 + delete:根据wrapper条件删除记录  
 ```java
@@ -422,7 +422,7 @@ class Select8Test {
         }
     }
 }
-```  
+```
 + deleteById:根据id删除  
 ```java
 @SpringBootTest
@@ -455,7 +455,7 @@ class Select8Test {
         }
     }
 }
-```  
+```
 ### Service CRUD接口  
 MyBatis Plus提供了除通用的Mapper接口(即BaseMapper)，该接口对应的DAO层。除了BaseMapper接口之外，还提供了IService接口，该接口对应Service层。MyBatis Plus通用的Service CRUD实现了IService接口，进一步封装了CRUD。为了避免与BaseMapper中定义的 方法混淆，该接口使用get(查询单行)、remove(删除)、list(查询集合)和page(分页)前缀命名的方式进行区别  
 MyBatis-Plus使用ServiceImpl类实现了IService接口，因此在使用时需要service层的类继承ServiceImpl类  
@@ -472,7 +472,7 @@ public class ServiceImpl<M extends BaseMapper<T>, T> implements IService<T> {
     public ServiceImpl() {
     }  
     //忽略其他代码
-```  
+```
 从源码上看，IService内部还是基于BaseMapper进行封装的  
 IService提供以下方法：  
 **保存数据(save)**  
@@ -483,7 +483,7 @@ boolean save(T entity);
 boolean saveBatch(Collection<T> entityList);
 // 插入（批量）
 boolean saveBatch(Collection<T> entityList, int batchSize);
-```  
+```
 **保存或更新(saveOrUpdate)**  
 ```java
 // TableId 注解存在更新记录，否插入一条记录
@@ -494,7 +494,7 @@ boolean saveOrUpdate(T entity, Wrapper<T> updateWrapper);
 boolean saveOrUpdateBatch(Collection<T> entityList);
 // 批量修改插入
 boolean saveOrUpdateBatch(Collection<T> entityList, int batchSize);
-```  
+```
 **移除数据(remove)**  
 ```java
 // 根据 entity 条件，删除记录
@@ -572,7 +572,7 @@ IPage<Map<String, Object>> pageMaps(IPage<T> page, Wrapper<T> queryWrapper);
 int count();
 // 根据 Wrapper 条件，查询总记录数
 int count(Wrapper<T> queryWrapper);
-```  
+```
 **链式查询(chain query)**
 ```java
 // 链式查询 普通
@@ -583,7 +583,7 @@ LambdaQueryChainWrapper<T> lambdaQuery();
 // 示例：
 query().eq("column", value).one();
 lambdaQuery().eq(Entity::getId, value).list();
-```  
+```
 **链式更新(chain update)**  
 ```java
 // 链式更改 普通

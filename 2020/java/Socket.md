@@ -1,22 +1,22 @@
 ### Socket简介  
 socket，又称套接字，是在不同的进程之间进行网络通讯的一种协议、约定或者说规范  
-   
+
 对于socket编程，更多的时候像是基于TCP/IP等协议做的一层封装或者说抽象，是一套系统所提供的用于进程网络通信相关编程的接口  
-  
+
 协议相当于通信的程序间达成的一种约定，它规定了分组报文的结构、交换方式、包含的意义以及怎样对报文所包含的信息进行解析，TCP/IP协议族有IP协议、TCP协议和UDP协议。现在TCP/IP协议族中的主要socket类型为流套接字(使用TCP协议)和数据报套接字(使用UDP协议)  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/04/1604477750141-1604477750188.png)  
- 
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/04/1604477750141-1604477750188.png)  
+
 ### TCP socket  
 TCP协议提供面向连接的服务，通过它建立的是可靠的连接。Java为TCP协议提供了两个类：Socket类和ServerSocket类。一个Socket实例代表了TCP连接的一个客户端，而一个ServerSocket实例代表了TCP连接的服务端  
-  
+
 一般在TCP Socket编程中，客户端有多个，服务端只有一个  
-  
+
 客户端TCP向服务端TCP发送连接请求，服务端的ServerSocket实例则监听来自客户端的TCP连接请求，并为每个请求创建新的Socket实例，由于服务端在调用accpet()等待客户端的连接请求时会阻塞，直到收到客户端发送的来凝结请求才会继续往下执行代码，因此要为每一个Socket连接开启一个线程  
-  
+
 服务端需要同时处理ServerSocket实例和Socket实例，而客户端只需要使用Socket实例  
-  
+
 每个Socket实例会关联一个InputStream和OutputStream对象，将字节写入套接字的OutputStream来发送数据，从套接字的InputStream来接收数据  
-  
+
 #### Socket类  
 Socket类：该类实现客户端套接字  
 ##### 构造方法  
@@ -24,7 +24,7 @@ Socket类：该类实现客户端套接字
 创建套接字对象并将其连接到指定主机上的指定端口号。如果指定的host为null，则相当于指定地址为回送地址  
 ```java
 Socket client = new Socket("127.0.0.1",8888); 
-```  
+```
 ##### 成员方法  
 + **public InputStream getInputStream()**：返回此套接字的输入流  
      如果此Socket具有相关联的通道，则生成的InpuytStream的所有操作也关联该通道  
@@ -46,7 +46,7 @@ ServerSocket类：该类实现了服务端套接字，该对象等待通过网�
 使用该构造方法在创建ServerSocket对象时，就可以将其绑定到一个指定的端口上  
 ```java
 ServerSocket server = new ServerSocket(8888);
-``` 
+```
 ##### 成员方法  
 + **public Socket accept()**  
     侦听并接受连接，返回一个新的Socket对象，用于和客户端实现通信。该方法回一直阻塞直到连接建立  
@@ -134,16 +134,17 @@ UDP协议提供的服务不同于TCP协议的端到端服务，它是面向非�
 + **在传输过程中可能产生的数据错误进行了检测，并抛弃了已经损坏的数据**  
 Java 通过DatagramPacket类和DatagramSocket类使用UDP套接字，客户端和服务端都通过DatagramSocket的send()方法和receive()方法来发送和接收数据，用DatagramPacket来包装需要发送或者接收到的数据  
   
+
 发送数据时，Java创建一个包含待发送信息的DatagramPacket实例，并将其作为参数传递给DatagramSocket实例的send方法；接收消息时，Java程序首先创建一个DatagramPacket实例，该实例预先分配了一些空间，并将接收到的消息存放在该空间中，然后把该实例作为参数传递给DatagramSocket实例的receive()方法  
-  
+
 在创建DatagramPacket实例时，需要注意：  
 **如果该实例用来包装待接收的数据，则不指定数据来源的远程主机和端口号，只需要指定一个缓存数据的byte数组(在调用receive()方法来接收到数据后，源地址和端口号等信息会自动包含在DatagramPacket实例中)**  
 **如果该实例用来包装待发送的数据，则需要指定发送到的目的地址和端口**  
-  
+
 由于UDP是无连接的，因此UDP服务端不需要等待客户端的连接请求以建立连接。另外，UDP服务端为所有通信使用同一套接字，这点与TCP服务端是不同的,TCP服务端则为每一个成功返回的accept()方法创建一个新的套接字  
-  
+
 注意：**UDP程序在receive()方法出阻塞，直到收到一个数据报文或等待超时。由于UDP协议是不可靠协议，如果数据报文在传输过程中发生丢失，那么程序将会一直阻塞在receive()方法处，这样客户端将永远都接收不到服务端发送回来的数据，但是又没有任何提时。因此，在客户端使用DatagramSocket类的setSoTimeout()方法来制定receive()方法的最长阻塞时间，并指定重发数据报的次数，如果每次阻塞都超时，并且重发次数达到了设置的上限，则关闭客户端**  
-  
+
 ### DatagramPakcet类  
 该类用来表示数据包  
 #### 构造方法  

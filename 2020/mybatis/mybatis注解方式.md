@@ -24,11 +24,12 @@
             <version>1.2.12</version>
         </dependency>
     </dependencies>
-```  
+```
 使用mybatis需要mybatis、mysql-connector-java的jar包，使用maven可以直接在maven的pom.xml文件中配置完成  
 项目的目录结构如下：  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/10/19/1603092864744-1603092864746.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/10/19/1603092864744-1603092864746.png)  
 目录结构说明：  
+
 + dao目录：DAO层，主要是对数据库的操作  
 + pojo目录：POJO层，数据库的具体类的实现  
 + utils目录：工具层，一些mybatis中常用工具的封装  
@@ -68,7 +69,7 @@ public class mybatisUtils {
         return sqlSessionFactory.openSession();
     }
 }
-```  
+```
 这个类主要作用是获取sqlSession，这是mybatis中的核心，sqlSession可以对数据库进行增删改查的操作  
 #### mybatis核心配置文件  
 ```xml
@@ -122,7 +123,7 @@ public class mybatisUtils {
         <mapper class="com.sogou.dao.productMapper"/>
     </mappers>
 </configuration>
-```  
+```
 **mybatis核心配置文件的各个标签有严格的顺序**  
 ### 使用注解的方式实现sql语句  
 #### 多对一的查询实现  
@@ -174,7 +175,7 @@ public class Category {
                 '}';
     }
 }
-```  
+```
 Product类的实现  
 ```java
 package com.sogou.pojo;
@@ -234,7 +235,7 @@ public class Product {
     }
 }
 
-```  
+```
 接下来实现categroyMapper接口和productMapper接口，注意一定是接口，不能是实现类  
 ```java
 package com.sogou.dao;
@@ -269,7 +270,7 @@ public interface categoryMapper {
     @Select("select id,name from category")
     List<Category> findWholeCategory();
 }
-```  
+```
 ```java
 package com.sogou.dao;
 
@@ -303,7 +304,7 @@ public interface productMapper {
 
 }
 
-```  
+```
 在这两个接口中，使用@select、@insert、@update、@delete这四个注解实现select、insert、update、delete语句  
 因为这里使用的是注解，因此没有写xml配置文件  
 + @Results注解对应的是xml配置文件中的resultMap的实现，id的意义与配置文件中id的意义相同，不过在mybatis 3.3.0之前不支持，也就是说在该版本之前的@Results是不能复用的，每一次都需要重新写一遍  
@@ -311,16 +312,16 @@ public interface productMapper {
 ```java
 @Result(property = "productList",column = "id",
             many = @Many(select = "com.sogou.dao.productMapper.findProductByCid"))
-```  
+```
 这里用来实现多对一的查询，property属性是Category类中对应List的属性名，column则是传递给下面这个方法的参数  
 many=@Many(select="com.sogou.dao.productMapper.findProductByCid") 用来是调用com.sogou.dao.productMapper这个接口中的findProductByCid的方法，并且将columu中的参数传递给它，这里可以看到一findProductByCid  
 ```java
 @Select("select id,name,price,cid from product as p where cid=#{cid}")
     Product findProductByCid(@Param("cid") int cid);
-```    
+```
 **从上面可以看出，其实这个多对一查询进行了两次select查询**  
 这一点从日志中也可以看到  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/10/19/1603096970949-1603096970951.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/10/19/1603096970949-1603096970951.png)  
 #### 一对一的查询实现  
 需要对上面的类进行修改  
 Category类的实现  
@@ -363,7 +364,7 @@ public class Category {
     }
 }
 
-```  
+```
 Product类的实现  
 ```Product
 package com.sogou.pojo;
@@ -431,7 +432,7 @@ public class Product {
     }
 }
 
-```  
+```
 categoryMapper和productMapper接口的实现  
 ```java
 package com.sogou.dao;
@@ -468,7 +469,7 @@ public interface categoryMapper {
 
 }
 
-```  
+```
 ```java
 package com.sogou.dao;
 
@@ -517,7 +518,7 @@ public interface productMapper {
     Product getProductById(@Param("id")int id);
 }
 
-```  
+```
 这里其余注解意义和上面的相同，只有  
 `@Result(property = "category",column = "cid",
  one = @One(select = "com.sogou.dao.categoryMapper.findCategoryById"))`  

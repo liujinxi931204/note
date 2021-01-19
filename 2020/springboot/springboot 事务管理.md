@@ -1,5 +1,5 @@
 ## 事务简介  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/25/1606286027591-1606286027661.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/25/1606286027591-1606286027661.png)  
 ### 事务是什么  
 事务是一组原子操作单元，从数据库角度来说，就是一组SQL指令向数据库提交，要么全部执行成功，要么撤销不执行  
 ### 事务的四个属性  
@@ -16,7 +16,7 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 + **PlatformTransactionManager**：事务管理器  
 + **TransactionDefinition**：事务的一些基础属性定义，例如事务的传播属性、隔离级别、超时时间等  
 + **TransactionStatus**：事务的一些状态信息，如是否是一个新的事务、是否已被标记为回滚  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/25/1606286957023-1606286957025.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/25/1606286957023-1606286957025.png)  
 ### 事务管理器(PlatformTransactionManager)  
 在Spring框架中并不直接管理事务，而是提供PlatformTransactionManager事务管理器接口类，对事务的概念进行抽象。它是将事务的实现交由其他持久层框架。例如Hibernate、Mybatis等都是实现了Spring事务的第三方持久层框架，由于每个框架中事务的实现各不相同，所以Spring对事务接口进行了统一，事务的提交、回滚等操作全部交由PlatformTransactionManager接口的实现类来进行实现  
 ### 隔离级别  
@@ -26,7 +26,7 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 + TransacationDefinition.ISOLATION_READ_COMMITTED：允许读取事务已提交的数据，可以阻止脏读，但是可能会发生幻读、不可重复读  
 + TransactionDefinition.ISOLATION_READ_REPEATABLE_READ：对同一字段的多次读取结果都是一致的，除非数据事务本身改变，可以阻止脏读、不可重复读，但是可能会发生幻读  
 + TransactionDefinition.ISOLATION_SERIALIZABLE：最高的隔离级别，完全服从ACID的隔离级别，确保不会发生脏读、不可重复读和幻读，也是最慢的事务隔离级别，因为它通常是通过完全锁定事务相关的数据库表来实现的  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/25/1606288441306-1606288441307.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/25/1606288441306-1606288441307.png)  
 ## Spring事务传播行为  
 在Spring中定义了7种事务传播行为，这种传播行为主要是为了解决事务方法调用事务或非事务方法时，如何处理事务的传播行为。在Spring中对事务的控制是通过AOP切面实现的，大部分都是通过使用@Transactional注解来使用事务  
 ### 传播机制生效条件  
@@ -126,7 +126,7 @@ public class ServiceB {
     }
 
 }
-```  
+```
 1. 上面方法中 ServiceA.mA1() 没有设置事务，而 ServiceB.mB() 设置了事务，且设置的事务行为是 PROPAGATION_REQUIRES_NEW。ServiceA.mA1() 运行调用 ServiceB.mB() 时，方法 ServiceB.mB() 发现调用自己的方法并没设置事务，这时方法 ServiceB.mB() 会创建一个新的事务。新事务中的提交与回滚不受调用它的父方法事务影响  
 2. 上面方法中 ServiceA.mA2() 和 ServiceB.mB() 都存在事务，当 ServiceA.mA2() 运行调用 ServiceB.mB() 时，ServiceB.mB() 发现自己执行在已经存事务的方法中，这时 ServiceB.mB() 会创建一个新的事务，且将 ServiceA.mA2() 中的事务暂时挂起，等 ServiceB.mB() 完成后，恢复 ServiceA.mA2() 的事务。
 
@@ -167,7 +167,7 @@ public class ServiceB {
     }
 
 }
-```  
+```
 1. 上面方法中 ServiceA.mA1() 没有设置事务，而 ServiceB.mB() 设置了事务，且设置的事务行为是 PROPAGATION_NEVER。ServiceA.mA1() 运行调用 ServiceB.mB() 时，方法 ServiceB.mB() 发现调用自己的方法并没有设置事务，这时方法 ServiceB.mB() 就会创建一个新的事务  
 2. 上面示例中两个方法都设置了事务，ServiceB.mB() 设置的事务行为是 PROPAGATION_NESTED。ServiceA.mA2() 运行调用 ServiceB.mB() 时，方法 ServiceB.mB() 发现调用自己方法也存在事务，这时方法 ServiceB.mB() 也会创建一个新的事务，与 ServiceA.mA2() 的事务形成嵌套事务。被嵌套的事务可以独立于封装事务进行提交或回滚。如果外部事务提交嵌套事务也会被提交，如果外部事务回滚嵌套事务也会进行回滚  
 ### 传播行为间的差异  
@@ -182,7 +182,7 @@ public class ServiceB {
 + 嵌套事务开始执行时，它将取得一个savepoint回滚点，如果这个嵌套事务失败，将会回滚到这个回滚点  
 + 嵌套事务是外部事物的一部分，只有外部事物结束后它才会被提交  
 2. 事务的差异总结  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/25/1606296185903-1606296185905.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/25/1606296185903-1606296185905.png)  
 ## Spring事务的两种实现  
 ### 编程式事务和声明式事务  
 Spring支持编程式事务管理和声明式事务管理两种方式  
@@ -192,6 +192,7 @@ Spring支持编程式事务管理和声明式事务管理两种方式
 + 编程式事务允许用户在代码中精确定义事务的边界  
 + 声明式事务有助于用户将操作与事务规则进行解耦，它是基于AOP交由Spring容器实现  
   
+
 编程式事务其侵入到了业务代码里，但是提供了更加纤细的事务管理。而声明式事务基于AOP，所以既能起到事务作用，又可以不影响业务代码的具体实现。一般而言比较推荐使用声明式事务，尤其是@Transactional注解，他能很好地帮助开发者实现事务地同时，也减少代码开发量，且使代码看起来更加清爽整洁  
 ## 声明式事务  
 ### 什么是声明式事务  
@@ -206,7 +207,7 @@ Spring支持编程式事务管理和声明式事务管理两种方式
 + 当发生非运行时异常(即Exception和其子类时)，@Transactional默认不会自动回滚，需要配置参数@Transactional(rollbackFor=Exception.class)才能使其进行回滚  
 + 如果@Transacation(propagation=Propagation.NOT_SUPPORTED)参数时，默认不支持事务，发生错误和异常都不会进行回滚  
 ### @Transactional事务实现机制  
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/11/25/1606298061005-1606298061006.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/11/25/1606298061005-1606298061006.png)  
 在应用系统调用声明 @Transactional 的目标方法时，Spring 默认使用 AOP 代理，在代码运行时生成一个代理对象，根据 @transactional 的属性配置信息，这个代理对象决定该声明 @transactional 的目标方法是否由拦截器 TransactionInterceptor 来使用拦截，在 TransactionInterceptor 拦截时，会在在目标方法开始执行之前创建并加入事务，并执行目标方法的逻辑, 最后根据执行情况是否出现异常, 进行业务事务提交或者回滚操作
 
 ## 常见Spring事务中注意事项  
@@ -222,7 +223,7 @@ public void test() throws Exception {
         e.printStackTrace();
     }
 }
-```  
+```
 #### 遇到非运行时异常事务默认不回滚  
 Spring默认事务回滚规则时遇到运行时异常(RuntimeException)或者Error时才会回滚操作  
 ```java
@@ -239,7 +240,7 @@ public void test() throws Exception {
     userMapper.delete(1);
     throw new SQLException();
 }
-```  
+```
 #### 使用public来修饰事务方法  
 如果@Transaction修饰的是private方法，那么该事务是不生效的  
 ```java

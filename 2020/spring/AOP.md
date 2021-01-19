@@ -82,7 +82,7 @@ class UserDaoProxyInvocation implements InvocationHandler{
 输出结果为
 方法执行之前...add传递的参数...[1, 2]
 方法执行之后...
-```  
+```
 ### AOP操作术语  
 + 连接点  
 类里面的哪些方法可以被增强，这些方法称为连接点  
@@ -110,9 +110,9 @@ class UserDaoProxyInvocation implements InvocationHandler{
 2. 语法结构：  
 ```java
 excution([权限修饰符] [返回类型] [全类名] [方法名称] ([参数列表]))
-```  
+```
 + AOP操作(AspectJ注解) 
-   
+  
 1. 创建被增强类，在类里面定义方法  
 ```java
 //被增强的类
@@ -122,8 +122,8 @@ public class userDao {
         System.out.println("add()...");
     }
 }
-```  
-  
+```
+
 2. 创建增强类(编写增强逻辑)  
 在增强类中创建方法，让不同的方法代表不同的通知类型
 ```java
@@ -135,8 +135,8 @@ public class userDaoProxy {
         System.out.println("before()...");
     }
 }
-```  
-  
+```
+
 3. 进行通知的配置  
 1）在spring的配置文件中，开启扫描注解  
 ```java
@@ -203,8 +203,8 @@ public class userDaoProxy {
     <aop:aspectj-autoprox></aop:aspectj-autoprox>
 
 </beans>
-```  
-  
+```
+
 5. 配置不同类型的通知  
 在增强类中，作为的通知方法上面添加配置类型注解，使用切入点表达式  
 ```java
@@ -218,8 +218,8 @@ public class userDaoProxy {
         System.out.println("before()...");
     }
 }
-```  
-  
+```
+
 6. 测试  
 ```java
 @Test
@@ -232,7 +232,7 @@ public class userDaoProxy {
 输出结果为
 before()...
 add()...
-```  
+```
 ## 公共切入点抽取  
 将公共的切入点表达式提取出来，使用@Pointcut注解，还是上面的例子，只需要修改userDaoProxy.java  
 ```java
@@ -251,7 +251,7 @@ public class userDaoProxy {
     }
 
 }
-```  
+```
 这里将切入点表达式的公共部分("execution(* com.sogou.spring.userDao.add(..))")提取出来，使用@Pointcut注解，之后的前置通知可以简单的使用@Before("pointDeom")的方式，公共部分的提取也方便后续的更改  
 ## 有多个增强类对同一个方法进行增强，设置增强类的优先级  
 + 在增强类上添加注解@Order(数字类型值)，数字类型值越小优先级越高，最小是0  
@@ -300,7 +300,7 @@ public class userDaoProxy {
 Person before()...
 before()...
 add()...
-```  
+```
 ## AOP操作(AspectJ配置文件)  
 + 创建两个类，增强类和被增强类，创建方法  
 ```java

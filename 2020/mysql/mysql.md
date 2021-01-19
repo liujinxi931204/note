@@ -2,7 +2,7 @@
 
 
 
-![title](https://raw.githubusercontent.com/liujinxi931204/image/master/gitnote/2020/06/15/mysql7%E7%A7%8Djoin-1592204990834.png)  
+![title](https://gitee.com/liujinxi931204/image/raw/master/gitnote/2020/06/15/mysql7%E7%A7%8Djoin-1592204990834.png)  
 
 ## SQL主要包含4个部分  
 ### 数据定义语言(Data Definition Language,DDL)  
@@ -56,7 +56,7 @@ UNION 或UNION ALL运算符
 FROM字句中的不可跟新视图或包含多个表  
 WHERE字句中的子查询，引用FROM子句中的表  
 ALGORTHIM选项为TEMPTABLE（使用临时表总会使视图称为不可更新的）
-```  
+```
 修改视图的名称可以先将视图删除，然后按照相同的定义语句进行视图的创建，并命名为新的视图的名称  
 ### 删除视图  
 `DROP VIEW <视图1>[,<视图2>...]`  
@@ -135,7 +135,7 @@ ASC|DESC使用升序还是降序来排列
 CREATE PROCEDURE <过程名> ([过程参数[,...]]) <过程体>
 [过程参数[,...]] 格式
 [IN|OUT|INOUT]<参数名><类型>
-```  
+```
 说明如下  
 #### 过程名  
 存储过程的名称，默认在当前数据库中创建，如果需要在特定的数据库中创建存储过程，则要在名称前面加上数据库的名称，即db_name.sp_name  
