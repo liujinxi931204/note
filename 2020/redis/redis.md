@@ -202,7 +202,7 @@ hsetnx命令在设置成功时返回1，在给定域已经存在而放弃执行�
 时间复杂度为O(1),返回哈希表中key中给定域field相关联的值的字符串的长度。如果指定的键或者域不存在，那么返回0  
 #### 内部编码  
 哈希类型的内部有两种编码  
-+ ziplist(压缩列表)：当有value大于64字节或者field的个数超过512时，内部编码会由ziplist变为hashtableredis会使用ziplist作为哈希的内部实现，ziplist使用更加紧凑的结构实现多个元素的连续存储，所以在节省内存方面比hashtable更加优秀  
++ ziplist(压缩列表)：当有value大于64字节或者field的个数超过512时，内部编码会由ziplist变为hashtable。redis会使用ziplist作为哈希的内部实现，ziplist使用更加紧凑的结构实现多个元素的连续存储，所以在节省内存方面比hashtable更加优秀  
 + hashtable(哈希表):当哈希类型无法满足ziplist的条件时，redis会使用hashtable作为哈希的内部实现，因为此时ziplist的读写效率会下降，而hashtable的读写时间复杂度为O(1)  
 ### 列表  
 列表(list）类型是用来存储多个有序字符串，列表中的每个元素成为element，一个列表最多可以存储2^32^-1个元素。在redis中，可以对列表两端插入(push)和弹出(pop)，还可以获取指定范围的元素列表、获取指定索引下标的元素等  
