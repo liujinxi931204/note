@@ -148,3 +148,130 @@ int updateByPrimaryKeySelective(catalog catalog);
 
 MyBatis在生成update语句时若使用if标签，如果前面的if没有执行，则可能导致有多余的逗号的错误。使用set标签可以将动态的配置SET关键字，和剔除追加到条件末尾的任何不相关的逗号。没有使用if标签时，如果有一个参数为null，都会导致错误
 
+##### 在insert动态插入中使用if标签  
+
+在插入数据库中的记录时，不是每一个字段都有值的，而是动态的变化的。在这时候使用if标签可以解决这个问题  
+
+###### 插入条件  
+
+只有非空属性才插入  
+
+###### 动态SQL  
+
+```java
+/**
+* 非空字段才进行插入
+*/
+int insertByPrimaryKeySelective(catalog catalog);
+```
+
+###### 对应的SQL  
+
+```xml
+<insert id="insertByPrimaryKeySelective">
+        insert into t_catalog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name!=null and name!=''">
+                name,
+            </if>
+            <if test="createDate!=null and createDate!=''">
+                create_date,
+            </if>
+            <if test="status!=null and status!=''">
+                status,
+            </if>
+            <if test="userId!=null and userId!=''">
+                user_id,
+            </if>
+            <if test="courseId!=null and courseId!=''">
+                course_id,
+            </if>
+            <if test="orderNo!=null and orderNo!=''">
+                order_no,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name!=null and name!=''">
+                #{name},
+            </if>
+            <if test="createDate!=null and createDate!=''">
+                #{createDate},
+            </if>
+            <if test="status!=null and status!=''">
+                #{status},
+            </if>
+            <if test="userId!=null and userId!=''">
+                #{userId},
+            </if>
+            <if test="courseId!=null and courseId!=''">
+                #{courseId},
+            </if>
+            <if test="orderNo!=null and orderNo!=''">
+                #{orderNo},
+            </if>
+        </trim>
+    </insert>
+```
+
+这里if标签和trim标签搭配使用，trim标签是在SQL语句拼接中常用的标签，prefix指拼接的前缀，suffix指拼接的后缀，suffixOverrides指去除trim标签内SQL语句多余的后缀。一般是在if条件失效时，可能导致多余的逗号导致错误，所以使用suffixOverrides来去除这些逗号。
+
+#### choose标签  
+
+choose when otherwise 标签可以帮助实现if else的逻辑。一个choose标签至少有一个when标签，最多有一个otherwise标签  
+
+##### 查询条件  
+
+假设name具有唯一性，查询一本书  
+
+当id有值时，使用id查询
+
+当id没有值时，使用name查询  
+
+###### 接口方法  
+
+```java
+/**
+* 
+*/
+catalog selectByIdOrName(catalog catalog);
+```
+
+###### 对应的SQL  
+
+```xml
+<select id="selectByIdOrName" resultType="catalog">
+    select * from t_catalog where 1=1
+    <choose>
+        <when test="id !=null and id !=''">
+            and id = #{id}
+        </when>
+        <when test="name !=null and name !=''">
+            and name = #{name}
+        </when>
+        <otherwise/>
+    </choose>
+    </select>
+```
+
+只有id时或者id和name都有时，发送的SQL语句为
+
+因为实现的逻辑时if else的逻辑  
+
+```sql
+select * from t_catalog where 1=1 and id = ?;
+```
+
+只有name时，发送的SQL语句为
+
+```SQL
+select * from t_catalog where 1 =1 and name = ?;
+```
+
+当id和name都不存在时，会走otherwise的逻辑，因为otherwise中没有实现任何逻辑，所以为空。因此发送的SQL语句为  
+
+```sql
+select * from t_catalog where 1 =1;
+```
+
+
+
