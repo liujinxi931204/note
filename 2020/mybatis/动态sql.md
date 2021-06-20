@@ -12,7 +12,7 @@ MyBatis通过ONGL来进行动态SQL的使用。目前MyBatis支持一下几种�
 |        foreach         |            循环语句            |   批量插入、更新、查询时经常用到    |
 |          bind          | 创建一个变量，并绑定到上下文中 | 用于兼容不同的数据库，防止SQL注入等 |
 
-#### 数据准备
+#### 数据准备  
 
 ![image-20210619183857584](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/image-20210619183857584.png)
 
