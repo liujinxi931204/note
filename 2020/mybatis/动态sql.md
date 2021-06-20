@@ -273,5 +273,74 @@ select * from t_catalog where 1 =1 and name = ?;
 select * from t_catalog where 1 =1;
 ```
 
+#### trim(set,where)  
 
+这三个其实解决的是同样的问题。之前的例子中，在where条件中都会有where 1=1，但是并不希望这样的条件存在
 
+##### 查询条件    
+
+当只输入书籍的名称时，用这一个条件进行匹配  
+
+当只输入用户ID的时候，用这一个条件进行匹配  
+
+当书籍的名称和用户的ID都存在时，用这两个条件进行匹配  
+
+不使用where1 =1这样的条件  
+
+##### 动态SQL  
+
+很显然需要解决这几个问题  
+
+当条件都不满足时，SQL语句中不能有where，否则会出错  
+
+当if条件满足时，SQL中需要where，且第一个成立的if条件中的and | or等需要去掉  
+
+这种情况下可以使用where标签  
+
+###### 接口方法  
+
+```java
+/**
+* 根据输入的条件进行检索  
+* 当只输入书籍的名称时，用这一个条件进行匹配  
+* 当只输入用户ID的时候，用这一个条件进行匹配  
+* 当书籍的名称和用户的ID都存在时，用这两个条件进行匹配
+*/
+List<catalog> selectByCatalogSelective(catalog catalog);
+```
+
+###### 对应的SQL  
+
+```xml
+<select id="selectByCatalogSelective"  resultType="catalog">
+    select * from t_catalog
+    <where>
+        <if test="name != null and name !=''">
+            and name like concat('%',#{name},'%')
+        </if>
+        <if test="userId!=null and userId!=''">
+            and user_id = #{userId}
+        </if>
+    </where>
+</select>
+```
+
+只有name字段的查询时，发送的语句是  
+
+```sql
+select * from t_catalog where 1 = 1 and name like concat ('%','java','%')
+```
+
+只有userId字段的查询时，发送的语句是  
+
+```sql
+select * from t_catalog where 1 = 1 and user_id = 1
+```
+
+同时有name字段和userId字段时，发送的语句是  
+
+```sql
+select * from t_catalog where 1 =1 and name like concat('%','java','%') and user_id = 1
+```
+
+##### 
