@@ -328,19 +328,19 @@ List<catalog> selectByCatalogSelective(catalog catalog);
 只有name字段的查询时，发送的语句是  
 
 ```sql
-select * from t_catalog where 1 = 1 and name like concat ('%','java','%')
+select * from t_catalog where name like concat ('%','java','%')
 ```
 
 只有userId字段的查询时，发送的语句是  
 
 ```sql
-select * from t_catalog where 1 = 1 and user_id = 1
+select * from t_catalog where user_id = 1
 ```
 
 同时有name字段和userId字段时，发送的语句是  
 
 ```sql
-select * from t_catalog where 1 =1 and name like concat('%','java','%') and user_id = 1
+select * from t_catalog where name like concat('%','java','%') and user_id = 1
 ```
 
 ##### 
