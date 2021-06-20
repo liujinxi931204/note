@@ -362,6 +362,128 @@ set和where其实都是trim标签的一种类型，这两种功能的都可以�
 
 表示当trim中含有内容时，添加where，且第一个满足的条件中的and或者or会被去掉；如果trim中没有内容，则不添加where  
 
+##### trim来表示set  
+
+以上的set标签也可以写成  
+
+```xml
+<trim prefix="set",suffixOverrides=",">
+</trim>
+```
+
+表示当trim中含有内容时，添加set，且最后的内容为，时，会被去掉；如果trim中没有内容时，不添加set  
+
+##### trim的几个属性  
+
+prefix：当trim中含有内容时，增加prefix所指定的前缀  
+
+suffix：当trim中含有内容时，添加suffix所指定的后缀  
+
+prefixOverrides：当trim中含有元素时，去除prefixOverrides所指定的前缀  
+
+suffixOverrides：当trim中含有元素时，去除suffixOverrides所指定的后缀  
+
+#### foreach标签  
+
+foreach标签可以对数组，map或者实现iterable接口  
+
+foreach中有以下几个属性  
+
+collection：必填，集合/数组/Map的名称  
+
+item：变量名。即从迭代的对象中取出的每一个值  
+
+index：索引的属性名。当迭代的对象为Map时，该值为Map中的key  
+
+open：循环开头的字符串  
+
+close：循环结束的字符串  
+
+separator：每次循环的分隔符  
+
+collection值的设定和接口中方法的参数有关  
+
+##### 只有一个数组参数或者集合参数  
+
+默认情况：集合collection=list，数组是collection=array  
+
+推荐：使用@Param来指定参数的名称，如在参数前@Param("ids")，那么在foreach中collection=ids  
+
+##### 多参数  
+
+多参数请使用@Param来指定，否则SQL中会很不方便  
+
+##### 参数是Map
+
+指定为Map中对应的Key即可。其实上面的@Param最后也是转化为Map的  
+
+##### 参数是对象  
+
+使用属性即可  
+
+##### 在where中使用foreach  
+
+在where条件中使用，如按照id集合查询、删除等  
+
+###### 希望查询书籍id中集合中的所有用户信息  
+
+##### 动态SQL  
+
+接口函数  
+
+```java
+/**
+* 获取id集合的书籍信息
+*/
+List<catalog> selectByIdList(@Param("ids") List<Integer> ids);
+```
+
+对应的SQL  
+
+```xml
+<select id="selectByIdList" resultType="catalog">
+    select * from t_catalog where id in
+    <foreach collection="ids" item="id" open="(" close=")" separator="," index="i">
+        #{id}
+    </foreach>
+</select>
+```
+
+实现的SQL语句为  
+
+```sql
+select * from t_catalog where id in (1,2);
+```
+
+**在MyBatis中需要使用foreach来实现在sql语句中的in查询**  
+
+#### bind标签  
+
+bind标签是用过OGNL表达式来定义一个上下文变量，方便使用  
+
+例如之前的if标签中  
+
+```xml
+<if test ="name !=null and name != ''">
+    and name like concat ('%',name,'%')
+</if>
+```
+
+可以使用如下的形式  
+
+```xml
+<if test = "name!=null and name!=''">
+    <bind name = "nameLike" value = "'%'+name+'%'"/>
+    and name like #{nameLike}
+</if>
+```
+
+此时对应的SQL语句就是  
+
+```sql
+select * from t_catalog WHERE name like ? and user_id = ?
+```
+
 
 
 
