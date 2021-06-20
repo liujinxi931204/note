@@ -119,29 +119,29 @@ int updateByPrimaryKeySelective(catalog catalog);
 
 ```xml
 <update id="updateByPrimaryKeySelective" parameterType="catalog">
-         update t_catalog
-         <set>
-             <if test="name!=null and name !=''">
-                    name = #{name}，
-             </if>
-             <if test="createDate!=null and createDate !=''">
-                 create_date = #{createDate}，
-             </if>
-             <if test="status!=null and status !=''">
-                 status = #{status}，
-             </if>
-             <if test="userId!=null and userId !=''">
-                 user_id = #{userId}，
-             </if>
-             <if test="courseId!=null and courseId !=''">
-                 course_id = #{courseId}，
-             </if>
-             <if test="orderNo!=null and orderNo !=''">
-                 order_no = #{orderNo}，
-             </if>
-         </set>
-         where id = #{id}
-    </update>
+    update t_catalog
+    <set>
+        <if test="name!=null and name !=''">
+            name = #{name}，
+        </if>
+        <if test="createDate!=null and createDate !=''">
+            create_date = #{createDate}，
+        </if>
+        <if test="status!=null and status !=''">
+            status = #{status}，
+        </if>
+        <if test="userId!=null and userId !=''">
+            user_id = #{userId}，
+        </if>
+        <if test="courseId!=null and courseId !=''">
+            course_id = #{courseId}，
+        </if>
+        <if test="orderNo!=null and orderNo !=''">
+            order_no = #{orderNo}，
+        </if>
+    </set>
+    where id = #{id}
+</update>
 ```
 
 **注意这里set标签和if标签搭配使用**
@@ -169,48 +169,48 @@ int insertByPrimaryKeySelective(catalog catalog);
 
 ```xml
 <insert id="insertByPrimaryKeySelective">
-        insert into t_catalog
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="name!=null and name!=''">
-                name,
-            </if>
-            <if test="createDate!=null and createDate!=''">
-                create_date,
-            </if>
-            <if test="status!=null and status!=''">
-                status,
-            </if>
-            <if test="userId!=null and userId!=''">
-                user_id,
-            </if>
-            <if test="courseId!=null and courseId!=''">
-                course_id,
-            </if>
-            <if test="orderNo!=null and orderNo!=''">
-                order_no,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="name!=null and name!=''">
-                #{name},
-            </if>
-            <if test="createDate!=null and createDate!=''">
-                #{createDate},
-            </if>
-            <if test="status!=null and status!=''">
-                #{status},
-            </if>
-            <if test="userId!=null and userId!=''">
-                #{userId},
-            </if>
-            <if test="courseId!=null and courseId!=''">
-                #{courseId},
-            </if>
-            <if test="orderNo!=null and orderNo!=''">
-                #{orderNo},
-            </if>
-        </trim>
-    </insert>
+    insert into t_catalog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="name!=null and name!=''">
+            name,
+        </if>
+        <if test="createDate!=null and createDate!=''">
+            create_date,
+        </if>
+        <if test="status!=null and status!=''">
+            status,
+        </if>
+        <if test="userId!=null and userId!=''">
+            user_id,
+        </if>
+        <if test="courseId!=null and courseId!=''">
+            course_id,
+        </if>
+        <if test="orderNo!=null and orderNo!=''">
+            order_no,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="name!=null and name!=''">
+            #{name},
+        </if>
+        <if test="createDate!=null and createDate!=''">
+            #{createDate},
+        </if>
+        <if test="status!=null and status!=''">
+            #{status},
+        </if>
+        <if test="userId!=null and userId!=''">
+            #{userId},
+        </if>
+        <if test="courseId!=null and courseId!=''">
+            #{courseId},
+        </if>
+        <if test="orderNo!=null and orderNo!=''">
+            #{orderNo},
+        </if>
+    </trim>
+</insert>
 ```
 
 这里if标签和trim标签搭配使用，trim标签是在SQL语句拼接中常用的标签，prefix指拼接的前缀，suffix指拼接的后缀，suffixOverrides指去除trim标签内SQL语句多余的后缀。一般是在if条件失效时，可能导致多余的逗号导致错误，所以使用suffixOverrides来去除这些逗号。
@@ -250,7 +250,7 @@ catalog selectByIdOrName(catalog catalog);
         </when>
         <otherwise/>
     </choose>
-    </select>
+</select>
 ```
 
 只有id时或者id和name都有时，发送的SQL语句为
