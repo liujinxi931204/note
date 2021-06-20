@@ -96,5 +96,55 @@ select * from t_catalog where 1 = 1 and user_id = 1
 select * from t_catalog where 1 =1 and name like concat('%','java','%') and user_id = 1
 ```
 
+##### 在update更新列表中使用if标签  
 
+有时候不希望更新所有的字段，只更新有变化的字段  
+
+###### 更新条件  
+
+只更新有变化的条件，空值不更新  
+
+##### 动态SQL  
+
+接口函数  
+
+```java
+/**
+* 更新非空属性
+*/
+int updateByPrimaryKeySelective(catalog catalog);
+```
+
+对应的SQL  
+
+```xml
+<update id="updateByPrimaryKeySelective" parameterType="catalog">
+         update t_catalog
+         <set>
+             <if test="name!=null and name !=''">
+                    name = #{name}，
+             </if>
+             <if test="createDate!=null and createDate !=''">
+                 create_date = #{createDate}，
+             </if>
+             <if test="status!=null and status !=''">
+                 status = #{status}，
+             </if>
+             <if test="userId!=null and userId !=''">
+                 user_id = #{userId}，
+             </if>
+             <if test="courseId!=null and courseId !=''">
+                 course_id = #{courseId}，
+             </if>
+             <if test="orderNo!=null and orderNo !=''">
+                 order_no = #{orderNo}，
+             </if>
+         </set>
+         where id = #{id}
+    </update>
+```
+
+**注意这里set标签和if标签搭配使用**
+
+MyBatis在生成update语句时若使用if标签，如果前面的if没有执行，则可能导致有多余的逗号的错误。使用set标签可以将动态的配置SET关键字，和剔除追加到条件末尾的任何不相关的逗号。没有使用if标签时，如果有一个参数为null，都会导致错误
 
