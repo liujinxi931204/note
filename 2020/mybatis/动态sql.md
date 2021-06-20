@@ -219,7 +219,7 @@ int insertByPrimaryKeySelective(catalog catalog);
 
 choose when otherwise 标签可以帮助实现if else的逻辑。一个choose标签至少有一个when标签，最多有一个otherwise标签  
 
-##### 查询条件  
+###### 查询条件  
 
 假设name具有唯一性，查询一本书  
 
@@ -343,4 +343,26 @@ select * from t_catalog where user_id = 1
 select * from t_catalog where name like concat('%','java','%') and user_id = 1
 ```
 
-##### 
+#### set  
+
+set标签也类似，在前面更新条件时使用了set标签  
+
+#### trim  
+
+set和where其实都是trim标签的一种类型，这两种功能的都可以使用trim标签进行实现  
+
+##### trim来表示where  
+
+以上的where标签也可以写成  
+
+```xml
+<trim prefix="where" prefixOverrides="AND|OR">
+</trim>
+```
+
+表示当trim中含有内容时，添加where，且第一个满足的条件中的and或者or会被去掉；如果trim中没有内容，则不添加where  
+
+
+
+
+
