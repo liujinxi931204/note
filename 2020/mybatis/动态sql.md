@@ -219,6 +219,8 @@ int insertByPrimaryKeySelective(catalog catalog);
 
 choose when otherwise 标签可以帮助实现if else的逻辑。一个choose标签至少有一个when标签，最多有一个otherwise标签  
 
+**每次只可能走一个when标签或者otherwise标签里的内容**  
+
 ###### 查询条件  
 
 假设name具有唯一性，查询一本书  
