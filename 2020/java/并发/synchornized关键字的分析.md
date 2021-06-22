@@ -184,5 +184,7 @@ JVM设定了一个自旋的限制，如果线程自旋了一定的次数之后�
 
 ![重量级锁](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81.png)  
 
+可以看到Mark Word中使用30位来保存指向ObjectMonitor的指针，锁标志位为10表示重量级锁  
+
 
 
