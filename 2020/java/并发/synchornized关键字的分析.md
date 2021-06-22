@@ -74,4 +74,5 @@ public class SynchronizedDemo {
 
    + 在上面反编译后的代码中monitorexit出现了两次，第一次为正常退出释放锁，第二次为异常退出释放锁  
 
-通过上面
+通过上面的两端描述，可以很清楚的看出synchornized的实现原理，synchornized的语义底层是通过一个monitor对象来完成的，
+
