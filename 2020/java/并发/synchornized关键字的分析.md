@@ -104,3 +104,17 @@ java中一切皆为对象，对象由三部分组成，分别是对象头、示�
 
 ![对象组成](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E5%AF%B9%E8%B1%A1%E7%BB%84%E6%88%90.png)  
 
+以32位虚拟机为例，Mark Word有四个字节，而且还要存放Hash Code等信息，难道锁就可以由这四个字节来实现吗？  
+
+![在这里插入图片描述](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/20200619123714116.png)  
+
+## 锁升级的过程  
+
+在JDK 1.6时，虚拟机团队对synchornized进行了一系列的优化，其中一项重要的优化就是锁升级  
+
+synchornized的锁升级过程：由无锁升级为偏向锁，再升级为轻量级锁，最后升级为重量级锁，这一过程是不可逆的  
+
+也就是说，除非存在很严重的线程竞争，否则synchornized不会直接值用重量级锁了  
+
+ 
+
