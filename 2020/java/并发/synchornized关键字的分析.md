@@ -195,4 +195,3 @@ JVM设定了一个自旋的限制，如果线程自旋了一定的次数之后�
 当锁以轻量级锁存在的时候，锁就是Mark Word中所指向栈帧中锁记录的Lock Record，此时哪个线程的栈帧中有Lock Record，哪个线程就获取到了锁。
 
 当锁以重量级锁存在时候，锁就是c++中对于Monitor的实现ObjectMonitor，此时ObjectMonitor中的owner指向了哪个线程，哪个线程就获取到了锁。  
-
