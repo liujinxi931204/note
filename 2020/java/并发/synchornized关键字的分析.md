@@ -74,5 +74,25 @@ public class SynchronizedDemo {
 
    + 在上面反编译后的代码中monitorexit出现了两次，第一次为正常退出释放锁，第二次为异常退出释放锁  
 
-通过上面的两端描述，可以很清楚的看出synchornized的实现原理，synchornized的语义底层是通过一个monitor对象来完成的，
+通过上面的两端描述，可以很清楚的看出synchornized的实现原理，synchornized的语义底层是通过一个monitor对象来完成的，其实wait/notify等方法的底层也依赖于monitor对象，这就是为什么只有在同步的块或者方法中才能调用wait/notofy等方法，否则会抛出java.lang.IllegalMonitorStateException异常的原因。  
+
+再来看一同步方法  
+
+```java
+public class SynchronizedMethod {
+    public synchronized void method() {
+        System.out.println("Hello World!");
+    }
+}
+```
+
+查看反编译后的结果  
+
+![img](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/2062729-8b7734120fae6645.png)
+
+从编译的结果来看，方法的同步没有通过指令monitorenter和monitorexit来完成，不过相对于普通方法，其常量池中多了ACC_SYNCHORNIZED标识符。JVM就是根据该标识符来实现同步方法的：  
+
++ 当方法调用时，调用指令将会检查方法的ACC_SYNCHORNIZED访问标识符是否被设置了，如果设置了，执行线程将会先获取monitor，获取成功后才能执行方法体，方法执行完后再释放monitor。再方法执行期间，其他任何线程都无法再获得monitor对象  
+
+两种同步方法本质上没有区别，只是方法的同步是一种隐式的方式来实现，无需通过字节码来完成。两个指令的执行是JVM通过调用操作系统的互斥原语mutex来实现，被阻塞的线程会被挂起，等待重新调度，会导致"用户态和内核态"之间的切换，对性能有较大的影响。这也就是为什么synchornized被称为重量级锁的原因。  
 
