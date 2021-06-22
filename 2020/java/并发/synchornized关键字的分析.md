@@ -68,7 +68,7 @@ public class SynchronizedDemo {
 
    + 如果线程已经占有该monitor，只是重新进入，则进入monitor的进入数加1  
 
-   + 如果其他线程已经占有了monitor，则该线程进入阻塞状态，知道monitor的进入数为0，再重新尝试获取monitor的所有权  
+   + 如果其他线程已经占有了monitor，则该线程进入阻塞状态，直到monitor的进入数为0，再重新尝试获取monitor的所有权  
 
 2. mointorexit：执行monitorexit的线程必须式monitor的所有者。执行指令时，monitor的进入数减1，如果减1后为0，那线程退出monitor，不再是这个monitor的所有者。其他被这个monitor阻塞的线程可以尝试去获取这个monitor的所有权  
 
@@ -150,3 +150,32 @@ synchornized的锁升级过程：由无锁升级为偏向锁，再升级为轻�
 
 JVM设定了一个自旋的限制，如果线程自旋了一定的次数之后仍然没有获取到锁，就可以视为锁竞争比较激烈的情况，这时轻量级锁就要晋升为重量级锁。  
 
+重量级锁的复杂度是最高的，由于持有锁的线程在释放时候需要唤醒阻塞等待的线程，线程获取不到锁的时候需要进入某一个阻塞区域统一阻塞等待，同时还有wait、notify条件的等待与唤醒需要处理，所以重量级锁的实现需要以一个额外的Monitor。  
+
+以HotSpot虚拟机为例，虚拟机中对Monitor的实现使用ObjectMonitor实现，这两者的关系类似于java中的Map和HashMap的关系。    
+
+```c++
+ ObjectMonitor() 
+  {
+    _header       = NULL;
+    _count        = 0;//用来记录该线程获取锁的次数
+    _waiters      = 0,
+    _recursions   = 0;//锁的重入次数
+    _object       = NULL;
+    _owner        = NULL;//指向持有ObjectMonitor的线程
+    _WaitSet      = NULL;//存放处于Wait状态的线程的集合
+    _WaitSetLock  = 0 ;
+    _Responsible  = NULL ;
+    _succ         = NULL ;
+    _cxq          = NULL ;
+    FreeNext      = NULL ;
+    _EntryList    = NULL ;//所以等待获取锁而被阻塞的线程的集合
+    _SpinFreq     = 0 ;
+    _SpinClock    = 0 ;
+    OwnerIsThread = 0 ;
+  }
+```
+
+首先ObjectMonitor中需要有一个指针指向当前获取锁的线程，就是上面ObjectMonitor中的owner，当某一个线程获取锁的时候，将调用ObjectMonitor.enter()方法进入同步代码块，获取到锁之后，将owner设置为指向当前线程，当其他的线程尝试获取锁的时候，就找到ObjectMonitor的owner看看是否是自己。如果是的话，recursions和count自增1，代表该线程再次获取到了锁（synchornized是可重入锁，持有锁的线程可以再次的获取锁），否则的话就应该阻塞起来，那么这些阻塞的线程放在哪里呢？  
+
+统一的放在EntryList中
