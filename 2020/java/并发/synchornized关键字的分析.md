@@ -186,5 +186,11 @@ JVM设定了一个自旋的限制，如果线程自旋了一定的次数之后�
 
 可以看到Mark Word中使用30位来保存指向ObjectMonitor的指针，锁标志位为10表示重量级锁  
 
+## 锁形态的变迁  
 
+当锁以偏向锁存在时，锁就是Mark Word中的线程ID，此时线程本身就是打开锁的钥匙，Mark Word中存了哪个线程的线程ID，哪个线程就获取到了锁。  
+
+当锁以轻量级锁存在的时候，锁就是Mark Word中所指向栈帧中锁记录的Lock Record，此时哪个线程的栈帧中有Lock Record，哪个线程就获取到了锁。
+
+当锁以重量级锁存在时候，锁就是c++中对于Monitor的实现ObjectMonitor，此时ObjectMonitor中的owner指向了哪个线程，哪个线程就获取到了锁。  
 
