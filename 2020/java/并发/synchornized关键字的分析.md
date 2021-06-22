@@ -178,4 +178,11 @@ JVM设定了一个自旋的限制，如果线程自旋了一定的次数之后�
 
 首先ObjectMonitor中需要有一个指针指向当前获取锁的线程，就是上面ObjectMonitor中的owner，当某一个线程获取锁的时候，将调用ObjectMonitor.enter()方法进入同步代码块，获取到锁之后，将owner设置为指向当前线程，当其他的线程尝试获取锁的时候，就找到ObjectMonitor的owner看看是否是自己。如果是的话，recursions和count自增1，代表该线程再次获取到了锁（synchornized是可重入锁，持有锁的线程可以再次的获取锁），否则的话就应该阻塞起来，那么这些阻塞的线程放在哪里呢？  
 
-统一的放在EntryList中
+统一的放在EntryList中即可。当持有锁的线程调用wait方法时（wait方法会使得线程放弃cpu并释放自己持有的锁，然后阻塞挂起自己，直到其他的线程调用notify或者notifyAll方法为止），那么线程该释放掉锁，把owner置空，并唤醒在EntryList中阻塞等待获取锁的线程，然后将自己挂起并进入waitSet集合中等待。当其他持有锁的线程调用了notify或者notifyAll方法时，会将waitSet中的某一个线程或者全部线程唤醒，从waitSet中移动到EntryList中等待竞争锁。当线程要释放锁的时候，就会调用ObjectMonitor.exit()方法退出同步代码块。  
+
+要撤销轻量级锁，当然要把保存在栈帧中的LockRecord中存储的内容在写回到Mark Word中，然后将栈帧中的Lock Record清理掉。此后需要创建一个ObjectMonitor对象，并将Mark Word中的内容保存到ObjectMonitor中，更新对象头中的Mark Word指向这个ObjectMonitor对象。  
+
+![重量级锁](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81.png)  
+
+
+
