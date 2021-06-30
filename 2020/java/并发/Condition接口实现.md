@@ -249,7 +249,9 @@ final int fullyRelease(Node node) {
         } else {
             /**
             * 这里有可能抛出异常的原因在于fullRelease方法没有判断当前锁的持有者是不是当前线程
-            * 如果不是当前线程，release方法会返回false，从而进入到else逻辑
+            * 如果不是当前线程，release方法会返回false，首先进入到finally中，将当前节点的
+            * waitStates设置为CANCELLED，然后抛出异常
+            * finally中执行的优先于try/catch中的return throw
             */
             throw new IllegalMonitorStateException();
         }
@@ -261,3 +263,4 @@ final int fullyRelease(Node node) {
 ```
 
 由上面的分析可以知道，对于可重入锁这里是一次性全部释放的。  
+
