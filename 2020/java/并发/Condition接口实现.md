@@ -198,5 +198,11 @@ private Node addConditionWaiter() {
 }
 ```
 
+这里没有使用cas的原因是调用await方法的前提是当前线程已经拿到锁了，所以就不存在锁竞争的问题了，即不存在并发问题。
 
+注意这里和加入等待队列有所不同  
+
++ 节点加入sync queue时，waitStatus的值为0，但节点加入condition queue时，waitStatus被设置为Node.CONDITION  
++ 等待队列的头节点是一个空节点，如果队列为空，会首先创建一个空的头节点，然后进行入对的操作；条件队列的firstWaiter和lastWaiter不是空节点，分别指向队列的第一个节点和最后一个节点  
++ sync queue队列是一个双向队列，在加入节点后需要修改当前节点的前驱节点和后继节点；而conditon queue是一个单向队列，使用nextWaiter来连接后继节点
 
