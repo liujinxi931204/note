@@ -153,8 +153,7 @@ public final void await() throws InterruptedException {
     int interruptMode = 0;
     //如果当前节点不在同步队列中，说明刚刚被await，还没有线程调用signal方法，则直接将当前线程挂起
     while (!isOnSyncQueue(node)) {
-        //当前线程在这里被挂起，后面被唤醒以后，同样从这里开始执行
-        LockSupport.park(this);
+        LockSupport.park(this);//当前线程在这里被挂起，后面被唤醒以后，同样从这里开始执行
         //线程执行到这里说明要么是被signal方法唤醒，要么是线程被中断
         //所以下面检查中断状态，如果是被中断，则跳出while循环
         if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
