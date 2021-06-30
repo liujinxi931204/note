@@ -240,6 +240,7 @@ private void unlinkCancelledWaiters() {
 final int fullyRelease(Node node) {
     boolean failed = true;
     try {
+        //获取当前AQS的state的值，记录当前的state值，主要针对锁重入的情况
         int savedState = getState();
         if (release(savedState)) {
             failed = false;
