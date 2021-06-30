@@ -72,6 +72,8 @@ sync queue是一个双向链表，使用prev、next属性来串联节点。但�
 
 ### condition queue
 
+![preview](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/1460000016462284)  
+
 每一个Condition对象对应一个Condition队列，每个Condition队列都是独立的，互相不影响的。在上图中，如果调用notFull.await()方法，则当前线程会被包装成Node节点然后加入到notFull队列的末尾。  
 
 值得注意的是，condition queue是一个单向链表，在该链表中使用nextWaiter属性来串联链表。就像在sync queue队列中不会使用nextWaiter来串联节点一样，在condition queue中不会使用prev、next来串联节点，它们的值都为null。也就是说，在condition queue中，真正使用到的属性只有三个  
@@ -83,4 +85,20 @@ sync queue是一个双向链表，使用prev、next属性来串联节点。但�
 + nextWaiter：指向条件队列中下一个节点  
 
 在条件队列中，只需要关注waitStatus的值是不是CONDITION就好了。如果waitStatus的值是CONDITION，说明线程处于正常的等待状态；如果不是，说明该线程不再等待，此时需要从条件队列中出队。  
+
+### sync queue和condition queue的联系  
+
+![preview](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/1460000016462285)  
+
+
+
+一般情况下，等待锁的sync queue和条件队列condition queue是相互独立的，彼此之间没有任何联系。但是，当调用某个条件队列的signal方法时，会唤醒某个或者所有在这个条件队列中的线程，被唤醒的线程和普通线程一样去争抢锁，如果没有争到，同样要被加入到sync queue中，此时节点就从condition queue中被转移到sync queue  
+
+有两点需要注意：  
+
+1. 条件队列中的节点是一个一个的转移到等待队列中，哪怕调用的是signalAll方法，也是一个一个转移过去的，而不是将整个队列连接在等待队列最后  
+
+2. 在condition queue中使用nextWaiter来串联链表，没有使用prev、next属性；在sync queue中使用prev、next来串联链表而没有使用nextWaiter属性。所以在转移的过程中，需要断开原有的nextWaiter，然后连接prev、next，这在某种程度上也是一个一个转移过去的原因  
+
+
 
