@@ -234,3 +234,23 @@ private void unlinkCancelledWaiters() {
 
 #### fullyRelease方法  
 
+当前节点加入到条件队列后，接下来就需要释放当前线程所持有的锁了。这个方法就是fullyRelease方法  
+
+```java
+final int fullyRelease(Node node) {
+    boolean failed = true;
+    try {
+        int savedState = getState();
+        if (release(savedState)) {
+            failed = false;
+            return savedState;
+        } else {
+            throw new IllegalMonitorStateException();
+        }
+    } finally {
+        if (failed)
+            node.waitStatus = Node.CANCELLED;
+    }
+}
+```
+
