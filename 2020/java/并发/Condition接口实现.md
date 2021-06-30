@@ -232,3 +232,5 @@ private void unlinkCancelledWaiters() {
 
 该方法从头开始遍历，这里使用t和trail来记录队列的firstWaiter和最后一个waitStatus为CONDITION的节点。  
 
+#### fullyRelease方法  
+
