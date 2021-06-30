@@ -250,7 +250,7 @@ final int fullyRelease(Node node) {
             /**
             * 这里有可能抛出异常的原因在于fullRelease方法没有判断当前锁的持有者是不是当前线程
             * 如果不是当前线程，release方法会返回false，首先进入到finally中，将当前节点的
-            * waitStates设置为CANCELLED，然后抛出异常
+            * waitStatus设置为CANCELLED，然后抛出异常
             * finally中执行的优先于try/catch中的return throw
             */
             throw new IllegalMonitorStateException();
@@ -263,4 +263,8 @@ final int fullyRelease(Node node) {
 ```
 
 由上面的分析可以知道，对于可重入锁这里是一次性全部释放的。  
+
+当发现当前线程不是持有锁的线程，release就会返回false。此时failed依然还是true，进入到finally中将当前节点的waitStatus设置为Node.CANCELLED，然后进入else中抛出IllegalMonitorStateException异常。这也就是为什么上面在入队的时候先检查尾节点是不是已经被取消了。  
+
+
 
