@@ -176,6 +176,7 @@ public final void await() throws InterruptedException {
 private Node addConditionWaiter() {
     Node t = lastWaiter;
     // If lastWaiter is cancelled, clean out.
+    //如果条件队列的尾节点已经被cancel了，就将尾节点清理出队列
     if (t != null && t.waitStatus != Node.CONDITION) {
         unlinkCancelledWaiters();
         t = lastWaiter;
