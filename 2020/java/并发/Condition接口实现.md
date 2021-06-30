@@ -168,5 +168,27 @@ public final void await() throws InterruptedException {
 }
 ```
 
+#### addConditionWaiter方法  
+
+这个方法见名知义，就是将当前执行了await方法的线程包装成一个Node节点，然后加入到条件队列中。  
+
+```java
+private Node addConditionWaiter() {
+    Node t = lastWaiter;
+    // If lastWaiter is cancelled, clean out.
+    if (t != null && t.waitStatus != Node.CONDITION) {
+        unlinkCancelledWaiters();
+        t = lastWaiter;
+    }
+    Node node = new Node(Thread.currentThread(), Node.CONDITION);
+    if (t == null)
+        firstWaiter = node;
+    else
+        t.nextWaiter = node;
+    lastWaiter = node;
+    return node;
+}
+```
+
 
 
