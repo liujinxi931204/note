@@ -241,11 +241,16 @@ final int fullyRelease(Node node) {
     boolean failed = true;
     try {
         //获取当前AQS的state的值，记录当前的state值，主要针对锁重入的情况
+        //针对可重入锁，一次性全部释放
         int savedState = getState();
         if (release(savedState)) {
             failed = false;
             return savedState;
         } else {
+            /**
+            * 这里有可能抛出异常的原因在于fullRelease方法没有判断当前锁的持有者是不是当前线程
+            * 如果不是当前线程，release方法会返回false，从而进入到else逻辑
+            */
             throw new IllegalMonitorStateException();
         }
     } finally {
@@ -255,3 +260,4 @@ final int fullyRelease(Node node) {
 }
 ```
 
+由上面的分析可以知道，对于可重入锁这里是一次性全部释放的。  
