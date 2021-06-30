@@ -206,7 +206,7 @@ private Node addConditionWaiter() {
 + 等待队列的头节点是一个空节点，如果队列为空，会首先创建一个空的头节点，然后进行入对的操作；条件队列的firstWaiter和lastWaiter不是空节点，分别指向队列的第一个节点和最后一个节点  
 + sync queue队列是一个双向队列，在加入节点后需要修改当前节点的前驱节点和后继节点；而conditon queue是一个单向队列，使用nextWaiter来连接后继节点
 
-如果发现尾节点不是CONDITIO的状态，那么新加入的节点就不应该排在其后，这是就需要调用unlinkCancelledWaiters方法来清理所有不是CONDITION状态的节点  
+如果发现尾节点不是CONDITIO的状态，那么新加入的节点就不应该排在其后，这时就需要调用unlinkCancelledWaiters方法来清理所有不是CONDITION状态的节点  
 
 ```java
 private void unlinkCancelledWaiters() {
