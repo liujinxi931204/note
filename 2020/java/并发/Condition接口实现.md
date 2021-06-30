@@ -82,3 +82,5 @@ sync queue是一个双向链表，使用prev、next属性来串联节点。但�
 
 + nextWaiter：指向条件队列中下一个节点  
 
+在条件队列中，只需要关注waitStatus的值是不是CONDITION就好了。如果waitStatus的值是CONDITION，说明线程处于正常的等待状态；如果不是，说明该线程不再等待，此时需要从条件队列中出队。  
+
