@@ -110,5 +110,57 @@ condition队列是等待在特定条件下的队列，因为调用await方法时
 
 + sync queue：入队时没有锁—>在队列中竞争锁—出队时持有了锁  
 
+## ConditionObject  
+
+AQS对Condition这个接口的实现主要是通过ConditionObject，它的核心就是一个条件队列，每一个在某个condition上等待的线程都会被封装成Node对象加入到这个队列中。  
+
+### 核心属性  
+
+它的核心属性只有两个：  
+
+```java
+
+/** First node of condition queue. */
+private transient Node firstWaiter;
+/** Last node of condition queue. */
+private transient Node lastWaiter;
+```
+
+这两个属性分别代表了条件队列的队头和队尾，每新建一个conditionObject对象，都会对应一个条件队列  
+
+### 构造函数  
+
+```java
+public ConditionObject() { 
+}
+```
+
+可见条件队列应该是延时初始化的，在真正用到的时候才会初始化  
+
+### 接口方法  
+
+#### await方法  
+
+```java
+public final void await() throws InterruptedException {
+    if (Thread.interrupted())
+        throw new InterruptedException();
+    Node node = addConditionWaiter();
+    int savedState = fullyRelease(node);
+    int interruptMode = 0;
+    while (!isOnSyncQueue(node)) {
+        LockSupport.park(this);
+        if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
+            break;
+    }
+    if (acquireQueued(node, savedState) && interruptMode != THROW_IE)
+        interruptMode = REINTERRUPT;
+    if (node.nextWaiter != null) // clean up if cancelled
+        unlinkCancelledWaiters();
+    if (interruptMode != 0)
+        reportInterruptAfterWait(interruptMode);
+}
+```
+
 
 
