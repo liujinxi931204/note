@@ -64,7 +64,21 @@ class BoundedBuffer{
 
 ## 同步队列VS条件队列  
 
+### sync queue  
+
 ![CLH队列](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/CLH%E9%98%9F%E5%88%97.png)
 
 sync queue是一个双向链表，使用prev、next属性来串联节点。但是在同步队列中，始终没有用到nextWaiter属性，即使是在共享模式下，这一属性也仅仅是作为一个标志，指向了一个空节点。因此，在sync queue中，不会使用nextWaiter属性来串联节点。  
+
+### condition queue
+
+每一个Condition对象对应一个Condition队列，每个Condition队列都是独立的，互相不影响的。在上图中，如果调用notFull.await()方法，则当前线程会被包装成Node节点然后加入到notFull队列的末尾。  
+
+值得注意的是，condition queue是一个单向链表，在该链表中使用nextWaiter属性来串联链表。就像在sync queue队列中不会使用nextWaiter来串联节点一样，在condition queue中不会使用prev、next来串联节点，它们的值都为null。也就是说，在condition queue中，真正使用到的属性只有三个  
+
++ thread：表示当前正在等待某个条件的节点  
+
++ waitStatus：条件等待的状态  
+
++ nextWaiter：指向条件队列中下一个节点  
 
