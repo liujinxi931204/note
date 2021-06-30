@@ -100,5 +100,15 @@ sync queue是一个双向链表，使用prev、next属性来串联节点。但�
 
 2. 在condition queue中使用nextWaiter来串联链表，没有使用prev、next属性；在sync queue中使用prev、next来串联链表而没有使用nextWaiter属性。所以在转移的过程中，需要断开原有的nextWaiter，然后连接prev、next，这在某种程度上也是一个一个转移过去的原因  
 
+## 入队和出队时锁的状态  
+
+sync queue是等待锁的队列，当一个线程被包装成Node加入到该队列时，必然是没有获取到锁的；当获取到了锁之后，必然会从该队列中移除。  
+
+condition队列是等待在特定条件下的队列，因为调用await方法时，必然是已经获得了锁，所以在进入condition队列前线程必然是已经获取到了锁；在被包装成Node节点加入到condition队列后，线程将释放锁，然后挂起；当处于该队列中的线程被signal方法唤醒后，由于队列中的节点在之前挂起时已经释放了锁，所以必须先再次争抢锁，因此，该节点会被添加到sync队列中。因此条件队列在出队时，线程并不持有锁。  
+
++ condition queue：入队时已经持有了锁—>在队列中释放锁—>离开队列时没有锁—>转移到sync queue  
+
++ sync queue：入队时没有锁—>在队列中竞争锁—出队时持有了锁  
+
 
 
