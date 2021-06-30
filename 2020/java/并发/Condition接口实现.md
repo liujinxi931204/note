@@ -183,7 +183,10 @@ private Node addConditionWaiter() {
         t = lastWaiter;
     }
     /**
-    * 
+    * 创建一个Node节点，保存当前线程以及设置waitStaus为Node.CONDITION
+    * 如果lastWaiter为null，说明整个条件队列为空，这是先让firstWaiter指向当前节点
+    * 如果lastWaiter不为null，说明条件队列不为空，就将当前节点的nextWaiter指向当前节点
+    * 最后尾节点指向当前节点
     */
     Node node = new Node(Thread.currentThread(), Node.CONDITION);
     if (t == null)
