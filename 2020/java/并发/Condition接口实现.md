@@ -143,12 +143,17 @@ public ConditionObject() {
 
 ```java
 public final void await() throws InterruptedException {
+    //如果当前线程在调用await方法之前已经被中断了，则直接抛出异常InterruptedException
     if (Thread.interrupted())
         throw new InterruptedException();
+    //将当前线程包装成Node节点，加入到条件队列中
     Node node = addConditionWaiter();
+    //释放当前线程锁占用的锁，保存当前的锁状态
     int savedState = fullyRelease(node);
     int interruptMode = 0;
+    //如果当前节点不在同步队列中，说明刚刚被await，还没有线程调用signal方法，则直接将当前线程挂起
     while (!isOnSyncQueue(node)) {
+        //当前线程在这里被挂起，后面被唤醒以后，同样从这里开始执行
         LockSupport.park(this);
         if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
             break;
