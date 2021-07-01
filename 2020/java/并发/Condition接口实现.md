@@ -329,6 +329,7 @@ public final void signalAll() {
     if (!isHeldExclusively())
         throw new IllegalMonitorStateException();
     Node first = firstWaiter;
+    //如果条件队列不为空
     if (first != null)
         //唤醒条件队列中的所有节点
         doSignalAll(first);
