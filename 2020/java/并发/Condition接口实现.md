@@ -336,3 +336,19 @@ public final void signalAll() {
 }
 ```
 
+首先调用各个AQS子类实现的isHeldExclusively方法来判断当前调用signalAll方法的线程是不是当前线程。如果是的话，通过firstWaiter判断条件队列是否为空，如果条件队列不为空，则调用doSignalAll方法来唤醒队列中的所有节点。  
+
+```java
+private void doSignalAll(Node first) {
+    //清空整个队列
+    lastWaiter = firstWaiter = null;
+    do {
+        Node next = first.nextWaiter;
+        first.nextWaiter = null;
+        //添加到sync queue队列的末尾
+        transferForSignal(first);
+        first = next;
+    } while (first != null);
+}
+```
+
