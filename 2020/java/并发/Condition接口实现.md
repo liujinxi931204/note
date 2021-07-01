@@ -352,3 +352,27 @@ private void doSignalAll(Node first) {
 }
 ```
 
+首先通过lastWaiter=firstWaiter=null来清空整个队列，然后通过do-while循环将原先队列里的节点一个一个取出来，通过transferForSignal方法添加到sync queue队列的末尾。  
+
+```java
+final boolean transferForSignal(Node node) {
+    /*
+         * If cannot change waitStatus, the node has been cancelled.
+         */
+    if (!compareAndSetWaitStatus(node, Node.CONDITION, 0))
+        return false;
+
+    /*
+         * Splice onto queue and try to set waitStatus of predecessor to
+         * indicate that thread is (probably) waiting. If cancelled or
+         * attempt to set waitStatus fails, wake up to resync (in which
+         * case the waitStatus can be transiently and harmlessly wrong).
+         */
+    Node p = enq(node);
+    int ws = p.waitStatus;
+    if (ws > 0 || !compareAndSetWaitStatus(p, ws, Node.SIGNAL))
+        LockSupport.unpark(node.thread);
+    return true;
+}
+```
+
