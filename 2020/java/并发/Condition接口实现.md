@@ -530,6 +530,7 @@ while (!isOnSyncQueue(node)) {
 
     //线程执行到这里说明要么是被signal方法唤醒，要么是线程被中断
     //所以下面检查中断状态，如果是被中断，则跳出while循环
+    //checkInterruptWhileWaiting判断是否有中断发生以及中断发生在signal调用之前还是之后
     if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
         break;
 }
@@ -561,5 +562,15 @@ if (node.nextWaiter != null) // clean up if cancelled
 ```java
 if (interruptMode != 0)
     reportInterruptAfterWait(interruptMode);
+```
+
+```java
+private void reportInterruptAfterWait(int interruptMode)
+    throws InterruptedException {
+    if (interruptMode == THROW_IE)
+        throw new InterruptedException();
+    else if (interruptMode == REINTERRUPT)
+        selfInterrupt();
+}
 ```
 
