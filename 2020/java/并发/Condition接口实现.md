@@ -457,3 +457,5 @@ public final void await() throws InterruptedException {
 ```
 
 线程被唤醒的原因我们是不是知道的，有可能是因为其他线程执行了signal，也有可能是因为中断，但不论什么原因，被唤醒的线程需要离开条件队列进入到等待队列中。
+
+之后通过acquireQueued方法进行阻塞式的抢占锁，如果抢占
