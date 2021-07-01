@@ -272,6 +272,7 @@ final int fullyRelease(Node node) {
 final boolean isOnSyncQueue(Node node) {
     if (node.waitStatus == Node.CONDITION || node.prev == null)
         return false;
+    //在条件队列中，prev、next都会为null，使用nextWaiter来连接后继节点
     if (node.next != null) // If has successor, it must be on queue
         return true;
     /*
