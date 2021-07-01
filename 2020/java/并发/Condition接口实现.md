@@ -423,3 +423,36 @@ private void doSignal(Node first) {
 
 这里依然调用transferForSignal方法节点转移到等待队列的末尾。如果节点被取消，那么transferForSignal方法会返回false，则循环下一个节点；如果没有被取消，那么transferForSignal方法就会返回true，此时while条件不满足，就会退出循环，方法就会结束。因此调用signal方法，只会唤醒一个线程。  
 
+#### await方法  
+
+在调用signal或者signalAll方法之后，会将节点接入到等待队列的末尾，要么立即唤醒线程，要么等待前驱节点唤醒线程，总之唤醒的线程是要恢复执行的。那么从哪里恢复执行呢？答案还是在调用await的方法中  
+
+```java
+public final void await() throws InterruptedException {
+    //如果当前线程在调用await方法之前已经被中断了，则直接抛出异常InterruptedException
+    if (Thread.interrupted())
+        throw new InterruptedException();
+    //将当前线程包装成Node节点，加入到条件队列中
+    Node node = addConditionWaiter();
+    //释放当前线程锁占用的锁，保存当前的锁状态
+    int savedState = fullyRelease(node);
+    int interruptMode = 0;
+    //如果当前节点不在同步队列中，说明刚刚被await，还没有线程调用signal方法，则直接将当前线程挂起
+    while (!isOnSyncQueue(node)) {
+        LockSupport.park(this);//当前线程在这里被挂起，后面被唤醒以后，同样从这里开始执行
+        
+        
+        //线程执行到这里说明要么是被signal方法唤醒，要么是线程被中断
+        //所以下面检查中断状态，如果是被中断，则跳出while循环
+        if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
+            break;
+    }
+    if (acquireQueued(node, savedState) && interruptMode != THROW_IE)
+        interruptMode = REINTERRUPT;
+    if (node.nextWaiter != null) // clean up if cancelled
+        unlinkCancelledWaiters();
+    if (interruptMode != 0)
+        reportInterruptAfterWait(interruptMode);
+}
+```
+
