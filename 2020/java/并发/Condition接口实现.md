@@ -621,12 +621,16 @@ final boolean transferAfterCancelledWait(Node node) {
     * incomplete transfer is both rare and transient, so just
     * spin.
     * 发生中断前已经被signal过了，只需要等待节点被加入到等待队列
+    * 节点有可能已经进入到等待队列或者在进入等待队列的路上，所以使
+    * 用自旋的方式，直到节点进入到等待队列
     */
     while (!isOnSyncQueue(node))
         Thread.yield();
     return false;
 }
 ```
+
+在这里由于signal已经发生过了，所以节点的waitStatus必不为Node.CONDITION，所以将跳过if语句。此时线程可能已经进入等待队列或者在进入等待队列的路上。  
 
 
 
