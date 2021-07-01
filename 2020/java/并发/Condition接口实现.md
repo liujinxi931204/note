@@ -630,7 +630,60 @@ final boolean transferAfterCancelledWait(Node node) {
 }
 ```
 
-在这里由于signal已经发生过了，所以节点的waitStatus必不为Node.CONDITION，所以将跳过if语句。此时线程可能已经进入等待队列或者在进入等待队列的路上。  
+在这里由于signal已经发生过了，所以节点的waitStatus必不为Node.CONDITION，所以将跳过if语句。此时线程可能已经进入等待队列或者在进入等待队列的路上。  最终返回false。  
+
+返回到transferAfterCancelledWait的调用处，checkInterruptWhileWaiting方法返回REINTERRUPT，这说明我们在退出await时需要再次自我中断一下。  
+
+返回到checkInterruptWhileWaiting的调用处  
+
+```java
+while (!isOnSyncQueue(node)) {
+    LockSupport.park(this);//当前线程在这里被挂起，后面被唤醒以后，同样从这里开始执行
+
+
+    //线程执行到这里说明要么是被signal方法唤醒，要么是线程被中断
+    //所以下面检查中断状态，如果是被中断，则跳出while循环
+    //checkInterruptWhileWaiting判断是否有中断发生以及中断发生在signal调用之前还是之后
+    if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
+        break;
+}
+if (acquireQueued(node, savedState) && interruptMode != THROW_IE)
+    interruptMode = REINTERRUPT;
+//移除条件队列中所有已经被取消的节点
+if (node.nextWaiter != null) // clean up if cancelled
+    unlinkCancelledWaiters();
+//汇报中断状态
+if (interruptMode != 0)
+    reportInterruptAfterWait(interruptMode);
+```
+
+此时interruptMode不等于0，直接跳出while循环，接下来就是和上面一样在acquireQueued方法中争抢锁，成功则退出；不成功则挂起。最后一定会获取锁然后退出acquireQueued方法。接下来就是将节点从条件队列中移除，不过与情况一不同，这时节点的nextWaiter已经被设置为null，所以这里不需要执行。最后就是向上汇报中断状态。  
+
+```java
+private void reportInterruptAfterWait(int interruptMode)
+    throws InterruptedException {
+    if (interruptMode == THROW_IE)
+        throw new InterruptedException();
+    else if (interruptMode == REINTERRUPT)
+        selfInterrupt();
+}
+```
+
+此时由于interruptMode == REINTERRUPT，所以只需要执行selfInterrupt，将当前线程中断一次  
+
+总结  
+
+1. 线程从挂起的地方被唤醒，此时既发生过中断，又发生过signal  
+
+2. 随后在transferAfterCancelledWait中判断中断发生在signal调用之后  
+
+3. 然后通过自旋的方式等待signal完成，确保节点已经成功添加到等待队列中去  
+
+4. 接下来在等待队列中继续争抢锁，争抢不到会被继续挂起  
+
+5. 线程成功获取到锁以后，通过reportInterruptAfterWait方法将线程再次中断而不是抛出InterruptedException异常  
+
+
 
 
 
