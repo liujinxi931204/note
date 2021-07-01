@@ -515,4 +515,51 @@ final boolean transferAfterCancelledWait(Node node) {
 
 判断一个node是否被signal，一个简单有效的方法就是判断它是否离开了条件队列，进入到等待队列中。  
 
-换句话说，只要一个节点的waitStatus还是Node.CONDITION，那就说明它还没有被signal过。
+换句话说，只要一个节点的waitStatus还是Node.CONDITION，那就说明它还没有被signal过。  
+
+##### 情况一  
+
+假设中断发生在signal之前，则上面的方法中compareAndSetWaitStatus会返回true，然后通过enq将节点加入到等待队列的末尾，然后返回true。需要注意的是此时还没有断开node节点的nextWaiter指针，所以后面还需要断开。  
+
+回到transferAfterCancelledWait的调用处，可以知道checkInterruptWhileWaiting方法返回THROW_IE，也就是interruptMode=-1，此时回到checkInterruptWhileWaiting的调用出  
+
+```java
+while (!isOnSyncQueue(node)) {
+    LockSupport.park(this);//当前线程在这里被挂起，后面被唤醒以后，同样从这里开始执行
+
+
+    //线程执行到这里说明要么是被signal方法唤醒，要么是线程被中断
+    //所以下面检查中断状态，如果是被中断，则跳出while循环
+    if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
+        break;
+}
+if (acquireQueued(node, savedState) && interruptMode != THROW_IE)
+    interruptMode = REINTERRUPT;
+//移除条件队列中所有已经被取消的节点
+if (node.nextWaiter != null) // clean up if cancelled
+    unlinkCancelledWaiters();
+//汇报中断状态
+if (interruptMode != 0)
+    reportInterruptAfterWait(interruptMode);
+```
+
+因为此时interruptMode=-1，所以执行break，从while循环中退出，然后执行acquireQueued争抢锁。注意这里传入的
+
+savedState是之前fullyRelease返回的值。  
+
+假设此时acquireQueued获取到了锁，但是不满足interruptMode != THROW_IE，所以跳过第一个if中逻辑，进入到  
+
+```java
+if (node.nextWaiter != null) // clean up if cancelled
+    unlinkCancelledWaiters();
+```
+
+前面说过当前节点的nextWaiter还是有值，它并没有和原来的条件队列断开连接，这里已经获取到了锁，所以从等待队列中移除了，接下来就需要从条件队列中移除。既然是从头遍历，那么索性就将条件队列中所有已经取消的节点都移除。  
+
+节点被移除后，接下来就是最后一步汇报中断状态  
+
+```java
+if (interruptMode != 0)
+    reportInterruptAfterWait(interruptMode);
+```
+
