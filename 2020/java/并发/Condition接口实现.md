@@ -394,3 +394,15 @@ final boolean transferForSignal(Node node) {
 
 #### signal方法  
 
+与signalAll方法大同小异，signal方法只会唤醒条件队列中第一个没有被取消的节点  
+
+```java
+public final void signal() {
+    if (!isHeldExclusively())
+        throw new IllegalMonitorStateException();
+    Node first = firstWaiter;
+    if (first != null)
+        doSignal(first);
+}
+```
+
