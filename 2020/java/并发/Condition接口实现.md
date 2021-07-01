@@ -266,5 +266,25 @@ final int fullyRelease(Node node) {
 
 当发现当前线程不是持有锁的线程，release就会返回false。此时failed依然还是true，进入到finally中将当前节点的waitStatus设置为Node.CANCELLED，然后进入else中抛出IllegalMonitorStateException异常。这也就是为什么上面在入队的时候先检查尾节点是不是已经被取消了。  
 
+在当前线程的锁被完全释放了以后，就可以调用LockSupport.part(this)方法将当前线程挂起，等待以后signal或者signalAll来唤醒。但是，在挂起之前，先用isOnSyncQueue确保当前节点不在sync queue中，这是为什么呢？当前线程不是在条件队列中吗？又怎么会出现在sync queue的情况呢？  
+
+```java
+final boolean isOnSyncQueue(Node node) {
+    if (node.waitStatus == Node.CONDITION || node.prev == null)
+        return false;
+    if (node.next != null) // If has successor, it must be on queue
+        return true;
+    /*
+         * node.prev can be non-null, but not yet on queue because
+         * the CAS to place it on queue can fail. So we have to
+         * traverse from tail to make sure it actually made it.  It
+         * will always be near the tail in calls to this method, and
+         * unless the CAS failed (which is unlikely), it will be
+         * there, so we hardly ever traverse much.
+         */
+    return findNodeFromTail(node);
+}
+```
+
 
 
