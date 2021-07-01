@@ -288,6 +288,11 @@ final boolean isOnSyncQueue(Node node) {
 ```
 
 ```java
+/**
+     * Returns true if node is on sync queue by searching backwards from tail.
+     * Called only when needed by isOnSyncQueue.
+     * @return true if present
+     */
 private boolean findNodeFromTail(Node node) {
     Node t = tail;
     for (;;) {
@@ -300,5 +305,13 @@ private boolean findNodeFromTail(Node node) {
 }
 ```
 
+为了解释这一问题，首先来看一下signal方法  
 
+#### signalAll方法  
+
+在看signalAll方法之前，先要区分调用signalAll方法的线程和signalAll方法要唤醒的线程（在条件队列中的线程）  
+
++ 调用signalAll方法的线程一定是已经获取到了锁的线程，现在准备释放锁了  
+
++ 在条件队列中的线程已经在对应的条件上挂起了，等待着被唤醒，然后去争抢锁  
 
