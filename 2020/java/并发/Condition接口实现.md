@@ -315,3 +315,23 @@ private boolean findNodeFromTail(Node node) {
 
 + 在条件队列中的线程已经在对应的条件上挂起了，等待着被唤醒，然后去争抢锁  
 
+```java
+
+/**
+         * Moves all threads from the wait queue for this condition to
+         * the wait queue for the owning lock.
+         *
+         * @throws IllegalMonitorStateException if {@link #isHeldExclusively}
+         *         returns {@code false}
+         */
+public final void signalAll() {
+    //首先检查调用signalAll方法的线程是不是当前持有锁的线程，isHeldExclusively由AQS的子类来实现
+    if (!isHeldExclusively())
+        throw new IllegalMonitorStateException();
+    Node first = firstWaiter;
+    if (first != null)
+        //唤醒条件队列中的所有节点
+        doSignalAll(first);
+}
+```
+
