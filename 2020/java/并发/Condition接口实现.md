@@ -468,3 +468,18 @@ public final void await() throws InterruptedException {
 
 如果中断发生时，当前线程没有被signal过，则说明当前线程还处于条件队列中，属于正常在等待中的状态，此时中断将导致当前线程从正常等待行为被打断，进入到等待队列中抢占锁。因此从await方法返回后，则需要抛出InterruptedException，表示当前线程因为中断而被唤醒。  
 
+如果中断发生时，当前线程已经被signal过了，则说明这个中断来的太晚了，既然当前线程已经被signal过了，说明中断发生时，当前线程已经在条件队列中被正常唤醒了，所以即使发生中断，也需要等待await方法返回时，再自我中断弥补一下这个中断。
+
+await使用interruptMode来记录中断事件，该变量有三个值  
+
+1. 0：代表整个过程中没有发生中断  
+2. THROW_IE：表示退出await方法时需要抛出InterruptedException异常，这种模式对应中断发生在signal之前  
+3. REINTERRUPT：表示退出await方法时需要再自我中断一下，这种模式对应于中断发生在signal之后  
+
+```java
+/** Mode meaning to reinterrupt on exit from wait */
+private static final int REINTERRUPT =  1;
+/** Mode meaning to throw InterruptedException on exit from wait */
+private static final int THROW_IE    = -1;
+```
+
