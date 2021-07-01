@@ -596,5 +596,37 @@ private void reportInterruptAfterWait(int interruptMode)
 
 ##### 情况二   
 
-#####  
+中断发生时，线程已经被signal了。  
+
+其实这种情况包含了两种子情况  
+
+1. 被唤醒时，已经发生过了中断，但是此时线程已经被signal过了  
+2. 被唤醒时，没有发生中断，在争抢锁的过程中发生了中断  
+
+###### 子情况一  
+
+被唤醒时，已经发生过了中断，但是此时线程已经被signal过了  
+
+对于这种情况，和前面的情况的差别主要在于transferAfterCancelledWait方法  
+
+```java
+final boolean transferAfterCancelledWait(Node node) {
+    if (compareAndSetWaitStatus(node, Node.CONDITION, 0)) {
+        enq(node);
+        return true;
+    }
+    /*
+    * If we lost out to a signal(), then we can't proceed
+    * until it finishes its enq().  Cancelling during an
+    * incomplete transfer is both rare and transient, so just
+    * spin.
+    * 发生中断前已经被signal过了，只需要等待节点被加入到等待队列
+    */
+    while (!isOnSyncQueue(node))
+        Thread.yield();
+    return false;
+}
+```
+
+
 
