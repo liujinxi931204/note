@@ -564,7 +564,8 @@ if (interruptMode != 0
     reportInterruptAfterWait(interruptMode);
 ```
 
-这里interruptMode=THROW_IE，说明发生了中断，则调用reportInterruptAfterWait
+这里interruptMode=THROW_IE，说明发生了中断，则调用reportInterruptAfterWait  
+
 ```java
 private void reportInterruptAfterWait(int interruptMode)
     throws InterruptedException {
@@ -575,3 +576,10 @@ private void reportInterruptAfterWait(int interruptMode)
 }
 ```
 
+可以看出interruptMode == THROW_IE会简单的抛出一个InterruptedException异常  
+
+总结  
+
+1. 线程因为中断，从挂起的地方被唤醒  
+2. 随后，通过transferAfterCancelledWait方法确认了线程的waitStatus为Node.CONDITION，说明中断发生时线程没有被signal      
+3. 接下来线程将在等待队列中
