@@ -368,6 +368,8 @@ final boolean transferForSignal(Node node) {
     * indicate that thread is (probably) waiting. If cancelled or
     * attempt to set waitStatus fails, wake up to resync (in which
     * case the waitStatus can be transiently and harmlessly wrong).
+    * 通过enq方法将当前节点添加到sync queue队列的末尾，注意enq方法返回的是当前节点的前驱
+    * 如果前驱节点的状态是取消状态或者无法设置前驱节点的状态为SIGNAL，就唤醒当前的线程
     */
     Node p = enq(node);
     int ws = p.waitStatus;
