@@ -287,5 +287,18 @@ final boolean isOnSyncQueue(Node node) {
 }
 ```
 
+```java
+private boolean findNodeFromTail(Node node) {
+    Node t = tail;
+    for (;;) {
+        if (t == node)
+            return true;
+        if (t == null)
+            return false;
+        t = t.prev;
+    }
+}
+```
+
 
 
