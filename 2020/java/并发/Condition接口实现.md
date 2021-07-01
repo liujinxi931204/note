@@ -411,6 +411,7 @@ public final void signal() {
 ```java
 private void doSignal(Node first) {
     do {
+        //将firstWaiter指向队列头的下一个节点
         if ( (firstWaiter = first.nextWaiter) == null)
             lastWaiter = null;
         first.nextWaiter = null;
