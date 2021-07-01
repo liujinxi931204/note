@@ -581,5 +581,14 @@ private void reportInterruptAfterWait(int interruptMode)
 总结  
 
 1. 线程因为中断，从挂起的地方被唤醒  
+
 2. 随后，通过transferAfterCancelledWait方法确认了线程的waitStatus为Node.CONDITION，说明中断发生时线程没有被signal      
-3. 接下来线程将在等待队列中
+
+3. 然后修改线程的waitStatus为0，并通过enq方法将其添加到等待队列中  
+
+4. 接下来线程将在等待队列中等待获取锁，如果获取不到锁，会再次被挂起  
+
+5. 线程获取到锁之后，将调用unlinkCancelledWaiters方法将节点从条件队列中移除，该方法还会顺便移除队列中其他的被取消的节点  
+
+6. 最后通过reportInterruptAfterWait抛出一个InterruptedException异常  
+
