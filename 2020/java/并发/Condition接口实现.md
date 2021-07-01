@@ -560,10 +560,11 @@ if (node.nextWaiter != null) // clean up if cancelled
 节点被移除后，接下来就是最后一步汇报中断状态  
 
 ```java
-if (interruptMode != 0)
+if (interruptMode != 0
     reportInterruptAfterWait(interruptMode);
 ```
 
+这里interruptMode=THROW_IE，说明发生了中断，则调用reportInterruptAfterWait
 ```java
 private void reportInterruptAfterWait(int interruptMode)
     throws InterruptedException {
