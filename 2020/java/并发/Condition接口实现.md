@@ -357,8 +357,9 @@ private void doSignalAll(Node first) {
 ```java
 final boolean transferForSignal(Node node) {
     /*
-         * If cannot change waitStatus, the node has been cancelled.
-         */
+    * If cannot change waitStatus, the node has been cancelled.
+    * 设置节点的waitStatus失败，说明当前节点在signalAll之前已经被取消了，则跳过这个节点
+    */
     if (!compareAndSetWaitStatus(node, Node.CONDITION, 0))
         return false;
 
