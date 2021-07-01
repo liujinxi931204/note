@@ -493,7 +493,7 @@ private int checkInterruptWhileWaiting(Node node) {
 }
 ```
 
-如果已经发生过中断，则Thread.interrupted返回true，接下来就是使用transferAfterCancelledWait来判断是否发生了signal  
+如果没有发生过中断，Thread.interrupt返回false，则checkInterruptWhileWaiting返回0；如果已经发生过中断，则Thread.interrupted返回true，接下来就是使用transferAfterCancelledWait来判断是否发生了signal  
 
 ```java
 final boolean transferAfterCancelledWait(Node node) {
@@ -513,3 +513,6 @@ final boolean transferAfterCancelledWait(Node node) {
 }
 ```
 
+判断一个node是否被signal，一个简单有效的方法就是判断它是否离开了条件队列，进入到等待队列中。  
+
+换句话说，只要一个节点的waitStatus还是Node.CONDITION，那就说明它还没有被signal过。
