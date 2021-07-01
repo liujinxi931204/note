@@ -502,11 +502,11 @@ final boolean transferAfterCancelledWait(Node node) {
         return true;
     }
     /*
-         * If we lost out to a signal(), then we can't proceed
-         * until it finishes its enq().  Cancelling during an
-         * incomplete transfer is both rare and transient, so just
-         * spin.
-         */
+    * If we lost out to a signal(), then we can't proceed
+    * until it finishes its enq().  Cancelling during an
+    * incomplete transfer is both rare and transient, so just
+    * spin.
+    */
     while (!isOnSyncQueue(node))
         Thread.yield();
     return false;
