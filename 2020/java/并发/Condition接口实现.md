@@ -392,3 +392,5 @@ final boolean transferForSignal(Node node) {
 + 判断是否需要将该节点唤醒（包括设置前驱节点的状态为SIGNAL），如果有必要，直接唤醒当前节点  
 + 重复上述过程  
 
+#### signal方法  
+
