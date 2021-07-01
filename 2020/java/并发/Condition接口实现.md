@@ -483,3 +483,33 @@ private static final int REINTERRUPT =  1;
 private static final int THROW_IE    = -1;
 ```
 
+线程被唤醒后，首先使用checkInterruptWhileWaiting方法来检测中断的模式  
+
+```java
+private int checkInterruptWhileWaiting(Node node) {
+    return Thread.interrupted() ?
+        (transferAfterCancelledWait(node) ? THROW_IE : REINTERRUPT) :
+    0;
+}
+```
+
+如果已经发生过中断，则Thread.interrupted返回true，接下来就是使用transferAfterCancelledWait来判断是否发生了signal  
+
+```java
+final boolean transferAfterCancelledWait(Node node) {
+    if (compareAndSetWaitStatus(node, Node.CONDITION, 0)) {
+        enq(node);
+        return true;
+    }
+    /*
+         * If we lost out to a signal(), then we can't proceed
+         * until it finishes its enq().  Cancelling during an
+         * incomplete transfer is both rare and transient, so just
+         * spin.
+         */
+    while (!isOnSyncQueue(node))
+        Thread.yield();
+    return false;
+}
+```
+
