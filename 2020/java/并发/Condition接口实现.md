@@ -398,9 +398,11 @@ final boolean transferForSignal(Node node) {
 
 ```java
 public final void signal() {
+    //判断调用signal方法的线程是不是当前线程
     if (!isHeldExclusively())
         throw new IllegalMonitorStateException();
     Node first = firstWaiter;
+    //如果条件队列不为空，唤醒条件队列中第一个没有被取消的节点
     if (first != null)
         doSignal(first);
 }
