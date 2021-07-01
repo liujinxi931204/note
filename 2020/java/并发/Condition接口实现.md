@@ -414,6 +414,7 @@ private void doSignal(Node first) {
         //将firstWaiter指向队列头的下一个节点
         if ( (firstWaiter = first.nextWaiter) == null)
             lastWaiter = null;
+        //将队列的头节点变为孤立节点
         first.nextWaiter = null;
     } while (!transferForSignal(first) &&
              (first = firstWaiter) != null);
