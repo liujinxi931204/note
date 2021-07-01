@@ -592,3 +592,9 @@ private void reportInterruptAfterWait(int interruptMode)
 
 6. 最后通过reportInterruptAfterWait抛出一个InterruptedException异常  
 
+可以看出，一个调用了await方法的挂起的线程在被中断后不会立即抛出InterruptedException异常，而是会被添加到等待队列中去争抢锁。如果没有争抢到锁，还是会被挂起的；如果争抢到了，则会从等待队列和条件队列中移除，然后才抛出InterruptedException异常  
+
+##### 情况二   
+
+#####  
+
