@@ -421,3 +421,5 @@ private void doSignal(Node first) {
 }
 ```
 
+这里依然调用transferForSignal方法节点转移到等待队列的末尾。如果节点被取消，那么transferForSignal方法会返回false，则循环下一个节点；如果没有被取消，那么transferForSignal方法就会返回true，此时while条件不满足，就会退出循环，方法就会结束。因此调用signal方法，只会唤醒一个线程。  
+
