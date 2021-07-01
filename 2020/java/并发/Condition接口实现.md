@@ -379,3 +379,6 @@ final boolean transferForSignal(Node node) {
 }
 ```
 
+在transferForSignal方法中，首先使用cas操作设置当前节点的waitStatus为Node.CONDITION，如果设置失败说明当前节点已经被取消了，那么就直接返回，然后操作下一个节点；如果修改成功，说明该节点已经在条件队列中被唤醒，但是还没有获取到锁，所以需要转移到等待队列的末尾等待获取锁。  
+
+在节点被enq方法成功添加到等待队列的末尾后，返回的是它的前驱节点。我们知道等待队列中的节点都需要靠前驱节点来唤醒，所以这里需要做就是将前驱节点的waitStatus设置为Node.SIGNAL。如果前驱节点的状态是取消状态或者设置为Node.SIGNAL失败，那么就直接唤醒当前节点
