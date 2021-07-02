@@ -781,3 +781,13 @@ public final void awaitUninterruptibly() {
 }
 ```
 
+可以看到awaitUninterruptibly和await方法的区别在于，await方法中的checkInterruptWhileWaiting方法会记录中断发生在signal之前还是之后，然后将节点从条件队列转移到等待队列中；而在awaitUninterruptibly方法中，即使挂起的线程被中断唤醒，也仅仅是记录一下发生过中断，然后再循环中再次将线程挂起，除非是发生了signal或者signalAll。  
+
+它的核心思想就是  
+
+1. 中断虽然会唤醒线程，但是不会导致线程离开条件队列，如果线程只是因为中断而被唤醒，则它将再次被挂起  
+
+2. 中有signal方法或者signalAll方法会使得线程离开条件队列  
+
+3. 调用该方法时或者调用过程中如果发生了中断，仅仅会在方法结束的时候再自我中断一下而不是抛出InterruptedException异常  
+
