@@ -713,7 +713,7 @@ public final void await() throws InterruptedException {
 }
 ```
 
+由于中断发生在争抢锁的过程中，所以被唤醒时线程是没有被中断的。所以checkInterruptWhileWaiting方法返回了0，在下一次循环中，由于线程已经被唤醒了，所以在等待队列中了，因此就退出了while循环。所以这种情况下，interruptMode=0。
 
-
-
+接下来在acquireQueued中争抢锁，这个方法仅仅会记录一下线程的中断状态，最后争抢锁成功以后会返回true，则此时interruptMode会被设置为REINTERRUPT。之后由于在signal方法的时候节点已经从条件队列中被移除了，所以node.nextWaiter != null条件就不成立了，所以到最后就是reportInterruptAfterWait汇报自己的中断状态。
 
