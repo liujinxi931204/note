@@ -773,7 +773,7 @@ public final void awaitUninterruptibly() {
     while (!isOnSyncQueue(node)) {
         LockSupport.park(this);//线程在这里被挂起，唤醒后继续从这里执行
         if (Thread.interrupted())
-            //发生中断后线程依然在条件队列中，仅仅是记录一下线程的中断状态
+            //发生中断后线程依然在条件队列中，会在循环中再次被挂起，仅仅是记录一下线程的中断状态
             interrupted = true;
     }
     if (acquireQueued(node, savedState) || interrupted)
