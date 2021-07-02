@@ -834,3 +834,37 @@ public final long awaitNanos(long nanosTimeout)
 
 不过还有一点需要注意就是awaitNanos(0)，在同步监视器中，wait(0)意味着无线等待，而从awaitNanos的源码中可以看到，awaitNanos(0)会直接进入到等待队列中。  
 
+#### await(long time,TimeUnit Unit)方法  
+
+```java
+public final boolean await(long time, TimeUnit unit)
+    throws InterruptedException {
+    long nanosTimeout = unit.toNanos(time);
+    if (Thread.interrupted())
+        throw new InterruptedException();
+    Node node = addConditionWaiter();
+    int savedState = fullyRelease(node);
+    final long deadline = System.nanoTime() + nanosTimeout;
+    boolean timedout = false;
+    int interruptMode = 0;
+    while (!isOnSyncQueue(node)) {
+        if (nanosTimeout <= 0L) {
+            timedout = transferAfterCancelledWait(node);
+            break;
+        }
+        if (nanosTimeout >= spinForTimeoutThreshold)
+            LockSupport.parkNanos(this, nanosTimeout);
+        if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
+            break;
+        nanosTimeout = deadline - System.nanoTime();
+    }
+    if (acquireQueued(node, savedState) && interruptMode != THROW_IE)
+        interruptMode = REINTERRUPT;
+    if (node.nextWaiter != null)
+        unlinkCancelledWaiters();
+    if (interruptMode != 0)
+        reportInterruptAfterWait(interruptMode);
+    return !timedout;
+}
+```
+
