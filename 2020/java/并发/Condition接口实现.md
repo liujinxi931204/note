@@ -813,6 +813,7 @@ public final long awaitNanos(long nanosTimeout)
             transferAfterCancelledWait(node);
             break;
         }
+        //超时时间小于一定的阈值1000ns，使用自旋的方式而不是将线程挂起
         if (nanosTimeout >= spinForTimeoutThreshold)
             LockSupport.parkNanos(this, nanosTimeout);
         if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
