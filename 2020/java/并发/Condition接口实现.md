@@ -884,7 +884,9 @@ public final boolean awaitUntil(Date deadline)
     long abstime = deadline.getTime();
     if (Thread.interrupted())
         throw new InterruptedException();
+    //将当前线程包装成一个Node节点加入到条件队列中去
     Node node = addConditionWaiter();
+    //完全释放当前线程的锁
     int savedState = fullyRelease(node);
     boolean timedout = false;
     int interruptMode = 0;
