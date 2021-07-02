@@ -759,3 +759,24 @@ public final void await() throws InterruptedException {
 
 如前所说，signal和中断都可以将线程从条件队列移除添加到等待队列中去争抢锁，所不同的是,signal方法被认为是正常的唤醒线程，中断被认为是不正常的唤醒线程。如果中断发生在signal之前，则在最终返回时需要抛出InterruptedException异常；如果中断发生在signal之后，认为这个线程已经被正常唤醒，所以只是在await返回时自我中断一下，相当于将这个中断推迟到await方法返回时在发生。  
 
+#### awaitUninterrupibly方法  
+
+await方法中，中断起到了和signal同样的效果，但是中断属于将一个等待中的线程非正常的唤醒，可能即使线程被唤醒后，也抢到了锁，但是却发现当前的条件不满足，这样的情况还需要将线程挂起。因此可能有时并不希望await方法被中断，awaitUninterruptibly方法则实现了这个功能  
+
+```java
+public final void awaitUninterruptibly() {
+    //包装成node节点加入到条件队列
+    Node node = addConditionWaiter();
+    //完全释放线程持有的锁
+    int savedState = fullyRelease(node);
+    boolean interrupted = false;
+    while (!isOnSyncQueue(node)) {
+        LockSupport.park(this);
+        if (Thread.interrupted())
+            interrupted = true;
+    }
+    if (acquireQueued(node, savedState) || interrupted)
+        selfInterrupt();
+}
+```
+
