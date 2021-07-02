@@ -683,6 +683,36 @@ private void reportInterruptAfterWait(int interruptMode)
 
 5. 线程成功获取到锁以后，通过reportInterruptAfterWait方法将线程再次中断而不是抛出InterruptedException异常  
 
+###### 子情况二  
+
+被唤醒时没有发生中断，但是在争抢锁的过程中发生中断  
+
+如果线程是因为signal被唤醒，则由前面分析signal的方法可以知道，线程最终都会离开条件队列，加入到等待队列末尾。所以只需要判断被唤醒时，线程是否已经在等待队列中即可  
+
+```java
+public final void await() throws InterruptedException {
+    if (Thread.interrupted())
+        throw new InterruptedException();
+    Node node = addConditionWaiter();
+    int savedState = fullyRelease(node);
+    int interruptMode = 0;
+    while (!isOnSyncQueue(node)) {
+        LockSupport.park(this);  // 我们在这里，线程将在这里被唤醒
+        // 由于现在没有发生中断，所以interruptMode目前为0
+        //由于中断发生在争抢锁的时候，所以唤醒时还没有发生中断，因此checkInterruptWhileWaiting
+        //返回0，在下一次循环中，节点已经在sync queue中了，所以退出循环
+        if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
+            break;
+    }
+    if (acquireQueued(node, savedState) && interruptMode != THROW_IE)
+        interruptMode = REINTERRUPT;
+    if (node.nextWaiter != null) // clean up if cancelled
+        unlinkCancelledWaiters();
+    if (interruptMode != 0)
+        reportInterruptAfterWait(interruptMode);
+}
+```
+
 
 
 
