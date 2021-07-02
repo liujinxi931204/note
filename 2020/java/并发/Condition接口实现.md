@@ -791,3 +791,37 @@ public final void awaitUninterruptibly() {
 
 3. 调用该方法时或者调用过程中如果发生了中断，仅仅会在方法结束的时候再自我中断一下而不是抛出InterruptedException异常  
 
+#### awaitNanos方法  
+
+无论是await还是awaitUninterruptibly方法，它们在抢占锁的过程中都是阻塞式的，即一直到抢到了锁为止，否则线程还是会被挂起，这样有一个问题就是如果线程长时间没有抢占到锁就会一直被阻塞，因此有时需要带有超时机制的抢锁  
+
+```java
+public final long awaitNanos(long nanosTimeout)
+    throws InterruptedException {
+    if (Thread.interrupted())
+        throw new InterruptedException();
+    Node node = addConditionWaiter();
+    int savedState = fullyRelease(node);
+    final long deadline = System.nanoTime() + nanosTimeout;
+    int interruptMode = 0;
+    while (!isOnSyncQueue(node)) {
+        if (nanosTimeout <= 0L) {
+            transferAfterCancelledWait(node);
+            break;
+        }
+        if (nanosTimeout >= spinForTimeoutThreshold)
+            LockSupport.parkNanos(this, nanosTimeout);
+        if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
+            break;
+        nanosTimeout = deadline - System.nanoTime();
+    }
+    if (acquireQueued(node, savedState) && interruptMode != THROW_IE)
+        interruptMode = REINTERRUPT;
+    if (node.nextWaiter != null)
+        unlinkCancelledWaiters();
+    if (interruptMode != 0)
+        reportInterruptAfterWait(interruptMode);
+    return deadline - System.nanoTime();
+}
+```
+
