@@ -842,7 +842,9 @@ public final boolean await(long time, TimeUnit unit)
     long nanosTimeout = unit.toNanos(time);
     if (Thread.interrupted())
         throw new InterruptedException();
+    //将线程包装成node节点加入到条件队列中
     Node node = addConditionWaiter();
+    //完全释放线程锁持有的锁
     int savedState = fullyRelease(node);
     final long deadline = System.nanoTime() + nanosTimeout;
     boolean timedout = false;
