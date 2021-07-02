@@ -910,5 +910,7 @@ public final boolean awaitUntil(Date deadline)
 }
 ```
 
+awaitUntil(Date deadline)方法其实和await(long time,TimeUnit Unit)方法没有什么区别，所不同的是它的超时时间是一个绝对时间，另外在这个方法中没有使用spinForTimeoutThreshold做一个自旋的优化。因为一般调用这个方法，目的就是设定一个较长的等待时间，否则使用上面的相对时间会更方便一点。  
+
 
 
