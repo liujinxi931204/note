@@ -800,8 +800,11 @@ public final long awaitNanos(long nanosTimeout)
     throws InterruptedException {
     if (Thread.interrupted())
         throw new InterruptedException();
+    //将线程包装成node节点加入到条件队列中
     Node node = addConditionWaiter();
+    //完全释放线程上的锁
     int savedState = fullyRelease(node);
+    //计算超时的截止时间
     final long deadline = System.nanoTime() + nanosTimeout;
     int interruptMode = 0;
     while (!isOnSyncQueue(node)) {
