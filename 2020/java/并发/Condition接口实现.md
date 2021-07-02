@@ -872,3 +872,40 @@ public final boolean await(long time, TimeUnit unit)
 }
 ```
 
+可以看到await(long time,TimeUnit unit)和awaitNanos(long nanosTimeout)没有太大的区别，主要的区别在于awaitNanos(long nanosTimeout)方法返回的是剩余的超时时间。如果该值大于0，说明超时时间还没有到，造成返回的原因是signal唤醒；而await(long time,TimeUnit unit)的返回值是boolean类型，如果返回false，说明在超时之前线程被signal唤醒了，否则返回true。  
+
+综上，调用await(long time,TimeUnit unit)其实就相当于调用awaitNanos(long nanosTimeout)>0。  
+
+#### awaitUntil(Date deadline)  
+
+```java
+public final boolean awaitUntil(Date deadline)
+    throws InterruptedException {
+    long abstime = deadline.getTime();
+    if (Thread.interrupted())
+        throw new InterruptedException();
+    Node node = addConditionWaiter();
+    int savedState = fullyRelease(node);
+    boolean timedout = false;
+    int interruptMode = 0;
+    while (!isOnSyncQueue(node)) {
+        if (System.currentTimeMillis() > abstime) {
+            timedout = transferAfterCancelledWait(node);
+            break;
+        }
+        LockSupport.parkUntil(this, abstime);
+        if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
+            break;
+    }
+    if (acquireQueued(node, savedState) && interruptMode != THROW_IE)
+        interruptMode = REINTERRUPT;
+    if (node.nextWaiter != null)
+        unlinkCancelledWaiters();
+    if (interruptMode != 0)
+        reportInterruptAfterWait(interruptMode);
+    return !timedout;
+}
+```
+
+
+
