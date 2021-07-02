@@ -830,3 +830,5 @@ public final long awaitNanos(long nanosTimeout)
 }
 ```
 
+该方法的主要设计思想是，如果超时时间没有到，就将线程挂起；如果超过了超时时间，节点就被加入到等待队列中。这里有一个小小的优化，就是如果超时时间小于一定的阈值spinForTimeoutThreshold，不会将线程挂起而是使用自旋的方式
+
