@@ -755,4 +755,7 @@ public final void await() throws InterruptedException {
 
 7. 线程持有了锁，从await方法中离开  
 
+![preview](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/1460000016462286)  
+
+如前所说，signal和中断都可以将线程从条件队列移除添加到等待队列中去争抢锁，所不同的是,signal方法被认为是正常的唤醒线程，中断被认为是不正常的唤醒线程。如果中断发生在signal之前，则在最终返回时需要抛出InterruptedException异常；如果中断发生在signal之后，认为这个线程已经被正常唤醒，所以只是在await返回时自我中断一下，相当于将这个中断推迟到await方法返回时在发生。  
 
