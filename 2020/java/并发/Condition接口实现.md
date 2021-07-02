@@ -851,9 +851,11 @@ public final boolean await(long time, TimeUnit unit)
     int interruptMode = 0;
     while (!isOnSyncQueue(node)) {
         if (nanosTimeout <= 0L) {
+            //如果node还没有被signal唤醒，返回true；否则返回false
             timedout = transferAfterCancelledWait(node);
             break;
         }
+        //超时时间小于一定的阈值1000ns，使用自旋的方式而不是将线程挂起
         if (nanosTimeout >= spinForTimeoutThreshold)
             LockSupport.parkNanos(this, nanosTimeout);
         if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
