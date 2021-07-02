@@ -717,3 +717,25 @@ public final void await() throws InterruptedException {
 
 接下来在acquireQueued中争抢锁，这个方法仅仅会记录一下线程的中断状态，最后争抢锁成功以后会返回true，则此时interruptMode会被设置为REINTERRUPT。之后由于在signal方法的时候节点已经从条件队列中被移除了，所以node.nextWaiter != null条件就不成立了，所以到最后就是reportInterruptAfterWait汇报自己的中断状态。
 
+总结  
+
++ 线程被signal方法唤醒后，此时并没有发生过中断。  
+
++ 因为没有发生过中断，所以从checkInterruptWhileWaiting返回时interruptMode=0。
+
++ 接下来回到循环中，因为signal方法使得节点被转移到了等待队列中，所以while条件不满足，退出循环。
+
++ 然后在acquireQueued中以阻塞的方式争抢锁，如果没有争抢到锁则被挂起。  
+
++ 线程获取锁返回后，检测到在争抢锁的过程中发生过中断，并且此时interruptMode=0，所以这时将interruptMode设置为 REINTERRUPT。  
+
++ 最后通过reportInterruptAfterWait将当前线程再次中断，但是不会抛出InterruptedException异常。  
+
+不管怎么说，只要中断发生在signal之后，我们都认为中断来的太晚了，在await中都将忽略这个中断，只是在await方法返回的时候，将这个线程再中断一次，而不是抛出异常。  
+
+##### 情况三  
+
+一直没有发生过中断  
+
+这种情况就不需要汇报中断了，所以直接从await方法返回就可以了  
+
