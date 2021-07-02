@@ -808,6 +808,7 @@ public final long awaitNanos(long nanosTimeout)
     final long deadline = System.nanoTime() + nanosTimeout;
     int interruptMode = 0;
     while (!isOnSyncQueue(node)) {
+        //如果超时时间小于等于0，节点直接加入到等待队列中
         if (nanosTimeout <= 0L) {
             transferAfterCancelledWait(node);
             break;
