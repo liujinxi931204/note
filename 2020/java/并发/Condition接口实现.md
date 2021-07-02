@@ -832,3 +832,5 @@ public final long awaitNanos(long nanosTimeout)
 
 该方法的主要设计思想是，如果超时时间没有到，就将线程挂起；如果超过了超时时间，节点就被加入到等待队列中。这里有一个小小的优化，就是如果超时时间小于一定的阈值spinForTimeoutThreshold，不会将线程挂起而是使用自旋的方式等待超时然后进入等待队列，这样做可以减少挂起和唤醒线程锁带来的消耗。  
 
+不过还有一点需要注意就是awaitNanos(0)，在同步监视器中，wait(0)意味着无线等待，而从awaitNanos的源码中可以看到，awaitNanos(0)会直接进入到等待队列中。  
+
