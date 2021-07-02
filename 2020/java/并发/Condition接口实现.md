@@ -892,6 +892,7 @@ public final boolean awaitUntil(Date deadline)
     int interruptMode = 0;
     while (!isOnSyncQueue(node)) {
         if (System.currentTimeMillis() > abstime) {
+            //超时了，如果超时之前被signal唤醒，返回false，否则返回true
             timedout = transferAfterCancelledWait(node);
             break;
         }
