@@ -851,7 +851,7 @@ public final boolean await(long time, TimeUnit unit)
     int interruptMode = 0;
     while (!isOnSyncQueue(node)) {
         if (nanosTimeout <= 0L) {
-            //如果node还没有被signal唤醒，返回true；否则返回false
+            //超时时间已经到了，如果node节点没有在超时之前被signal返回true，否则返回false
             timedout = transferAfterCancelledWait(node);
             break;
         }
