@@ -43,3 +43,5 @@ public CountDownLatch(int count) {
 }
 ```
 
+在构造函数中，就是简单的传入一个任务数，如果任务数小于0，会抛出异常；如果大于等于0，调用内部类Sync的构造方法，就是设置AQS中的state的初始值  
+
