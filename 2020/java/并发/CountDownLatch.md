@@ -34,3 +34,12 @@ private static final class Sync extends AbstractQueuedSynchronizer {
 }
 ```
 
+## 构造函数  
+
+```java
+public CountDownLatch(int count) {
+    if (count < 0) throw new IllegalArgumentException("count < 0");
+    this.sync = new Sync(count);
+}
+```
+
