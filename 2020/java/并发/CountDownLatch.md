@@ -49,3 +49,11 @@ public CountDownLatch(int count) {
 
 CountDownLatch有两个核心方法，一个是countDown方法，每调用一次，就会将当前的count减一，当count的值为0，就会唤醒所有等待的线程；另一个方法是await方法，该方法用于将当前线程挂起，直到count的值为0。虽然和条件队列的用法很像，但是CountDownLatch底层用的是共享锁而不是条件队列  
 
+### countDown 方法  
+
+```java
+public void countDown() {
+    sync.releaseShared(1);
+}
+```
+
