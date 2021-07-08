@@ -85,3 +85,11 @@ protected boolean tryReleaseShared(int releases) {
 }
 ```
 
+这个方法就是获取当前的state值，如果已经为0了，直接返回false；否则通过cas操作将state值减一，之后返回nextc == 0。从这里可以看到，如果count的值从不是0变为0，才会返回true，其他的情况都会返回false。而且如果count的值已经成为0了，再次调用这个方法的时候还是会返回false。也就是这个方法其实只关心一种情况，就是state的值从不是0变为0的这种情况，这时代表倒数计数结束，所有被阻塞的任务都应该继续进行了  
+
+doReleaseShared方法这里不详细说，主要的作用就是唤醒所有等待中的线程  
+
+### await方法  
+
+
+
