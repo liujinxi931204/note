@@ -57,3 +57,31 @@ public void countDown() {
 }
 ```
 
+这个方法的目的就是将count的值减一，并且在count值等于0的时候，唤醒所有等待的线程，它的内部其实就是调用共享锁的释放操作  
+
+```java
+public final boolean releaseShared(int arg) {
+    if (tryReleaseShared(arg)) {
+        doReleaseShared();
+        return true;
+    }
+    return false;
+}
+```
+
+这个方法由AQS实现，但是tryReleaseShared方法由Sync内部类自己实现  
+
+```java
+protected boolean tryReleaseShared(int releases) {
+    // Decrement count; signal when transition to zero
+    for (;;) {
+        int c = getState();
+        if (c == 0)
+            return false;
+        int nextc = c-1;
+        if (compareAndSetState(c, nextc))
+            return nextc == 0;
+    }
+}
+```
+
