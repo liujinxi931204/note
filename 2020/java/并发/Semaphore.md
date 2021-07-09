@@ -122,4 +122,63 @@ final int nonfairTryAcquireShared(int acquires) {
 }
 ```
 
-可以看到tryAcquireShared方法内部调用的是nonfairTryAcquireShared方法。该方法用自旋+CAS操作的方式修改state值，退出该方法的办法是成功修改了state的值或者扣除本次获取的信号量之后剩余的信号量小于0。
+可以看到tryAcquireShared方法内部调用的是nonfairTryAcquireShared方法。该方法用自旋+CAS操作的方式修改state值，退出该方法的办法是成功修改了state的值或者扣除本次获取的信号量之后剩余的信号量小于0。如果扣除本次获取的信号量之后剩余的信号量小于0，说明现有的信号量的数量不够，那么本次扣除就不会发生。如果成功修改了state值，说明本次获取信号量成功，返回的是扣除本次获取的信号量之后剩余的信号量  
+
+相比较于CountDownLatch，Semaphore的减少state值是一种获取共享锁的行为，减少成功了，则获取成功；CountDownLatch获取共享锁的方式是一种释放锁的行为，因为它的目的是将state的值减少为0  
+
+## 公平锁  
+
+```java
+protected int tryAcquireShared(int acquires) {
+    for (;;) {
+        if (hasQueuedPredecessors())
+            return -1;
+        int available = getState();
+        int remaining = available - acquires;
+        if (remaining < 0 ||
+            compareAndSetState(available, remaining))
+            return remaining;
+    }
+}
+```
+
+可见公平锁和非公平锁的区别在于
+
+```java
+if (hasQueuedPredecessors())
+    return -1;
+```
+
+公平锁在获取共享锁之前会先判断等待队列中是否有节点排在自己的前面  
+
+## 释放信号量  
+
+释放信号量的方式有2个  
+
+```java
+public void release() {
+    sync.releaseShared(1);
+}
+```
+
+```java
+public void release(int permits) {
+    if (permits < 0) throw new IllegalArgumentException();
+    sync.releaseShared(permits);
+}
+```
+
+可见release()方法相当于调用了release(1)，这两个方法最终都调用了releaseShared方法  
+
+```java
+public final boolean releaseShared(int arg) {
+    if (tryReleaseShared(arg)) {
+        doReleaseShared();
+        return true;
+    }
+    return false;
+}
+```
+
+
+
