@@ -124,6 +124,7 @@ protected int tryAcquireShared(int acquires) {
 ```java
 private void doAcquireSharedInterruptibly(int arg)
     throws InterruptedException {
+    //将当线程变为Node节点，然后加入到等待队列中
     final Node node = addWaiter(Node.SHARED);
     boolean failed = true;
     try {
