@@ -173,6 +173,44 @@ public final boolean tryAcquireSharedNanos(int arg, long nanosTimeout)
 }
 ```
 
+tryAcquireShared上面已经说过了，就是判断当前的state值是不是0。如果不是0，返回-1。说明此时调用doAcquireSharedNanos方法，需要阻塞当前线程一段时间  
+
+```java
+private boolean doAcquireSharedNanos(int arg, long nanosTimeout)
+    throws InterruptedException {
+    if (nanosTimeout <= 0L)
+        return false;
+    final long deadline = System.nanoTime() + nanosTimeout;
+    final Node node = addWaiter(Node.SHARED);
+    boolean failed = true;
+    try {
+        for (;;) {
+            final Node p = node.predecessor();
+            if (p == head) {
+                int r = tryAcquireShared(arg);
+                if (r >= 0) {
+                    setHeadAndPropagate(node, r);
+                    p.next = null; // help GC
+                    failed = false;
+                    return true;
+                }
+            }
+            nanosTimeout = deadline - System.nanoTime();
+            if (nanosTimeout <= 0L)
+                return false;
+            if (shouldParkAfterFailedAcquire(p, node) &&
+                nanosTimeout > spinForTimeoutThreshold)
+                LockSupport.parkNanos(this, nanosTimeout);
+            if (Thread.interrupted())
+                throw new InterruptedException();
+        }
+    } finally {
+        if (failed)
+            cancelAcquire(node);
+    }
+}
+```
+
 
 
 
