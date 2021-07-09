@@ -207,8 +207,10 @@ TimeoutException {
         //如果count不为0，说明需要将档期线程挂起，直到所有的线程都到齐或者超时
         for (;;) {
             try {
+                //如果没有设置超时，使用condition的await方法挂起
                 if (!timed)
                     trip.await();
+                //如果设置了超时，使用condition的awaitNanos方法挂起
                 else if (nanos > 0L)
                     nanos = trip.awaitNanos(nanos);
             } catch (InterruptedException ie) {
