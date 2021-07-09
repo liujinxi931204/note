@@ -117,5 +117,44 @@ private void breakBarrier() {
 }
 ```
 
+### reset方法 
+
+```java
+public void reset() {
+    final ReentrantLock lock = this.lock;
+    lock.lock();
+    try {
+        breakBarrier();   // break the current generation
+        nextGeneration(); // start a new generation
+    } finally {
+        lock.unlock();
+    }
+}
+```
+
+reset方法用于将Barrier恢复成初始状态，内部就是简单调用了breakBarrier和nextGeneration两个方法。需要注意的是，如果在执行该方法时有线程在等待在Barrier上，则它将立即返回并抛出BrokenBarrierException异常。另外一点需要注意的是，该方法执行前需要获得锁  
+
+### await方法  
+
+await方法是CyclicBarrier最核心的方法，他是一个集"countDown"和"阻塞等待"于一体的方法  
+
+await方法有两种版本，一种带有超时机制，另一种不带超时机制，然而从内部来看，不带超时机制的方法最终调用的是带有超时机制的doAwait方法  
+
+```java
+public int await() throws InterruptedException, BrokenBarrierException {
+    try {
+        return dowait(false, 0L);
+    } catch (TimeoutException toe) {
+        throw new Error(toe); // cannot happen
+    }
+}
+public int await(long timeout, TimeUnit unit)
+    throws InterruptedException,
+BrokenBarrierException,
+TimeoutException {
+    return dowait(true, unit.toNanos(timeout));
+}
+```
+
 
 
