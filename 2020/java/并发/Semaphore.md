@@ -202,3 +202,5 @@ protected final boolean tryReleaseShared(int releases) {
 与获取信号量的逻辑相反，释放信号量需要将已经获取的信号量归还回去，因此是增加state的值
 
 ## 总结
+
+Semaphore的实现是基于共享锁来实现的，使用资源前先通过acquire方法来申请信号量，如果资源数不够，则阻塞等待；如果资源数足够，则继续运行。使用完毕后，使用release方法来归还信号量。
