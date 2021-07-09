@@ -189,6 +189,7 @@ private boolean doAcquireSharedNanos(int arg, long nanosTimeout)
             if (p == head) {
                 int r = tryAcquireShared(arg);
                 if (r >= 0) {
+                    //说明超时时间没有到，但是count值为0，返回true
                     setHeadAndPropagate(node, r);
                     p.next = null; // help GC
                     failed = false;
@@ -196,6 +197,7 @@ private boolean doAcquireSharedNanos(int arg, long nanosTimeout)
                 }
             }
             nanosTimeout = deadline - System.nanoTime();
+            //说明已经超时，返回false
             if (nanosTimeout <= 0L)
                 return false;
             if (shouldParkAfterFailedAcquire(p, node) &&
@@ -210,6 +212,8 @@ private boolean doAcquireSharedNanos(int arg, long nanosTimeout)
     }
 }
 ```
+
+可以看到相比较于await方法，await(long timeout,TimeUnit unit)有两种继续向下运行的可能，一个是count值为0，另一个是超时，这两种情况分别是通过返回值是true还是false区分。 如果是count值为0被正常唤醒，返回true；如果是因为超时被唤醒，返回false  
 
 
 
