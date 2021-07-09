@@ -215,6 +215,10 @@ private boolean doAcquireSharedNanos(int arg, long nanosTimeout)
 
 可以看到相比较于await方法，await(long timeout,TimeUnit unit)有两种继续向下运行的可能，一个是count值为0，另一个是超时，这两种情况分别是通过返回值是true还是false区分。 如果是count值为0被正常唤醒，返回true；如果是因为超时被唤醒，返回false  
 
+## 总结  
+
+CountDownLatch是基于共享锁实现的，使用await方法会阻塞一个线程，每调用一次countDown方法，就会将count减一，直到count值变为0，唤醒被await方法阻塞的线程。CountDownLatch是一次性的，无法再重复使用  
+
 
 
 
