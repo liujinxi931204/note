@@ -204,6 +204,7 @@ TimeoutException {
         }
 
         // loop until tripped, broken, interrupted, or timed out
+        //如果count不为0，说明需要将档期线程挂起，直到所有的线程都到齐或者超时
         for (;;) {
             try {
                 if (!timed)
