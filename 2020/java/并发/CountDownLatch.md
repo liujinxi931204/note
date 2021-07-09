@@ -91,5 +91,23 @@ doReleaseShared方法这里不详细说，主要的作用就是唤醒所有等�
 
 ### await方法  
 
+与condition的await方法的语义相同，该方法是阻塞式地等待，并且是响应中断的，只不过它不是在等待signal操作，而是在等待count的值为0  
 
+```java
+public void await() throws InterruptedException {
+    sync.acquireSharedInterruptibly(1);
+}
+```
+
+可见在await方法内部调用了AQS的acquireSharedInterruptibly方法  
+
+```java
+public final void acquireSharedInterruptibly(int arg)
+    throws InterruptedException {
+    if (Thread.interrupted())
+        throw new InterruptedException();
+    if (tryAcquireShared(arg) < 0)
+        doAcquireSharedInterruptibly(arg);
+}
+```
 
