@@ -86,5 +86,36 @@ public CyclicBarrier(int parties) {
 
 ## 辅助方法  
 
+首先需要理解"Generation"的概念，由于CyclicBarrier是可重复使用的，把每一个新的Barrier称为一代  
+
+开启新的一代，需要使用nextGeneration方法  
+
+### nextGeneration方法  
+
+```java
+private void nextGeneration() {
+    // signal completion of last generation
+    trip.signalAll();
+    // set up next generation
+    count = parties;
+    generation = new Generation();
+}
+```
+
+通常开启新的一代是由最后一个到达的线程来执行的。在该方法中，会唤醒当前这一代中所有在条件队列中挂起的线程，将count的值恢复为parties，以及开启新的一代  
+
+### breakBarrier方法  
+
+```java
+private void breakBarrier() {
+    // 标记broken状态
+    generation.broken = true;
+    // 恢复count值
+    count = parties;
+    // 唤醒当前这一代中所有等待在条件队列里的线程（因为栅栏已经打破了）
+    trip.signalAll();
+}
+```
+
 
 
