@@ -172,7 +172,9 @@ public void release(int permits) {
 
 ```java
 public final boolean releaseShared(int arg) {
+    //归还信号量
     if (tryReleaseShared(arg)) {
+        //唤醒后继节点
         doReleaseShared();
         return true;
     }
@@ -199,3 +201,4 @@ protected final boolean tryReleaseShared(int releases) {
 
 与获取信号量的逻辑相反，释放信号量需要将已经获取的信号量归还回去，因此是增加state的值
 
+## 总结
