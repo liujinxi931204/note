@@ -180,5 +180,20 @@ public final boolean releaseShared(int arg) {
 }
 ```
 
+而这个方法又调用了tryReleaseShared方法  
+
+```java
+protected final boolean tryReleaseShared(int releases) {
+    for (;;) {
+        int current = getState();
+        int next = current + releases;
+        if (next < current) // overflow
+            throw new Error("Maximum permit count exceeded");
+        if (compareAndSetState(current, next))
+            return true;
+    }
+}
+```
+
 
 
