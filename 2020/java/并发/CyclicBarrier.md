@@ -170,22 +170,29 @@ TimeoutException {
     try {
         final Generation g = generation;
 
+        //调用breakBarrier会将当前代的broken设置为true
+        //如果一个正在Barrier上等待的线程会发现barrier已经被broken了，会抛出BrokenBarrierException异常
         if (g.broken)
             throw new BrokenBarrierException();
 
+        //当前线程已经被中断，则先将Barrier打破，然后再抛出InterruptedException异常
+        //这样做是因为等待在Barrier上的线程是相互等待的，如果其中一个被中断了，那么其他的线程就不需要等待了
         if (Thread.interrupted()) {
             breakBarrier();
             throw new InterruptedException();
         }
 
+        //当前线程已经到了Barrier了，所以将count值减一
         int index = --count;
         if (index == 0) {  // tripped
             boolean ranAction = false;
             try {
+                //在通过Barrier之前先执行Runnable的任务
                 final Runnable command = barrierCommand;
                 if (command != null)
                     command.run();
                 ranAction = true;
+                //开启下一代，在其中唤醒所有在条件队列等待的线程
                 nextGeneration();
                 return 0;
             } finally {
