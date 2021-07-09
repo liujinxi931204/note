@@ -185,7 +185,9 @@ public final boolean releaseShared(int arg) {
 ```java
 protected final boolean tryReleaseShared(int releases) {
     for (;;) {
+        //获取当前的state
         int current = getState();
+        //将之前已经被获取的信号量归还回去
         int next = current + releases;
         if (next < current) // overflow
             throw new Error("Maximum permit count exceeded");
