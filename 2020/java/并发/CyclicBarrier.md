@@ -299,3 +299,6 @@ public boolean isBroken() {
 
 判断当前Barrier是否已经broken，这里同样加锁了，因为broken属性有可能被多个线程修改
 
+## 总结  
+
+CtclicBarrier可以使得一组线程之间相互等待，直到所有的线程都到齐了之后再继续向下执行。CyclicBarrier是基于独占锁和条件队列实现的。可以重复使用，当所有线程一起通过后，会开启新的一代。CyclicBarrier的所有线程相互等待，要么一起通过，要么一个都不通过，如果有一个线程因为中断，失败或者过早的离开Barrier，那么这个Barrier需要被broken，所有等待在该Barrier上等待的线程都需要抛出异常
