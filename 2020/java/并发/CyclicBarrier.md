@@ -214,6 +214,8 @@ TimeoutException {
                 else if (nanos > 0L)
                     nanos = trip.awaitNanos(nanos);
             } catch (InterruptedException ie) {
+                //执行到这里，说明线程被中断了
+                //如果被中断以后，线程还处于当前这一代，而且Barrier还没有被打破，那么先打破Barrier
                 if (g == generation && ! g.broken) {
                     breakBarrier();
                     throw ie;
@@ -221,16 +223,29 @@ TimeoutException {
                     // We're about to finish waiting even if we had not
                     // been interrupted, so this interrupt is deemed to
                     // "belong" to subsequent execution.
+                    //执行到这里，有两种情况
+                    //g!=generation，说明已经产生了新的一代，这里只需要在自我中断一下就好
+                    //g.broken==true，说明Barrire已经被打破了，也就没有必要再处理这个中断
                     Thread.currentThread().interrupt();
                 }
             }
 
+            //执行到这里，应该是线程已经从await状态唤醒了
+            /**
+            * 这里先检查broken的状态，如果是ture，说明调用了breakBarrier的方法，有这样几种情况
+            * 1. 其他执行await方法的线程在挂起前就被中断了
+            * 2. 其他执行await方法的线程还处于等待中就被中断了
+            * 3. 最后一个到达的线程在执行barrierCommand的时候发生了错误
+            * 4. reset方法被调用
+            */
             if (g.broken)
                 throw new BrokenBarrierException();
 
+            //如果线程被唤醒时，新的一代已经开启，说明一切正常，直接返回
             if (g != generation)
                 return index;
 
+            //如果因为超时被唤醒，则打破Barrier，抛出超时异常
             if (timed && nanos <= 0L) {
                 breakBarrier();
                 throw new TimeoutException();
@@ -241,6 +256,10 @@ TimeoutException {
     }
 }
 ```
+
+值得注意的是，await方法是有返回值的，代表了线程到达的顺序，第一个到达的线程的index为parties-1，最后一个到达的线程的index为0  
+
+## 工具方法  
 
 
 
