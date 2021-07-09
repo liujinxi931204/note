@@ -84,5 +84,7 @@ public CyclicBarrier(int parties) {
 
 可以看到，如果不传入Runnable参数，其实就是将该参数设置为null。构造函数初始化了parties、count以及barrierAction三个参数。  
 
+## 辅助方法  
+
 
 
