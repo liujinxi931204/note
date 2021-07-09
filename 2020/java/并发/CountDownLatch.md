@@ -150,6 +150,17 @@ private void doAcquireSharedInterruptibly(int arg)
 }
 ```
 
+### await(long timeout,TimeUnit unit)方法  
+
+相比较于await方法，await(long timeout,TimeUnit unit)方法提供了超时的机制  
+
+```java
+public boolean await(long timeout, TimeUnit unit)
+    throws InterruptedException {
+    return sync.tryAcquireSharedNanos(1, unit.toNanos(timeout));
+}
+```
+
 
 
 
