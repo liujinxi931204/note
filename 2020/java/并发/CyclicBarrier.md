@@ -164,6 +164,7 @@ TimeoutException {
 private int dowait(boolean timed, long nanos)
     throws InterruptedException, BrokenBarrierException,
 TimeoutException {
+    //所有执行await方法的线程必须是已经持有了锁的线程，所以这里先获取锁
     final ReentrantLock lock = this.lock;
     lock.lock();
     try {
