@@ -161,6 +161,18 @@ public boolean await(long timeout, TimeUnit unit)
 }
 ```
 
+可见其内部调用了Sync的tryAcquireSharedNanos方法  
+
+```java
+public final boolean tryAcquireSharedNanos(int arg, long nanosTimeout)
+    throws InterruptedException {
+    if (Thread.interrupted())
+        throw new InterruptedException();
+    return tryAcquireShared(arg) >= 0 ||
+        doAcquireSharedNanos(arg, nanosTimeout);
+}
+```
+
 
 
 
