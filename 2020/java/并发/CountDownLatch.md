@@ -111,3 +111,45 @@ public final void acquireSharedInterruptibly(int arg)
 }
 ```
 
+可以看到这里需要调用AQS的子类Sync实现的tryAcquireShared方法  
+
+```java
+protected int tryAcquireShared(int acquires) {
+    return (getState() == 0) ? 1 : -1;
+}
+```
+
+发现这里和获取锁没有什么太大的关系，就是判断当前的state值是不是0，如果是0，就返回1；否则就返回-1。可以知道，当count值不为0的时候，调用await方法的线程需要被阻塞；如果count值为0，那么调用await方法的线程就不应该被阻塞而是继续向下运行。 也就可以知道， doAcquireSharedInterruptibly方法其实就是将当前线程包装成Node节点然后放入等待队列  
+
+```java
+private void doAcquireSharedInterruptibly(int arg)
+    throws InterruptedException {
+    final Node node = addWaiter(Node.SHARED);
+    boolean failed = true;
+    try {
+        for (;;) {
+            final Node p = node.predecessor();
+            if (p == head) {
+                int r = tryAcquireShared(arg);
+                if (r >= 0) {
+                    setHeadAndPropagate(node, r);
+                    p.next = null; // help GC
+                    failed = false;
+                    return;
+                }
+            }
+            if (shouldParkAfterFailedAcquire(p, node) &&
+                parkAndCheckInterrupt())
+                throw new InterruptedException();
+        }
+    } finally {
+        if (failed)
+            cancelAcquire(node);
+    }
+}
+```
+
+
+
+
+
