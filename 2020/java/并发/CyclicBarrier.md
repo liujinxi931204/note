@@ -261,5 +261,41 @@ TimeoutException {
 
 ## 工具方法  
 
+CyclicBarrier还提供了一些工具方法  
 
+```java
+public int getParties() {
+    return parties;
+}
+```
+
+获取参与的线程数parties，parties在构造时已经被确定了，因此对它的访问不需要加锁  
+
+```java
+public int getNumberWaiting() {
+    final ReentrantLock lock = this.lock;
+    lock.lock();
+    try {
+        return parties - count;
+    } finally {
+        lock.unlock();
+    }
+}
+```
+
+获取正在等待的线程数，注意这里加了锁，因为count有可能被多个线程修改  
+
+```java
+public boolean isBroken() {
+    final ReentrantLock lock = this.lock;
+    lock.lock();
+    try {
+        return generation.broken;
+    } finally {
+        lock.unlock();
+    }
+}
+```
+
+判断当前Barrier是否已经broken，这里同样加锁了，因为broken属性有可能被多个线程修改
 
