@@ -184,9 +184,11 @@ TimeoutException {
 
         //当前线程已经到了Barrier了，所以将count值减一
         int index = --count;
+        //如果index等于0，说明所有线程都已经到齐了，可以唤醒所有等待的线程，一起通过Barrier
         if (index == 0) {  // tripped
             boolean ranAction = false;
             try {
+                //如果创建CyclicBarrier的时候传入了Runnable参数
                 //在通过Barrier之前先执行Runnable的任务
                 final Runnable command = barrierCommand;
                 if (command != null)
