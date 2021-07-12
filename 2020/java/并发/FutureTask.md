@@ -411,14 +411,18 @@ public void run() {
             V result;
             boolean ran;
             try {
+                //调用callable对象到的call方法执行任务
                 result = c.call();
                 ran = true;
+                //执行任务失败
             } catch (Throwable ex) {
                 result = null;
                 ran = false;
+                //设置异常
                 setException(ex);
             }
             if (ran)
+                //设置正常执行的结果
                 set(result);
         }
     } finally {
