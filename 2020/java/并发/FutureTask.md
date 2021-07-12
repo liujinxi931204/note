@@ -566,9 +566,40 @@ private void handlePossibleCancellationInterrupt(int s) {
 run方法主要做了以下几件事  
 
 + 将runner属性设置为当前正在执行run方法的线程  
+
 + 调用callable对象的call方法来执行任务  
+
 + 设置执行结果outcome。如果任务执行成功，则outcome中保存的是任务的执行结果；如果任务执行过程中出现了异常，则outcome中保存的就是异常。设置结果之前，先将state状态设置为中间状态  
+
 + 对outcome设置成功后，state的状态被设置为终止状态（NORMAL或者EXCEPTIONAL）
+
++ 唤醒栈中所有等待的线程  
+
++ 善后处理（waiters、callable、runner设置为null）
+
++ 检查是否有中断，如果有，等待中断完成  
+
+### Future接口实现  
+
+Future接口一共有5个接口  
+
+```java
+public interface Future<V> {
+
+    boolean cancel(boolean mayInterruptIfRunning);
+
+    boolean isCancelled();
+
+    boolean isDone();
+
+    V get() throws InterruptedException, ExecutionException;
+
+    V get(long timeout, TimeUnit unit)
+        throws InterruptedException, ExecutionException, TimeoutException;
+}
+```
+
+
 
 
 
