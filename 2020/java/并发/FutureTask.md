@@ -634,6 +634,16 @@ public boolean cancel(boolean mayInterruptIfRunning) {
 
 + 任务因为某种原因不能被取消
 
+其他情况下，cancel操作将返回true。但是cancel返回true不意味着任务就真的会被取消了，这取决于cancel时任务所处的状态  
+
++ 如果发起cancel时任务还没有开始运行，则随后任务就不会被执行  
+
++ 如果发起cancel时任务已经开始运行了，那么这时就需要看mayInterruptIfRunning参数了  
+
+  如果mayInterruptIfRunning为true，则当前在执行的任务会被中断  
+
+  如果mayInterruptIfRunning为false，则可以允许正在执行的任务继续执行，直到它执行完  
+
 
 
 
