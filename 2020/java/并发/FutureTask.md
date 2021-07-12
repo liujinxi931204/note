@@ -792,5 +792,17 @@ private int awaitDone(boolean timed, long nanos) throws InterruptedException {
 
 在分析之前，先说明一下FutureTask中会涉及到两类线程，一个是执行任务的线程，它只有一个，FutureTask的run方法就是由该线程来完成的；另一类是获取任务执行结果的线程，它可以有多个，这些线程可以并发执行，每一个线程都是独立的，都可以调用get方法来获取任务的结果。如果任务还没有完成，则这些线程就需要被包装成WaitNode节点，然后加入到栈中，直到任务结束或者等待的线程被中断  
 
+```java
+for (;;) {
+    if (Thread.interrupted()) {
+        removeWaiter(q);
+        throw new InterruptedException();
+    }
+    // ...
+}
+```
 
+首先一开始，get方法会检测当前线程是否被中断，这是因为get方法是阻塞式的，如果等待的任务还没有执行完，则调用get方法的线程会被放到栈中挂起，直到任务执行结束。但是，也有可能任务迟迟没有执行完毕，我们直接中断了在栈中的线程，停止等待  
+
+当检测到线程被中断以后，调用了removeWaiter方法将参数中的node从栈中移除。如果此时还没有线程进入栈，则q=null，那么removeWaiter方法什么都不做。在这之后，就抛出了InterruptedException异常
 
