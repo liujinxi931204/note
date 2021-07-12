@@ -397,7 +397,9 @@ FutureTask一共有两个构造函数，一个是传入一个Callable对象，�
 
 FutureTask实现了RunnableFuture接口，那么就必须实现Runnable和Future接口的所有方法，先来看一下Runnable接口的run方法  
 
-### run方法  
+### Runnable接口实现
+
+#### run方法  
 
 ```java
 public void run() {
@@ -466,7 +468,49 @@ protected void setException(Throwable t) {
 }
 ```
 
+可见，除了outcome被设置为异常对象以及state状态被设置为EXCEPTIONAL状态外，其余部分和set方法没有区别  
 
+既然set(result)和setException(ce)两个方法都调用了finishCompletion方法，那么就来看看这个方法  
+
+```java
+private void finishCompletion() {
+    // assert state > COMPLETING;
+    for (WaitNode q; (q = waiters) != null;) {
+        //设置waiters为null，清空整个栈
+        if (UNSAFE.compareAndSwapObject(this, waitersOffset, q, null)) {
+            for (;;) {
+                //获取waitNode的Thread属性值
+                Thread t = q.thread;
+                if (t != null) {
+                    q.thread = null;
+                    //唤醒被阻塞的线程
+                    LockSupport.unpark(t);
+                }
+                WaitNode next = q.next;
+                if (next == null)
+                    break;
+                q.next = null; // unlink to help gc
+                q = next;
+            }
+            break;
+        }
+    }
+
+    done();
+
+    callable = null;        // to reduce footprint
+}
+```
+
+这个方法主要就是一个善后的工作  
+
+```java
+UNSAFE.compareAndSwapObject(this, waitersOffset, q, null)
+```
+
+该方法将waiters的值设置为null，也就是要清空整个栈。这是因为既然任务的结果已经执行完成了，那么就需要唤醒所有等待获取的结果的线程，栈中保留的是等待获取结果的线程，线程都被唤醒了，栈就没有存在的必要了。如果设置失败，就不会执行if语句块，而是进行下一次的循环，一直到设置waiters为空成功。感觉这就是自旋操作，确保了waiters属性被设置为null  
+
+将waiters设置为null后，接下来for(;;)才是真正遍历整个栈，
 
 
 
