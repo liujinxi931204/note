@@ -666,11 +666,12 @@ try {    // in case call to interrupt throws exception
         }
     }
 } finally {
+    //唤醒所有在等待队列中的节点
     finishCompletion();
 }
 ```
 
-runner属性中存放的是当前正在执行任务的线程，因此，第二个try块的目的就是中断当前正在执行任务的线程，最后i将状态设置为INTERRUPTED。  因此cancel完成了以下两种状态的转换之一  
+runner属性中存放的是当前正在执行任务的线程，因此，第二个try块的目的就是中断当前正在执行任务的线程，最后将状态设置为INTERRUPTED。  因此cancel完成了以下两种状态的转换之一  
 
 1. NEW——>CANCELLED（对应于mayInterruptIfRunning为false）
 2. NEW——>INTERRUPTING———>INTERRUPTED（对应于mayInterruptIfRunning为true）
