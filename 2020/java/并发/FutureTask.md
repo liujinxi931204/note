@@ -454,6 +454,20 @@ protected void set(V v) {
 
 这个方法一开始使用CAS操作将state值从NEW设置为COMPLETING状态，之前也说过这是任务执行完成，但是结果或者异常还没有设置的一个中间状态。COMPLETING状态设置完成以后，就把任务的执行结果赋值给outcome，然后把state的状态再设置为NORMAL。最后调用finishCompeletion方法来完成执行结果的设置  
 
+接下来再看一下异常的设置setException(ce)方法  
+
+```java
+protected void setException(Throwable t) {
+    if (UNSAFE.compareAndSwapInt(this, stateOffset, NEW, COMPLETING)) {
+        outcome = t;
+        UNSAFE.putOrderedInt(this, stateOffset, EXCEPTIONAL); // final state
+        finishCompletion();
+    }
+}
+```
+
+
+
 
 
 
