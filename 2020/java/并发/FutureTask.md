@@ -371,6 +371,30 @@ FutureTask中所使用的队列如下所示
 
 + waiters：指向队列中的头节点或者说是指向栈中的栈顶元素
 
+### 构造函数 
+
+```java
+public FutureTask(Callable<V> callable) {
+    if (callable == null)
+        throw new NullPointerException();
+    this.callable = callable;
+    this.state = NEW;       // ensure visibility of callable
+}
+```
+
+```java
+public FutureTask(Runnable runnable, V result) {
+    this.callable = Executors.callable(runnable, result);
+    this.state = NEW;       // ensure visibility of callable
+}
+```
+
+FutureTask一共有两个构造函数，一个是传入一个Callable对象，一个是传入一个Runnable对象和一个指定的返回类型，然后通过Executors工具类将它是配成一个callable对象，所以这两个构造函数的本质是一样的  
+
++ 同传入的参数初始化callable属性
+
++ 将FutureTask的状态设置为NEW  
+
 
 
 
