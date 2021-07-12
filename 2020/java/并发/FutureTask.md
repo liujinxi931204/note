@@ -599,6 +599,41 @@ public interface Future<V> {
 }
 ```
 
+#### cancel方法  
+
+上面说到了任务可能会被别的线程取消，那么就看一下怎么取消任务的执行  
+
+```java
+public boolean cancel(boolean mayInterruptIfRunning) {
+    if (!(state == NEW && UNSAFE.compareAndSwapInt(this, stateOffset, NEW, mayInterruptIfRunning ? INTERRUPTING : CANCELLED)))
+        return false;
+    try {    // in case call to interrupt throws exception
+        if (mayInterruptIfRunning) {
+            try {
+                Thread t = runner;
+                if (t != null)
+                    t.interrupt();
+            } finally { // final state
+                UNSAFE.putOrderedInt(this, stateOffset, INTERRUPTED);
+            }
+        }
+    } finally {
+        finishCompletion();
+    }
+    return true;
+}
+```
+
+关于cancel方法有几点需要补充
+
+首先有以下情况cancel操作一定会失败  
+
++ 任务已经执行过了
+
++ 任务已经被取消过了
+
++ 任务因为某种原因不能被取消
+
 
 
 
