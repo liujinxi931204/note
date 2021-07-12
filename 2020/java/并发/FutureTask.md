@@ -750,5 +750,44 @@ public V get() throws InterruptedException, ExecutionException {
 }
 ```
 
+这个方法的主要作用是，当任务还没有执行完毕或者正在设置结果时，就使用awaitDone方法等待任务进入终止状态。注意，**awaitDone方法的返回值是任务的状态而不是任务的结果**。任务进入终止状态以后，就根据任务的执行结果来返回计算结果或者抛出异常。  
+
+```java
+private int awaitDone(boolean timed, long nanos) throws InterruptedException {
+    final long deadline = timed ? System.nanoTime() + nanos : 0L;
+    WaitNode q = null;
+    boolean queued = false;
+    for (;;) {
+        if (Thread.interrupted()) {
+            removeWaiter(q);
+            throw new InterruptedException();
+        }
+        int s = state;
+        if (s > COMPLETING) {
+            if (q != null)
+                q.thread = null;
+            return s;
+        }
+        else if (s == COMPLETING) // cannot time out yet
+            Thread.yield();
+        else if (q == null)
+            q = new WaitNode();
+        else if (!queued)
+            queued = UNSAFE.compareAndSwapObject(this, waitersOffset,
+                                                 q.next = waiters, q);
+        else if (timed) {
+            nanos = deadline - System.nanoTime();
+            if (nanos <= 0L) {
+                removeWaiter(q);
+                return state;
+            }
+            LockSupport.parkNanos(this, nanos);
+        }
+        else
+            LockSupport.park(this);
+    }
+}
+```
+
 
 
