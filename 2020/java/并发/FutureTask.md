@@ -438,6 +438,22 @@ public void run() {
 }
 ```
 
+首先可以看到，run方法一开始就先判断当前状态是不是NEW，并且使用CAS操作将runner属性设置为当前线程，也就是在记录。接下来就是调用callable对象的call方法来执行任务，如果任务执行成功，就使用set(result)方法来设置结果，否则就调用setException(ex)来设置异常  
+
+现来看一下set(result)方法  
+
+```java
+protected void set(V v) {
+    if (UNSAFE.compareAndSwapInt(this, stateOffset, NEW, COMPLETING)) {
+        outcome = v;
+        UNSAFE.putOrderedInt(this, stateOffset, NORMAL); // final state
+        finishCompletion();
+    }
+}
+```
+
+这个方法一开始使用CAS操作将state值从NEW设置为COMPLETING状态，之前也说过这是任务执行完成，但是结果或者异常还没有设置的一个中间状态。COMPLETING状态设置完成以后，就把任务的执行结果赋值给outcome，然后把state的状态再设置为NORMAL。最后调用finishCompeletion方法来完成执行结果的设置  
+
 
 
 
