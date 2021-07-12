@@ -359,5 +359,17 @@ FutureTask中所使用的队列如下所示
     private volatile WaitNode waiters;
 ```
 
+可以看出，FutureTask的核心属性有5个  
+
++ state
+
++ callable
+
++ outcome
+
++ runner
+
++ waiters
+
 
 
