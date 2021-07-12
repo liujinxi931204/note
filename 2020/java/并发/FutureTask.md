@@ -644,9 +644,75 @@ public boolean cancel(boolean mayInterruptIfRunning) {
 
   如果mayInterruptIfRunning为false，则可以允许正在执行的任务继续执行，直到它执行完  
 
+来看cancel方法。对于"任务已经执行过了或者任务已经取消过了，则cancel操作一定是失败的（返回false）"这两条，是通过简单的判断state值是否为NEW来实现的。前面说过，只要state不为NEW，说明任务已经执行完毕了
 
+如果state的状态还是NEW，再往下看  
 
+```java
+UNSAFE.compareAndSwapInt(this, stateOffset, NEW, mayInterruptIfRunning ? INTERRUPTING : CANCELLED)
+```
 
+那么就根据mayInterruptIfRunning的值将state的状态由NEW设置为INTERRUPTED或者INTERRUPTING，这一操作也成功以后，就可以执行后面的try语句了，但无论怎么样，该方法最后都返回true  
+
+```java
+try {    // in case call to interrupt throws exception
+    if (mayInterruptIfRunning) {
+        try {
+            Thread t = runner;
+            if (t != null)
+                t.interrupt();
+        } finally { // final state
+            UNSAFE.putOrderedInt(this, stateOffset, INTERRUPTED);
+        }
+    }
+} finally {
+    finishCompletion();
+}
+```
+
+runner属性中存放的是当前正在执行任务的线程，因此，第二个try块的目的就是中断当前正在执行任务的线程，最后i将状态设置为INTERRUPTED。  因此cancel完成了以下两种状态的转换之一  
+
+1. NEW——>CANCELLED（对应于mayInterruptIfRunning为false）
+2. NEW——>INTERRUPTING———>INTERRUPTED（对应于mayInterruptIfRunning为true）
+
+对于mayInterruptIfRunning为false，虽说cancel方法最终返回了true，只是简单的把state设置为CANCEL，并不会中断线程的执行。**但是这样带来的后果就是即使任务执行完了，也无法设置任务的执行结果，因为设置任务结果的时候需要有一个中间状态，而这个中间状态的设置是以state当前状态为NEW为前提的**。  
+
+对于mayInterruptIfRunning为true，则会中断任务的执行。其实我们知道，线程是否响应中断其实是由线程自己决定的。具体来说，这里取决于callable对象的call方法是否响应了中断，是否将中断异常抛出。回过头来再看一下run方法  
+
+```java
+public void run() {
+    if (state != NEW || !UNSAFE.compareAndSwapObject(this, runnerOffset, null, Thread.currentThread()))
+        return;
+    try {
+        Callable<V> c = callable;
+        if (c != null && state == NEW) {
+            V result;
+            boolean ran;
+            try {
+                result = c.call();
+                ran = true;
+            } catch (Throwable ex) {
+                result = null;
+                ran = false;
+                setException(ex);
+            }
+            if (ran)
+                set(result);
+        }
+    } finally {
+        // runner must be non-null until state is settled to
+        // prevent concurrent calls to run()
+        runner = null;
+        // state must be re-read after nulling runner to prevent
+        // leaked interrupts
+        int s = state;
+        if (s >= INTERRUPTING)
+            handlePossibleCancellationInterrupt(s);
+    }
+}
+```
+
+可以看到call方法被调用后，catch会捕获Throwable的异常，这个是所有异常的父类，自然包括中断异常。但是即使异常被捕获进入了catch块，setException方法也会失败，因为在执行cancel方法的时候已经将state的状态设置为了INTERRUPTING，而setException需要state的状态为NEW。
 
 
 
