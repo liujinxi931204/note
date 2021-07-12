@@ -717,5 +717,38 @@ public void run() {
 
 无论如何run方法最后都会进入到finally块，这时候它会发现s >= INTERRUPTING，如果检测发现s =  INTERRUPTIN，说明cancel方法还没有执行到中断当前线程的地方，那么就等待它将state设置为INTERRUPTED。
 
+#### isCanceled方法  
+
+```java
+public boolean isCancelled() {
+    return state >= CANCELLED;
+}
+```
+
+该方法用来判断任务是否被取消。那么state >= CANCELLED包括哪些状态呢？CANCELLED、INTERRUPTING、INTERRUPTED。我们知道只有调用了cancel方法，任务的状态才会进入这三个之一。可见选取这三个状态作为判断依据很合理  
+
+#### isDone方法  
+
+```java
+public boolean isDone() {
+    return state != NEW;
+}
+```
+
+这个方法用来判断任务是否依据执行完毕。前面说过，任务的状态不是NEW，就说明任务已经完成。
+
+#### get方法
+
+get方法有无参数的版本和get(long timeout, TimeUnit unit）两个版本，这里先来看看无参数的版本
+
+```java
+public V get() throws InterruptedException, ExecutionException {
+    int s = state;
+    if (s <= COMPLETING)
+        s = awaitDone(false, 0L);
+    return report(s);
+}
+```
+
 
 
