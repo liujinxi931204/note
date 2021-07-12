@@ -561,7 +561,14 @@ private void handlePossibleCancellationInterrupt(int s) {
 
 可见该方法是一个自旋操作，如果当前state的状态是INTERRUPTING，就在原地自旋，直到state的状态变为终止状态  
 
+#### 总结  
 
+run方法主要做了以下几件事  
+
++ 将runner属性设置为当前正在执行run方法的线程  
++ 调用callable对象的call方法来执行任务  
++ 设置执行结果outcome。如果任务执行成功，则outcome中保存的是任务的执行结果；如果任务执行过程中出现了异常，则outcome中保存的就是异常。设置结果之前，先将state状态设置为中间状态  
++ 对outcome设置成功后，state的状态被设置为终止状态（NORMAL或者EXCEPTIONAL）
 
 
 
