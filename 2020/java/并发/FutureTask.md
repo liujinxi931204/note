@@ -754,6 +754,7 @@ public V get() throws InterruptedException, ExecutionException {
 
 ```java
 private int awaitDone(boolean timed, long nanos) throws InterruptedException {
+    //调用无参的get方法时，timed为false，因此deadline为0
     final long deadline = timed ? System.nanoTime() + nanos : 0L;
     WaitNode q = null;
     boolean queued = false;
@@ -788,6 +789,8 @@ private int awaitDone(boolean timed, long nanos) throws InterruptedException {
     }
 }
 ```
+
+在分析之前，先说明一下FutureTask中会涉及到两类线程，一个是执行任务的线程，它只有一个，FutureTask的run方法就是由该线程来完成的；另一类是获取任务执行结果的线程，它可以有多个，这些线程可以并发执行，每一个线程都是独立的，都可以调用get方法来获取任务的结果。如果任务还没有完成，则这些线程就需要被包装成WaiteNode节点，然后加入到栈中，直到任务结束或者等待的线程被中断  
 
 
 
