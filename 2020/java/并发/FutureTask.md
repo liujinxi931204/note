@@ -361,15 +361,17 @@ FutureTask中所使用的队列如下所示
 
 可以看出，FutureTask的核心属性有5个  
 
-+ state
++ state：当前任务的状态
 
-+ callable
++ callable：代表了要执行的任务本身，即FutureTask中的Task
 
-+ outcome
++ outcome：代表了任务的执行结果或者抛出的异常，为Object类型
 
-+ runner
++ runner：任务的执行者，即执行Task的线程
 
-+ waiters
++ waiters：指向队列中的头节点或者说是指向栈中的栈顶元素
+
+
 
 
 
