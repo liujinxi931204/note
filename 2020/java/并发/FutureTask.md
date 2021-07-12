@@ -676,7 +676,7 @@ runner属性中存放的是当前正在执行任务的线程，因此，第二�
 1. NEW——>CANCELLED（对应于mayInterruptIfRunning为false）
 2. NEW——>INTERRUPTING———>INTERRUPTED（对应于mayInterruptIfRunning为true）
 
-对于mayInterruptIfRunning为false，虽说cancel方法最终返回了true，只是简单的把state设置为CANCEL，并不会中断线程的执行。**但是这样带来的后果就是即使任务执行完了，也无法设置任务的执行结果，因为设置任务结果的时候需要有一个中间状态，而这个中间状态的设置是以state当前状态为NEW为前提的**。  
+对于mayInterruptIfRunning为false，虽说cancel方法最终返回了true，只是简单的把state设置为CANCEL，并不会中断线程的执行。**但是这样带来的后果就是即使任务执行完了，也无法设置任务的执行结果，因为设置任务结果的时候需要有一个中间状态，而这个中间状态的设置是以state当前状态为NEW为前提的**。因此即使任务执行完毕，也无法获得任务的结果。  
 
 对于mayInterruptIfRunning为true，则会中断任务的执行。其实我们知道，线程是否响应中断其实是由线程自己决定的。具体来说，这里取决于callable对象的call方法是否响应了中断，是否将中断异常抛出。回过头来再看一下run方法  
 
@@ -714,6 +714,8 @@ public void run() {
 ```
 
 可以看到call方法被调用后，catch会捕获Throwable的异常，这个是所有异常的父类，自然包括中断异常。但是即使异常被捕获进入了catch块，setException方法也会失败，因为在执行cancel方法的时候已经将state的状态设置为了INTERRUPTING，而setException需要state的状态为NEW。
+
+无论如何run方法最后都会进入到finally块，这时候它会发现s >= INTERRUPTING，如果检测发现s =  INTERRUPTIN，说明cancel方法还没有执行到中断当前线程的地方，那么就等待它将state设置为INTERRUPTED。
 
 
 
