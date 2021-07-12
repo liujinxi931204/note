@@ -395,6 +395,45 @@ FutureTask一共有两个构造函数，一个是传入一个Callable对象，�
 
 + 将FutureTask的状态设置为NEW  
 
+FutureTask实现了RunnableFuture接口，那么就必须实现Runnable和Future接口的所有方法，先来看一下Runnable接口的run方法  
+
+### run方法  
+
+```java
+public void run() {
+    //如果当前状态不是NEW或者cas操作设置runner为当前线程失败，记录执行任务的线程失败，直接返回
+    if (state != NEW || !UNSAFE.compareAndSwapObject(this, runnerOffset, null, Thread.currentThread()))
+        return;
+    try {
+        //任务本身
+        Callable<V> c = callable;
+        if (c != null && state == NEW) {
+            V result;
+            boolean ran;
+            try {
+                result = c.call();
+                ran = true;
+            } catch (Throwable ex) {
+                result = null;
+                ran = false;
+                setException(ex);
+            }
+            if (ran)
+                set(result);
+        }
+    } finally {
+        // runner must be non-null until state is settled to
+        // prevent concurrent calls to run()
+        runner = null;
+        // state must be re-read after nulling runner to prevent
+        // leaked interrupts
+        int s = state;
+        if (s >= INTERRUPTING)
+            handlePossibleCancellationInterrupt(s);
+    }
+}
+```
+
 
 
 
