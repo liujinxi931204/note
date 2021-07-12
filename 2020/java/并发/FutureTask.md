@@ -539,8 +539,27 @@ finally {
     int s = state;
     if (s >= INTERRUPTING)
         handlePossibleCancellationInterrupt(s);
+```
+
+在finally块中，将runner属性设置为null，并且检查有没有遗漏中断，如果发现s >= INTERRUPTING，说明执行任务的线程有可能被中断了，因为s >= INTERRUPTING只有两种可能，state的状态为INTERRUPTING或者INTERRUPTED。这是因为在多线程环境中，在当前线程执行run方法的同时，有可能其他的线程取消了任务的执行，这是其他线程就有可能对state的状态进行了改写  
+
+ 然后看一下handlePossibleCancellationInterrupt方法  
+
+```java
+/**
+ * Ensures that any interrupt from a possible cancel(true) is only
+ * delivered to a task while in run or runAndReset.
+ */
+private void handlePossibleCancellationInterrupt(int s) {
+    // It is possible for our interrupter to stall before getting a
+    // chance to interrupt us.  Let's spin-wait patiently.
+    if (s == INTERRUPTING)
+        while (state == INTERRUPTING)
+            Thread.yield(); // wait out pending interrupt
 }
 ```
+
+可见该方法是一个自旋操作，如果当前state的状态是INTERRUPTING，就在原地自旋，直到state的状态变为终止状态  
 
 
 
