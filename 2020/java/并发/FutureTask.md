@@ -508,9 +508,41 @@ private void finishCompletion() {
 UNSAFE.compareAndSwapObject(this, waitersOffset, q, null)
 ```
 
-该方法将waiters的值设置为null，也就是要清空整个栈。这是因为既然任务的结果已经执行完成了，那么就需要唤醒所有等待获取的结果的线程，栈中保留的是等待获取结果的线程，线程都被唤醒了，栈就没有存在的必要了。如果设置失败，就不会执行if语句块，而是进行下一次的循环，一直到设置waiters为空成功。感觉这就是自旋操作，确保了waiters属性被设置为null  
+该方法将waiters的值设置为null，也就是要清空整个栈。这是因为既然任务的结果已经执行完成了，那么就需要唤醒所有等待获取的结果的线程，栈中保留的是等待获取结果的线程，线程都被唤醒了，栈就没有存在的必要了。如果设置失败，就不会执行if语句块，而是进行下一次的循环，一直到设置waiters为空成功。感觉这就是自旋操作，确保了waiters属性被设置为null。将waiters设置为null后，接下来for(;;)才是真正遍历整个栈，获取栈中的每一个节点，唤醒每个节点代表的线程  
 
-将waiters设置为null后，接下来for(;;)才是真正遍历整个栈，
+将整个栈中的节点唤醒以后，还有一个done方法  
+
+```java
+/**
+ * Protected method invoked when this task transitions to state
+ * {@code isDone} (whether normally or via cancellation). The
+ * default implementation does nothing.  Subclasses may override
+ * this method to invoke completion callbacks or perform
+ * bookkeeping. Note that you can query status inside the
+ * implementation of this method to determine whether this task
+ * has been cancelled.
+ */
+protected void done() { }
+```
+
+从注释来看，这个方法是提供给子类重写的，以实现一些任务在执行结束前还有一些额外的操作  
+
+最后run方法中还有一个finally块还没有分析  
+
+```java
+finally {
+    // runner must be non-null until state is settled to
+    // prevent concurrent calls to run()
+    runner = null;
+    // state must be re-read after nulling runner to prevent
+    // leaked interrupts
+    int s = state;
+    if (s >= INTERRUPTING)
+        handlePossibleCancellationInterrupt(s);
+}
+```
+
+
 
 
 
