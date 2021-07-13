@@ -839,6 +839,7 @@ private int awaitDone(boolean timed, long nanos) throws InterruptedException {
         else if (!queued)
             queued = UNSAFE.compareAndSwapObject(this, waitersOffset,
                                                  q.next = waiters, q);
+        //超时机制
         else if (timed) {
             nanos = deadline - System.nanoTime();
             if (nanos <= 0L) {
@@ -847,6 +848,7 @@ private int awaitDone(boolean timed, long nanos) throws InterruptedException {
             }
             LockSupport.parkNanos(this, nanos);
         }
+        //把当前线程挂起，此时线程处于阻塞状态
         else
             LockSupport.park(this);
     }
