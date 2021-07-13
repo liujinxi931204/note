@@ -831,6 +831,7 @@ private int awaitDone(boolean timed, long nanos) throws InterruptedException {
         //如果是正在设置结果的状态，就放弃cpu使用权，继续等待
         else if (s == COMPLETING) // cannot time out yet
             Thread.yield();
+        //如果既不是终止状态，又不是正在设置最终结果，说明任务正在执行或者还没有执行
         else if (q == null)
             q = new WaitNode();
         else if (!queued)
