@@ -850,7 +850,7 @@ private int awaitDone(boolean timed, long nanos) throws InterruptedException {
         }
         //把当前线程挂起，此时线程处于阻塞状态
         else
-            LockSupport.park(this);
+            LockSupport.park(this);//挂起的线程被唤醒后，从这里继续执行
     }
 }
 ```
