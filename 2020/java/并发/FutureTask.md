@@ -832,7 +832,7 @@ private int awaitDone(boolean timed, long nanos) throws InterruptedException {
         else if (s == COMPLETING) // cannot time out yet
             Thread.yield();
         //如果既不是终止状态，又不是正在设置最终结果，说明任务正在执行或者还没有执行
-        //如果q==null，说明节点还没有进入到栈中，创建记录了当前线程的节点
+        //如果q==null，说明节点还没有创建，创建记录了当前线程的节点
         else if (q == null)
             q = new WaitNode();
         //如果queue==false，说明节点还没有进入到栈中，使用cas操作，入栈
