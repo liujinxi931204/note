@@ -835,6 +835,7 @@ private int awaitDone(boolean timed, long nanos) throws InterruptedException {
         //如果q==null，说明节点还没有进入到栈中，创建记录了当前线程的节点
         else if (q == null)
             q = new WaitNode();
+        //如果queue==false，说明节点还没有进入到栈中，使用cas操作，入栈
         else if (!queued)
             queued = UNSAFE.compareAndSwapObject(this, waitersOffset,
                                                  q.next = waiters, q);
