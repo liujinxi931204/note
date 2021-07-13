@@ -816,11 +816,13 @@ for (;;) {
     }
     //从这里继续
     int s = state;
+    //如果已经进入终止状态，直接返回状态
     if (s > COMPLETING) {
         if (q != null)
             q.thread = null;
         return s;
     }
+    //如果任务正在设置结果，放弃cpu使用权，继续等待
     else if (s == COMPLETING) // cannot time out yet
         Thread.yield();
     else if (q == null)
