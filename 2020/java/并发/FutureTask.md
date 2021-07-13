@@ -804,5 +804,42 @@ for (;;) {
 
 首先一开始，get方法会检测当前线程是否被中断，这是因为get方法是阻塞式的，如果等待的任务还没有执行完，则调用get方法的线程会被放到栈中挂起，直到任务执行结束。但是，也有可能任务迟迟没有执行完毕，我们直接中断了在栈中的线程，停止等待  
 
-当检测到线程被中断以后，调用了removeWaiter方法将参数中的node从栈中移除。如果此时还没有线程进入栈，则q=null，那么removeWaiter方法什么都不做。在这之后，就抛出了InterruptedException异常
+当检测到线程被中断以后，调用了removeWaiter方法将参数中的node从栈中移除。如果此时还没有线程进入栈，则q=null，那么removeWaiter方法什么都不做。在这之后，就抛出了InterruptedException异常  
+
+接着看awaitDone方法  
+
+```java
+for (;;) {
+    if (Thread.interrupted()) {
+        removeWaiter(q);
+        throw new InterruptedException();
+    }
+    //从这里继续
+    int s = state;
+    if (s > COMPLETING) {
+        if (q != null)
+            q.thread = null;
+        return s;
+    }
+    else if (s == COMPLETING) // cannot time out yet
+        Thread.yield();
+    else if (q == null)
+        q = new WaitNode();
+    else if (!queued)
+        queued = UNSAFE.compareAndSwapObject(this, waitersOffset,
+                                             q.next = waiters, q);
+    else if (timed) {
+        nanos = deadline - System.nanoTime();
+        if (nanos <= 0L) {
+            removeWaiter(q);
+            return state;
+        }
+        LockSupport.parkNanos(this, nanos);
+    }
+    else
+        LockSupport.park(this);
+}
+```
+
+
 
