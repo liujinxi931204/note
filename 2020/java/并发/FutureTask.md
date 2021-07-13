@@ -855,5 +855,11 @@ private int awaitDone(boolean timed, long nanos) throws InterruptedException {
 }
 ```
 
+那么这个挂起的线程是什么时候被唤醒的呢？有以下两种情况  
+
+1. 任务执行完毕了，在finishCompletion方法中唤醒所有在栈中等待的线程
+
+2. 等待的线程自身因为被中断等原因而被唤醒
+
 
 
