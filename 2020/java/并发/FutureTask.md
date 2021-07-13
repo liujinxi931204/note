@@ -822,11 +822,13 @@ private int awaitDone(boolean timed, long nanos) throws InterruptedException {
         }
         //从这里继续
         int s = state;
+        //如果已经是终止状态，就直接返回状态
         if (s > COMPLETING) {
             if (q != null)
                 q.thread = null;
             return s;
         }
+        //如果是正在设置结果的状态，就放弃cpu使用权，继续等待
         else if (s == COMPLETING) // cannot time out yet
             Thread.yield();
         else if (q == null)
