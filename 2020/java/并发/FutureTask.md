@@ -826,7 +826,7 @@ for (;;) {
     else if (s == COMPLETING) // cannot time out yet
         Thread.yield();
     /**
-    * 既没有进入终止状态，也没有设置结果，说明任务还在执行当中或者任务还没有执行
+    * 既没有进入终止状态，也不是正在设置结果，说明任务还在执行当中或者任务还没有执行
     */
     else if (q == null)
         q = new WaitNode();
