@@ -814,7 +814,7 @@ private int awaitDone(boolean timed, long nanos) throws InterruptedException {
     final long deadline = timed ? System.nanoTime() + nanos : 0L;
     WaitNode q = null;
     boolean queued = false;
-    //如果当前线程被中断了，就从栈中删除这个节点
+    //如果当前线程被中断了，就从栈中删除这个节点，如果q为null，就什么都不做
     for (;;) {
         if (Thread.interrupted()) {
             removeWaiter(q);
