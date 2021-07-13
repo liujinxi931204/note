@@ -861,5 +861,65 @@ private int awaitDone(boolean timed, long nanos) throws InterruptedException {
 
 2. 等待的线程自身因为被中断等原因而被唤醒
 
+所以线程被唤醒后，for循环的开头，继续下一轮循环
 
+```java
+for (;;) {
+    if (Thread.interrupted()) {
+        removeWaiter(q);
+        throw new InterruptedException();
+    }
+
+    int s = state;
+    if (s > COMPLETING) {
+        if (q != null)
+            q.thread = null;
+        return s;
+    }
+    else if (s == COMPLETING) // cannot time out yet
+        Thread.yield();
+    else if (q == null)
+        q = new WaitNode();
+    else if (!queued)
+        queued = UNSAFE.compareAndSwapObject(this, waitersOffset,
+                                             q.next = waiters, q);
+    else if (timed) {
+        nanos = deadline - System.nanoTime();
+        if (nanos <= 0L) {
+            removeWaiter(q);
+            return state;
+        }
+        LockSupport.parkNanos(this, nanos);
+    }
+    else
+        LockSupport.park(this); // 挂起的线程从这里被唤醒
+}
+```
+
+首先还是检测是否有中断，所不同的是，此时q已经不为null了，因此在有中断发生的情况下，在抛出中断异常之前，多了一个removeWaiter(q)操作，该操作是将当前线程从栈中移除，相比入栈操作，这个出栈操作要复杂很多，这取决于节点是否位于栈顶  
+
+```java
+private void removeWaiter(WaitNode node) {
+    if (node != null) {
+        //标记，在waiters链表中定位该节点的标记
+        node.thread = null;
+        retry:
+        for (;;) {          // restart on removeWaiter race
+            for (WaitNode pred = null, q = waiters, s; q != null; q = s) {
+                s = q.next;
+                if (q.thread != null)
+                    pred = q;
+                else if (pred != null) {
+                    pred.next = s;
+                    if (pred.thread == null) // check for race
+                        continue retry;
+                }
+                else if (!UNSAFE.compareAndSwapObject(this, waitersOffset, q, s))
+                    continue retry;
+            }
+            break;
+        }
+    }
+}
+```
 
