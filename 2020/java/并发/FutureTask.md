@@ -825,9 +825,7 @@ for (;;) {
     //如果任务正在设置结果，放弃cpu使用权，继续等待
     else if (s == COMPLETING) // cannot time out yet
         Thread.yield();
-    /**
-    * 既没有进入终止状态，也不是正在设置结果，说明任务还在执行当中或者任务还没有执行
-    */
+    //既没有进入终止状态，也不是正在设置结果，说明任务还在执行当中或者任务还没有开始执行
     else if (q == null)
         q = new WaitNode();
     else if (!queued)
