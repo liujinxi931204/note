@@ -809,38 +809,41 @@ for (;;) {
 接着看awaitDone方法  
 
 ```java
-for (;;) {
-    if (Thread.interrupted()) {
-        removeWaiter(q);
-        throw new InterruptedException();
-    }
-    //从这里继续
-    int s = state;
-    //如果已经进入终止状态，直接返回状态
-    if (s > COMPLETING) {
-        if (q != null)
-            q.thread = null;
-        return s;
-    }
-    //如果任务正在设置结果，放弃cpu使用权，继续等待
-    else if (s == COMPLETING) // cannot time out yet
-        Thread.yield();
-    //既没有进入终止状态，也不是正在设置结果，说明任务还在执行当中或者任务还没有开始执行
-    else if (q == null)
-        q = new WaitNode();
-    else if (!queued)
-        queued = UNSAFE.compareAndSwapObject(this, waitersOffset,
-                                             q.next = waiters, q);
-    else if (timed) {
-        nanos = deadline - System.nanoTime();
-        if (nanos <= 0L) {
+private int awaitDone(boolean timed, long nanos) throws InterruptedException {
+    //调用无参的get方法时，timed为false，因此deadline为0
+    final long deadline = timed ? System.nanoTime() + nanos : 0L;
+    WaitNode q = null;
+    boolean queued = false;
+    for (;;) {
+        if (Thread.interrupted()) {
             removeWaiter(q);
-            return state;
+            throw new InterruptedException();
         }
-        LockSupport.parkNanos(this, nanos);
+        //从这里继续
+        int s = state;
+        if (s > COMPLETING) {
+            if (q != null)
+                q.thread = null;
+            return s;
+        }
+        else if (s == COMPLETING) // cannot time out yet
+            Thread.yield();
+        else if (q == null)
+            q = new WaitNode();
+        else if (!queued)
+            queued = UNSAFE.compareAndSwapObject(this, waitersOffset,
+                                                 q.next = waiters, q);
+        else if (timed) {
+            nanos = deadline - System.nanoTime();
+            if (nanos <= 0L) {
+                removeWaiter(q);
+                return state;
+            }
+            LockSupport.parkNanos(this, nanos);
+        }
+        else
+            LockSupport.park(this);
     }
-    else
-        LockSupport.park(this);
 }
 ```
 
