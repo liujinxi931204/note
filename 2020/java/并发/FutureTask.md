@@ -923,3 +923,132 @@ private void removeWaiter(WaitNode node) {
 }
 ```
 
+1. 要移除的节点就在栈顶  
+
+要移除的节点就在栈顶，说明该节点入栈后，并没有别的节点入栈。由于一开始就将节点的thread设置为null了，因此前两个条件q.thread != null和pred != null都不满足，直接进入到最后一个else if分支  
+
+```java
+else if (!UNSAFE.compareAndSwapObject(this, waitersOffset, q, s))
+    continue retry;
+```
+
+这里通过cas操作，将栈顶节点设置为栈顶节点的下一个节点  
+
+值得注意的是，当cas不成功时，程序会回到retry处重来。但即使cas操作成功了，程序依旧会遍历整个栈，寻找node.thread==null的节点，并将它们一并从栈中移除  
+
+2. 要移除的节点不在栈顶  
+
+当要移除的节点不在栈顶时，会一直遍历栈，直到找到q.thread==null的节点，找到之后，将进入  
+
+```java
+else if (pred != null) {
+    pred.next = s;
+    if (pred.thread == null) // check for race
+        continue retry;
+}
+```
+
+这是因为节点不在栈顶，则其必然是有前驱节点pred的，这时，只是简单的让前驱节点指向当前节点的下一个节点，从而将目标节点从栈中移除  
+
+后面多加的那个if很有必要，因为removeWaiter方法没有加锁，所以可能有多个线程在同时执行，WaitNode的两个成员变量thread和next都被设置为volatile，保证了它们的可见性，如果这时发现pred.thread==null，意味着当前节点的前驱节点被标记了，它会在别的线程中被移除，而当前节点的后继节点是连接在当前节点的前驱节点的，因此pred要被别的线程移除，那么当前线程在继续向后遍历就没有意义了，所以就跳到retry处，再从头遍历  
+
+removeWaiter方法会传入一个需要移除的节点，首先需要将这个节点的thread标记为null，以此来标记该节点，然后遍历整个栈，清除那些被标记了的节点。如果要清除的节点位于栈顶，还需要重新设置waiters的值，指向新的栈顶。虽然removeWaiters方法只传入了一个需要清除的节点，但是可能会清除所有被标记的节点，这样做不仅提高了效率，而且还简化了操作  
+
+接下来再回到awaitDone方法中  
+
+```java
+private int awaitDone(boolean timed, long nanos) throws InterruptedException {
+    final long deadline = timed ? System.nanoTime() + nanos : 0L;
+    WaitNode q = null;
+    boolean queued = false;
+    for (;;) {
+        if (Thread.interrupted()) {
+            removeWaiter(q); // 刚刚分析到这里了，我们接着往下看
+            throw new InterruptedException();
+        }
+
+        int s = state;
+        if (s > COMPLETING) {
+            if (q != null)
+                q.thread = null;
+            return s;
+        }
+        else if (s == COMPLETING) // cannot time out yet
+            Thread.yield();
+        else if (q == null)
+            q = new WaitNode();
+        else if (!queued)
+            queued = UNSAFE.compareAndSwapObject(this, waitersOffset,
+                                                 q.next = waiters, q);
+        else if (timed) {
+            nanos = deadline - System.nanoTime();
+            if (nanos <= 0L) {
+                removeWaiter(q);
+                return state;
+            }
+            LockSupport.parkNanos(this, nanos);
+        }
+        else
+            LockSupport.park(this);
+    }
+}
+```
+
+如果线程不是因为中断而被唤醒，则继续向下进行，此时会再次获取当前state状态。所不同的是，此时q已经不为null了，queued为true，所以已经不需要再进入waiters栈了  
+
+至此我们知道，除非是被中断，否则get方法会在原地自旋等待（用的是Thread.yied），对应于s==COMPLETING或者挂起（对应任务还没有执行完的情况），直到任务完成。前面分析run方法和cancel方法的时候知道，在run方法结束的时候或者cancel方法取消完成后，都会调用finishCompetion方法来唤醒挂起的线程，是它们进入下一轮循环，获取任务的结果  
+
+最后等待awaitDone方法返回后，get方法返回了report(s)，以根据任务的状态，汇报结果  
+
+```java
+@SuppressWarnings("unchecked")
+private V report(int s) throws ExecutionException {
+    Object x = outcome;
+    if (s == NORMAL)
+        return (V)x;
+    if (s >= CANCELLED)
+        throw new CancellationException();
+    throw new ExecutionException((Throwable)x);
+}
+```
+
+这个方法就是根据当前state的状态，返回正常的执行结果，或者抛出异常  
+
+值得注意的是，awaitDone方法和get方法都没有加锁，这在多线程同时执行get方法的时候不会产生线程安全的问题吗？通过查看内部方法的参数我们知道，整个方法内部使用的大多数是局部变量，因此不会产生线程安全的问题，对于全局变量waiters的修改，也是用了CAS操作，保证了线程安全，而state本身是volatile的，保证了读取时的可见性，因此整个方法没有加锁，但是他仍然是线程安全的  
+
+#### get(long timeout,TimeUnit unit)  
+
+```java
+public V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
+    if (unit == null)
+        throw new NullPointerException();
+    int s = state;
+    if (s <= COMPLETING && (s = awaitDone(true, unit.toNanos(timeout))) <= COMPLETING)
+        throw new TimeoutException();
+    return report(s);
+}
+```
+
+这个方法是带有超时版本的get方法，基本和get方法一样，相比较于get方法加入了许多超时检测  
+
+```java
+else if (timed) {
+    nanos = deadline - System.nanoTime();
+    if (nanos <= 0L) {
+        removeWaiter(q);
+        return state;
+    }
+    LockSupport.parkNanos(this, nanos);
+}
+```
+
+  即，如果指定的超时时间到了，则直接返回，如果返回时，任务还没有进入终止状态，则直接抛出TimeoutException异常，否则就像get方法一样返回正常执行的结果  
+
+## 总结  
+
+FutureTask实现了Runnable和Future接口，它表示了一个带有任务状态和任务结果的任务，其中的各种操作都是围绕着任务的状态展开的，值得注意的是，在所有的任务状态中，只要不是NEW状态，就表示任务已经执行完毕或者不再执行了，并没有表示"任务正在执行"的状态  
+
+除了代表任务的Callable对象、代表任务结果的outcome属性外，FutureTask还有一个代表所有等待任务结束的线程的栈，如果任务还没有执行结束，则所有等待任务执行完毕的线程就会被扔进栈中挂起，直到任务执行完毕，才会被唤醒  
+
+FutureTask虽然提供了获取任务执行结果的途径，但是在获取任务结果时，如果任务没有完成，则当前线程会自旋或者挂起等待，这与实现异步的初衷相违背，CompletableFuture解决了这个问题
+
