@@ -472,3 +472,5 @@ ThreadPoolExecutor在逻辑上将自身管理的线程池分为核心线程池�
 
 ![总线程池](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E6%80%BB%E7%BA%BF%E7%A8%8B%E6%B1%A0.png)  
 
+ThreadPoolExecutor中只有一种类型的线程，名叫Worker，它是ThreadPoolExecutor定义的内部类，同时封装着Runnable任务和执行该任务的Thread对象，它也是ThreadPoolExecutor唯一需要进行维护的线程；核心线程池和非核心线程池则是逻辑上的概念。
+
