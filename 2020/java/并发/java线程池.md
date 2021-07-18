@@ -466,3 +466,5 @@ public ThreadPoolExecutor(int corePoolSize,
 
 正是通过上述参数的组合，Executors工厂可以创建不同类型的线程池，这里简单说一下corePoolSize和maximumPoolSize这两个参数  
 
+ThreadPoolExecutor在逻辑上将自身管理的线程池分为核心线程池（大小对应corePoolSize）和非核心线程池（大小对应maximumPoolSize-corePoolSize）
+
