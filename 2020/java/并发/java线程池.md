@@ -245,3 +245,11 @@ public interface ScheduledExecutorService extends ExecutorService {
 
 ## 生产Executor的工厂  
 
+通过上一部分，我们知道Executors框架就是同来解耦任务本身与任务的执行的，并提供了三个核心的方法来满足开发人员的需求：  
+
++ Executor：提交普通的可执行任务
+
++ ExecutorService：提供对线程池生命周期的管理、异步任务的支持
+
++ ScheduledExecutorService：提供对任务的周期性支持
+
