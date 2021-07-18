@@ -243,3 +243,5 @@ public interface ScheduledExecutorService extends ExecutorService {
 
 ![clipboard.png](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/bVbh0SH)  
 
+## 生产Executor的工厂  
+
