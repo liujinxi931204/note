@@ -257,3 +257,25 @@ public interface ScheduledExecutorService extends ExecutorService {
 
 ### 固定线程数量的线程池
 
+Executors提供了下面的两种方法创建具有固定线程数量的Executor的方法，固定线程池在初始化时确定其中的线程总数，运行过程中保持不变
+
+```java
+/**
+ * 创建一个具有固定线程数的Executor.
+ */
+public static ExecutorService newFixedThreadPool(int nThreads) {
+    return new ThreadPoolExecutor(nThreads, nThreads, 0L, TimeUnit.MILLISECONDS,
+            new LinkedBlockingQueue<Runnable>());
+}
+
+/**
+ * 创建一个具有固定线程数的Executor.
+ * 在需要时使用提供的 ThreadFactory 创建新线程.
+ */
+public static ExecutorService newFixedThreadPool(int nThreads, ThreadFactory threadFactory) {
+    return new ThreadPoolExecutor(nThreads, nThreads, 0L, TimeUnit.MILLISECONDS,
+            new LinkedBlockingQueue<Runnable>(), threadFactory);
+
+}
+```
+
