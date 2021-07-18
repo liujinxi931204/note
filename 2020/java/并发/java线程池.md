@@ -391,4 +391,14 @@ public class ThreadPoolExecutor extends AbstractExecutorService
 
 ### AbstractExecutorService
 
-AbstractExecutorService主要实现了ExecutorService中submit、invokeAny、invokeAll这三类方法
+AbstractExecutorService主要实现了ExecutorService中submit、invokeAny、invokeAll这三类方法。这三类方法的返回值几乎都是一个Future对象。而Future是一个接口，AbstractExecutorService既然实现了这些方法，必然实现了这个Future接口，来看一下AbstractExecutorService的submit方法  
+
+```java
+public <T> Future<T> submit(Runnable task, T result) {
+    if (task == null) throw new NullPointerException();
+    RunnableFuture<T> ftask = newTaskFor(task, result);
+    execute(ftask);
+    return ftask;
+}
+```
+
