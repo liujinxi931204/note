@@ -454,3 +454,8 @@ public ThreadPoolExecutor(int corePoolSize,
     }
 ```
 
+这个构造方法一共有7个参数  
+
++ corePoolSize：核心线程池中的最大线程数
++ maximumPoolSize：总线成中的最大线程数
++ 
