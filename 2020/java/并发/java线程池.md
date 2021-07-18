@@ -414,3 +414,5 @@ protected <T> RunnableFuture<T> newTaskFor(Runnable runnable, T value) {
 }
 ```
 
+[FutureTask](https://gitee.com/liujinxi931204/note/blob/master/2020/java/%E5%B9%B6%E5%8F%91/FutureTask.md)其实就是Future接口的实现类  
+
