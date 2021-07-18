@@ -470,3 +470,5 @@ ThreadPoolExecutor在逻辑上将自身管理的线程池分为核心线程池�
 
 当我们向线程池提交一个任务时，将创建一个工作线程，称之为Worker，Worker在逻辑上属于核心线程池还是非核心线程池，要根据corePoolSize、maximumPoolSize和Worker的总数进行判断  
 
+![总线程池](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E6%80%BB%E7%BA%BF%E7%A8%8B%E6%B1%A0.png)  
+
