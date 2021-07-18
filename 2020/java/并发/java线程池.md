@@ -253,3 +253,4 @@ public interface ScheduledExecutorService extends ExecutorService {
 
 + ScheduledExecutorService：提供对任务的周期性支持
 
+同时J.U.C还提供了一个Executors类，专门用于创建上述接口的实现类对象。Executors其实就是一个简单工厂，它的所有方法都是静态的，用户可以根据需要，选择需要创建的执行器实例
