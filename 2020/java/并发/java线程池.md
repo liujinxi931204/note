@@ -279,3 +279,28 @@ public static ExecutorService newFixedThreadPool(int nThreads, ThreadFactory thr
 }
 ```
 
+### 单个线程的线程池
+
+Executors提供了两种方法来创建只有单个线程的线程池
+
+```java
+/**
+ * 创建一个使用单个 worker 线程的 Executor.
+ */
+public static ExecutorService newSingleThreadExecutor() {
+    return new FinalizableDelegatedExecutorService
+            (new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,
+                    new LinkedBlockingQueue<Runnable>()));
+}
+ 
+/**
+ * 创建一个使用单个 worker 线程的 Executor.
+ * 在需要时使用提供的 ThreadFactory 创建新线程.
+ */
+public static ExecutorService newSingleThreadExecutor(ThreadFactory threadFactory) {
+    return new FinalizableDelegatedExecutorService
+            (new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,
+                    new LinkedBlockingQueue<Runnable>(), threadFactory));
+}
+```
+
