@@ -356,3 +356,24 @@ public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize, 
 
 ### Fork/Join线程池
 
+Fork/Join线程池是一类比较特殊的线程池，其核心就是ForkJoinPool，主要面对的是Fork/Join框架  
+
+```java
+/**
+ * 创建具有指定并行级别的ForkJoin线程池.
+ */
+public static ExecutorService newWorkStealingPool(int parallelism) {
+    return new ForkJoinPool(parallelism, ForkJoinPool.defaultForkJoinWorkerThreadFactory, null, true);
+}
+ 
+/**
+ * 创建并行级别等于CPU核心数的ForkJoin线程池.
+ */
+public static ExecutorService newWorkStealingPool() {
+    return new ForkJoinPool(Runtime.getRuntime().availableProcessors(), ForkJoinPool.defaultForkJoinWorkerThreadFactory,
+            null, true);
+}
+```
+
+### 总结  
+
