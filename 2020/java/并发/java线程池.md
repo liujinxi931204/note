@@ -182,3 +182,13 @@ public interface ExecutorService extends Executor {
 }
 ```
 
+### 周期任务的调度----ScheduledExecutorService  
+
+在ExecutorService的基础上，J.U.C又提供了一个接口ScheduledExecutorService，该接口主要是为了满足某些任务能够定时执行或者周期性的执行  
+
+```java
+public interface ScheduledExecutorService extends ExecutorService
+```
+
+ScheduledExecutorService提供了一系列schedule方法，可以在给定的延迟后执行提交的任务，或者每隔指定的周期执行一次任务  
+
