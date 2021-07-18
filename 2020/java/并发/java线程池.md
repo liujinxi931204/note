@@ -420,3 +420,5 @@ protected <T> RunnableFuture<T> newTaskFor(Runnable runnable, T value) {
 
 ### 线程池简介  
 
+当有任务需要执行时，线程池会给该任务分配线程，如果当前没有可用线程，一般会将任务放进一个队列中，当有可用的线程时，再从队列中取出任务并执行  
+
