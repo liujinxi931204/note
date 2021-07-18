@@ -378,3 +378,6 @@ public static ExecutorService newWorkStealingPool() {
 ## 总结  
 
 整个Executors框架基本结构就如下图  
+
+![Executors框架](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/Executors%E6%A1%86%E6%9E%B6.png)  
+
