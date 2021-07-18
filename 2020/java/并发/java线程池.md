@@ -426,3 +426,5 @@ protected <T> RunnableFuture<T> newTaskFor(Runnable runnable, T value) {
 
 ## ThreadPoolExecutor基本原理  
 
+### 构造线程池  
+
