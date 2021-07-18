@@ -383,3 +383,9 @@ public static ExecutorService newWorkStealingPool() {
 
 ## ThreadPoolExecutor简介  
 
+ThreadPoolExecutor，是J.U.C提供的一种实现了ExecutorService接口的执行器，也就是线程池。但是ThreadPoolExecutor没有直接实现ExecutorService接口，因为它只是ExecutorService接口的一种实现而已，所以Doug Lea把一些通用的部分封装成一个抽象父类AbstractExecutorService，供J.U.C中的其他执行器继承。如果需要实现一个Executor，也可以继承这个类  
+
+```java
+public class ThreadPoolExecutor extends AbstractExecutorService
+```
+
