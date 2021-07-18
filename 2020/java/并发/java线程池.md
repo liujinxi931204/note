@@ -466,6 +466,8 @@ public ThreadPoolExecutor(int corePoolSize,
 
 正是通过上述参数的组合，Executors工厂可以创建不同类型的线程池，这里简单说一下corePoolSize和maximumPoolSize这两个参数  
 
+#### 核心线程池和非核心线程池
+
 ThreadPoolExecutor在逻辑上将自身管理的线程池分为核心线程池（大小对应corePoolSize）和非核心线程池（大小对应maximumPoolSize-corePoolSize）
 
 当我们向线程池提交一个任务时，将创建一个工作线程，称之为Worker，Worker在逻辑上属于核心线程池还是非核心线程池，要根据corePoolSize、maximumPoolSize和Worker的总数进行判断  
@@ -486,3 +488,6 @@ ThreadPoolExecutor中只有一种类型的线程，名叫Worker，它是ThreadPo
 
    3.2 如果工作线程数大于核心线程池的上限，且又大于总线程池的上限，则执行拒绝策略
 
+核心线程池：固定线程数，可闲置，默认不会被销毁，如果设置allowCoreThreadTimeOut属性为true时，keepAliveTime会作用于核心线程，如果超过这个时长，线程会被回收
+
+非核心线程池：如果闲置的时长超过了keepAliveTime，线程会被回收
