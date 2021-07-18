@@ -458,4 +458,8 @@ public ThreadPoolExecutor(int corePoolSize,
 
 + corePoolSize：核心线程池中的最大线程数
 + maximumPoolSize：总线成中的最大线程数
-+ 
++ keepAliveTime：空闲线程的存活时间
++ unit：keepAliveTime的时间单位
++ workQueue：任务队列，用来保存已经提交但是还没有执行的任务
++ threadFactory：线程工厂（用于指定如果创建一个线程）
++ handler：拒绝策略（当任务太多导致工作队列满时的处理策略）
