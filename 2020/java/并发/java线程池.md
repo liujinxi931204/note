@@ -402,3 +402,5 @@ public <T> Future<T> submit(Runnable task, T result) {
 }
 ```
 
+可以看到，上述方法首先对Runnable任务和返回值value进行了封装，通过一个newTaskFor的方法，封装成了一个FutureTask对象，然后通过executor方法执行任务，最后返回异步任务对象
+
