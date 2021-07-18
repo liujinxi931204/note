@@ -488,6 +488,6 @@ ThreadPoolExecutor中只有一种类型的线程，名叫Worker，它是ThreadPo
 
    3.2 如果工作线程数大于核心线程池的上限，且又大于总线程池的上限，则执行拒绝策略
 
-核心线程池：固定线程数，可闲置，默认不会被销毁，如果设置allowCoreThreadTimeOut属性为true时，keepAliveTime会作用于核心线程，如果超过这个时长，线程会被回收
+核心线程池：固定线程数，可闲置，默认不会被销毁，如果设置allowCoreThreadTimeOut属性为true时，keepAliveTime会作用于核心线程，如果线程闲置的时间超过这个时长，线程会被回收
 
-非核心线程池：如果闲置的时长超过了keepAliveTime，线程会被回收
+非核心线程池：如果线程闲置的时长超过了keepAliveTime，线程会被回收
