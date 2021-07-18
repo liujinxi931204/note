@@ -468,3 +468,5 @@ public ThreadPoolExecutor(int corePoolSize,
 
 ThreadPoolExecutor在逻辑上将自身管理的线程池分为核心线程池（大小对应corePoolSize）和非核心线程池（大小对应maximumPoolSize-corePoolSize）
 
+当我们向线程池提交一个任务时，将创建一个工作线程，称之为Worker，Worker在逻辑上属于核心线程池还是非核心线程池，要根据corePoolSize、maximumPoolSize和Worker的总数进行判断  
+
