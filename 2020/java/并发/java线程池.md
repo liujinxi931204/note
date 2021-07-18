@@ -463,3 +463,6 @@ public ThreadPoolExecutor(int corePoolSize,
 + workQueue：任务队列，用来保存已经提交但是还没有执行的任务
 + threadFactory：线程工厂（用于指定如果创建一个线程）
 + handler：拒绝策略（当任务太多导致工作队列满时的处理策略）
+
+正是通过上述参数的组合，Executors工厂可以创建不同类型的线程池，这里简单说一下corePoolSize和maximumPoolSize这两个参数  
+
