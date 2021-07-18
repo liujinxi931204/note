@@ -304,3 +304,55 @@ public static ExecutorService newSingleThreadExecutor(ThreadFactory threadFactor
 }
 ```
 
+### 可缓存的线程池
+
+有些情况下，我们虽然创建了具有一定线程数的线程池，但出于对资源利用率的考虑，可能希望在特定的时候对线程进行回收，这时候就需要使用可缓存的线程池了  
+
+```java
+/**
+ * 创建一个可缓存线程的Execotor.
+ * 如果线程池中没有线程可用, 则创建一个新线程并添加到池中;
+ * 如果有线程长时间未被使用(默认60s, 可通过threadFactory配置), 则从缓存中移除.
+ */
+public static ExecutorService newCachedThreadPool() {
+    return new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS,
+            new SynchronousQueue<Runnable>());
+}
+ 
+/**
+ * 创建一个可缓存线程的Execotor.
+ * 如果线程池中没有线程可用, 则创建一个新线程并添加到池中;
+ * 如果有线程长时间未被使用(默认60s, 可通过threadFactory配置), 则从缓存中移除.
+ * 在需要时使用提供的 ThreadFactory 创建新线程.
+ */
+public static ExecutorService newCachedThreadPool(ThreadFactory threadFactory) {
+    return new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS,
+            new SynchronousQueue<Runnable>(), threadFactory);
+}
+```
+
+### 可延时/周期调度的线程池
+
+如果有任务需要延迟/周期调用，就需要这种线程池
+
+```java
+/**
+ * 创建一个具有固定线程数的 可调度Executor.
+ * 它可安排任务在指定延迟后或周期性地执行.
+ */
+public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) {
+    return new ScheduledThreadPoolExecutor(corePoolSize);
+}
+ 
+/**
+ * 创建一个具有固定线程数的 可调度Executor.
+ * 它可安排任务在指定延迟后或周期性地执行.
+ * 在需要时使用提供的 ThreadFactory 创建新线程.
+ */
+public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize, ThreadFactory threadFactory) {
+    return new ScheduledThreadPoolExecutor(corePoolSize, threadFactory);
+}
+```
+
+### Fork/Join线程池
+
