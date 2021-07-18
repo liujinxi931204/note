@@ -239,3 +239,7 @@ public interface ScheduledExecutorService extends ExecutorService {
 }
 ```
 
+以上就是Executor框架中三个最核心的接口，这三个接口的关系如下图  
+
+![clipboard.png](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/bVbh0SH)  
+
