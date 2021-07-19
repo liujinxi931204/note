@@ -237,7 +237,7 @@ public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDela
  */
 public ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit);
 ```
-以上就是Executor框架中三个最核心的接口，这三个接口的关系如下图
+以上就是Executor框架中三个最核心的接口，这三个接口的关系以及其中主要的方法如下图
 
 ![img](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/3724012404-5bbec224900b5_fix732.png)  
 
@@ -493,4 +493,188 @@ ThreadPoolExecutor中只有一种类型的线程，名叫Worker，它是ThreadPo
 核心线程池：固定线程数，可闲置，默认不会被销毁，如果设置allowCoreThreadTimeOut属性为true时，keepAliveTime会作用于核心线程，如果线程闲置的时间超过这个时长，线程会被回收
 
 非核心线程池：如果线程闲置的时长超过了keepAliveTime，线程会被回收
+
+### 工作线程  
+
+工作线程Worker被定义为ThreadPoolExecutor的一个内部类，实现了AQS框架，ThreadPoolExecutor通过一个HashSet来保存工作线程  
+
+```java
+/**
+ * 工作线程集合.
+ */
+private final HashSet<Worker> workers = new HashSet<Worker>();
+```
+
+工作线程的定义如下：
+
+```java
+/**
+ * Worker表示线程池中的一个工作线程, 可以与任务相关联.
+ * 由于实现了AQS框架, 其同步状态值的定义如下:
+ * -1: 初始状态
+ * 0:  无锁状态
+ * 1:  加锁状态
+ */
+private final class Worker extends AbstractQueuedSynchronizer implements Runnable {
+ 
+    /**
+     * 与该Worker关联的线程.
+     */
+    final Thread thread;
+    /**
+     * Initial task to run.  Possibly null.
+     */
+    Runnable firstTask;
+    /**
+     * Per-thread task counter
+     */
+    volatile long completedTasks;
+ 
+ 
+    Worker(Runnable firstTask) {
+        setState(-1); // 初始的同步状态值
+        this.firstTask = firstTask;
+        this.thread = getThreadFactory().newThread(this);
+    }
+ 
+    /**
+     * 执行任务
+     */
+    public void run() {
+        runWorker(this);
+    }
+ 
+    /**
+     * 是否加锁
+     */
+    protected boolean isHeldExclusively() {
+        return getState() != 0;
+    }
+ 
+    /**
+     * 尝试获取锁
+     */
+    protected boolean tryAcquire(int unused) {
+        if (compareAndSetState(0, 1)) {
+            setExclusiveOwnerThread(Thread.currentThread());
+            return true;
+        }
+        return false;
+    }
+ 
+    /**
+     * 尝试释放锁
+     */
+    protected boolean tryRelease(int unused) {
+        setExclusiveOwnerThread(null);
+        setState(0);
+        return true;
+    }
+ 
+    public void lock() {
+        acquire(1);
+    }
+ 
+    public boolean tryLock() {
+        return tryAcquire(1);
+    }
+ 
+    public void unlock() {
+        release(1);
+    }
+ 
+    public boolean isLocked() {
+        return isHeldExclusively();
+    }
+ 
+    /**
+     * 中断线程(仅任务非初始状态)
+     */
+    void interruptIfStarted() {
+        Thread t;
+        if (getState() >= 0 && (t = thread) != null && !t.isInterrupted()) {
+            try {
+                t.interrupt();
+            } catch (SecurityException ignore) {
+            }
+        }
+    }
+}
+```
+
+通过Worker的定义可以看到，每个Worker对象都一个Thread线程对象与它相对应，当任务需要执行时，实际调用内部Thread对象的start方法，而Thread对象是在Worker的构造器中通过getThreadFactory().newThread(this)方法创建，创建的Thread对象将Worker自身作为任务，所以调用Thread的start方法时，实际最终调用了Worker.run()方法，该方法内部委托给runWorker方法执行任务  
+
+### 线程工厂  
+
+ThreadFactory用来创建单个线程，当线程池需要创建一个线程时，就调用该类的newThread(Runnable r)方法创建线程（ThreadPoolExecutor中实际创建线程的时刻是将任务包装成工作线程Worker的时候）
+
+ThreadPoolExecutor在构造时如果不指定ThreadFactory，则默认使用Executors.defaultThreadFactory()来创建一个ThreadFactory  
+
+```java
+public static ThreadFactory defaultThreadFactory() {
+    return new DefaultThreadFactory();
+}
+
+/**
+ * 默认的线程工厂.
+ */
+static class DefaultThreadFactory implements ThreadFactory {
+    private static final AtomicInteger poolNumber = new AtomicInteger(1);
+    private final ThreadGroup group;
+    private final AtomicInteger threadNumber = new AtomicInteger(1);
+    private final String namePrefix;
+ 
+    DefaultThreadFactory() {
+        SecurityManager s = System.getSecurityManager();
+        group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
+        namePrefix = "pool-" + poolNumber.getAndIncrement() + "-thread-";
+    }
+ 
+    public Thread newThread(Runnable r) {
+        Thread t = new Thread(group, r, namePrefix + threadNumber.getAndIncrement(), 0);
+        if (t.isDaemon())
+            t.setDaemon(false);
+        if (t.getPriority() != Thread.NORM_PRIORITY)
+            t.setPriority(Thread.NORM_PRIORITY);
+        return t;
+    }
+}
+```
+
+使用线程工厂的好处是，一来可以解耦对象的创建和使用，二来是可以批量配置线程信息（包括优先级、线程名称、是否是守护线程），以自由设置池子中所有线程的状态
+
+### 线程池状态和线程管理  
+
+ThreadPoolExecutor内部定义了一个AtomicInteger变量——ctl，通过按位划分的方式，在一个变量中记录线程池状态和工作线程数——低29位保存线程数，高3位保存线程状态
+
+```java
+/**
+ * 保存线程池状态和工作线程数:
+ * 低29位: 工作线程数
+ * 高3位 : 线程池状态
+ */
+private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));
+ 
+private static final int COUNT_BITS = Integer.SIZE - 3;
+ 
+// 最大线程数: 2^29-1
+private static final int CAPACITY = (1 << COUNT_BITS) - 1;  // 00011111 11111111 11111111 11111111
+ 
+// 线程池状态
+private static final int RUNNING = -1 << COUNT_BITS;        // 11100000 00000000 00000000 00000000
+private static final int SHUTDOWN = 0 << COUNT_BITS;        // 00000000 00000000 00000000 00000000
+private static final int STOP = 1 << COUNT_BITS;            // 00100000 00000000 00000000 00000000
+private static final int TIDYING = 2 << COUNT_BITS;         // 01000000 00000000 00000000 00000000
+private static final int TERMINATED = 3 << COUNT_BITS;      // 01100000 00000000 00000000 00000000
+```
+
+可以看到，ThreadPoolExecutor一共定义了5种线程池状态  
+
++ RUNNING：接受新任务，且处理已经进入阻塞队列的任务
++ SHUTDOWN：不接受新任务，但处理已经进入阻塞队列的任务
++ STOP：不接受新任务，且不处理已经进入阻塞队列的任务，同时中断正在执行的任务
++ TIDYING：所有任务都已经终止，工作线程数为0，线程转化为TIDYING并准备调用terminated方法
++ TERMINATED：terminated方法已经被调用
+
+![线程池状态流转](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%8A%B6%E6%80%81%E6%B5%81%E8%BD%AC.png)  
 
