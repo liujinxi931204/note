@@ -57,7 +57,7 @@ executor.execute(new RunnableTask2());
 
 由于executor只是一个接口，所以根据其实现不同，执行任务的具体方式也不同  
 
-### 增强的Executor----ExecutorService  
+### 增强的Executor——ExecutorService  
 
 Executor接口提供的功能比较简单，为了对它的功能进行增强，J.U.C又提供了另一个接口ExecutorService，
 
@@ -181,4 +181,316 @@ public interface ExecutorService extends Executor {
         throws InterruptedException, ExecutionException, TimeoutException;
 }
 ```
+
+### 周期任务的调度——ScheduledExecutorService
+
+在ExecutorService的基础上，J.U.C又提供了一个接口ScheduledExecutorService，该接口主要是为了满足某些任务能够定时执行或者周期性的执行
+
+```java
+public interface ScheduledExecutorService extends ExecutorService
+```
+
+ScheduledExecutorService提供了一系列schedule方法，可以在给定的延迟后执行提交的任务，或者每隔指定的周期执行一次任务
+
+public interface ScheduledExecutorService extends ExecutorService {
+
+```java
+/**
+ * 提交一个待执行的任务, 并在给定的延迟后执行该任务.
+ *
+ * @param command 待执行的任务
+ * @param delay   延迟时间
+ * @param unit    延迟时间的单位
+ */
+public ScheduledFuture<?> schedule(Runnable command, long delay, TimeUnit unit);
+ 
+/**
+ * 提交一个待执行的任务（具有返回值）, 并在给定的延迟后执行该任务.
+ *
+ * @param command 待执行的任务
+ * @param delay   延迟时间
+ * @param unit    延迟时间的单位
+ * @param <V>     返回值类型
+ */
+public <V> ScheduledFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit);
+ 
+/**
+ * 提交一个待执行的任务.
+ * 该任务在 initialDelay 后开始执行, 然后在 initialDelay+period 后执行, 接着在 initialDelay + 2 * period 后执行, 依此类推.
+ *
+ * @param command      待执行的任务
+ * @param initialDelay 首次执行的延迟时间
+ * @param period       连续执行之间的周期
+ * @param unit         延迟时间的单位
+ */
+public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit);
+ 
+/**
+ * 提交一个待执行的任务.
+ * 该任务在 initialDelay 后开始执行, 随后在每一次执行终止和下一次执行开始之间都存在给定的延迟.
+ * 如果任务的任一执行遇到异常, 就会取消后续执行. 否则, 只能通过执行程序的取消或终止方法来终止该任务.
+ *
+ * @param command      待执行的任务
+ * @param initialDelay 首次执行的延迟时间
+ * @param delay        一次执行终止和下一次执行开始之间的延迟
+ * @param unit         延迟时间的单位
+ */
+public ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit);
+```
+以上就是Executor框架中三个最核心的接口，这三个接口的关系如下图
+
+![img](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/3724012404-5bbec224900b5_fix732.png)  
+
+## 生产Executor的工厂  
+
+通过上一部分，我们知道Executors框架就是同来解耦任务本身与任务的执行的，并提供了三个核心的方法来满足开发人员的需求：
+
+- Executor：提交普通的可执行任务
+- ExecutorService：提供对线程池生命周期的管理、异步任务的支持
+- ScheduledExecutorService：提供对任务的周期性支持
+
+同时J.U.C还提供了一个Executors类，专门用于创建上述接口的实现类对象。Executors其实就是一个简单工厂，它的所有方法都是静态的，用户可以根据需要，选择需要创建的执行器实例，Executors一共提供了五类Executor执行器实例
+
+### 固定线程数量的线程池
+
+Executors提供了下面的两种方法创建具有固定线程数量的Executor的方法，固定线程池在初始化时确定其中的线程总数，运行过程中保持不变
+
+```java
+/**
+ * 创建一个具有固定线程数的Executor.
+ */
+public static ExecutorService newFixedThreadPool(int nThreads) {
+    return new ThreadPoolExecutor(nThreads, nThreads, 0L, TimeUnit.MILLISECONDS,
+            new LinkedBlockingQueue<Runnable>());
+}
+
+/**
+ * 创建一个具有固定线程数的Executor.
+ * 在需要时使用提供的 ThreadFactory 创建新线程.
+ */
+public static ExecutorService newFixedThreadPool(int nThreads, ThreadFactory threadFactory) {
+    return new ThreadPoolExecutor(nThreads, nThreads, 0L, TimeUnit.MILLISECONDS,
+            new LinkedBlockingQueue<Runnable>(), threadFactory);
+
+}
+```
+
+### 单个线程的线程池
+
+Executors提供了两种方法来创建只有单个线程的线程池
+
+```java
+/**
+ * 创建一个使用单个 worker 线程的 Executor.
+ */
+public static ExecutorService newSingleThreadExecutor() {
+    return new FinalizableDelegatedExecutorService
+            (new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,
+                    new LinkedBlockingQueue<Runnable>()));
+}
+ 
+/**
+ * 创建一个使用单个 worker 线程的 Executor.
+ * 在需要时使用提供的 ThreadFactory 创建新线程.
+ */
+public static ExecutorService newSingleThreadExecutor(ThreadFactory threadFactory) {
+    return new FinalizableDelegatedExecutorService
+            (new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,
+                    new LinkedBlockingQueue<Runnable>(), threadFactory));
+}
+```
+
+### 可缓存的线程池
+
+有些情况下，我们虽然创建了具有一定线程数的线程池，但出于对资源利用率的考虑，可能希望在特定的时候对线程进行回收，这时候就需要使用可缓存的线程池了
+
+```java
+/**
+ * 创建一个可缓存线程的Execotor.
+ * 如果线程池中没有线程可用, 则创建一个新线程并添加到池中;
+ * 如果有线程长时间未被使用(默认60s, 可通过threadFactory配置), 则从缓存中移除.
+ */
+public static ExecutorService newCachedThreadPool() {
+    return new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS,
+            new SynchronousQueue<Runnable>());
+}
+ 
+/**
+ * 创建一个可缓存线程的Execotor.
+ * 如果线程池中没有线程可用, 则创建一个新线程并添加到池中;
+ * 如果有线程长时间未被使用(默认60s, 可通过threadFactory配置), 则从缓存中移除.
+ * 在需要时使用提供的 ThreadFactory 创建新线程.
+ */
+public static ExecutorService newCachedThreadPool(ThreadFactory threadFactory) {
+    return new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS,
+            new SynchronousQueue<Runnable>(), threadFactory);
+}
+```
+
+### 可延时/周期调度的线程池
+
+如果有任务需要延迟/周期调用，就需要这种线程池
+
+```java
+/**
+ * 创建一个具有固定线程数的 可调度Executor.
+ * 它可安排任务在指定延迟后或周期性地执行.
+ */
+public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) {
+    return new ScheduledThreadPoolExecutor(corePoolSize);
+}
+ 
+/**
+ * 创建一个具有固定线程数的 可调度Executor.
+ * 它可安排任务在指定延迟后或周期性地执行.
+ * 在需要时使用提供的 ThreadFactory 创建新线程.
+ */
+public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize, ThreadFactory threadFactory) {
+    return new ScheduledThreadPoolExecutor(corePoolSize, threadFactory);
+}
+```
+
+### Fork/Join线程池
+
+Fork/Join线程池是一类比较特殊的线程池，其核心就是ForkJoinPool，主要面对的是Fork/Join框架
+
+```java
+/**
+ * 创建具有指定并行级别的ForkJoin线程池.
+ */
+public static ExecutorService newWorkStealingPool(int parallelism) {
+    return new ForkJoinPool(parallelism, ForkJoinPool.defaultForkJoinWorkerThreadFactory, null, true);
+}
+ 
+/**
+ * 创建并行级别等于CPU核心数的ForkJoin线程池.
+ */
+public static ExecutorService newWorkStealingPool() {
+    return new ForkJoinPool(Runtime.getRuntime().availableProcessors(), ForkJoinPool.defaultForkJoinWorkerThreadFactory,
+            null, true);
+}
+```
+
+## 总结
+
+整个Executors框架基本结构就如下图
+
+![img](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/Executors%E6%A1%86%E6%9E%B6.png)    
+
+## ThreadPoolExecutor简介
+
+ThreadPoolExecutor，是J.U.C提供的一种实现了ExecutorService接口的执行器，也就是线程池。但是ThreadPoolExecutor没有直接实现ExecutorService接口，因为它只是ExecutorService接口的一种实现而已，所以Doug Lea把一些通用的部分封装成一个抽象父类AbstractExecutorService，供J.U.C中的其他执行器继承。如果需要实现一个Executor，也可以继承这个类
+
+```java
+public class ThreadPoolExecutor extends AbstractExecutorService
+```
+
+### AbstractExecutorService
+
+AbstractExecutorService主要实现了ExecutorService中submit、invokeAny、invokeAll这三类方法。这三类方法的返回值几乎都是一个Future对象。而Future是一个接口，AbstractExecutorService既然实现了这些方法，必然实现了这个Future接口，来看一下AbstractExecutorService的submit方法
+
+```java
+public <T> Future<T> submit(Runnable task, T result) {
+    if (task == null) throw new NullPointerException();
+    RunnableFuture<T> ftask = newTaskFor(task, result);
+    execute(ftask);
+    return ftask;
+}
+```
+
+可以看到，上述方法首先对Runnable任务和返回值value进行了封装，通过一个newTaskFor的方法，封装成了一个FutureTask对象，然后通过execute方法执行任务，最后返回异步任务对象
+
+这里其实是模板方法的运用，execute方法是一个抽象方法，需要由继承了AbstractExecutorService子类实现具体的逻辑
+
+来看一下newTaskFor方法
+
+```java
+protected <T> RunnableFuture<T> newTaskFor(Runnable runnable, T value) {
+    return new FutureTask<T>(runnable, value);
+}
+```
+
+[FutureTask](https://gitee.com/liujinxi931204/note/blob/master/2020/java/并发/FutureTask.md)其实就是Future接口的实现类
+
+![img](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/FutureTask%E7%BB%A7%E6%89%BF%E7%BB%93%E6%9E%84.png)  
+
+### 线程池简介
+
+当有任务需要执行时，线程池会给该任务分配线程，如果当前没有可用线程，一般会将任务放进一个队列中，当有可用的线程时，再从队列中取出任务并执行
+
+![img](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%AE%80%E4%BB%8B.png)  
+
+## ThreadPoolExecutor基本原理
+
+### 构造线程池
+
+Executors的工厂方法可以创建三种线程池：newFixedThreadPool，newSingleThreadPool，newCachedThreadPool。但其实创建它们的方法内部都调用了ThreadPoolExecutor的构造方法来实例化ThreadPoolExecutor对象
+
+```java
+public ThreadPoolExecutor(int corePoolSize,
+                              int maximumPoolSize,
+                              long keepAliveTime,
+                              TimeUnit unit,
+                              BlockingQueue<Runnable> workQueue,
+                              ThreadFactory threadFactory,
+                              RejectedExecutionHandler handler) {
+        if (corePoolSize < 0 ||
+            maximumPoolSize <= 0 ||
+            maximumPoolSize < corePoolSize ||
+            keepAliveTime < 0)
+            throw new IllegalArgumentException();
+        if (workQueue == null || threadFactory == null || handler == null)
+            throw new NullPointerException();
+        this.corePoolSize = corePoolSize;
+        this.maximumPoolSize = maximumPoolSize;
+        this.workQueue = workQueue;
+        this.keepAliveTime = unit.toNanos(keepAliveTime);
+        this.threadFactory = threadFactory;
+        this.handler = handler;
+    }
+```
+
+这个构造方法一共有7个参数
+
+- corePoolSize：核心线程池中的最大线程数
+
+- maximumPoolSize：总线成中的最大线程数
+
+- keepAliveTime：空闲线程的存活时间
+
+- unit：keepAliveTime的时间单位
+
+- workQueue：任务队列，用来保存已经提交但是还没有执行的任务
+
+- threadFactory：线程工厂（用于指定如果创建一个线程）
+
+- handler：拒绝策略（当任务太多导致工作队列满时的处理策略）
+
+正是通过上述参数的组合，Executors工厂可以创建不同类型的线程池，这里简单说一下corePoolSize和maximumPoolSize这两个参数
+
+#### 核心线程池和非核心线程池
+
+ThreadPoolExecutor在逻辑上将自身管理的线程池分为核心线程池（大小对应corePoolSize）和非核心线程池（大小对应maximumPoolSize-corePoolSize）
+
+当我们向线程池提交一个任务时，将创建一个工作线程，称之为Worker，Worker在逻辑上属于核心线程池还是非核心线程池，要根据corePoolSize、maximumPoolSize和Worker的总数进行判断
+
+![img](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E6%80%BB%E7%BA%BF%E7%A8%8B%E6%B1%A0.png)  
+
+ThreadPoolExecutor中只有一种类型的线程，名叫Worker，它是ThreadPoolExecutor定义的内部类，同时封装着Runnable任务和执行该任务的Thread对象，它也是ThreadPoolExecutor唯一需要进行维护的线程；核心线程池和非核心线程池则是逻辑上的概念。
+
+核心线程池和非核心线程池的使用如下（可以通过下面对线程池的调度流程分析印证）
+
+1. 如果工作线程数小于核心线程池的上限，则直接创建一个工作线程执行任务
+
+2. 如果工作线程数大于核心线程池的上限，但是任务队列没有满，则将任务加入到任务队列等待
+
+3. 如果工作线程数大于核心线程池的上限，但是任务队列已满，这时就需要对比总线程池的数量了
+
+   3.1 如果工作线程数大于核心线程池的上限，且又小于总线程池的上限，则在非核心线程池中创建线程执行任务
+
+   3.2 如果工作线程数大于核心线程池的上限，且又大于总线程池的上限，则执行拒绝策略
+
+核心线程池：固定线程数，可闲置，默认不会被销毁，如果设置allowCoreThreadTimeOut属性为true时，keepAliveTime会作用于核心线程，如果线程闲置的时间超过这个时长，线程会被回收
+
+非核心线程池：如果线程闲置的时长超过了keepAliveTime，线程会被回收
 
