@@ -950,3 +950,10 @@ final void runWorker(Worker w) {
 
 + 如果线程池处于running、shutdown，需要确保任务不会被中断
 
+getTask方法会从工作队列中取出任务，如果取不到任务，会返回null，所以退出while循环有以下几种可能：  
+
++ 正常情况下，工作线程会不断从工作队列中获取任务，如果获取不到任务了，此时task==null && getTask()==null，此时completedAbruptly为false  
+
++ 异常情况，工作线程执行过程中被中断或者出现其他异常，completedAbruptly为true  
+
+finally中的processWorkerExit方法始终都会执行，用来清理工作线程
