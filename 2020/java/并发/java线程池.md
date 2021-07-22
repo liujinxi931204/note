@@ -944,3 +944,9 @@ final void runWorker(Worker w) {
 }
 ```
 
+需要注意一下这个方法中的第一个if，该方法的核心就是  
+
++ 如果线程池处于stop、tidying、terminated时，不再接受新任务，如果有新任务，也需要确保该任务被中断
+
++ 如果线程池处于running、shutdown，需要确保任务不会被中断
+
