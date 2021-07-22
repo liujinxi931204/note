@@ -935,8 +935,10 @@ final void runWorker(Worker w) {
                 w.unlock();
             }
         }
+        //执行到此处说明该工作线程自身既没有携带任务，也没有从工作队列中获取任务
         completedAbruptly = false;
     } finally {
+        //处理工作线程的退出工作
         processWorkerExit(w, completedAbruptly);
     }
 }
