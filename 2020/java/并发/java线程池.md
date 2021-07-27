@@ -1079,7 +1079,7 @@ public static class DiscardPolicy implements RejectedExecutionHandler {
 
 #### DiscardOldestPolicy  
 
-DiscardOldestPolicy策略是丢弃队列中时间最久没有执行的任务，就是丢弃队列的头部任务  
+DiscardOldestPolicy策略是丢弃队列中时间最久没有执行的任务  
 
 ```java
 public static class DiscardOldestPolicy implements RejectedExecutionHandler {
