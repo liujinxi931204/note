@@ -886,7 +886,7 @@ public void run() {
 }
 ```
 
-可以看到run方法内部又调用了worker的runWorker方法  
+可以看到run方法内部又调用了ThreadPoolExecutor的runWorker方法  
 
 ```java
 final void runWorker(Worker w) {
@@ -957,3 +957,160 @@ getTask方法会从工作队列中取出任务，如果取不到任务，会返�
 + 异常情况，工作线程执行过程中被中断或者出现其他异常，completedAbruptly为true  
 
 finally中的processWorkerExit方法始终都会执行，用来清理工作线程
+
+### 工作线程的清理  
+
+工作线程的处理是在processWorkerExit方法中进行的  
+
+```java
+private void processWorkerExit(Worker w, boolean completedAbruptly) {
+    //runWorker执行异常时，需要在这里将有效线程的数量减一
+    //runWorker执行正常时，在getTask方法中将有效线程数量减一
+    if (completedAbruptly) // If abrupt, then workerCount wasn't adjusted
+        decrementWorkerCount();
+
+    final ReentrantLock mainLock = this.mainLock;
+    mainLock.lock();
+    try {
+        //统计已完成的任务数
+        completedTaskCount += w.completedTasks;
+        //从workerSet中去除worker
+        workers.remove(w);
+    } finally {
+        mainLock.unlock();
+    }
+
+    //尝试终止线程池
+    tryTerminate();
+
+    int c = ctl.get();
+    //线程池的状态是running或者shutdown
+    if (runStateLessThan(c, STOP)) {
+        //runWorker正常执行
+        if (!completedAbruptly) {
+            //线程池最小的空闲数，允许core thread超时，就是0
+            //不允许，就是corePoolSize
+            int min = allowCoreThreadTimeOut ? 0 : corePoolSize;
+            //任务队列不为空，至少需要一个线程处理任务队列中的任务
+            if (min == 0 && ! workQueue.isEmpty())
+                min = 1;
+            //线程池中有线程处理队列中的任务，直接返回
+            if (workerCountOf(c) >= min)
+                return; // replacement not needed
+        }
+        //线程池中没有线程处理队列中的任务时，创建一个线程处理队列中的任务
+        addWorker(null, false);
+    }
+}
+```
+
+procressWorkerExit的作用就是将该退出的工作线程清理掉，然后看一下线程池是否需要终止  
+
+可以回顾一下工作线程的生命周期  
+
+![线程池工作线程生命周期](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png)  
+
+### 任务的获取 
+
+任务的获取是不断从阻塞队列中获取下一个任务，如果获取任务失败，getTask()方法就会返回null，这里来看一下阻塞队列和线程池之间的关系  
+
+#### 直接提交  
+
+直接将任务提交给工作线程，这时可以选择SynchronousQueue。因为SynchronousQueue没有容量，而且采用了无锁算法，所以性能好，但是每一个入队操作都要等待一个出队操作，反之亦然
+
+使用SynchronousQueue时，当核心线程池满了以后，如果不存在空闲的工作线程，则视图将任务入队会立即失败，这时会构造一个新的非核心线程池的工作线程来执行任务。因此当使用SynchronousQueue时，一般需要将maximumPoolSize设置的比较大，否则很容易入队失败，而导致执行拒绝策略  
+
+#### 无界任务队列  
+
+无界任务队列主要有LinkedTransferQueue、LinkedBlockingQueue，从性能角度来说LinkedTransferQueue采用了无锁算法，性能相对好一些，但如果只是做任务队列两者相差并不大。
+
+使用无界队列特别需要注意系统资源的消耗情况，因为当核心线程池满了以后，会尝试将任务加入到无界队列中，而添加无界队列几乎都会成功，那么系统的瓶颈其实就是系统的资源了。如果任务的创建速度远大于任务的处理速度，那么最终会导致资源耗尽的情况  
+
+#### 有界任务队列  
+
+有界任务队列，比如ArrayBlockingQueue，可以防止资源耗尽的情况。当核心线程池满了以后，如果队列也满了，则会创建属于非核心线程池的工作线程，如果非核心线程池也满了，则会执行拒绝策略  
+
+### 拒绝策略  
+
+ThreadPoolExecutor会在以下两种情况执行拒绝策略  
+
+1. 当核心线程池满了以后，如果任务队列也满了，首先判断非核心线程池满有没有满，如果没有满就创建一个工作线程，否则就执行拒绝策略  
+
+2. 提交任务时，ThreadPoolExecutor已经被关闭了  
+
+拒绝策略就是在创建ThreadPoolExecutor时传入的RejectedExecutionHandler对象  
+
+```java
+public interface RejectedExecutionHandler {
+    void rejectedExecution(Runnable r, ThreadPoolExecutor executor);
+}
+```
+
+ThreadPoolExecutor一共提供了四种拒绝策略  
+
+#### AbortPolicy（默认策略）  
+
+AbortPolicy策略是默认的拒绝策略，就是抛出一个RejectedExecutionException异常  
+
+```java
+public static class AbortPolicy implements RejectedExecutionHandler {
+    public AbortPolicy() {
+    }
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+        throw new RejectedExecutionException("Task " + r.toString() +
+                                             " rejected from " +
+                                             e.toString());
+    }
+}
+```
+
+#### DiscardPolicy  
+
+DiscardPolicy会丢弃这个任务，什么也不做  
+
+```java
+public static class DiscardPolicy implements RejectedExecutionHandler {
+    public DiscardPolicy() {
+    }
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+    }
+}
+```
+
+#### DiscardOldestPolicy  
+
+DiscardOldestPolicy策略是丢弃队列中时间最久没有执行的任务，就是丢弃队列的头部任务  
+
+```java
+public static class DiscardOldestPolicy implements RejectedExecutionHandler {
+    public DiscardOldestPolicy() {
+    }
+
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+        if (!e.isShutdown()) {      // 线程池未关闭(RUNNING)
+            e.getQueue().poll();    // 丢弃任务队列中的最近任务
+            e.execute(r);           // 执行当前任务
+        }
+    }
+}
+```
+
+#### CallerRunsPolicy  
+
+CallerRunsPolicy策略会把这个任务交给提交任务的线程执行，也就是谁提交任务，谁负责执行任务。这种策略有一个好处就是如果执行的任务比较耗时，负责提交任务的线程就被占用，也不会再提交新的任务，减缓了任务提交的速度，相当于是一个负反馈。  
+
+```java
+public static class CallerRunsPolicy implements RejectedExecutionHandler {
+    public CallerRunsPolicy() {
+    }
+
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+        if (!e.isShutdown()) {  // 线程池未关闭(RUNNING)
+            r.run();            // 执行当前任务
+        }
+    }
+}
+```
+
+  
+
