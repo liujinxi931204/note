@@ -1112,5 +1112,61 @@ public static class CallerRunsPolicy implements RejectedExecutionHandler {
 }
 ```
 
-  
+## 线程池的关闭  
 
+ExecutorService接口提供了两种方法来关闭线程池，这两种方法的区别主要在于是否继续处理已经添加到任务队列中的任务  
+
+### shutdown  
+
+shutdown方法将线程池切换到SHUTDOWN状态（如果已经停止，则不用切换），并调用interruptIdleWorkers方法中断所有空闲的工作线程，最后调用tryTerminate尝试结束线程池  
+
+```java
+public void shutdown() {
+    final ReentrantLock mainLock = this.mainLock;
+    mainLock.lock();
+    try {
+        checkShutdownAccess();
+        advanceRunState(SHUTDOWN);  // 如果线程池为RUNNING状态, 则切换为SHUTDOWN状态
+        interruptIdleWorkers();     // 中断所有空闲线程
+        onShutdown();               // 钩子方法, 由子类实现
+    } finally {
+        mainLock.unlock();
+    }
+    tryTerminate();                 
+}
+```
+
+这里需要注意，如果执行Runnable任务的线程本身不响应中断，那么就没有办法终止任务  
+
+### shutdownNow  
+
+shutdownNow方法的主要不同之处就是，它会将线程池的状态至少置为STOP状态，同时中断所有工作线程（不论该线程是空闲还是正在运行），同时返回任务队列中的所有任务  
+
+```java
+public List<Runnable> shutdownNow() {
+    List<Runnable> tasks;
+    final ReentrantLock mainLock = this.mainLock;
+    mainLock.lock();
+    try {
+        checkShutdownAccess();
+        advanceRunState(STOP);  // 如果线程池为RUNNING或SHUTDOWN状态, 则切换为STOP状态
+        interruptWorkers();     // 中断所有工作线程
+        tasks = drainQueue();   // 抽空任务队列中的所有任务
+    } finally {
+        mainLock.unlock();
+    }
+    tryTerminate();
+    return tasks;
+}
+```
+
+## 总结  
+
+ThreadPoolExecutor中有几个比较重要的组件：阻塞队列、核心线程池、拒绝策略，它们的关系如下图，图中的序号表示execute的执行顺序  
+
+![线程池各组件关系](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%90%84%E7%BB%84%E4%BB%B6%E5%85%B3%E7%B3%BB.png)
+
+现实情况下，一般会通过ThreadPoolExecutor的构造函数来创建线程池，而非通过Executors工厂创建，因为这样有利于对参数的控制和调整  
+
++ 如果任务是CPU密集型（需要大量计算、处理），则应该配置尽量少的线程，比如CPU个数+1，这样可以避免出现每个线程都需要使用很长时间但是又有太多线程去争抢资源的情况  
++ 如果任务是IO密集型（主要事件都在IO，CPU空闲时间比较多）则应该配置多一些线程，比如CPU个数的两倍，这样可以更高的压榨CPU
