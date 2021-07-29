@@ -516,7 +516,7 @@ private final HashSet<Worker> workers = new HashSet<Worker>();
  * 1:  加锁状态
  */
 private final class Worker extends AbstractQueuedSynchronizer implements Runnable {
- 
+
     /**
      * 与该Worker关联的线程.
      */
@@ -529,28 +529,28 @@ private final class Worker extends AbstractQueuedSynchronizer implements Runnabl
      * Per-thread task counter
      */
     volatile long completedTasks;
- 
- 
+
+
     Worker(Runnable firstTask) {
         setState(-1); // 初始的同步状态值
         this.firstTask = firstTask;
         this.thread = getThreadFactory().newThread(this);
     }
- 
+
     /**
      * 执行任务
      */
     public void run() {
         runWorker(this);
     }
- 
+
     /**
      * 是否加锁
      */
     protected boolean isHeldExclusively() {
         return getState() != 0;
     }
- 
+
     /**
      * 尝试获取锁
      */
@@ -561,7 +561,7 @@ private final class Worker extends AbstractQueuedSynchronizer implements Runnabl
         }
         return false;
     }
- 
+
     /**
      * 尝试释放锁
      */
@@ -570,23 +570,23 @@ private final class Worker extends AbstractQueuedSynchronizer implements Runnabl
         setState(0);
         return true;
     }
- 
+
     public void lock() {
         acquire(1);
     }
- 
+
     public boolean tryLock() {
         return tryAcquire(1);
     }
- 
+
     public void unlock() {
         release(1);
     }
- 
+
     public boolean isLocked() {
         return isHeldExclusively();
     }
- 
+
     /**
      * 中断线程(仅任务非初始状态)
      */
