@@ -762,3 +762,323 @@ static final class ReservationNode<K,V> extends Node<K,V> {
 
 由上面可以知道，Node节点是其他节点的父类。ForwardingNode节点在扩容的时候才会用到，它的hash值固定为-1。TreeBin节点相当于是TreeNode节点的代理节点，不存储真实的数据，在它的内部定义了关于红黑树的操作，它的hash值固定为-2。TreeNode是存储真实数据的红黑树节点。ReservationNode节点只有在一些特殊方法中才会使用，它的hash值固定为-3。
 
+## ConcurrentHashMap的构造  
+
+#### 构造器定义  
+
+ConcurrentHashMap提供了五个构造器，这五个构造器内部最多只是计算了下table数组的初始长度容量最大值，并没有完成实际的创建table数组的动作。ConcurrentHashMap采用了一种懒加载的方式，只有首次插入键值对的时候，才会真正的去创建table数组  
+
+##### 空构造器  
+
+```java
+public ConcurrentHashMap() {
+}
+```
+
+ ##### 指定初始容量的构造器  
+
+```java
+/**
+* 这个构造器指定了table数组的初始容量
+* 最后tableSizeFor方法会返回(initialCapacity + (initialCapacity >>> 1) + 1)最小的2次幂
+* 例如initialCapacity=3，那么initialCapacity >>> 1=1，tableSizeFor方法就返回8
+*/
+public ConcurrentHashMap(int initialCapacity) {
+    if (initialCapacity < 0)
+        throw new IllegalArgumentException();
+    int cap = ((initialCapacity >= (MAXIMUM_CAPACITY >>> 1)) ?
+               MAXIMUM_CAPACITY :
+               tableSizeFor(initialCapacity + (initialCapacity >>> 1) + 1));
+    this.sizeCtl = cap;
+}
+```
+
+##### 根据已有的Map构造  
+
+```java
+/**
+* 根据已有的map构造ConcurrentHashMap
+*/
+public ConcurrentHashMap(Map<? extends K, ? extends V> m) {
+    this.sizeCtl = DEFAULT_CAPACITY;
+    putAll(m);
+}
+```
+
+##### 指定table初始容量和负载因子的构造器  
+
+```java
+/**
+* 指定table的初始容量和负载因子
+*/
+public ConcurrentHashMap(int initialCapacity, float loadFactor) {
+    this(initialCapacity, loadFactor, 1);
+}
+```
+
+##### 指定table的初始容量、负载因子和并发级别的构造器  
+
+```java
+/**
+* 指定table的初始容量、负载因子和并发级别
+* 1.8中的concurrencyLevel并发级别只是为了兼容之前的版本，并不是实际的并发级别
+* 负载因子loadFactory也不是真实的负载因子，仅仅对初始容量有一定的控制作用
+*/
+public ConcurrentHashMap(int initialCapacity,
+                         float loadFactor, int concurrencyLevel) {
+    if (!(loadFactor > 0.0f) || initialCapacity < 0 || concurrencyLevel <= 0)
+        throw new IllegalArgumentException();
+    if (initialCapacity < concurrencyLevel)   // Use at least as many bins
+        initialCapacity = concurrencyLevel;   // as estimated threads
+    long size = (long)(1.0 + (long)initialCapacity / loadFactor);
+    int cap = (size >= (long)MAXIMUM_CAPACITY) ?
+        MAXIMUM_CAPACITY : tableSizeFor((int)size);
+    this.sizeCtl = cap;
+}
+```
+
+这里来看一下tableSizeFor方法  
+
+```java
+private static final int tableSizeFor(int c) {
+    int n = c - 1;
+    n |= n >>> 1;
+    n |= n >>> 2;
+    n |= n >>> 4;
+    n |= n >>> 8;
+    n |= n >>> 16;
+    return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+}
+```
+
+这个方法就是返回输入数字最相近的2次幂。使用这个方法为的是让ConcurrentHashMap的长度始终都是2的幂次，在计算键值对在桶中的位置时可以借助于位运算以提高速度
+
+### 常量字段定义  
+
+#### 常量  
+
+```java
+/**
+ * 最大容量.
+ */
+private static final int MAXIMUM_CAPACITY = 1 << 30;
+
+/**
+ * 默认初始容量
+ */
+private static final int DEFAULT_CAPACITY = 16;
+
+/**
+ * The largest possible (non-power of two) array size.
+ * Needed by toArray and related methods.
+ */
+static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
+
+/**
+ * 负载因子，为了兼容JDK1.8以前的版本而保留。
+ * JDK1.8中的ConcurrentHashMap的负载因子恒定为0.75
+ */
+private static final float LOAD_FACTOR = 0.75f;
+
+/**
+ * 链表转树的阈值，即链接结点数大于8时， 链表转换为树.
+ */
+static final int TREEIFY_THRESHOLD = 8;
+
+/**
+ * 树转链表的阈值，即树结点树小于6时，树转换为链表.
+ */
+static final int UNTREEIFY_THRESHOLD = 6;
+
+/**
+ * 在链表转变成树之前，还会有一次判断：
+ * 即只有键值对数量大于MIN_TREEIFY_CAPACITY，才会发生转换。
+ * 这是为了避免在Table建立初期，多个键值对恰好被放入了同一个链表中而导致不必要的转化。
+ */
+static final int MIN_TREEIFY_CAPACITY = 64;
+
+/**
+ * 在树转变成链表之前，还会有一次判断：
+ * 即只有键值对数量小于MIN_TRANSFER_STRIDE，才会发生转换.
+ */
+private static final int MIN_TRANSFER_STRIDE = 16;
+
+/**
+ * 用于在扩容时生成唯一的随机数.
+ */
+private static int RESIZE_STAMP_BITS = 16;
+
+/**
+ * 可同时进行扩容操作的最大线程数.
+ */
+private static final int MAX_RESIZERS = (1 << (32 - RESIZE_STAMP_BITS)) - 1;
+
+/**
+ * The bit shift for recording size stamp in sizeCtl.
+ */
+private static final int RESIZE_STAMP_SHIFT = 32 - RESIZE_STAMP_BITS;
+
+static final int MOVED = -1;                // 标识ForwardingNode结点（在扩容时才会出现，不存储实际数据）
+static final int TREEBIN = -2;              // 标识红黑树的根结点
+static final int RESERVED = -3;             // 标识ReservationNode结点（）
+static final int HASH_BITS = 0x7fffffff;    // usable bits of normal node hash
+
+/**
+ * CPU核心数，扩容时使用
+ */
+static final int NCPU = Runtime.getRuntime().availableProcessors();
+```
+
+#### 字段 
+
+```java
+/**
+ * Node数组，标识整个Map，首次插入元素时创建，大小总是2的幂次.
+ */
+transient volatile Node<K, V>[] table;
+
+/**
+ * 扩容后的新Node数组，只有在扩容时才非空.
+ */
+private transient volatile Node<K, V>[] nextTable;
+
+/**
+ * 控制table的初始化和扩容.
+ * 0  : 初始默认值
+ * -1 : 有线程正在进行table的初始化
+ * >0 : table初始化时使用的容量，或初始化/扩容完成后的threshold
+ * -(1 + nThreads) : 记录正在执行扩容任务的线程数
+ */
+private transient volatile int sizeCtl;
+
+/**
+ * 扩容时需要用到的一个下标变量.
+ */
+private transient volatile int transferIndex;
+
+/**
+ * 计数基值,当没有线程竞争时，计数将加到该变量上。类似于LongAdder的base变量
+ */
+private transient volatile long baseCount;
+
+/**
+ * 计数数组，出现并发冲突时使用。类似于LongAdder的cells数组
+ */
+private transient volatile CounterCell[] counterCells;
+
+/**
+ * 自旋标识位，用于CounterCell[]扩容时使用。类似于LongAdder的cellsBusy变量
+ */
+private transient volatile int cellsBusy;
+
+
+// 视图相关字段
+private transient KeySetView<K, V> keySet;
+private transient ValuesView<K, V> values;
+private transient EntrySetView<K, V> entrySet;
+```
+
+## ConcurrentHashMap的put操作  
+
+put操作是插入一个键值对到ConcurrentHashMap中  
+
+```java
+public V put(K key, V value) {
+    //只是在内部调用了putVal(key, value, false)方法
+    return putVal(key, value, false);
+}
+```
+
+可以看到，这个方法只是在内部调用了一下`putVal(key, value, false)`方法  
+
+```java
+//实际上插入操作的完成者
+final V putVal(K key, V value, boolean onlyIfAbsent) {
+    //concurrentHashMap中不能插入key为null或者value为null的键值对
+    if (key == null || value == null) throw new NullPointerException();
+    //再次计算hash值，让hashCode的高低16位都参与运算，降低hash碰撞的概率
+    int hash = spread(key.hashCode());
+    int binCount = 0;
+    for (Node<K,V>[] tab = table;;) {//自旋，直到插入成功
+        Node<K,V> f; int n, i, fh;
+        if (tab == null || (n = tab.length) == 0)
+            //首次插入元素的时候，ConcurrentHashMap为空，所以在这里真正的创建ConcurrentHashMap，懒加载的体现
+            tab = initTable();
+        /**
+        * n是ConcurrentHashMap的长度，因为n始终是2的幂次
+        * 所以元素在桶中的位置i=hash%n=(n-1)&hash，这就是为什么之前使用tableSizeFor方法的原因 
+        * 如果table[i]的位置为空，使用cas操作将键值对插入到table[i]，如果插入失败，就会自旋，进行
+        * 下一次插入操作，直到插入成功
+        */
+        else if ((f = tabAt(tab, i = (n - 1) & hash)) == null) {
+            if (casTabAt(tab, i, null,
+                         new Node<K,V>(hash, key, value, null)))
+                break;                   // no lock when adding to empty bin
+        }
+        //发现ForwardingNode节点，说明此时table正在迁移，则协助完成table中数据的迁移
+        else if ((fh = f.hash) == MOVED)
+            tab = helpTransfer(tab, f);
+        else {
+            //到这里说明，table[i]位置已经有元素了
+            V oldVal = null;
+            //锁住table[i]，然后再检查一下table[i]是不是第一个节点，防止又别的线程进行了修改
+            synchronized (f) {
+                if (tabAt(tab, i) == f) {
+                    //说明table[i]是链表节点，按照链表的方式插入键值对
+                    if (fh >= 0) {
+                        binCount = 1;
+                        for (Node<K,V> e = f;; ++binCount) {
+                            K ek;
+                            //找到相等的元素，判断是否需要更新val值
+                            if (e.hash == hash &&
+                                ((ek = e.key) == key ||
+                                 (ek != null && key.equals(ek)))) {
+                                oldVal = e.val;
+                                if (!onlyIfAbsent)
+                                    e.val = value;
+                                break;
+                            }
+                            //没有找到相等的元素，采用尾插法，插入新节点
+                            Node<K,V> pred = e;
+                            if ((e = e.next) == null) {
+                                pred.next = new Node<K,V>(hash, key,
+                                                          value, null);
+                                break;
+                            }
+                        }
+                    }
+                    //table[i]是TreeBin节点，按照红黑树的方式插入新节点
+                    else if (f instanceof TreeBin) {
+                        Node<K,V> p;
+                        binCount = 2;
+                        if ((p = ((TreeBin<K,V>)f).putTreeVal(hash, key,
+                                                              value)) != null) {
+                            oldVal = p.val;
+                            if (!onlyIfAbsent)
+                                p.val = value;
+                        }
+                    }
+                }
+            }
+            if (binCount != 0) {
+                if (binCount >= TREEIFY_THRESHOLD)
+                    //链表转换为红黑树
+                    treeifyBin(tab, i);
+                if (oldVal != null)
+                    //表明这次put操作只是替换了旧值，不用更改计数值
+                    return oldVal;
+                break;
+            }
+        }
+    }
+    //新插入键值对以后将计数值加1
+    addCount(1L, binCount);
+    return null;
+}
+
+```
+
+整体来看putVal方法的逻辑还是很清晰的。对于key为null或者value为null的键值对直接抛出异常；然后计算出hash值，利用hash值对table的长度取模，从而计算出key在桶中的位置。接下来就是利用自旋操作将键值对放在指定的位置，如果此时table为null，说明是第一次添加元素，这时对table进行初始化；如果指定的位置没有元素，将键值对通过cas操作放在指定位置即可；如果遇到ForwardingNode节点说明table正在扩容，则去帮助扩容；如果位置已经有元素了，先锁定table节点，然后判断是普通Node节点还是TreeBin节点，如果是普通Node节点，就用链表的方式遍历，如果找到相等的元素，判断是否需要进行替换；如果没有找到，就采用尾插法插入；如果是TreeBin节点，说明是一棵红黑树，采用红黑树的方法插入。最后如果是替换元素，不需要将计数值加一；否则就将计数值加一  
+
+![ConcurrentHashMap插入操作](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/ConcurrentHashMap%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C.png)  
+
