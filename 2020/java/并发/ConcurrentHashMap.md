@@ -1021,7 +1021,7 @@ final V putVal(K key, V value, boolean onlyIfAbsent) {
         else {
             //到这里说明，table[i]位置已经有元素了
             V oldVal = null;
-            //锁住table[i]，然后再检查一下table[i]是不是第一个节点，防止又别的线程进行了修改
+            //锁住table[i]，然后再检查一下table[i]是不是第一个节点，防止有别的线程进行了修改
             synchronized (f) {
                 if (tabAt(tab, i) == f) {
                     //说明table[i]是链表节点，按照链表的方式插入键值对
@@ -1078,7 +1078,324 @@ final V putVal(K key, V value, boolean onlyIfAbsent) {
 
 ```
 
-整体来看putVal方法的逻辑还是很清晰的。对于key为null或者value为null的键值对直接抛出异常；然后计算出hash值，利用hash值对table的长度取模，从而计算出key在桶中的位置。接下来就是利用自旋操作将键值对放在指定的位置，如果此时table为null，说明是第一次添加元素，这时对table进行初始化；如果指定的位置没有元素，将键值对通过cas操作放在指定位置即可；如果遇到ForwardingNode节点说明table正在扩容，则去帮助扩容；如果位置已经有元素了，先锁定table节点，然后判断是普通Node节点还是TreeBin节点，如果是普通Node节点，就用链表的方式遍历，如果找到相等的元素，判断是否需要进行替换；如果没有找到，就采用尾插法插入；如果是TreeBin节点，说明是一棵红黑树，采用红黑树的方法插入。最后如果是替换元素，不需要将计数值加一；否则就将计数值加一  
+putVal方法一共处理四种情况  
 
-![ConcurrentHashMap插入操作](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/ConcurrentHashMap%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C.png)  
+### 首次初始化table  
+
+ConcurrentHashMap在构造的时候不会初始化table数组，而是在首次插入元素时进行初始化，初始化就是在initTable中完成的  
+
+```java
+private final Node<K,V>[] initTable() {
+    Node<K,V>[] tab; int sc;
+    //自旋直到初始化成功
+    while ((tab = table) == null || tab.length == 0) {
+        //在构造器中已经给sizeCtl赋值了，如果sizeCtl小于0，说明正在初始化或者扩容，所以放弃CPU一段时间
+        if ((sc = sizeCtl) < 0)
+            Thread.yield(); // lost initialization race; just spin
+        //将sizeCtl通过cas设置为-1，表示正在初始化
+        else if (U.compareAndSwapInt(this, SIZECTL, sc, -1)) {
+            try {
+                if ((tab = table) == null || tab.length == 0) {
+                    int n = (sc > 0) ? sc : DEFAULT_CAPACITY;
+                    @SuppressWarnings("unchecked")
+                    Node<K,V>[] nt = (Node<K,V>[])new Node<?,?>[n];
+                    table = tab = nt;
+                    //sc=0.75*n
+                    sc = n - (n >>> 2);
+                }
+            } finally {
+                //设置threshold=0.75*length
+                sizeCtl = sc;
+            }
+            break;
+        }
+    }
+    return tab;
+}
+```
+
+可以看到初始化table数组的时候就是初始化一个长度为sizeCtl的数组，然后将sizeCtl设置为0.75，表示设置了threshold为0.75  
+
+### table[i]对应的桶为空  
+
+最简单的情况，直接通过cas的方式占用桶`table[i]`即可  
+
+### 遇到ForwardingNode节点
+
+  ForwardingNode节点是ConcurrentHashMap中五类节点之一，相当于一个占位节点，表示当前table正在进行扩容，当前线程可以尝试协助数据迁移  
+
+### 出现hash冲突   
+
+当两个不同key的hash值映射到同一个`table[i]`桶中时，就会出现这种情况  
+
++ 当`table[i]`的节点类型为Node（链表节点）就会出现以"尾插法"的形式插入链表的结尾  
+
++ 当`table[i]`的节点类型为TreeBin（红黑树代理节点）就会将新节点通过红黑树的插入方式插入  
+
+putVal方法的最后，涉及将链表转化为红黑树——treeifBin，但实际情况并非立即就会转换，当table的容量小于64时，处于性能的考虑，只是对table数组进行扩容一倍——tryPresize  
+
+putVal方法可以用下面的流程图来表示
+
+![ConcurrentHashMap插入操作](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/ConcurrentHashMap%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C.png)
+
+## ConcurrentHashMap的get操作  
+
+```java
+/**
+* 根据指定的key值查找对应的key
+*/
+public V get(Object key) {
+    Node<K,V>[] tab; Node<K,V> e, p; int n, eh; K ek;
+    //重新计算hash值
+    int h = spread(key.hashCode());
+    if ((tab = table) != null && (n = tab.length) > 0 &&
+        (e = tabAt(tab, (n - 1) & h)) != null) {
+        //table[i]就是要查找的值，直接返回
+        if ((eh = e.hash) == h) {
+            if ((ek = e.key) == key || (ek != null && key.equals(ek)))
+                return e.val;
+        }
+        //特殊节点，调用节点的find方法
+        else if (eh < 0)
+            return (p = e.find(h, key)) != null ? p.val : null;
+        //按照链表的方式查找
+        while ((e = e.next) != null) {
+            if (e.hash == h &&
+                ((ek = e.key) == key || (ek != null && key.equals(ek))))
+                return e.val;
+        }
+    }
+    return null;
+}
+```
+
+get方法的逻辑很简单，首先根据key的hash值计算出映射到table的哪个桶——`table[i]`
+
+1. 如果`table[i]`的key和带查找的key相同，那就直接返回
+
+2. 如果`table[i]`对应的节点时特殊节点（hahs值小于0），则通过find方法查找
+
+3. 如果`table[i]`对应的节点时普通链表节点，则按照链表的方式查找  
+
+### Node节点的查找  
+
+当`table[i]`被普通节点Node占用，说明是链表形式，直接从链表头开始查找  
+
+```java
+Node<K,V> find(int h, Object k) {
+    Node<K,V> e = this;
+    if (k != null) {
+        do {
+            K ek;
+            if (e.hash == h &&
+                ((ek = e.key) == k || (ek != null && k.equals(ek))))
+                return e;
+        } while ((e = e.next) != null);
+    }
+    return null;
+}
+```
+
+### TreeBin节点的查找  
+
+```java
+/**
+* 从根节点开始遍历查找，找到"相等"的节点就返回，没有找到就返回null
+* 当存在写锁时，以链表的形式查找
+*/
+final Node<K,V> find(int h, Object k) {
+    if (k != null) {
+        for (Node<K,V> e = first; e != null; ) {
+            int s; K ek;
+            /**
+            * 当有以下情况时以链表的方式查找
+            * 1. 有线程正持有写锁，这样做能够不阻塞读线程
+            * 2. 有线程等待获取写锁，不再继续加读锁，相当于"写优先模式"
+            */
+            if (((s = lockState) & (WAITER|WRITER)) != 0) {
+                if (e.hash == h &&
+                    ((ek = e.key) == k || (ek != null && k.equals(ek))))
+                    return e;
+                e = e.next;
+            }
+            //读线程数量加一，读状态累加
+            else if (U.compareAndSwapInt(this, LOCKSTATE, s,
+                                         s + READER)) {
+                TreeNode<K,V> r, p;
+                try {
+                    p = ((r = root) == null ? null :
+                         r.findTreeNode(h, k, null));
+                } finally {
+                    Thread w;
+                    //如果当前线程是最后一个读线程，且有写线程因为读线程而阻塞，则告诉它可以获取写锁了
+                    if (U.getAndAddInt(this, LOCKSTATE, -READER) ==
+                        (READER|WAITER) && (w = waiter) != null)
+                        LockSupport.unpark(w);
+                }
+                return p;
+            }
+        }
+    }
+    return null;
+}
+
+```
+
+TreeBin的查找比较特殊，当槽`table[i]`被TreeBin节点占用时，说明连接的是一棵红黑树。由于红黑树的插入、删除操作会涉及到整个结构的调整，所以通常会涉及到读写并发操作的时候，是需要加锁的。ConcurrentHashMap采用了类似读写锁的方式：当线程持有写锁（修改红黑树）时，如果读线程需要查找，不会像传统读写锁那样阻塞，而是转而采用链表的形式进行查找（TreeBin节点本身就是Node节点，拥有Node节点的所有属性）
+
+### ForwardingNode节点的查找  
+
+```java
+/**
+* 在新的扩容的table——nextTable上进行查找
+*/
+Node<K,V> find(int h, Object k) {
+    // loop to avoid arbitrarily deep recursion on forwarding nodes
+    outer: for (Node<K,V>[] tab = nextTable;;) {
+        Node<K,V> e; int n;
+        if (k == null || tab == null || (n = tab.length) == 0 ||
+            (e = tabAt(tab, (n - 1) & h)) == null)
+            return null;
+        for (;;) {
+            int eh; K ek;
+            if ((eh = e.hash) == h &&
+                ((ek = e.key) == k || (ek != null && k.equals(ek))))
+                return e;
+            if (eh < 0) {
+                if (e instanceof ForwardingNode) {
+                    tab = ((ForwardingNode<K,V>)e).nextTable;
+                    continue outer;
+                }
+                else
+                    return e.find(h, k);
+            }
+            if ((e = e.next) == null)
+                return null;
+        }
+    }
+}
+
+```
+
+ForwardingNode节点是一种临时节点，只有在扩容的时候才会出现，所以查找也在扩容的table上进行  
+
+### ReservationNode节点的查找  
+
+```java
+Node<K, V> find(int h, Object k) {
+    return null;
+}
+```
+
+ReservationNode节点是保留节点，不保存实际的数据，所以直接返回null
+
+## ConcurrentHashMap的remove操作  
+
+remove操作是删除ConcurrentHashMap中的一个键值对  
+
+```java
+public V remove(Object key) {
+    return replaceNode(key, null, null);
+}
+```
+
+看到，remove方法什么也没有做，只是在内部调用了replaceNode这个方法  
+
+```java
+final V replaceNode(Object key, V value, Object cv) {
+    //重新进行一次hash
+    int hash = spread(key.hashCode());
+    for (Node<K,V>[] tab = table;;) {//自旋
+        Node<K,V> f; int n, i, fh;
+        //如果table[i]上没有元素，说明key不存在，返回null
+        if (tab == null || (n = tab.length) == 0 ||
+            (f = tabAt(tab, i = (n - 1) & hash)) == null)
+            break;
+        //说明正在扩容，则协助进行扩容
+        else if ((fh = f.hash) == MOVED)
+            tab = helpTransfer(tab, f);
+        else {
+            //如果存在，可能是链表也可能是红黑树
+            V oldVal = null;
+            boolean validated = false;
+            //锁定table[i]
+            synchronized (f) {
+                //再检查一下table[i]是不是第一个节点，防止有别的线程进行了修改
+                if (tabAt(tab, i) == f) {
+                    if (fh >= 0) {//说明是链表，要删除的节点在链表中，采用链表的方式删除一个节点
+                        validated = true;
+                        for (Node<K,V> e = f, pred = null;;) {
+                            K ek;
+                            if (e.hash == hash &&
+                                ((ek = e.key) == key ||
+                                 (ek != null && key.equals(ek)))) {
+                                //找到要删除的节点
+                                V ev = e.val;
+                                if (cv == null || cv == ev ||
+                                    (ev != null && cv.equals(ev))) {
+                                    oldVal = ev;//记录旧值
+                                    if (value != null)
+                                        //对旧值进行覆盖，因为在replace方法的内部也调用了该方法，提供通用性
+                                        e.val = value;
+                                    else if (pred != null)
+                                        //要删除的节点有前驱节点，则让前驱节点的next指向当前节点的后继阶段，即pred.next=e.next
+                                        pred.next = e.next;
+                                    else
+                                        //说明是链表头，即table[i]，则cas重新设置table[i]=e.next
+                                        setTabAt(tab, i, e.next);
+                                }
+                                break;
+                            }
+                            //不是当前节点，则向链表的后面遍历
+                            pred = e;
+                            if ((e = e.next) == null)
+                                break;
+                        }
+                    }
+                    //说明是红黑树，要删除红黑树中的节点，采用红黑树的方式删除节点
+                    else if (f instanceof TreeBin) {
+                        validated = true;
+                        TreeBin<K,V> t = (TreeBin<K,V>)f;
+                        TreeNode<K,V> r, p;
+                        if ((r = t.root) != null &&
+                            (p = r.findTreeNode(hash, key, null)) != null) {
+                            V pv = p.val;
+                            if (cv == null || cv == pv ||
+                                (pv != null && cv.equals(pv))) {
+                                oldVal = pv;
+                                if (value != null)
+                                    p.val = value;
+                                else if (t.removeTreeNode(p))
+                                    setTabAt(tab, i, untreeify(t.first));
+                            }
+                        }
+                    }
+                }
+            }
+            if (validated) {
+                if (oldVal != null) {
+                    //如果删除了节点，更新size
+                    if (value == null)
+                        addCount(-1L, -1);
+                    //返回旧值
+                    return oldVal;
+                }
+                break;
+            }
+        }
+    }
+    return null;
+}
+```
+
+可以看到remove方法什么也没有做，而是简单的在内部调用了replaceNode方法。replaceNode方法的逻辑也很清晰  
+
+1. 如果对应的`table[i]`为空，说明key不存在，那么返回null  
+2. 如果对应的`table[i]==MOVED`，说明正在扩容，则尝试取协助扩容
+3. 如果`table[i]`存在，且hash值大于等于0，说明是链表或者只有`table[i]`这一个元素，统一按照链表的方式删除
+4. 如果`table[i]`存在，而且是TreeBin节点，说明是红黑树，则按照红黑树的方式删除链表
+
+## ConcurrentHashMap的扩容操作  
+
+
 
