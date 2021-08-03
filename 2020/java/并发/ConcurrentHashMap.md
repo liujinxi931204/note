@@ -1391,11 +1391,536 @@ final V replaceNode(Object key, V value, Object cv) {
 可以看到remove方法什么也没有做，而是简单的在内部调用了replaceNode方法。replaceNode方法的逻辑也很清晰  
 
 1. 如果对应的`table[i]`为空，说明key不存在，那么返回null  
-2. 如果对应的`table[i]==MOVED`，说明正在扩容，则尝试取协助扩容
+2. 如果对应的`table[i].hash==MOVED`，说明正在扩容，则尝试取协助扩容
 3. 如果`table[i]`存在，且hash值大于等于0，说明是链表或者只有`table[i]`这一个元素，统一按照链表的方式删除
 4. 如果`table[i]`存在，而且是TreeBin节点，说明是红黑树，则按照红黑树的方式删除链表
 
 ## ConcurrentHashMap的扩容操作  
+
+### 扩容思路  
+
+HashMap的扩容，一般包括两个步骤  
+
+#### 数组扩容
+
+table数组的扩容，一般就是新建一个2被大小的新数组，这个过程由一个线程完成，且不允许出现并发
+
+#### 数组迁移  
+
+所谓数组迁移，就是把旧table中的各个槽中的数组重新分配到新的table中。
+
+这一过程通常涉及到槽中key的rehash，因为key映射到桶的位置与桶的大小有关，新table的大小发生了变化，key映射的位置一般也会发生变化
+
+ConcurrentHashMap在处理rehash的时候，并不会重新计算每个key的hash值，而是利用一种很巧妙的方法。之前说过ConcurrentHashMap的数组长度必须为2的幂次，原因是让key分布更均匀，减少冲突，这只是其中一个原因，另一个原因就是：
+
+当数组的长度为2的幂次时，通过`(table.legth-1)&key.hash`这种方式计算的索引为`i`，那么扩容以后（2倍），新的索引要么是`i`，要么是`i+n`（这里n是旧的table的长度）
+
+### 扩容时机  
+
+在之前putVala方法中，当往Map中插入节点时，如果链表的节点数目超过了一定的阈值，就会触发链表转红黑树的操作  
+
+```java
+if (binCount >= TREEIFY_THRESHOLD)
+    treeifyBin(tab, i);             // 链表 -> 红黑树 转换
+```
+
+来看一下treefyBin方法  
+
+```java
+/**
+* 进行链表转红黑树的操作
+* 1. 如果数组的长度小于MIN_TREEIFY_CAPACITY，默认是64，不会转换为红黑树，而是会进行扩容
+* 2. 如果数组的长度大于了MIN_TREEIFY_CAPACITY，才会进行链表到红黑树的转换
+*/
+private final void treeifyBin(Node<K,V>[] tab, int index) {
+    Node<K,V> b; int n, sc;
+    if (tab != null) {
+        //如果数组的长度小于MIN_TREEIFY_CAPACITY，默认是64，不会转换为红黑树，而是会进行扩容
+        if ((n = tab.length) < MIN_TREEIFY_CAPACITY)
+            tryPresize(n << 1);
+        //如果数组的长度大于了MIN_TREEIFY_CAPACITY，才会进行链表到红黑树的转换
+        else if ((b = tabAt(tab, index)) != null && b.hash >= 0) {
+            synchronized (b) {//依然是锁住table[i]
+                if (tabAt(tab, index) == b) {
+                    TreeNode<K,V> hd = null, tl = null;
+                    //遍历整个链表，建立红黑树
+                    for (Node<K,V> e = b; e != null; e = e.next) {
+                        TreeNode<K,V> p =
+                            new TreeNode<K,V>(e.hash, e.key, e.val,
+                                              null, null);
+                        if ((p.prev = tl) == null)
+                            hd = p;
+                        else
+                            tl.next = p;
+                        tl = p;
+                    }
+                    //以TreeBin类型包装，并连接到table[index]中
+                    setTabAt(tab, index, new TreeBin<K,V>(hd));
+                }
+            }
+        }
+    }
+}
+```
+
+因此在进行链表转换为红黑树的过程中，还会再对table数组进行一次判断  
+
+1. 如果数组的长度小于MIN_TREEIFY_CAPACITY，默认是64，不会转换为红黑树，而是会进行扩容
+
+2. 如果数组的长度大于等于了MIN_TREEIFY_CAPACITY，才会进行从链表到红黑树的转换
+
+来看一下tryPresize方法是如何扩容的  
+
+```java
+/**
+* 尝试对table数组进行扩容
+* 1. table数组还没有初始化，则先进行初始化
+* 2. 如果数组已经扩容过了或者超过了最大长度的限制，直接返回
+* 3.1 已经有线程在扩容了，如果当前线程可以帮助迁移数据，则协助数据的迁移；如果不能协助数据的迁移，则退出
+* 3.2 没有线程在扩容，则设置当前线程为第一个进行扩容的线程，将sc置为负数
+*/
+private final void tryPresize(int size) {
+    //调整c为2的整数幂
+    int c = (size >= (MAXIMUM_CAPACITY >>> 1)) ? MAXIMUM_CAPACITY :
+    tableSizeFor(size + (size >>> 1) + 1);
+    int sc;
+    while ((sc = sizeCtl) >= 0) {
+        Node<K,V>[] tab = table; int n;
+        //table还没有初始化，则先进行初始化
+        if (tab == null || (n = tab.length) == 0) {
+            n = (sc > c) ? sc : c;
+            if (U.compareAndSwapInt(this, SIZECTL, sc, -1)) {
+                try {
+                    if (table == tab) {
+                        @SuppressWarnings("unchecked")
+                        Node<K,V>[] nt = (Node<K,V>[])new Node<?,?>[n];
+                        table = nt;
+                        sc = n - (n >>> 2);
+                    }
+                } finally {
+                    sizeCtl = sc;
+                }
+            }
+        }
+        //如果已经进行了扩容或者数组的长度超过了最大的限制，就返回了
+        else if (c <= sc || n >= MAXIMUM_CAPACITY)
+            break;
+        //进行table数组扩容
+        else if (tab == table) {
+            //根据容量n生成一个随机数，唯一标识本次扩容操作
+            int rs = resizeStamp(n);
+            //sc小于0，说明有别的线程正在扩容
+            if (sc < 0) {
+                Node<K,V>[] nt;
+                //如果当前线程不能协助数据转移，则退出
+                if ((sc >>> RESIZE_STAMP_SHIFT) != rs || sc == rs + 1 ||
+                    sc == rs + MAX_RESIZERS || (nt = nextTable) == null ||
+                    transferIndex <= 0)
+                    break;
+                //协助数据转移，把正在进行transfer任务的线程数加一
+                if (U.compareAndSwapInt(this, SIZECTL, sc, sc + 1))
+                    transfer(tab, nt);
+            }
+            //没有线程在扩容，通过cas设置当前线程为第一个扩容操作的线程，将sc置为负数
+            else if (U.compareAndSwapInt(this, SIZECTL, sc,
+                                         (rs << RESIZE_STAMP_SHIFT) + 2))
+                transfer(tab, null);
+        }
+    }
+}
+```
+
+从上面的分析可以看到，扩容的时候一共有三个分支  
+
+1. table数组还没有初始化，则先进行初始化
+
+2. 如果数组已经扩容过了或者超过了最大长度的限制，直接返回
+
+   3.1 已经有线程在扩容了，如果当前线程可以帮助迁移数据，则协助数据的迁移；如果不能协助数据的迁移，则退
+
+   3.2 没有线程在扩容，则设置当前线程为第一个进行扩容的线程，将sc置为负数
+
+一般扩容的时候会走到3这个分支中来，但是无论是协助迁移数据还是扩容都会调用transfer方法
+
+来看一下transfer方法  
+
+```java
+/**
+* 入参说明
+* 如果nextTab为null，表示首次发起扩容
+* 如果nextTab不为null，表示协助数据迁移
+* 每个调用tranfer的线程会对旧table中[transferIndex-stride,transferIndex]位置的节点进行迁移
+*/
+private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
+    int n = tab.length, stride;
+    //stride理解为"步长"，即数据迁移时，每个线程要负责旧table中多少个桶
+    //如果桶较少话，默认一个cpu（一个线程）处理16个桶的数据迁移
+    //如果只有一个cpu，处理所有的桶的数据迁移
+    if ((stride = (NCPU > 1) ? (n >>> 3) / NCPU : n) < MIN_TRANSFER_STRIDE)
+        stride = MIN_TRANSFER_STRIDE; // subdivide range
+    //首次扩容
+    if (nextTab == null) {            // initiating
+        try {
+            @SuppressWarnings("unchecked")
+            //扩容为原来的两倍
+            Node<K,V>[] nt = (Node<K,V>[])new Node<?,?>[n << 1];
+            nextTab = nt;
+        } catch (Throwable ex) {      // try to cope with OOME
+            sizeCtl = Integer.MAX_VALUE;
+            return;
+        }
+        nextTable = nextTab;
+        transferIndex = n;
+    }
+    int nextn = nextTab.length;
+    //ForwardingNode节点，当旧table的某个桶中的数据全部迁移完成后，用该节点占据这个桶
+    ForwardingNode<K,V> fwd = new ForwardingNode<K,V>(nextTab);
+    //表示一个桶的迁移工作是否完成，advance==true，表示可以进行下一个位置的迁移
+    boolean advance = true;
+    //最后一个数据迁移的线程将该值置为true，并进行本轮扩容的收尾工作
+    boolean finishing = false; // to ensure sweep before committing nextTab
+    //i标识桶索引，bound标识边界
+    for (int i = 0, bound = 0;;) {
+        Node<K,V> f; int fh;
+        //每次自旋前的预处理，主要是定位本轮处理的桶区间
+        //正常情况下，预处理完成后：i=transferIndex-1,bound=transferIndex-stride
+        while (advance) {
+            int nextIndex, nextBound;
+            if (--i >= bound || finishing)
+                advance = false;
+            else if ((nextIndex = transferIndex) <= 0) {
+                i = -1;
+                advance = false;
+            }
+            else if (U.compareAndSwapInt
+                     (this, TRANSFERINDEX, nextIndex,
+                      nextBound = (nextIndex > stride ?
+                                   nextIndex - stride : 0))) {
+                bound = nextBound;
+                i = nextIndex - 1;
+                advance = false;
+            }
+        }
+        //所有的桶已经迁移完成或者当前线程的任务已经完成
+        if (i < 0 || i >= n || i + n >= nextn) {
+            int sc;
+            //当前所有桶的迁移已经完成
+            if (finishing) {
+                nextTable = null;
+                table = nextTab;
+                sizeCtl = (n << 1) - (n >>> 1);
+                return;
+            }
+            //表示当前线程的自己的任务已经完成，扩容线程数减一
+            if (U.compareAndSwapInt(this, SIZECTL, sc = sizeCtl, sc - 1)) {
+                //判断当前线程是不是最后一个线程，如果不是，直接退出
+                if ((sc - 2) != resizeStamp(n) << RESIZE_STAMP_SHIFT)
+                    return;
+                /**
+                * 最后一个数据迁移线程要重新检查一遍旧table中的所有桶，看是否都被正确迁移到了新table中
+                * 1. 正常情况下，重新检查时，旧table的所有桶都应该时ForwardingNode节点
+                * 2. 特殊情况下，比如扩容冲突（多个线程申请到同一个transfer任务）此时当前线程领取的任务会作废，那么最后检查的时候，还要处理因为作废而没有被迁移的桶，把它们正确的迁移到新table中
+                */
+                finishing = advance = true;
+                i = n; // recheck before commit
+            }
+        }
+        //旧桶为null，不用迁移，直接设置桶为ForwardingNode
+        else if ((f = tabAt(tab, i)) == null)
+            advance = casTabAt(tab, i, null, fwd);
+        //旧桶已经完成迁移，直接跳过
+        else if ((fh = f.hash) == MOVED)
+            advance = true; // already processed
+        //旧桶未迁移完成，进行数据迁移
+        else {
+            synchronized (f) {
+                if (tabAt(tab, i) == f) {
+                    Node<K,V> ln, hn;
+                    /**
+                    * 桶的hash>0，说明是链表
+                    * 将链表分为两部分：ln链表和lh链表
+                    * ln链表会插入到新table的槽i中，lh链表会插入到新table的槽i+n中
+                    */
+                    if (fh >= 0) {
+                        int runBit = fh & n;
+                        Node<K,V> lastRun = f;
+                        for (Node<K,V> p = f.next; p != null; p = p.next) {
+                            int b = p.hash & n;
+                            if (b != runBit) {
+                                runBit = b;
+                                lastRun = p;
+                            }
+                        }
+                        if (runBit == 0) {
+                            ln = lastRun;
+                            hn = null;
+                        }
+                        else {
+                            hn = lastRun;
+                            ln = null;
+                        }
+                        for (Node<K,V> p = f; p != lastRun; p = p.next) {
+                            int ph = p.hash; K pk = p.key; V pv = p.val;
+                            if ((ph & n) == 0)
+                                ln = new Node<K,V>(ph, pk, pv, ln);
+                            else
+                                hn = new Node<K,V>(ph, pk, pv, hn);
+                        }
+                        setTabAt(nextTab, i, ln);
+                        setTabAt(nextTab, i + n, hn);
+                        setTabAt(tab, i, fwd);
+                        advance = true;
+                    }
+                    /**
+                    * 对于红黑树，会先以链表的方式遍历，复制所有节点，像链表一样组装成两个链表hi和lo
+                    * 然后看一下这两个链表是否是要进行红黑树转换，最后放到新table中槽为i和i+n的位置
+                    */
+                    else if (f instanceof TreeBin) {
+                        TreeBin<K,V> t = (TreeBin<K,V>)f;
+                        TreeNode<K,V> lo = null, loTail = null;
+                        TreeNode<K,V> hi = null, hiTail = null;
+                        int lc = 0, hc = 0;
+                        for (Node<K,V> e = t.first; e != null; e = e.next) {
+                            int h = e.hash;
+                            TreeNode<K,V> p = new TreeNode<K,V>
+                                (h, e.key, e.val, null, null);
+                            if ((h & n) == 0) {
+                                if ((p.prev = loTail) == null)
+                                    lo = p;
+                                else
+                                    loTail.next = p;
+                                loTail = p;
+                                ++lc;
+                            }
+                            else {
+                                if ((p.prev = hiTail) == null)
+                                    hi = p;
+                                else
+                                    hiTail.next = p;
+                                hiTail = p;
+                                ++hc;
+                            }
+                        }
+                        ln = (lc <= UNTREEIFY_THRESHOLD) ? untreeify(lo) :
+                        (hc != 0) ? new TreeBin<K,V>(lo) : t;
+                        hn = (hc <= UNTREEIFY_THRESHOLD) ? untreeify(hi) :
+                        (lc != 0) ? new TreeBin<K,V>(hi) : t;
+                        setTabAt(nextTab, i, ln);
+                        setTabAt(nextTab, i + n, hn);
+                        setTabAt(tab, i, fwd);
+                        advance = true;
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+transfer方法的开头会计算一个stride的变量值，这个stride其实就是一个线程处理的桶的取键，也就是补偿  
+
+```java
+// stride可理解成“步长”，即数据迁移时，每个线程要负责旧table中的多少个桶
+if ((stride = (NCPU > 1) ? (n >>> 3) / NCPU : n) < MIN_TRANSFER_STRIDE)
+    stride = MIN_TRANSFER_STRIDE;
+```
+
+stride有以下几种情况  
+
+1. 如果NCPU==1，说明只有一个CPU，那么`stride==n，也就是这个CPU负责所有的桶的数据的迁移
+
+2. 如果NCPU>1，有以下两种情况：
+
+   2.1 如果`((n>>>3)/NCPU)<MIN_TRANSFER_STRIDE`，那么`stride==MIN_TRANSFER_STRIDE`，此时一个CPU负责16个桶的数据迁移
+
+   2.2 如果`((n>>>3)/NCPU)>=MIN_TRANSFER_STRIDE`，那么`stride==(n>>>3)/NCPU`，此时一个CPU负责`(n>>>3)/NCPU`个桶的数据迁移
+
+首次扩容时，会将table数组变成原来的2倍  
+
+```java
+if (nextTab == null) {            // initiating
+    try {
+        @SuppressWarnings("unchecked")
+        //扩容为原来的两倍
+        Node<K,V>[] nt = (Node<K,V>[])new Node<?,?>[n << 1];
+        nextTab = nt;
+    } catch (Throwable ex) {      // try to cope with OOME
+        sizeCtl = Integer.MAX_VALUE;
+        return;
+    }
+    nextTable = nextTab;
+    transferIndex = n;
+}
+```
+
+注意上面的`transferIndex`，这是一个字段，`table[transferIndex-stride,transferIndex-1]`就是当前线程要进行数据迁移的桶区间
+
+```java
+/**
+ * 扩容时需要用到的一个下标变量.
+ */
+private transient volatile int transferIndex;
+```
+
+整个transfer方法几乎都在一个自旋中完成，从右往左进行数据迁移，transfer的推出点是当某个线程处理完最后的table区段——`table[0,stride-1]`
+
+transfer方法主要有4个分支，即对4种情况进行处理，从易到难分析一下这四种情况  
+
+#### 桶为空  
+
+当旧的桶为空`table[i]==null`，说明这个桶中没有元素，那么就不要进行迁移，仅仅尝试放置一个ForawrdingNode节点，表示该桶已经处理过  
+
+```java
+//旧桶为null，不用迁移，直接设置桶为ForwardingNode
+else if ((f = tabAt(tab, i)) == null)
+    advance = casTabAt(tab, i, null, fwd);
+```
+
+#### 桶已完成迁移  
+
+当桶中的数据已经迁移完成，会用ForwardingNode节点占用桶位，表示迁移完成
+
+```java
+else if ((fh = f.hash) == MOVED)            // CASE3：该旧桶已经迁移完成，直接跳过
+    advance = true;
+```
+
+#### 桶未完成迁移  
+
+如果旧的桶的数据没有完成迁移，就要进行迁移，根据节点的类型，分为：链表迁移、红黑树迁移
+
+##### 链表迁移
+
+链表的迁移过程如下：
+
+首先会遍历一遍链表，找到最后一个相邻`runBit`不同的节点。`runBit`是根据`key.hash&table.length`计算出来的，由于table的长度为2的幂次，所以`runBit`只可能为0或者最高位为1
+
+然后，第二次遍历链表，按照第一次遍历的节点为界，将原链表分为两个子链表，再将两个新的子链表，连接到新的table中。子链表在新的table中的索引要么是`i`，要么是`i+n`  
+
+```java
+if (fh >= 0) {                  // CASE4.1：桶的hash>0，说明是链表迁移
+    /**
+     * 下面的过程会将旧桶中的链表分成两部分：ln链和hn链
+     * ln链会插入到新table的槽i中，hn链会插入到新table的槽i+n中
+     */
+    int runBit = fh & n;    // 由于n是2的幂次，所以runBit要么是0，要么高位是1
+    Node<K, V> lastRun = f; // lastRun指向最后一个相邻runBit不同的结点
+    for (Node<K, V> p = f.next; p != null; p = p.next) {
+        int b = p.hash & n;
+        if (b != runBit) {
+            runBit = b;
+            lastRun = p;
+        }
+    }
+    if (runBit == 0) {
+        ln = lastRun;
+        hn = null;
+    } else {
+        hn = lastRun;
+        ln = null;
+    }
+
+    // 以lastRun所指向的结点为分界，将链表拆成2个子链表ln、hn
+    for (Node<K, V> p = f; p != lastRun; p = p.next) {
+        int ph = p.hash;
+        K pk = p.key;
+        V pv = p.val;
+        if ((ph & n) == 0)
+            ln = new Node<K, V>(ph, pk, pv, ln);
+        else
+            hn = new Node<K, V>(ph, pk, pv, hn);
+    }
+    setTabAt(nextTab, i, ln);               // ln链表存入新桶的索引i位置
+    setTabAt(nextTab, i + n, hn);        // hn链表存入新桶的索引i+n位置
+    setTabAt(tab, i, fwd);                  // 设置ForwardingNode占位
+    advance = true;                         // 表示当前旧桶的结点已迁移完毕
+}
+```
+
+##### 红黑树迁移
+
+红黑树的迁移迁移过程如下
+
+首先以链表的形式遍历，复制所有节点；然后像链表一样根据高位为0还是1组成两个链表；再对这两个链表进行判断是否需要进行红黑树的转换；最后再放到新table对应的桶中
+
+```java
+else if (f instanceof TreeBin) {    // CASE4.2：红黑树迁移
+    /**
+     * 下面的过程会先以链表方式遍历，复制所有结点，然后根据高低位组装成两个链表；
+     * 然后看下是否需要进行红黑树转换，最后放到新table对应的桶中
+     */
+    TreeBin<K, V> t = (TreeBin<K, V>) f;
+    TreeNode<K, V> lo = null, loTail = null;
+    TreeNode<K, V> hi = null, hiTail = null;
+    int lc = 0, hc = 0;
+    for (Node<K, V> e = t.first; e != null; e = e.next) {
+        int h = e.hash;
+        TreeNode<K, V> p = new TreeNode<K, V>
+            (h, e.key, e.val, null, null);
+        if ((h & n) == 0) {
+            if ((p.prev = loTail) == null)
+                lo = p;
+            else
+                loTail.next = p;
+            loTail = p;
+            ++lc;
+        } else {
+            if ((p.prev = hiTail) == null)
+                hi = p;
+            else
+                hiTail.next = p;
+            hiTail = p;
+            ++hc;
+        }
+    }
+
+    // 判断是否需要进行 红黑树 <-> 链表 的转换
+    ln = (lc <= UNTREEIFY_THRESHOLD) ? untreeify(lo) :
+        (hc != 0) ? new TreeBin<K, V>(lo) : t;
+    hn = (hc <= UNTREEIFY_THRESHOLD) ? untreeify(hi) :
+        (lc != 0) ? new TreeBin<K, V>(hi) : t;
+    setTabAt(nextTab, i, ln);
+    setTabAt(nextTab, i + n, hn);
+    setTabAt(tab, i, fwd);  // 设置ForwardingNode占位
+    advance = true;         // 表示当前旧桶的结点已迁移完毕
+}
+```
+
+#### 当前是最后一个迁移任务或者出现扩容冲突  
+
+调用transfer方法会自动领用某个区段的桶，进行数据迁移操作，当区段的初始索引`i`变成负数的时候，说明当前线程处理的其实就是最后剩下的桶，并且处理完了
+
+所以首先会跟新sizeCtl变量，将扩容线程数减一，然后做一些收尾工作：设置table指向扩容后的新数组，遍历一遍旧数组，确保每个桶的数据都迁移完成——被ForwardingNode占用
+
+另外，可能在扩容过程中，出现扩容冲突的情况，比如多个线程领用了同一区段的桶，这时任何一个线程都不能进行数据迁移  
+
+```java
+if (i < 0 || i >= n || i + n >= nextn) {    // CASE1：当前是处理最后一个tranfer任务的线程或出现扩容冲突
+    int sc;
+    if (finishing) {    // 所有桶迁移均已完成
+        nextTable = null;
+        table = nextTab;
+        sizeCtl = (n << 1) - (n >>> 1);
+        return;
+    }
+
+    // 扩容线程数减1,表示当前线程已完成自己的transfer任务
+    if (U.compareAndSwapInt(this, SIZECTL, sc = sizeCtl, sc - 1)) {
+        // 判断当前线程是否是本轮扩容中的最后一个线程，如果不是，则直接退出
+        if ((sc - 2) != resizeStamp(n) << RESIZE_STAMP_SHIFT)
+            return;
+        finishing = advance = true;
+
+        /**
+         * 最后一个数据迁移线程要重新检查一次旧table中的所有桶，看是否都被正确迁移到新table了：
+         * ①正常情况下，重新检查时，旧table的所有桶都应该是ForwardingNode;
+         * ②特殊情况下，比如扩容冲突(多个线程申请到了同一个transfer任务)，此时当前线程领取的任务会作废，那么最后检查时，
+         * 还要处理因为作废而没有被迁移的桶，把它们正确迁移到新table中
+         */
+        i = n; // recheck before commit
+    }
+}
+```
 
 
 
