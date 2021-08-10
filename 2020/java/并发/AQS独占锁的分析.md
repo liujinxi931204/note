@@ -486,7 +486,7 @@ final boolean nonfairTryAcquire(int acquires) {
 
 ### addWaiter方法  
 
-无论是公平锁还是非公平锁，执行到addWaiter方法，说明前面尝试获取锁的tryAcquire方法失败了，既然执行失败了，那么就需要将当前线程包装成一个Node节点，加入到等待队列中去。加入等待队列的逻辑是有addWaiter来实现的。  
+无论是公平锁还是非公平锁，执行到addWaiter方法，说明前面尝试获取锁的tryAcquire方法失败了，既然执行失败了，那么就需要将当前线程包装成一个Node节点，加入到等待队列中去。加入等待队列的逻辑是由addWaiter来实现的。  
 
 ```java
 private Node addWaiter(Node mode) {
