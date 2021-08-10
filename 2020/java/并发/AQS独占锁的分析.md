@@ -1000,7 +1000,7 @@ public final void acquire(int arg) {
 }
 ```
 
-可以看到如果acquireQueued方法返回false，将会执行selfInterrupt方法  
+可以看到如果acquireQueued方法返回true，将会执行selfInterrupt方法  
 
 ```java
 static void selfInterrupt() {
