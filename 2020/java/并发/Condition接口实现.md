@@ -60,7 +60,7 @@ class BoundedBuffer{
 
 这是一个典型的生产者-消费者模型。这里在同一个lock锁上，创建了两个条件队列notFull和notEmpty。当数组满时，put方法在notFull条件上等待，直到数组有空间；当数组空时，take方法在notEmpty条件上等待，直到数组中有数据。而notFull.signal和notEmpty.signal则是用来唤醒在这个条件上等待的线程。  
 
-注意：上面在条件队列上等待，被唤醒后线程响应的线程会进入到之前说的等待队列中去争抢锁。争抢到锁的线程才能在await返回，继续执行。因此这里牵扯到两种队列，condition queue和sync queue，都定义在AQS中。  
+注意：上面在条件队列上等待，被唤醒后线程相应的会进入到之前说的等待队列中去争抢锁。争抢到锁的线程才能在await返回，继续执行。因此这里牵扯到两种队列，condition queue和sync queue，都定义在AQS中。  
 
 ## 同步队列VS条件队列  
 
