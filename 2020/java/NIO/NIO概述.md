@@ -321,3 +321,42 @@ public void test3() throws IOException {
 
 注意多个缓冲区首先插入到缓冲数组中，然后将缓冲数组作为参数传递给`channel.write()方法`,`write()`方法会根据缓冲区在缓冲数组中的顺序，依次将缓冲区中数据写入到`channel`。**尤其需要注意的是，写入到`channel`中只会将`position`到`limit`之间的数据写入到`channel`中，因此聚集写可以适应大小不固定的情况**
 
+#### `Channel to Channel`通道到通道的传输  
+
+在NIO中，如果其中一个通道是`FileChannel`，可以直接将数据从一个通道传输到另一个通道。`FileChannel`类有一个`transferFrom()`和`transferTo()`方法  
+
+下面是一个简单的例子  
+
+```java
+@Test
+public void test() throws Exception{
+    RandomAccessFile file = new RandomAccessFile("D:\\test.txt","rw");
+    FileChannel fromChannel = file.getChannel();
+    
+    RandomAccessFile file = new RandomAccessFile("D:\\test1.txt","rw");
+    FileChannel toChannel = file.getChannel();
+    
+    int position = 0;
+    int count = fromChannel.size();
+    
+    fromChannel.transferTo(toChannel,position,count);
+    
+}
+```
+
+参数`position`和`count`分别是指写入的位置和最大的传输字节数（总数）。如果源通道的字节数小于`count`，则传输实际的字节数  
+
+**实际上，`transferFrom`和`transferTo`这两个方法实现了NIO中的零拷贝，因此这两个方法进行拷贝会比普通的拷贝要快**  
+
+### Selector  
+
+选择器是一个NIO组件，它可以检测一个或多个NIO通道，并确定哪些通道可以用于读或写了。这样，单个线程可以管理多个通道，从而管理多个网络连接  
+
+一个选择器可以对应多个通道，选择器是通过`SelectionKey`这个关键对象完成对多个通道的选择的。注册选择器的时候会返回此对象，调用选择器的`selectedKeys()`方法也会返回此对象。每一个`SelectionKey`都包含了一些必要信息，比如关联的通道和选择器，获取到`SelectionKey`后就可以从中取出对应通道操作  
+
+
+
+
+
+
+
