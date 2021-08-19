@@ -356,6 +356,11 @@ public void test() throws Exception{
 
 #### 为什么使用选择器  
 
+仅使用单线程来处理多个通道的优点是，只需要更少的线程来处理通道。实际上只需要一个线程来处理所有通道。对于操作系统而言，在线程之间切换是昂贵的，并且每个线程也占用操作系统中的一些资源。因此，使用的线程越少越好  
+
+以下是使用一个`Selector`来处理3个`Channel`的线程图  
+
+![selector](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/selector.png)  
 
 
 
