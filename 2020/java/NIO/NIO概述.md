@@ -362,6 +362,23 @@ public void test() throws Exception{
 
 ![selector](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/selector.png)  
 
+#### 使用选择器注册通道  
+
+首先创建一个选择器，通过如下方式  
+
+```java
+Selector selector = Seletor.open();
+```
+
+要使用带有选择器的通道，必须使用选择器来注册通道，也即是将通道注册到选择器，使用的是`Channel`对象的`register()`方法完成  
+
+```java
+channel.configureBlocking(false);//不阻塞
+SelectionKey key = channel.register(channel,SelectionKey.OP_READ);//将用到注册到选择器
+```
+
+通道必须处于非阻塞模式才能与选择器一起使用。这就意味着，`FileChannel`无法与`Selector`一起使用，因为`FileChannel`无法切换到非阻塞模式，套接字通道则支持非阻塞模式  
+
 
 
 
