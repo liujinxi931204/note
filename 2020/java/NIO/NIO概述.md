@@ -354,6 +354,7 @@ public void test() throws Exception{
 
 一个选择器可以对应多个通道，选择器是通过`SelectionKey`这个关键对象完成对多个通道的选择的。注册选择器的时候会返回此对象，调用选择器的`selectedKeys()`方法也会返回此对象。每一个`SelectionKey`都包含了一些必要信息，比如关联的通道和选择器，获取到`SelectionKey`后就可以从中取出对应通道操作  
 
+#### 为什么使用选择器  
 
 
 
