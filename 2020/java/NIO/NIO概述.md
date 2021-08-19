@@ -379,7 +379,176 @@ SelectionKey key = channel.register(channel,SelectionKey.OP_READ);//将用到注
 
 通道必须处于非阻塞模式才能与选择器一起使用。这就意味着，`FileChannel`无法与`Selector`一起使用，因为`FileChannel`无法切换到非阻塞模式，套接字通道则支持非阻塞模式  
 
+`register()`函数的第二个参数是一个`"interest集合"`，意味着通过`Selector`在`Channel`中监听哪些事件。可以监听到以下四种事件  
 
++ `Connect`连接  
 
++ `Accept`接收
 
++ `Read`读
 
++ `Write`写
+
+一个"发起事件"的通道也被称为"已就绪"事件。因此，已成功连接到另一台服务器的通道是"连接就绪"，接收传入连接的服务器套接字通道是"接收就绪"，准备好要读取数据的通道是"读就绪"，准备好要写入数据的通道是"写就绪"  
+
+这四个事件由四个`SelectionKey`常量来表示  
+
++ `SelectionKey.OP_CONNECT`
++ `SelectionKey.OP_ACCEPT`
++ `SelectionKey.OP_READ`
++ `SelectionKey.OP_WRITE`
+
+如果要监听多个事件，可以使用"`|`"或操作符将常量来连接起来  
+
+```java
+int interestKey = SelectionKey.OP_READ|SelectionKey.OP_WRITE;
+```
+
+#### SelectionKey对象  
+
+当使用`Selector`注册`Channel`的时候，`register()`方法会返回一个`SelectionKey`对象，这个`SelectionKey`对象包含了一些有趣的属性  
+
++ `interestSet`
+
++ `readySet`
+
++ 对应的`Channel`
+
++ 对应的`Selector`
+
++ 附加对象（可选）  
+
+##### `interestSet` 
+
+`interestSet`集合是所选择的感兴趣的事件集合，可以通过`SelectionKey`读取和写入`interestSet`集合，如下  
+
+```java
+//通过interestOps()函数，获取interestSet
+int interestSet = selectionKey.interestOps();
+//通过SelectionKey常量和interestSet集合做与运算，判断常量是否在interestSet中
+boolean isInterestedInAccept  = interestSet & SelectionKey.OP_ACCEPT;
+boolean isInterestedInConnect = interestSet & SelectionKey.OP_CONNECT;
+boolean isInterestedInRead    = interestSet & SelectionKey.OP_READ;
+boolean isInterestedInWrite   = interestSet & SelectionKey.OP_WRITE;    
+```
+
+可以使用给定的`SelectionKey`常量和`interestSet`集合做与运算，以查明某个事件是否在`interestSet`中
+
+##### `readySet`  
+
+就绪集合是通道准备好的一组操作，将在`Selector`后访问就绪集，可以像这样访问`readySet`  
+
+```java
+int readSet = selectionKey.readyOps();
+```
+
+可以使用与上面`interestSet`相同的方式，使用与操作进行检测频道已准备好的事件、操作。但是，也可以使用下面四种方法  
+
+```java
+selectionKey.isAcceptable();
+selectionKey.isConnectable();
+selectionKey.isReadable();
+selectionKey.isWritable();
+```
+
+##### 对应`Channel`y与`Selector`  
+
+从`SelectionKey`访问通道和选择器非常简单  
+
+```java
+Channel  channel  = selectionKey.channel();
+Selector selector = selectionKey.selector();    
+```
+
+##### 附加对象 
+
+可以将对象或者更多信息附加到`SelectionKey`，这是识别某个通道的便捷方式。例如，可以将正在使用的缓冲区与通道或其他对象相关联  
+
+```java
+// 将 theObject 对象附加到 SelectionKey 
+selectionKey.attach(theObject);
+// 从 SelectionKey 中取出附加的对象
+Object attachedObj = selectionKey.attachment();
+```
+
+还可以在`register()`方法中添加参数，在使用`Selector`注册`Channel`时就附加对象  
+
+```java
+SelectionKey key = channel.register(selector, SelectionKey.OP_READ, theObject);
+```
+
+#### 通过选择器选择通道  
+
+使用`Selector`注册一个或多个通道后，可以调用其中一个`select()`方法，这些方法会返回我们感兴趣的已就绪事件（连接、接受、读、写）的通道数量。换句话说，如果对读就绪通道感兴趣，`select()`方法会返回读事件已就绪的那些通道  
+
++ `int select()`：将一直阻塞，直到至少一个通道为注册的事件做好准备  
+
++ `int select(long timeout)`：与`select()`相同，但它最长会阻塞timeout毫秒  
+
++ `int selectNow()`：完全没有阻塞，立即返回任何已准备好的通道  
+
+`select()`方法返回的`int`表示有多少通道准备好了，是自从上次调用`select()`以来，有多少通道准备好了  
+
+一旦调用了`select()`方法并且其返回值表示有通道已经准备就绪，就可以通过调用选择器的`selectedKeys()`方法，返回`SelectionKey`集合
+
+```java
+Set<SelectionKey> selectedKeys = selector.selectedKeys();    
+```
+
+然后通过迭代`selectedKeys()`方法返回的集合，可以访问就绪通道  
+
+```java
+Set<SelectionKey> selectKeys = selector.selectedKeys();
+Interator<Selection> keyInterator = selectKeys.interator();
+while(keyInterator.hasNext()){
+    SelectionKey key = keyInterator.next();
+    if(key.isAcceptable()){
+        //ServerSocketChannel接受了一个连接
+    }else if(key.isConnectable()){
+        //与远程服务器建立连接
+    }else if(key.isReadable()){
+        //一个通道读就绪
+    }else if(key.isWriteable()){
+        //一个通道写就绪
+    }
+    keyInterator.remove();
+}
+```
+
+注意：选择器不会从`Set`中删除`SelectionKey`对象。因此，需要在完成通道处理后，调用`keyInterator.remove()`方法来删除已处理过的`SelectionKey`  
+
+已调用`select()`方法的线程可能会被阻塞，这时可以调用`wakeUp()`方法离开`select()`方法，即使尚未准备好任何通道。其他线程调用阻塞线程`Selector`对象的`select()`方法可以让阻塞在`select()`方法的线程立马返回  
+
+调用选择器的`close()`方法将关闭`Selector`并使使用此`Selector`注册的所有`SelectionKey`实例失效，但通道本身不会被关闭  
+
+下面是一个完整的例子  
+
+```java
+Selector selector = Selector.open(); // 打开选择器
+channel.configureBlocking(false); // 设置不阻塞，因为通道必须处于非阻塞模式才能与选择器一起使用
+SelectionKey key = channel.register(selector, SelectionKey.OP_READ); // 使用通道注册一个选择器
+
+while(true) {
+    int readyChannels = selector.select();
+    if(readyChannels == 0) continue;
+
+      // 这里的 SelectionKey 就和注册时候返回的 key 一样，
+      // 因为一个选择器可以注册多个通道，所以这里返回集合
+    Set<SelectionKey> selectedKeys = selector.selectedKeys();
+    
+    Iterator<SelectionKey> keyIterator = selectedKeys.iterator();
+    while(keyIterator.hasNext()) {
+        SelectionKey key = keyIterator.next();
+        if(key.isAcceptable()) {
+            //  ServerSocketChannel接受了一个连接。
+        } else if (key.isConnectable()) {
+            //  与远程服务器建立连接。
+        } else if (key.isReadable()) {
+            // 一个通道已读就绪
+        } else if (key.isWritable()) {
+            // 一个通道已写就绪
+        }
+        keyIterator.remove();
+    }
+}
+```
