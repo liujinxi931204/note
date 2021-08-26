@@ -29,7 +29,7 @@ ThreadLocal和synchornized都是为了解决多线程中相同变量的访问冲
 public T get();
 
 //set()方法是用来设置当前线程中变量的副本
-public void set(T value)；
+public void set(T value);
 
 //remove()方法是用来移除当前线程中变量的副本
 public void remove();
@@ -123,14 +123,16 @@ public void set(T value) {
 ```
 通过源码可以知道value是存放在了ThreadLocalMap中的，当前先把它理解为一个普普通通的Map即可，也就是说，**数据value是真正存放在了ThreadLocalMap这个容器中，并且是以当前threadLocal实例为key**  
 
-**首先ThreadLocalMap是怎么样来的？**，源码很清楚，时通过getMap()方法进行获取的  
+**首先ThreadLocalMap是怎么样来的？**，源码很清楚，是通过getMap()方法进行获取的  
+
 ```java
 ThreadLocalMap getMap(Thread t) {
     return t.threadLocals;
 }
 ```
 该方法直接返回的就是当前线程对象t的一个成员变量threadLocals  
-也就是说，**ThreadLocalMap的引用作为Thread的一个成员变量，被Thread进行维护**。当map为null的时候会通过createMap(t,value)方法  
+也就是说，**ThreadLocalMap的引用作为Thread的一个成员变量，被Thread进行维护**。当map为null的时候会调用createMap(t,value)方法    
+
 ```java
 void createMap(Thread t, T firstValue) {
     t.threadLocals = new ThreadLocalMap(this, firstValue);
@@ -138,9 +140,11 @@ void createMap(Thread t, T firstValue) {
 ```
 该方法就是new一个ThreadLocalMap实例对象，然后统一以当前ThreadLocal实例作为key，值为value存放到ThreadLocalMap中，然后将该ThreadLocalMap赋值给当前线程的threadLocals  
 ### 总结  
-**通过当前线程对象thread获取thread所维护的threadLocalMap，若threadLocalMap不为null，则以当前threadLocal实例为key，值为value的键值对存入threadLocalMap；若threadLocalMap为null，则就新建threadLocalMap然后再以当前threadLocal为key，值为value的键值对存入threadLocalMap中**  
+**通过当前线程对象thread获取thread所维护的ThreadLocalMap，若ThreadLocalMap不为null，则以当前threadLocal实例为key，值为value的键值对存入ThreadLocalMap；若ThreadLocalMap为null，则就新建ThreadLocalMap然后再以当前threadLocal为key，值为value的键值对存入ThreadLocalMap中**  
+
 ### get()方法  
 **get()方法是获取当前线程中的ThreadLocal变量的值**  
+
 ```java
 public T get() {
     //1. 获取当前线程的实例对象
@@ -161,8 +165,9 @@ public T get() {
     return setInitialValue();
 }
 ```
-get()方法的思维与set()方法的思维正好相反。只有当ThreadLocalMap不为null且以当前threadLocal为key的entry不为null的时候，才可以拿到当前下线程threadLocal的变量的值  
+get()方法的思维与set()方法的思维正好相反。只有当ThreadLocalMap不为null且以当前ThreadLocal为key的entry不为null的时候，才可以拿到当前下线程threadLocal的变量的值  
 接下来看一下setInitialValue()方法  
+
 ```java
 private T setInitialValue() {
     T value = initialValue();
@@ -183,7 +188,8 @@ protected T initialValue() {
 ```
 这个方法**是protected修饰的，也就是说继承ThreadLocal的子类可以重写该方法，实现赋值为其他的初始值**  
 ### 总结  
-**get()方法通过当前线程thread实例获取到它所维护的threadLocalMap，然后以当前threadLocal实例为key获取该map中的键值对(Entry),若Entry不为null则返回Entry的value；如果获取的threadLocalMap为null或者Entry为null，就以当前threadLocal为key，value值为null，存入threadLocalMap中，然后返回null**  
+**get()方法通过当前线程thread实例获取到它所维护的ThreadLocalMap，然后以当前ThreadLocal实例为key获取该map中的键值对(Entry),若Entry不为null则返回Entry的value；如果获取的ThreadLocalMap为null或者Entry为null，就以当前threadLocal为key，value值为null，存入ThreadLocalMap中，然后返回null**  
+
 ### remove()方法  
 ```java
 public void remove() {
@@ -194,11 +200,12 @@ public void remove() {
         m.remove(this);
 }
 ```
-**删除数据当然是从map中删除数据，先获取与当前线程相关联的threadLocalMap然后从map中删除该threadLocal实例为key的键值对即可**  
+**删除数据当然是从map中删除数据，先获取与当前线程相关联的ThreadLocalMap然后从map中删除该threadLocal实例为key的键值对即可**  
+
 ## ThreadLocalMap详解  
-从上面的分析可以知道，数据其实都是放在了ThreadLocalMap中，threadLocal的get、set和remove方法实际上具体是通过threadLocalMap的getEntry、set和remove来实现的  
+从上面的分析可以知道，数据其实都是放在了ThreadLocalMap中，ThreadLocal的get、set和remove方法实际上具体是通过ThreadLocalMap的getEntry、set和remove来实现的  
 ### Entry数据结构  
-ThreadLocalMap是threadLocal一个静态内部类，和大多数容器一样内部维护了一个数组，同样的，threadLocalMap内部维护了Entry类型的table数组  
+ThreadLocalMap是ThreadLocal一个静态内部类，和大多数容器一样内部维护了一个数组，同样的，ThreadLocalMap内部维护了Entry类型的table数组  
 ```java
 /**
  * The table, resized as necessary.
@@ -416,7 +423,6 @@ private void remove(ThreadLocal<?> key) {
 }
 ```
 该方法通过往后环形查找到与指定key相同的entry后，先通过clear方法将key置为null后，使其转换为一个脏entry，然后调用expungeStaleEntry方法将其value置为null，以便垃圾回收时能够及时清理，同时将table[i]置为null  
-
 
 
 
