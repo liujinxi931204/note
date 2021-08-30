@@ -9,7 +9,7 @@
 + **隔离性(Isolation)**：隔离性是指，在执行不同的事务，它们视图操纵同样的数据的时候，它们之间是相互隔离的  
 + **持久性(Durability)**：持久性是指，当事务提交以后，数据操作的结果会存储到数据库中永久保存。如果事务还没有提交，就出现一些故障或者系统宕机等情况，导致事务没有提交，数据的修改不会出现在数据库当中  
 ### 什么是Spring事务  
-Spring事务其实指的是Spring框架中的事务模块。在Spring框架中，对执行数据库事务的操作进行了一系列封装，其本质的实现还是在数据库，加入数据库不支持事务的话，Spring的事务也不会起作用，且Spring对事务进行了加强，添加了事务传播行为等功能  
+Spring事务其实指的是Spring框架中的事务模块。在Spring框架中，对执行数据库事务的操作进行了一系列封装，其本质的实现还是在数据库，假如数据库不支持事务的话，Spring的事务也不会起作用，且Spring对事务进行了加强，添加了事务传播行为等功能  
 ## Spring事务抽象  
 ### Spring中事务核心接口类  
 在Spring中核心的事务接口主要由以下组成  
@@ -38,30 +38,38 @@ Spring事务其实指的是Spring框架中的事务模块。在Spring框架中�
 
 ### 七种事务传播行为  
 + TransactionDefinition.PROPAGATION_REQUIRED（默认）：  
-如果该方法执行在没有事务的方法中，就创建一个新的事务  
-如果执行在已经存在事务的方法中，则加入这个事务中，合并成一个事务  
+  如果该方法执行在没有事务的方法中，就创建一个新的事务  
+  如果执行在已经存在事务的方法中，则加入这个事务中，合并成一个事务  
+
 + TransactionDefinition.PROPAGATION_SUPPORTS：  
-如果该方法执行在没有事务的方法中，就以非事务方式执行  
-如果执行在已经存在事务的方法中，则加入这个事务中，合并成一个事务  
+  如果该方法执行在没有事务的方法中，就以非事务方式执行  
+  如果执行在已经存在事务的方法中，则加入这个事务中，合并成一个事务  
+
 + TransactionDefinition.PROPAGATION_MANDATORY：  
-如果该放没有执行在事务的方法中，就抛出异常  
-如果执行在已经存在事务的方法中，则加入这个事务，合并成一个事务  
+  如果该放没有执行在事务的方法中，就抛出异常  
+  如果执行在已经存在事务的方法中，则加入这个事务，合并成一个事务  
+
 + TransactionDefinition.PROPAGATION_REQUIRES_NEW：  
-无论该方法是否执行在事务方法中，都创建一个新的事务  
-不过如果执行在事务的方法中，就将方法中的事务暂时挂起  
-新的事务会独立提交与回滚，不受调用它的父方法的事务影响  
+  无论该方法是否执行在事务方法中，都创建一个新的事务  
+  不过如果执行在事务的方法中，就将方法中的事务暂时挂起  
+  新的事务会独立提交与回滚，不受调用它的父方法的事务影响  
+
 + TransactionDefinition.PROPAGATION_NOT_SUPPORTED：  
-无论该方法是否执行在事务的方法中，都以非事务方式执行  
-不过如果执行在存在事务的方法中，就将该事务暂时挂起  
-+ TransactionDefinition.PROPAGATION_NEVER：
-如果该方法执行在没有事务的方法中，也就以非事务方式执行  
-不过如果执行在存在事务的方法中，就抛出异常  
-+ TransactionDefinition.PROPAGATION_NESTED：
-如果该方法执行在没有事务的方法中，就创建一个新的事务  
-如果执行在已经存在的事务的方法中，则在当前事务中嵌套创建子事务执行  
-被嵌套的事务可以独立于封装事务进行提交或者回滚  
-如果外部事务提交嵌套事务也会被提交，如果外部事务回滚嵌套事务也会进行回滚  
-**上述7中事务传播行为中比较常用的是REQUIRED、REQUIRES_NEW和NESTED**  
+  无论该方法是否执行在事务的方法中，都以非事务方式执行  
+  不过如果执行在存在事务的方法中，就将该事务暂时挂起  
+
++ TransactionDefinition.PROPAGATION_NEVER：  
+
+  如果该方法执行在没有事务的方法中，也就以非事务方式执行  
+  不过如果执行在存在事务的方法中，就抛出异常  
+
++ TransactionDefinition.PROPAGATION_NESTED：  
+
+  如果该方法执行在没有事务的方法中，就创建一个新的事务  
+  如果执行在已经存在的事务的方法中，则在当前事务中嵌套创建子事务执行  
+  被嵌套的事务可以独立于封装事务进行提交或者回滚  
+  如果外部事务提交嵌套事务也会被提交，如果外部事务回滚嵌套事务也会进行回滚  
+  **上述7中事务传播行为中比较常用的是REQUIRED、REQUIRES_NEW和NESTED**  
 ### 事务传播行为详解  
 #### PROPAGATION_REQUIRED  
 + 如果该方法执行在没有事务的方法中，就创建一个新的事务  
@@ -168,7 +176,7 @@ public class ServiceB {
 
 }
 ```
-1. 上面方法中 ServiceA.mA1() 没有设置事务，而 ServiceB.mB() 设置了事务，且设置的事务行为是 PROPAGATION_NEVER。ServiceA.mA1() 运行调用 ServiceB.mB() 时，方法 ServiceB.mB() 发现调用自己的方法并没有设置事务，这时方法 ServiceB.mB() 就会创建一个新的事务  
+1. 上面方法中 ServiceA.mA1() 没有设置事务，而 ServiceB.mB() 设置了事务，且设置的事务行为是 PROPAGATION_NESTED。ServiceA.mA1() 运行调用 ServiceB.mB() 时，方法 ServiceB.mB() 发现调用自己的方法并没有设置事务，这时方法 ServiceB.mB() 就会创建一个新的事务  
 2. 上面示例中两个方法都设置了事务，ServiceB.mB() 设置的事务行为是 PROPAGATION_NESTED。ServiceA.mA2() 运行调用 ServiceB.mB() 时，方法 ServiceB.mB() 发现调用自己方法也存在事务，这时方法 ServiceB.mB() 也会创建一个新的事务，与 ServiceA.mA2() 的事务形成嵌套事务。被嵌套的事务可以独立于封装事务进行提交或回滚。如果外部事务回滚嵌套事务也会进行回滚，  而内部嵌套的事务可以单独回滚而不影响外部事务
 ### 传播行为间的差异  
 
@@ -188,7 +196,7 @@ public class ServiceB {
 ### 编程式事务和声明式事务  
 Spring支持编程式事务管理和声明式事务管理两种方式  
 + **编程式事务**:编程式事务使用TransactionTemplate或者直接使用底层的PlatformTransactioinManager实现事务。对于编程式事务Spring比较推荐使用TransactionTemplate来对事务进行管理  
-+ **声明式事务**:声明式事务是建立在AOP只上的。其本质是对方法前后进行拦截，然后在目标方法开始之前创建或者加入一个事务，在执行完目标方法之后根据执行情况"提交"或"回滚"事务  
++ **声明式事务**:声明式事务是建立在AOP之上的。其本质是对方法前后进行拦截，然后在目标方法开始之前创建或者加入一个事务，在执行完目标方法之后根据执行情况"提交"或"回滚"事务  
 ### 两种事务管理间的区别  
 + 编程式事务允许用户在代码中精确定义事务的边界  
 + 声明式事务有助于用户将操作与事务规则进行解耦，它是基于AOP交由Spring容器实现  
@@ -233,7 +241,7 @@ public void test() throws Exception {
     throw new SQLException();
 }
 ```
-上面的代码中SQLException是Eeception的子类，解决这个问题也很简单。在@Transaction注解中设置rollbackFor=Exception.class即可  
+上面的代码中SQLException是Exception的子类，解决这个问题也很简单。在@Transaction注解中设置rollbackFor=Exception.class即可  
 ```java
 @Transactional(rollbackFor = Exception.class)
 public void test() throws Exception {
