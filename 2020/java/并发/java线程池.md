@@ -371,6 +371,20 @@ public static ExecutorService newWorkStealingPool() {
 }
 ```
 
+### 不要使用`Executors`来创建线程池  
+
+#### newFixedThreadPool
+
+ 因为`newFixedThreadPool`使用的任务队列是`LinkedBlockingQueue`，其长度是`Intteger.MAX_VALUE`，可以认为是无界队列，此队列中可以放入无限多的任务，在资源有限的情况下容易引起`OOM`。
+
+#### newSingleThreadExecutor  
+
+同`newFixedThreadPool`一样，`newSingleThreadExecutor`使用的任务队列也是`LinkedBlockingQueue`，也同样会引起`OOM`  
+
+#### newCachedThreadPool  
+
+`newCachedThreadPool`的任务队列使用的是`SynchronousQueue`，可以认为这是一个不存储元素的队列，也就是队列中永远都是满的。因此最终会创建非核心线程池中的线程来执行任务。可以认为是无限创建线程，在资源有限的情况下容易引起`OOM`  
+
 ## 总结
 
 整个Executors框架基本结构就如下图
