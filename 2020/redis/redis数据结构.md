@@ -158,3 +158,129 @@ struct entry {
 
 ![redis中ziplist的entry](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/redis%E4%B8%ADziplist%E7%9A%84entry.png)  
 
+## 哈希表    
+
+哈希表，是将一个键值（`key`）和一个特殊的哈希表关联起来。这个关联起来的哈希表又包含两部分数：字段和值  
+
+![redis哈希表](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/redis%E5%93%88%E5%B8%8C%E8%A1%A8.png)  
+
+哈希对象的编码方式可以是`ziplist`或者是`hashtable`  
+
+哈希对象保存的所有键值对的键和值的字符串长度都小于64字节并且保存的键值数对数量小于512个时，使用`ziplist`；否则使用`hashtable`  
+
+如果使用`ziplist`的编码方式，此时的哈希表对象如下  
+
+![redis中哈希表的ziplist](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/redis%E4%B8%AD%E5%93%88%E5%B8%8C%E8%A1%A8%E7%9A%84ziplist.png)  
+
+使用`ziplist`的编码方式时，进行查找、删除、更新操作时会先定位到键的位置，然后再通过键的位置来确定值的位置  
+
+如果使用`hashtable`的编码方式，总体上是使用数组+链表的结构。具体来说，是redis的字典（哈希表）底层使用哈希表实现，一个哈希表里面可以有多个哈希表节点，而每个哈希表节点就保存了字典（哈希表）中的一个键值对。下面分别介绍一下哈希表、哈希表节点和字典的实现
+
+`redis`字典所使用的哈希表是由`dict.h/dictht`结构定义的
+
+```c
+typedef struct dictht {
+    // 哈希表数组
+    dictEntry **table;
+    // 哈希表大小
+    unsigned long size;
+    // 哈希表大小掩码，用于计算索引值
+    // 总是等于 size - 1
+    unsigned long sizemask;
+    // 该哈希表已有节点的数量
+    unsigned long used;
+} dictht;
+```
+
+`table`属性是一个数组，数组中的每个元素都是一个指向`dict.h/dictEntry`结构的指针，每个`dictEntry`结构保存着一个键值对  
+
+`size`属性记录了哈希表的大小，也就是`table`数组的大小，而`used`属性则记录了哈希表目前已有节点（键值对）的数量  
+
+`sizemark`属性的值总等于`size-1`，这个属性和哈希值一起决定一个键应该被放到`table`数组的那个所以上面  
+
+下面展示的是一个大小为4的空哈希表（没有任何键值对）  
+
+![redis空哈希表](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/redis%E7%A9%BA%E5%93%88%E5%B8%8C%E8%A1%A8.png)  
+
+哈希表的节点是用`dictEntry`结构表示，每个`dictEntry`结构都保存着一个键值对  
+
+```c
+typedef struct dictEntry {
+    // 键
+    void *key;
+    // 值
+    union {
+        void *val;
+        uint64_t u64;
+        int64_t s64;
+    } v;
+    // 指向下个哈希表节点，形成链表
+    struct dictEntry *next;
+} dictEntry;
+```
+
+`key`属性保存着键值对中的键，`v`属性保存着键值对中的值，`next`属性是指向另一个哈希表节点的指针，这个指针可以将多个哈希值相同的键值对连接在一起，从而解决键冲突的问题  
+
+举个例子，下图就展示了如何通过`next`指针，将两个索引值相同的键`k1`和`k2`连接在一起  
+
+  ![redis解决hash冲突](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/redis%E8%A7%A3%E5%86%B3hash%E5%86%B2%E7%AA%81.png)
+
+`redis`中的哈希表由`dict.h/dict`来表示  
+
+```c
+typedef struct dict {
+    // 类型特定函数
+    dictType *type;
+    // 私有数据
+    void *privdata;
+    // 哈希表
+    dictht ht[2];
+    // rehash 索引
+    // 当 rehash 不在进行时，值为 -1
+    int rehashidx; /* rehashing not in progress if rehashidx == -1 */
+} dict;
+```
+
+`type`属性和`privdata`属性是针对不同类型的键值对，为创建多态哈希表而设置的。`type`属性是一个指向`dictType`结构的指针，每个`dictType`结构保存了一簇用操作特定类型键值对的函数，`redis`会为用途不同的字典设置不同的类型特定函数；而`privdata`属性则保存了需要传给那些类型特定函数的可选参数  
+
+`ht`属性是一个包含两个项的数组，数组中的每一项都是一个`dictht`哈希表，一般情况下，字典只是用`ht[0]`哈希表，`ht[1]`哈希表只会在对`ht[0]`哈希表进行`rehash`时使用  
+
+此外还有一个`rehashidx`与`rehash`操作相关，它记录了`rehash`的进度，当`rehashidx`为-1时表示没有进行`rehash`  
+
+因此`redis`中的哈希表结构如下  
+
+![redis哈希表底层实现](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/redis%E5%93%88%E5%B8%8C%E8%A1%A8%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.png)
+
+### `rehash`  
+
+当元素数量等于数组的长度时，`redis`会进行扩容操作。`redis`开始执行`rehash`，这个过程分为3步  
+
+1. 给哈希表`ht[1]`分配更大的空间  
+
+2. 把哈希表`ht[0]`中的数据重新映射并拷贝到哈希表`ht[1]`中  
+
+3. 释放哈希表`ht[0]`的空间  
+
+这样有一个问题，当哈希表`ht[0]`的数据量很大，如果一次性复制就会造成线程阻塞，无法响应其他请求。这样是无法接受的，因此使用了渐进式`rehash`  
+
+### 渐进式`rehash`  
+
+上述进行`rehash`的时候，阻塞的地方可能发生在第二步。渐进式`rehash`则是在进行第二步的时候，仍然正常处理客户端的请求，每处理一个请求，顺带从哈希表`ht[0]`中第一个索引位置开始，把这个位置上的所有的`entry`复制到哈希表`ht[1]`，然后下一个请求就复制位置2；直到全部复制完成  
+
+![渐进式rehash](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E6%B8%90%E8%BF%9B%E5%BC%8Frehash.png)  
+
+具体过程如下  
+
+1. 在字典中维持一个索引计数器变量`rehashidx`，并将其设置为0，表示开始进行`rehash`  
+
+2. 在`rehash`期间，客户端每次对字典的进行`CRUD`操作时，会将`ht[0]`中`rehashidx`索引上的值`rehash`到`ht[1]`中，操作完成后`rehashidx+1`  
+
+3. 字典操作不断执行，最终某个时间点，所有的键值对完成`rehash`，清空`ht[0]`表，将`ht[0]`和`ht[1]`的值进行互换，把新的`ht[1]`更名为`ht[0]`，这时将`rehashidx`设置为`-1`，表示`rehash`完成  
+
+此外，`redis`还有一个定时任务在执行`rehash`，如果没有针对字典的请求，这个定时任务会周期性的搬迁一些数据到新的哈希表中  
+
+在进行渐进式`rehash`的时候，如果要查找一个键，那么会优先去`ht[0]`中进行查找，如果不存在，再去`ht[1]`中进行查找。当执行新增操作时，新的键值对一律保存到新的`ht[1]`中，不再对`ht[0]`做任何操作，以保证`ht[0]`中的键值对数量只减不增，最后变为空表  
+
+
+
+   
