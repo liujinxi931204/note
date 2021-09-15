@@ -79,6 +79,10 @@ SDS的表示如下图
 
 那`raw`的编码方式和`embstr`的编码方式有什么区别呢？`raw`会调用两次内存分配函数创建`redisObject`结构和`sdshdr`结构，而`embstr`编码方式则通过调用一次内存分配函数分配一块来连续的空间，空间内一次包含了`redisObject`和`sdshdr`两个结构  
 
+这两种编码方式如下图所示  
+
+![redis字符串两种编码方式](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/redis%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%A4%E7%A7%8D%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F.png)  
+
 
 
 
