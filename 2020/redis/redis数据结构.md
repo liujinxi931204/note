@@ -281,6 +281,31 @@ typedef struct dict {
 
 在进行渐进式`rehash`的时候，如果要查找一个键，那么会优先去`ht[0]`中进行查找，如果不存在，再去`ht[1]`中进行查找。当执行新增操作时，新的键值对一律保存到新的`ht[1]`中，不再对`ht[0]`做任何操作，以保证`ht[0]`中的键值对数量只减不增，最后变为空表  
 
+## 集合  
+
+集合是一个无序并且拥有唯一的键值集合。集合对象的编码可以是`intset`也可以是`hashtable` 。集合对象保存的所有元素都是整数值并且保存的元素数量不超过512个，使用`intset`编码；否则使用`hashtable`编码  
+
+当集合类型以`hashtable`存储时，哈希表的`key`为要插入的元素值，而哈希表的`value`为`null`  
+
+![redis使用hashtable实现集合](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/redis%E4%BD%BF%E7%94%A8hashtable%E5%AE%9E%E7%8E%B0%E9%9B%86%E5%90%88.png)  
+
+当集合的元素都是整数并且数量不多的时候，`redis`会使用`intset`来作为`set`的底层实现。源码如下  
+
+```c
+typeof struct intset {
+    // 编码方式
+    unit32_t encoding;
+    // 集合包含的元素数量
+    unit32_t lenght;
+    // 保存元素的数组
+    int8_t contents[];
+} intset;
+```
+
+一个保存了5个整数的集合如下所示 
+
+![redis intset](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/redis%20intset.png)  
+
 
 
    
