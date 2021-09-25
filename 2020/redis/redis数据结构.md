@@ -292,20 +292,103 @@ typedef struct dict {
 当集合的元素都是整数并且数量不多的时候，`redis`会使用`intset`来作为`set`的底层实现。源码如下  
 
 ```c
-typeof struct intset {
-    // 编码方式
-    unit32_t encoding;
-    // 集合包含的元素数量
-    unit32_t lenght;
-    // 保存元素的数组
-    int8_t contents[];
-} intset;
+typeof struct intset {    // 编码方式    unit32_t encoding;    // 集合包含的元素数量    unit32_t lenght;    // 保存元素的数组    int8_t contents[];} intset;
 ```
 
 一个保存了5个整数的集合如下所示 
 
 ![redis intset](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/redis%20intset.png)  
 
+## 有序集合  
 
+与上面的集合相比较，有序集合的元素是有序的。有序集合的编码可以是`ziplist`或者`skiplist`。当有序集合保存元素的数量小于128个并且保存的元素成员的长度都小于64字节时，使用`ziplist`编码。否则使用`skiplist`编码  
 
-   
+### 跳跃表（`skiplist`）
+
+跳跃表是一种有序的数据结构，它通过在每个节点上维持多个指向其他节点的指针，从而达到快速访问的目的。跳跃表支持平均`O(logn)`最坏`O(n)`复杂度的节点查找，还可以通过顺序性操作来批量处理节点。在大部分情况下跳跃表的效率可以媲美平衡树。  
+
+`redis`使用跳跃表作为作为有序集合的底层实现之一：如果一个有序集合的元素数量比较多，又或者有序集合中的元素是比较长的字符串时，`redis`会使用跳跃表作为有序集合的底层实现。
+
+跳跃表由两个数据结构组成，分别是跳跃表和跳跃表节点  
+
+1. 跳跃表节点
+
+```c
+typedef struct zskiplistNode 
+    // 后退指针
+    struct zskiplistNode *backward;
+    // 分值
+    double score;
+    // 成员对象
+    robj *obj;
+    // 层
+    struct zskiplistLevel {
+        // 前进指针
+        struct zskiplistNode *forward;
+        // 跨度
+        unsigned int span;
+    } level[];
+} zskiplistNode;
+```
+
+2. 跳跃表  
+
+```c
+typedef struct zskiplist {
+    // 表头节点和表尾节点
+    struct zskiplistNode *header, *tail;
+    // 表中节点的数量
+    unsigned long length;
+    // 表中层数最大的节点的层数
+    int level;
+} zskiplist;
+```
+
+#### 跳跃表节点  
+
+![跳跃表节点层](https://gitee.com/liujinxi931204/typoraImage/raw/master/%E8%B7%B3%E8%B7%83%E8%A1%A8%E8%8A%82%E7%82%B9%E5%B1%82.png)
+
+##### 层  
+
+跳跃表节点的 level 数组可以包含多个元素，每个元素都包含一个指向其他节点的指针，程序可以通过这些层来加快访问其他节点的速度，一般来说，层的数量越多，访问其他节点的速度就越快。
+
+每次创建一个新跳跃表节点的时候， 程序都根据幂次定律 （power law，越大的数出现的概率越小） 随机生成一个介于 `1` 和 `32` 之间的值作为 `level` 数组的大小， 这个大小就是层的“高度”。
+
+##### 前进指针  
+
+每个层都有一个指向表尾方向的前进指针（`level[i].forward`属性），用于从表头向表尾方向访问节点  
+
+##### 跨度  
+
+层的跨度（`level[i].span`属性）用来记录两个节点之间的距离：  
+
++ 两个节点之间的跨度越大，说明两个节点之间的距离越远  
++ 指向`null`的所有跨度都为0，因为它们没有连向任何节点   
+##### 后退指针
+
+节点后退指针（`backward`属性）用于从表尾向表头方向访问节点：和前进指针可以一次跳过多个节点不同，后退指针每次只能后退到前一个节点  
+
+##### 分值和成员  
+
+- 节点的分值（`score` 属性）是一个 `double` 类型的浮点数， 跳跃表中的所有节点都按分值从小到大来排序。
+
+- 节点的成员对象（`obj` 属性）是一个指针， 它指向一个字符串对象， 而字符串对象则保存着一个 SDS（简单动态字符串） 值。
+
+在同一个跳跃表中， 各个节点保存的成员对象必须是唯一的， 但是多个节点保存的分值却可以是相同的： 分值相同的节点将按照成员对象在字典序中的大小来进行排序， 成员对象较小的节点会排在前面（靠近表头的方向）， 而成员对象较大的节点则会排在后面（靠近表尾的方向）。
+
+#### 跳跃表  
+
+![跳跃表头](https://gitee.com/liujinxi931204/typoraImage/raw/master/%E8%B7%B3%E8%B7%83%E8%A1%A8%E5%A4%B4.png)  
+
+- header ：指向跳跃表的表头节点。
+
+- tail ：指向跳跃表的表尾节点。
+
+- level ：记录目前跳跃表内，层数最大的那个节点的层数（表头节点的层数不计算在内）。
+
+- length ：记录跳跃表的长度，也即是，跳跃表目前包含节点的数量（表头节点不计算在内）。  
+
+由上面可以知道，真正的`sikplist`的形式如下  
+
+![跳跃表](https://gitee.com/liujinxi931204/typoraImage/raw/master/%E8%B7%B3%E8%B7%83%E8%A1%A8.png)  
+
