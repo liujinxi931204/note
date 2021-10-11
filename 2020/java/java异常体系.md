@@ -51,7 +51,7 @@ Exception可以分为运行时异常（RuntimeException）和非运行时异常
 */
 try{
     可能出现异常的代码
-}catech（异常类型 e）{
+}catech(异常类型 e){
     /**
     * 异常处理
     * 记录日志、打印异常信息、继续抛出异常
@@ -63,12 +63,12 @@ try{
 */
 try{
    可能出现异常的代码
-}catch（异常类型 a）{
+}catch(异常类型 a){
     /**
     * 异常处理
     * 记录日志、打印异常信息、继续抛出异常
     */
-}catch（异常类型 b）{
+}catch(异常类型 b){
     /**
     * 异常处理
     * 记录日志、打印异常信息、继续抛出异常
@@ -247,5 +247,4 @@ public class ExceptionDemo{
 4. 异常的粒度很重要，应该为一个基本操作定义一个try-catch块，切忌将几百行代码放到一个try-catch中  
 
 5. 自定义异常尽量使用RuntimeException类型的，并且要尽量避开已存在的异常  
-
 
