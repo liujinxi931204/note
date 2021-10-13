@@ -557,13 +557,13 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 }
 ```
 
-通过上面的注释可以知道，`doCreateBean`方法的主要工作有三个，从上刀下分别是：    
+通过上面的注释可以知道，`doCreateBean`方法的主要工作有三个，从上到下分别是：    
 
 + 通过反射的方式创建`Bean`  
 
   `instanceWrapper = createBeanInstance(beanName, mbd, args);`  
 
-+ 三级缓存中方入实例化的对象  
++ 三级缓存中放入实例化的对象  
 
   `addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));`  
 
