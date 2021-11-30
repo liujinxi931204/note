@@ -116,7 +116,7 @@ Kafka为用户提供了三种可靠级别，用户根据可靠性和延迟的要
 
   + 获取Leader副本高水位值：currentHW  
 
-  + 更新currentHW=min(currnetHW,min(LEO-1,LEO-2,LEO-3...,LEO-n))
+  + 更新currentHW=max(currnetHW,min(LEO-1,LEO-2,LEO-3...,LEO-n))
 
 处理Follower副本拉取消息的逻辑  
 
@@ -142,4 +142,62 @@ Kafka为用户提供了三种可靠级别，用户根据可靠性和延迟的要
 
   + 更新高水位为min(currentHW,currnetLEO)  
 
-    
+### 副本同步机制解析  
+
+#### 初始状态  
+
+初始状态下，leader和follower的HW和LEO都是0，leader副本会保存remote LEO，表示所有follower LEO，也会被初始化为0，这个时候producer没有发送消息。follower会不断地给Leader发送fetch请求，但是因为没有数据，这个请求会被Leader寄存，当在指定的时间之后会强制完成请求，这个时间配置是（**replica.fetch.wait.max.ms**），如果在指定时间内producer有消息发送过来，那么kafka会唤醒fetch请求，让Leader继续处理  
+
+![kafka第一次fetch消息](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/kafka%E7%AC%AC%E4%B8%80%E6%AC%A1fetch%E6%B6%88%E6%81%AF.png)  
+
+这里会分两种情况，第一种是leader处理producer请求之后，follower发送一个fetch请求过来；第二种是follower阻塞在leader指定之间之内，leader副本收到producer的请求。这两种情况下的处理方式差别不大，主要的区别在于没有消息的时候，fetch请求会被阻塞。如果fetch请求被阻塞的时间超过设定的**replica.fetch.wait.max.ms**，而producer没有消息传来，那么这个请求会被强制完成；如果fetch请求被阻塞的时间没有超过设定的**replica.fetch.wait.max.ms**，而producer有消息传来，那么这个请求会被唤醒，和正常的处理过程就一样了。
+
+leader处理完producer请求之后，follower发送一个fetch请求过来。状态如图  
+
+**生产者发送一条消息**
+
+![kafka第二次fetch消息](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/kafka%E7%AC%AC%E4%BA%8C%E6%AC%A1fetch%E6%B6%88%E6%81%AF.png)  
+
+leader副本收到请求以后，会做几件事  
+
++ 把消息追加到log文件，同时更新leader副本的LEO  
+
++ 尝试更新leader副本的HW值。这个时候由于follower副本还没有发送fetch请求，那么leader副本的remote LEO任然是0。leader副本会比较自己的LEO以及remote LEO的值，发现最小值是0，与HW的值相同，所以不会更新leader副本的HW  
+
+**follower 第一次fetch消息**  
+
+![kafka第三次fetch消息](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/kafka%E7%AC%AC%E4%B8%89%E6%AC%A1fetch%E6%B6%88%E6%81%AF.png)  
+
+follower发送fetch请求，leader副本的处理逻辑是  
+
++ 读取log数据，更新remote LEO=0（follower还没有写入这条消息，这个值是根据follower的fetch请求中的offset来确定的）  
+
++ 尝试更新HW，因为这个时候LEO和remote LEO都还是0，所以此时leader副本的HW=0
+
++ 把消息内容和当前分区的HW值发送给follower副本，follower副本收到response以后  
+
+  + 将消息写入本地log，同时更新follower副本的LEO=1  
+
+  + 更新follower副本的HW，本地的LEO和leader副本返回的HW进行比较取较小的值，所以这时follower副本的HW在第一次交互之后仍然是0，这个值会在下一次发送fetch请求之后更新  
+
+**follower 第二次fetch消息**  
+
+![kafka第四次fetch消息](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/kafka%E7%AC%AC%E5%9B%9B%E6%AC%A1fetch%E6%B6%88%E6%81%AF.png)  
+
+follower副本发起第二次fetch请求，leader副本收到请求后，处理逻辑如下  
+
++ 读取log数据  
+
++ 更新remote LEO=1（这次fetch请求携带的offset=1）  
+
++ 更新leader副本的HW=1（这个时候leader副本的LEO=1，remote LEO=1，current HW=0，所以此次更新current HW=1）  
+
++ 把数据和当前leader副本的HW值返回给follower副本，这个时候如果没有数据，则数据返回为空。follower接收到response以后  
+
+  +  如果有消息，则写入到本地log中并更新本地LEO  
+
+  + 更新follower副本的HW=1。到此为止，数据的同步就完成了，意味着消费者可以消费offset=0的这条消息  
+
+
+
+  
