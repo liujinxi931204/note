@@ -198,6 +198,60 @@ follower副本发起第二次fetch请求，leader副本收到请求后，处理�
 
   + 更新follower副本的HW=1。到此为止，数据的同步就完成了，意味着消费者可以消费offset=0的这条消息  
 
+### 消息丢失问题  
 
+#### 日志截断  
 
-  
+如果发生当Leader副本收到producer提交消息后，消息没有完全同步（有可能同步了一部分，不同Follower之间同步的进度也不一致）到Follower副本时出现宕机后又恢复，Follower与Leader副本的数据如何保持一致  
+
+![1314186-20200816225215121-2094868332](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/1314186-20200816225215121-2094868332.png)  
+
+1. leader收到了6条消息，followerB少同步了5，followerC少同步了4，5  
+
+2. 当leader出现宕机时，followerB担任leader  
+
+3. 当老的leader恢复时变成了followerA，会将日志截断到HW时的位置，将LEO指向HW。然后向新的leader进行fetch消息  
+
+老的leader恢复时必须要放弃之前提交消息，如果不进行日志截断，那么新leaderB如果收到又一个producer的消息那么他5这个位置和老leader5这个位置就产生数据不一致了。所以将LEO恢复到HW位置，因为只有HW位置之前的数据都是所有副本已备份并且认同的，3、4、5数据并没有与所有副本（ISR集合）确认，需要抛弃这些数据然后重新和新的leader进行同步。
+
+  如果ISR副本同步策略等于-1，那么证明其实kafka server还没有响应producer告诉它这条消息发生成功了，那么这时如果leader宕机了producer那边收到异常情况就会尝试重新发送消息（kafka默认保障At least once策略，可能出现重复消息）  
+
+follower副本如果重启时一样的，同样会截断到follower的HW位置。因为不知道在重启过程中，自己之前备份的数据是否最终被"提交了"，或者经过了多轮leader选举，leader都换了不知道多少人了，那HW之后位置的消息谁都不知道还是不是一致了  
+
+#### 数据丢失风险  
+
+出现数据丢失风险的核心点就在于第二轮fetch时follower的HW才会更新（是一个异步延迟更新），一旦出现崩溃就会被作为日志截断的依据，导致HW过期  
+
+![1314186-20200816225238730-812497366](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/1314186-20200816225238730-812497366.png)  
+
+如上图所示，producer端已经确认收到消息确认的通知了，但经过这样的极端情况，最终导致已经确认的消息丢失  
+
+#### 数据不一致风险  
+
+![1314186-20200816225315776-1808364824](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/1314186-20200816225315776-1808364824.png)  ![1314186-20200816225331235-334147147](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/1314186-20200816225331235-334147147.png) 
+
+如上图描述，前三步骤和数据丢失情况一致，在老leader没有恢复之前，新leader又收到了生产者发来的消息。当老leader恢复时变成follower节点，发现自己的HW和LEO相等，就不用截断日志了。这样就发生了同一个offset位置的数据不一致的情况  
+
+#### Leader Epoch  
+
+核心问题在于将HW作为截断日志的依据，而且HW的同步是异步的，任何崩溃都可能导致HW是一个过期的值。Kafka中引入了leader epoch的概念来规避此问题。leader epoch由一对二元组（epoch，startOffset）。Kafka Broker回在内存中为每个分区都缓存Leader Epoch数据，同时它还会定期地将这些信息持久化到一个checkpoint文件中。当Leader副本写入消息到磁盘时，Broker会尝试更新这部分缓存。如果该Leader是首次写入消息，那么Broker会向缓存中增加一个Leader Epoch条目，否则就不做更新  
+
++ epoch区别leader的朝代，当leader更换时epoch会加1  
+
++ startOffset代表当前朝代的leader时从哪个offset位置开始的  
+
+当follower重启后并不会直接进行日志截断，先向现任leader发起OffsetsForLeaderEpochRequest请求携带follower副本当前的epoch。有如下几种情况  
+
++ leader收到了请求  
+
+  + 如果follower的epoch与leader相等，leader返回当前LEO。Follower的LEO不会大于Leader的LEO，所以不会发生截断，继续后续的fetch流程  
+
+  + 如果follower的epoch与leader不等，leader根据follower的epoch+1去本地epoch文件找到对应的startOffset返回给follower，follower会根据leader返回的startOffset来判断，如果自己当前的LEO大于则截断，小于则不会发生截断，继续后续的fetch数据同步流程  
+
++ leader挂了收不到请求  
+
+  + follower会称为新的leader，更新epoch和startOffset，并不会发生截断。老leader复活后与新leader会走上面epoch不一致时的流程  
+
+对应上面的场景，如下图  
+
+![1314186-20200816225354268-1609949586](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/1314186-20200816225354268-1609949586.png)  
