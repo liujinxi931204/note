@@ -154,7 +154,7 @@ Kafka为用户提供了三种可靠级别，用户根据可靠性和延迟的要
 
 leader处理完producer请求之后，follower发送一个fetch请求过来。状态如图  
 
-**生产者发送一条消息**
+#### 生产者发送一条消息
 
 ![kafka第二次fetch消息](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/kafka%E7%AC%AC%E4%BA%8C%E6%AC%A1fetch%E6%B6%88%E6%81%AF.png)  
 
@@ -164,7 +164,7 @@ leader副本收到请求以后，会做几件事
 
 + 尝试更新leader副本的HW值。这个时候由于follower副本还没有发送fetch请求，那么leader副本的remote LEO任然是0。leader副本会比较自己的LEO以及remote LEO的值，发现最小值是0，与HW的值相同，所以不会更新leader副本的HW  
 
-**follower 第一次fetch消息**  
+#### follower 第一次fetch消息  
 
 ![kafka第三次fetch消息](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/kafka%E7%AC%AC%E4%B8%89%E6%AC%A1fetch%E6%B6%88%E6%81%AF.png)  
 
@@ -180,7 +180,7 @@ follower发送fetch请求，leader副本的处理逻辑是
 
   + 更新follower副本的HW，本地的LEO和leader副本返回的HW进行比较取较小的值，所以这时follower副本的HW在第一次交互之后仍然是0，这个值会在下一次发送fetch请求之后更新  
 
-**follower 第二次fetch消息**  
+#### follower 第二次fetch消息  
 
 ![kafka第四次fetch消息](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/kafka%E7%AC%AC%E5%9B%9B%E6%AC%A1fetch%E6%B6%88%E6%81%AF.png)  
 
