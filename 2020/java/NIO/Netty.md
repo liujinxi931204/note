@@ -43,3 +43,68 @@ Netty对`JDK`自带的`NIO`的`API`进行了封装，解决了上述原生`NIO`�
 1. Netty的版本分为：`Netty 3.x`、`Netty 4.x`和`Netty 5.x`  
 2. 因为`Netty 5.x`出现重大`Bug`，已经被官网废弃了，目前推荐使用的是`Netty 4.x`的稳定版本  
 3. 目前在官网可下载的版本 `Netty 3.x`、`Netty 4.0.x` 和 `Netty 4.1.x`
+
+### Netty高性能架构设计  
+
+#### 线程模型基本介绍  
+
+1. 不同的线程模型，对程序的性能有很大影响。目前存在的线程模型有：传统阻塞`I/O`服务模型和`Reactor`模式  
+
+2. 根据`Reactor`的数量和处理资源池线程的数量不同，有3中典型的实现  
+
+   1. 单`Reactor`单线程  
+
+   2. 单`Reactor`多线程  
+
+   3. 主从`Reactor`多线程  
+   
+3. `Netty`线程模式（`Netty`主要基于主从`Reactor`多线程模型做了一定的改进，其中主从`Reactor`多线程模型有多个`Reactor`）  
+
+#### 传统阻塞I/O服务模型  
+
+![传统阻塞IO服务模型](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E4%BC%A0%E7%BB%9F%E9%98%BB%E5%A1%9EIO%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9E%8B.png)  
+
+传统阻塞I/O服务模型，对于每一个连接在服务端都需要一个独立的线程完成数据的输入、业务处理、数据返回。这样会存在两个问题  
+
+1. 当并发数量很大，就会创建大量的线程，占用很多的系统资源  
+
+2. 连接创建以后，如果当前线程暂时没有数据可读，该线程会阻塞在`Handler`对象中的`read`操作，导致上面的处理线程资源浪费  
+
+#### Reactor模式  
+
+![Reactor模式](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/Reactor%E6%A8%A1%E5%BC%8F.png)  
+
+对上图的说明：  
+
+1. `Reactor`模式，通过一个或多个输入同时传递给服务处理器`(ServiceHandler)`的模式（基于事件驱动）  
+
+2. 服务器端程序处理传入的多个请求，并将他们同步分派到相应的处理线程，因此`Reactor`模式也叫做`Dispatcher`模式  
+
+3. `Reactor`模式使用`IO`复用监听事件，收到事件后，分发给某个线程（进程），这点就是网络服务器高并发处理的关键  
+
+4. 原先有多个`Handler`阻塞，现在只有一个`ServiceHandler`阻塞  
+
+`Reactor（也就是那个ServiceHandler）`在一个单独的线程中运行，负责监听和分发事件，分发给适当的处理线程来对`IO`事件做出反应。就像公司的电话接线员，它接听来自客户的电话并将线路转移到适当的联系人  
+
+`Handlers(处理线程EventHandler)`处理线程执行`IO`事件要完成的实际事件，类似于客户想要交谈的公司的实际官员。`Reactor`通过调度适当的处理线程来响应`IO`事件，处理程序执行非阻塞操作  
+
+根据`Reactor`的数量和处理资源池线程的数量不同，有3种典型的实现  
+
+1. 单`Reactor`单线程  
+
+2. 单`Reactor`多线程  
+
+3. 主从`Reactor`多线程  
+
+#### 单Reactor单线程模型  
+
+![单Reactor单线程模型](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E5%8D%95Reactor%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B.png)  
+
+#### 单Reactor多线程模型  
+
+![单Reactor多线程模型](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E5%8D%95Reactor%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B.png)  
+
+#### 主从Reactor多线程模型  
+
+![主从Reactor多线程模型](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E4%B8%BB%E4%BB%8EReactor%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B.png)  
+
