@@ -100,11 +100,81 @@ Netty对`JDK`自带的`NIO`的`API`进行了封装，解决了上述原生`NIO`�
 
 ![单Reactor单线程模型](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E5%8D%95Reactor%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B.png)  
 
+`Select`是之前`IO`复用模型中的标准网络编程`API`，可以实现应用程序通过一个阻塞对象监听多路连接请求  
+
+`Reactor`对象通过`Select`监控客户端请求事件，收到请求事件后通过`Dispatch`进行分发  
+
+如果是建立连接的请求，则由`Acceptor`通过`Accept`处理连接请求，然后创建一个`Handler`对象处理链接完成后的后续业务  
+
+如果不是连接请求，则`Reactor`会分发调用连接对应的`Handler`来响应  
+
+`Handler`会完成`read`→业务处理→`send`的完整业务流程  
+
+缺点  
+
+1. 只有一个线程，无法完全发挥多核CPU的性能。
+2. 单线程很容易成为性能瓶颈。`Reactor`处理耗时长的业务逻辑时，整个进程无法处理别的连接事件或者请求事件
+
 #### 单Reactor多线程模型  
 
 ![单Reactor多线程模型](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E5%8D%95Reactor%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B.png)  
+
+`Reactor`对象通过 `Select` 监控客户端请求事件，收到事件后，通过 `Dispatch` 进行分发  
+
+如果是建立连接请求，则由 `Acceptor` 通过 `Accept` 处理连接请求，然后创建一个 `Handler` 对象处理完成连接后的各种事件  
+
+如果不是连接请求，则由 `Reactor` 分发调用连接对应的 `handler` 来处理（也就是说连接已经建立，后续客户端再来请求，那基本就是数据请求了，直接调用之前为这个连接创建好的`handler`来处理）  
+
+`handler` 只负责响应事件，不做具体的业务处理（这样不会使`handler`阻塞太久），通过 `read` 读取数据后，会分发给后面的 `worker` 线程池的某个线程处理业务。【业务处理是最费时的，所以将业务处理交给线程池去执行】  
+
+`worker` 线程池会分配独立线程完成真正的业务，并将结果返回给 `handler`  
+
+`handler` 收到响应后，通过 `send` 将结果返回给 `client`  
+
+缺点：  
+
+1. `Reactor`承担所有的事件的监听和响应，因为它是单线程运行，所以在高并发场景中容易成为性能瓶颈。也就是说，`Reactor`线程承担了过多的事请  
 
 #### 主从Reactor多线程模型  
 
 ![主从Reactor多线程模型](https://gitee.com/liujinxi931204/typoraImage/raw/master/img/%E4%B8%BB%E4%BB%8EReactor%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B.png)  
 
+`Reactor`主线程 `MainReactor` 对象通过 `select` 监听连接事件，收到事件后，通过 `Acceptor` 处理连接事件  
+
+当 `Acceptor`处理连接事件后，`MainReactor` 将连接分配给 `SubReactor`  
+
+`subreactor` 将连接加入到连接队列进行监听，并创建 `handler` 进行各种事件处理  
+
+当有新事件发生时，`subreactor` 就会调用对应的 `handler` 处理  
+
+`handler` 通过 `read` 读取数据，分发给后面的 `worker` 线程处理  
+
+`worker` 线程池分配独立的 `worker` 线程进行业务处理，并返回结果  
+
+`handler` 收到响应的结果后，再通过 `send` 将结果返回给 `client`  
+
+`Reactor` 主线程可以对应多个 `Reactor` 子线程，即 `MainRecator` 可以关联多个 `SubReactor`  
+
+缺点：  
+
+1. 编程复杂度极高  
+
+#### 小结  
+
+1. 单`Reactor`单线程，就像前台接待员和服务员是同一个人，全程为顾客服务  
+
+2. 单`Reactor`多线程，就像有一个前台接待员和多个服务员，接待员只负责接待  
+
+3. 主从多`Reactor`多线程，就像有多个前台接待员和多个服务员  
+
+#### 优点  
+
+1. 响应快，不必为单个同步时间所阻塞，虽然`Reactor`本身依然是同步的，但是有多个`SubReactor`，即使第一个`SubReactor`被阻塞了，还可以调用下一个`SubReactor`  
+
+2. 可以最大程度的避免复杂的线程以及同步问题，并且避免了多线程/进程的切换开销  
+
+3. 扩展性好，可以方便的通过增加`Reactor`实例个数来充分利用CPU资源  
+
+4. 复用性好，`Reactor`模型本身与具体事件处理逻辑无关，具有很高的复用性  
+
+   
